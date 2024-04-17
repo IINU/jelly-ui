@@ -1,7 +1,7 @@
 import { ComponentType, MouseEventHandler } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 
-type Style = 'primary' | 'secondary' | 'delete' | 'ghost' | 'disabled'
+export type ButtonStyle = 'primary' | 'secondary' | 'delete' | 'ghost' | 'disabled'
 
 type IconOrLabel = {
   label: string,
@@ -13,7 +13,7 @@ type IconOrLabel = {
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
-  style?: Style
+  style?: ButtonStyle
   className?: string,
   disabled?: boolean
   loading?: boolean
@@ -36,12 +36,12 @@ export function Button({
   onClick,
   icon: Icon,
 }: Props) {
-  const padding = getPadding(!!label, !!Icon)
-  const base = 'font-rubik font-medium text-sm rounded-full flex items-center justify-center space-x-1 min-w-10 h-10'
+  const padding = getPadding(!!label, !!Icon || loading)
+  const base = 'font-rubik font-normal text-sm rounded-full flex items-center justify-center space-x-1 min-w-10 h-10'
 
-  const styled: Record<Style, string> = {
-    primary: 'bg-primary-900 text-tertiary-400 border-2 border-primary-900 hover:bg-primary-800',
-    secondary: 'bg-white text-primary-900 border-2 border-primary-900 hover:bg-primary-200',
+  const styled: Record<ButtonStyle, string> = {
+    primary: 'bg-primary-900 text-white border-2 border-primary-900 hover:bg-primary-800',
+    secondary: 'bg-white text-primary-900 border-2 border-primary-200 hover:bg-primary-200',
     delete: 'bg-white text-error-400 border-2 border-error-400 hover:bg-error-200',
     ghost: 'bg-white text-primary-900 border-2 border-white hover:bg-primary-100 hover:border-primary-100',
     disabled: 'bg-gray-400 text-white border-2 border-gray-400 cursor-not-allowed',

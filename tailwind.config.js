@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         rubik: ["'Rubik'", 'sans-serif'],
+        lato: ["'Lato'", 'sans-serif'],
       },
       colors: {
         primary: {
