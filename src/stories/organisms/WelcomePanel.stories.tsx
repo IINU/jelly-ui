@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { WelcomePanelShowcase } from '../../showcase/WelcomePanelShowcase'
+import { fn } from '@storybook/test'
 
 const meta = {
   title: 'Organisms/Welcome Panel',
@@ -11,5 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const WelcomePanel: Story = {
-  args: {},
+  args: {
+    onClick: fn()
+  },
 };

@@ -34,8 +34,9 @@ export function RegisterPanel({
   const [phoneNumber, setPhoneNumber] = useState('')
 
   function ctaClicked() {
-    const calcError: Errors = {}
+    setErrors(null)
 
+    const calcError: Errors = {}
     if (!firstName) calcError.firstName = 'This is required.'
     if (!lastName) calcError.lastName = 'This is required.'
     if (!countryCode) calcError.countryCode = 'This is required.'
