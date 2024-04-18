@@ -8,6 +8,7 @@ import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
 
 type Field = 'firstName' | 'lastName' | 'countryCode' | 'phoneNumber'
+type Errors = Partial<Record<Field, string>>
 
 type Props = {
   register: (data: Record<Field, string | number | null>) => void
@@ -15,7 +16,7 @@ type Props = {
   tacClicked: MouseEventHandler
   privacyPolicyClicked: MouseEventHandler
   loading?: boolean
-  errors?: Record<Field, string | undefined>
+  errors?: Errors
 }
 
 export function RegisterPanel({
@@ -24,14 +25,27 @@ export function RegisterPanel({
   tacClicked,
   privacyPolicyClicked,
   loading,
-  errors,
+  errors: propErrors,
 }: Props) {
+  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
   const [phoneNumber, setPhoneNumber] = useState('')
 
   function ctaClicked() {
+    const calcError: Errors = {}
+
+    if (!firstName) calcError.firstName = 'This is required.'
+    if (!lastName) calcError.lastName = 'This is required.'
+    if (!countryCode) calcError.countryCode = 'This is required.'
+    if (!phoneNumber) calcError.phoneNumber = 'This is required.'
+
+    if (Object.values(calcError).filter(Boolean).length) {
+      setErrors(calcError)
+      return
+    }
+
     register({
       firstName,
       lastName,
