@@ -8,13 +8,13 @@ type IconOrLabel = {
   icon?: ComponentType
 } | {
   label?: string
-  icon: ComponentType,
+  icon: ComponentType
 }
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>
   style?: ButtonStyle
-  className?: string,
+  className?: string
   disabled?: boolean
   loading?: boolean
 } & IconOrLabel

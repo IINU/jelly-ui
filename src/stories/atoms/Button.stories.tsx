@@ -34,8 +34,8 @@ export const ButtonDisabled: Story = {
   },
 };
 
-export const GhostDisabled: Story = {
+export const ButtonGhost: Story = {
   args: {
-    style: 'primary'
+    style: 'ghost'
   },
 };
