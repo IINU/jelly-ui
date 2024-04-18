@@ -6,30 +6,26 @@ import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
-import { PasswordInput } from '../atoms/PasswordInput'
 
-type Field = 'countryCode' | 'phoneNumber' | 'password'
+type Field = 'countryCode' | 'phoneNumber'
 type Errors = Partial<Record<Field, string>>
 
 type Props = {
-  login: (data: Record<Field, string | number | null>) => void
-  registerLinkClicked: MouseEventHandler
-  forgotPasswordLinkClicked: MouseEventHandler
+  resetPassword: (data: Record<Field, string | number | null>) => void
+  loginLinkClicked: MouseEventHandler
   loading?: boolean
   errors?: Errors
 }
 
-export function LoginPanel({
-  login,
-  registerLinkClicked,
-  forgotPasswordLinkClicked,
+export function ResetPasswordPanel({
+  resetPassword,
+  loginLinkClicked,
   loading,
   errors: propErrors,
 }: Props) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
   const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [password, setPassword] = useState('')
 
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
@@ -39,15 +35,13 @@ export function LoginPanel({
     const calcError: Errors = {}
     if (!countryCode) calcError.countryCode = 'This is required.'
     if (!phoneNumber) calcError.phoneNumber = 'This is required.'
-    if (!password) calcError.password = 'This is required.'
 
     if (Object.values(calcError).filter(Boolean).length) {
       setErrors(calcError)
       return
     }
 
-    login({
-      password,
+    resetPassword({
       countryCode: countryCode ? countryCode.code : null,
       phoneNumber,
     })
@@ -61,17 +55,11 @@ export function LoginPanel({
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <div className="flex flex-col space-y-4 w-full">
-          <Typography style="h6">Log In</Typography>
+          <Typography style="h6">Forgot Password</Typography>
 
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Don't have an account?
-            </Typography>
-
-            <Anchor style="caption" onClick={registerLinkClicked}>
-              Sign up.
-            </Anchor>
-          </div>
+          <Typography style="caption" className="text-primary-600">
+            Enter your phone number and we will text you a reset code.
+          </Typography>
 
           <div className="flex space-x-4">
             <div className="w-32">
@@ -89,30 +77,23 @@ export function LoginPanel({
               error={errors?.phoneNumber}
             />
           </div>
-
-          <PasswordInput
-            placeholder="Password"
-            value={password}
-            onChange={setPassword}
-            error={errors?.password}
-          />
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
             style={loading ? 'disabled' : 'primary'}
             onClick={ctaClicked}
-            label="LOG IN"
+            label="SEND"
             className="w-full"
           />
 
           <div className="flex justify-center space-x-1">
             <Typography style="caption" className="text-primary-600">
-              Forgot your password?
+              Return to
             </Typography>
 
-            <Anchor style="caption" onClick={forgotPasswordLinkClicked}>
-              Reset.
+            <Anchor style="caption" onClick={loginLinkClicked}>
+              Log In.
             </Anchor>
           </div>
         </div>
