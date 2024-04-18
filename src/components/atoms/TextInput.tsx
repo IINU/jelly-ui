@@ -16,7 +16,7 @@ export function TextInput({ placeholder, value, onChange, error, icon: Icon, loa
     Icon = IconLoader2
   }
 
-  const baseClass = 'w-full bg-white placeholder:text-primary-600 font-lato px-3 py-2 rounded-lg'
+  const baseClass = 'w-full bg-white placeholder:text-primary-600 font-lato px-3 py-2 rounded-lg focus:outline-0 focus-visible:outline-0'
 
   const borderClass = error
     ? 'border-2 border-error-400'

@@ -6,32 +6,28 @@ import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
+import { PasswordInput } from '../atoms/PasswordInput'
 
-type Field = 'firstName' | 'lastName' | 'countryCode' | 'phoneNumber'
+type Field = 'countryCode' | 'phoneNumber' | 'password'
 type Errors = Partial<Record<Field, string>>
 
 type Props = {
-  register: (data: Record<Field, string | number | null>) => void
-  loginLinkClicked: MouseEventHandler
-  tacClicked: MouseEventHandler
-  privacyPolicyClicked: MouseEventHandler
+  login: (data: Record<Field, string | number | null>) => void
+  registerLinkClicked: MouseEventHandler
   loading?: boolean
   errors?: Errors
 }
 
-export function RegisterPanel({
-  register,
-  loginLinkClicked,
-  tacClicked,
-  privacyPolicyClicked,
+export function LoginPanel({
+  login,
+  registerLinkClicked,
   loading,
   errors: propErrors,
 }: Props) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
   const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
@@ -39,19 +35,17 @@ export function RegisterPanel({
     setErrors(null)
 
     const calcError: Errors = {}
-    if (!firstName) calcError.firstName = 'This is required.'
-    if (!lastName) calcError.lastName = 'This is required.'
     if (!countryCode) calcError.countryCode = 'This is required.'
     if (!phoneNumber) calcError.phoneNumber = 'This is required.'
+    if (!password) calcError.password = 'This is required.'
 
     if (Object.values(calcError).filter(Boolean).length) {
       setErrors(calcError)
       return
     }
 
-    register({
-      firstName,
-      lastName,
+    login({
+      password,
       countryCode: countryCode ? countryCode.code : null,
       phoneNumber,
     })
@@ -65,21 +59,7 @@ export function RegisterPanel({
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <div className="flex flex-col space-y-4 w-full">
-          <Typography style="h6">Create account</Typography>
-
-          <TextInput
-            placeholder="First name"
-            value={firstName}
-            onChange={setFirstName}
-            error={errors?.firstName}
-          />
-
-          <TextInput
-            placeholder="Last name"
-            value={lastName}
-            onChange={setLastName}
-            error={errors?.lastName}
-          />
+          <Typography style="h6">Log In</Typography>
 
           <div className="flex space-x-4">
             <div className="w-32">
@@ -97,33 +77,30 @@ export function RegisterPanel({
               error={errors?.phoneNumber}
             />
           </div>
-        </div>
 
-        <div className="flex flex-col">
-          <Typography style="caption" className="text-primary-600">I agree to:</Typography>
-
-          <div className="flex space-x-1">
-            <Anchor style="caption" onClick={tacClicked}>Terms & Conditions</Anchor>
-            <Typography style="caption" className="text-primary-600">and</Typography>
-            <Anchor style="caption" onClick={privacyPolicyClicked}>Privacy Policy</Anchor>
-          </div>
+          <PasswordInput
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+            error={errors?.password}
+          />
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
             style={loading ? 'disabled' : 'primary'}
             onClick={ctaClicked}
-            label="CONTINUE"
+            label="LOG IN"
             className="w-full"
           />
 
           <div className="flex justify-center space-x-1">
             <Typography style="caption" className="text-primary-600">
-              Already registered?
+              Don't have an account?
             </Typography>
 
-            <Anchor style="caption" onClick={loginLinkClicked}>
-              Log in here.
+            <Anchor style="caption" onClick={registerLinkClicked}>
+              Register here.
             </Anchor>
           </div>
         </div>
