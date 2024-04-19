@@ -3,15 +3,26 @@ import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
 type Props = {
-  placeholder: string
+  name?: string
+  placeholder?: string
   value: string
   onChange: (s: string) => void
   error?: string
   loading?: boolean
   icon?: ComponentType<{ className?: string }>
+  className?: string
 }
 
-export function PasswordInput({ placeholder, value, onChange, error, icon: Icon, loading = false }: Props) {
+export function PasswordInput({
+  name,
+  placeholder,
+  value,
+  onChange,
+  error,
+  icon: Icon,
+  loading = false,
+  className,
+}: Props) {
   if (loading) {
     Icon = IconLoader2
   }
@@ -26,8 +37,9 @@ export function PasswordInput({ placeholder, value, onChange, error, icon: Icon,
     <div className="w-full space-y-1">
       <div className="relative w-full">
         <input
+          name={name}
           type="password"
-          className={`${baseClass} ${borderClass}`}
+          className={`${baseClass} ${borderClass} ${className}`}
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}

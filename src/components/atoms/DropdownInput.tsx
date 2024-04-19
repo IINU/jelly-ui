@@ -3,7 +3,8 @@ import { IconChevronDown, IconChevronUp, IconLoader2 } from '@tabler/icons-react
 import { Typography } from './Typography'
 
 type Props<T> = {
-  placeholder: string
+  name?: string
+  placeholder?: string
   value: T | null
   options: T[]
   optionToId: (option: T) => number | string
@@ -13,9 +14,11 @@ type Props<T> = {
   error?: string
   loading?: boolean
   icon?: React.ComponentType<{ className?: string }>
+  className?: string
 };
 
 export function DropdownInput<T>({
+  name,
   placeholder,
   value,
   options,
@@ -26,6 +29,7 @@ export function DropdownInput<T>({
   error,
   icon: Icon,
   loading = false,
+  className,
 }: Props<T>) {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
@@ -41,7 +45,7 @@ export function DropdownInput<T>({
       setSearch(
         optionToSearchValue
           ? optionToSearchValue(inputValue)
-          : optionToLabel(inputValue)
+          : optionToLabel(inputValue),
       )
     } else {
       setSearch('')
@@ -76,9 +80,11 @@ export function DropdownInput<T>({
   // Handle outside click to close the dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      if (!wrapperRef.current) {
+        return
+      }
+
+      if (!wrapperRef.current.contains(event.target as Node)) {
         setOpen(false)
       }
     }
@@ -93,8 +99,9 @@ export function DropdownInput<T>({
     <div ref={wrapperRef} className="w-full space-y-1">
       <div className="relative w-full">
         <input
+          name={name}
           type="text"
-          className={`${baseClass} ${borderClass}`}
+          className={`${baseClass} ${borderClass} ${className}`}
           placeholder={placeholder}
           value={search}
           onFocus={() => {
@@ -114,8 +121,7 @@ export function DropdownInput<T>({
 
       {open && (
         <ul
-          className="absolute w-64 mt-1 max-h-60 overflow-auto bg-white border border-gray-200 rounded-md shadow-lg text-left z-10"
-        >
+          className="absolute w-64 mt-1 max-h-60 overflow-auto bg-white border border-gray-200 rounded-md shadow-lg text-left z-10">
           {filteredOptions.map(option => (
             <li
               key={optionToId(option)}
@@ -128,9 +134,13 @@ export function DropdownInput<T>({
         </ul>
       )}
 
-      <div className="text-left px-2">
-        {error && <Typography style="caption" className="text-error-400">{error}</Typography>}
-      </div>
+      {error && (
+        <div className="text-left px-2">
+          <Typography style="caption" className="text-error-400">
+            {error}
+          </Typography>
+        </div>
+      )}
     </div>
   )
 }
