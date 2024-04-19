@@ -1,10 +1,11 @@
-import { ComponentType } from 'react'
+import { ComponentType, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
 type Props = {
   name?: string
   placeholder?: string
+  autoComplete?: HTMLInputAutoCompleteAttribute
   value: string
   onChange: (s: string) => void
   error?: string
@@ -16,6 +17,7 @@ type Props = {
 export function TextInput({
   name,
   placeholder,
+  autoComplete,
   value,
   onChange,
   error,
@@ -40,6 +42,7 @@ export function TextInput({
           name={name}
           type="text"
           className={`${baseClass} ${borderClass} ${className}`}
+          autoComplete={autoComplete}
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}

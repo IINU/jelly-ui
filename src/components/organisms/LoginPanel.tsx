@@ -84,6 +84,7 @@ export function LoginPanel({
 
             <TextInput
               placeholder="Phone number"
+              autoComplete="tel-national"
               value={phoneNumber}
               onChange={setPhoneNumber}
               error={errors?.phoneNumber}
@@ -93,6 +94,7 @@ export function LoginPanel({
           <PasswordInput
             placeholder="Password"
             value={password}
+            autoComplete="current-password"
             onChange={setPassword}
             error={errors?.password}
           />

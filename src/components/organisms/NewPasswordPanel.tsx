@@ -66,6 +66,7 @@ export function NewPasswordPanel({
           <PasswordInput
             placeholder="Password"
             value={password}
+            autoComplete="new-password"
             onChange={setPassword}
             error={errors?.password}
           />
@@ -73,6 +74,7 @@ export function NewPasswordPanel({
           <PasswordInput
             placeholder="Confirm Password"
             value={confirmPassword}
+            autoComplete="new-password"
             onChange={setConfirmPassword}
             error={errors?.confirmPassword}
           />

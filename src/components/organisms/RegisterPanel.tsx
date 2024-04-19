@@ -70,6 +70,7 @@ export function RegisterPanel({
           <TextInput
             placeholder="First name"
             value={firstName}
+            autoComplete="given-name"
             onChange={setFirstName}
             error={errors?.firstName}
           />
@@ -77,6 +78,7 @@ export function RegisterPanel({
           <TextInput
             placeholder="Last name"
             value={lastName}
+            autoComplete="family-name"
             onChange={setLastName}
             error={errors?.lastName}
           />

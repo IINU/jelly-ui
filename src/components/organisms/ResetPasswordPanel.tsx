@@ -73,6 +73,7 @@ export function ResetPasswordPanel({
             <TextInput
               placeholder="Phone number"
               value={phoneNumber}
+              autoComplete="tel-national"
               onChange={setPhoneNumber}
               error={errors?.phoneNumber}
             />
