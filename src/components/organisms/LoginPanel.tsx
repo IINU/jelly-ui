@@ -7,6 +7,7 @@ import { TextInput } from '../atoms/TextInput'
 import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
 import { PasswordInput } from '../atoms/PasswordInput'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Field = 'countryCode' | 'phoneNumber' | 'password'
 type Errors = Partial<Record<Field, string>>
@@ -31,6 +32,7 @@ export function LoginPanel({
   const [phoneNumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
 
+  useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {

@@ -4,6 +4,7 @@ import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
 import { PasswordInput } from '../atoms/PasswordInput'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Field = 'password' | 'confirmPassword'
 type Errors = Partial<Record<Field, string>>
@@ -25,6 +26,7 @@ export function NewPasswordPanel({
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {

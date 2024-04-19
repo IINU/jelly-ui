@@ -6,6 +6,7 @@ import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Field = 'firstName' | 'lastName' | 'countryCode' | 'phoneNumber'
 type Errors = Partial<Record<Field, string>>
@@ -33,6 +34,7 @@ export function RegisterPanel({
   const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
   const [phoneNumber, setPhoneNumber] = useState('')
 
+  useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {

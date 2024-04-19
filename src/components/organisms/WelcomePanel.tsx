@@ -8,13 +8,15 @@ import { WelcomeCopy2 } from '../molecules/WelcomeCopy2'
 import { WelcomeCopy3 } from '../molecules/WelcomeCopy3'
 import { WelcomeCopy4 } from '../molecules/WelcomeCopy4'
 import { Anchor } from '../atoms/Anchor'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Props = {
-  ctaClicked: MouseEventHandler,
+  next: () => void,
   loginLinkClicked: MouseEventHandler,
 }
 
-export function WelcomePanel({ ctaClicked, loginLinkClicked }: Props) {
+export function WelcomePanel({ next, loginLinkClicked }: Props) {
+  useEnterSubmit({ ctaClicked })
   const [stage, setStage] = useState(0)
 
   const stages = [
@@ -36,9 +38,9 @@ export function WelcomePanel({ ctaClicked, loginLinkClicked }: Props) {
     },
   ]
 
-  const next: MouseEventHandler = (event) => {
+  function ctaClicked() {
     if (stage >= stages.length - 1) {
-      ctaClicked(event)
+      next()
       return
     }
 
@@ -62,7 +64,7 @@ export function WelcomePanel({ ctaClicked, loginLinkClicked }: Props) {
         <div className="flex flex-col space-y-2 w-full">
           <Button
             style="primary"
-            onClick={next}
+            onClick={ctaClicked}
             label={stages[stage].button}
             className="w-full"
           />

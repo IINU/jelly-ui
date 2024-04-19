@@ -1,6 +1,7 @@
 import { Button } from '../atoms/Button'
 import { JellyLogo } from '../atoms/JellyLogo'
 import { Typography } from '../atoms/Typography'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Invite = {
   name: string
@@ -17,6 +18,8 @@ export function AcceptInvitePanel({
   invite,
   loading,
 }: Props) {
+  useEnterSubmit({ ctaClicked })
+
   function ctaClicked() {
     acceptInvite()
   }

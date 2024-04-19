@@ -4,6 +4,7 @@ import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
+import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 type Field = 'code'
 type Errors = Partial<Record<Field, string>>
@@ -26,6 +27,7 @@ export function ConfirmPhonePanel({
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
   const [code, setCode] = useState(['', '', '', '', '', ''])
 
+  useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   useEffect(() => {
