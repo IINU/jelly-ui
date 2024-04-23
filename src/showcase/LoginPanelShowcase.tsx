@@ -9,6 +9,7 @@ export function LoginPanelShowcase({ onClick }: Props) {
     <div className="h-[750px] w-[375px] bg-primary-900 flex justify-center items-center px-4">
       <LoginPanel
         login={onClick}
+        forgotPasswordLinkClicked={onClick}
         registerLinkClicked={onClick}
       />
     </div>

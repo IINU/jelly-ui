@@ -1,7 +1,7 @@
 import { Button } from '../atoms/Button'
 import { JellyLogo } from '../atoms/JellyLogo'
 import { Typography } from '../atoms/Typography'
-import { MouseEventHandler, useEffect, useState } from 'react'
+import { MouseEventHandler, useEffect, useMemo, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
@@ -45,6 +45,10 @@ export function ConfirmPhonePanel({
     }
   }, [])
 
+  const enteredCode = useMemo(() => {
+    return code.join('')
+  }, [code])
+
   function selectInput(element: HTMLInputElement | null) {
     if (!element) {
       return
@@ -79,7 +83,6 @@ export function ConfirmPhonePanel({
 
   function ctaClicked() {
     setErrors(null)
-    const enteredCode = code.join('')
 
     const calcErrors: Errors = {}
     if (enteredCode.length !== 6) calcErrors.code = 'This is required.'
@@ -99,12 +102,14 @@ export function ConfirmPhonePanel({
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-4 w-full">
-          <Typography style="h6">Confirm Phone Number</Typography>
+        <div className="flex flex-col space-y-6 w-full">
+          <div className="flex flex-col space-y-2">
+            <Typography style="h6">Confirm Phone Number</Typography>
 
-          <Typography style="caption" className="text-primary-600">
-            Enter the 6-digit code sent to your phone number.
-          </Typography>
+            <Typography style="caption" className="text-primary-600">
+              Enter the 6-digit code sent to your phone number.
+            </Typography>
+          </div>
 
           <div className="space-y-1">
             <div className="flex justify-center space-x-2">
@@ -131,30 +136,31 @@ export function ConfirmPhonePanel({
 
           <div className="flex justify-center space-x-1">
             <Typography style="caption" className="text-primary-600">
-              Didn't receive a code?
+              It might take a minute to arrive.
             </Typography>
 
             <Anchor style="caption" onClick={resendCodeClicked}>
-              Resend Code.
+              Resend.
             </Anchor>
           </div>
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
-            style={loading ? 'disabled' : 'primary'}
+            style="primary"
             onClick={ctaClicked}
+            disabled={loading || enteredCode.length !== 6}
             label="CONFIRM"
             className="w-full"
           />
 
           <div className="flex justify-center space-x-1">
             <Typography style="caption" className="text-primary-600">
-              Return to
+              Already registered?
             </Typography>
 
             <Anchor style="caption" onClick={loginLinkClicked}>
-              Log In.
+              Log in here.
             </Anchor>
           </div>
         </div>

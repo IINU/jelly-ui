@@ -31,8 +31,8 @@ export function AcceptInvitePanel({
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-4 w-full items-center">
-          <Typography style="caption" className="text-primary-600 space-x-1">
+        <div className="flex flex-col space-y-6 w-full items-center">
+          <Typography style="caption" className="flex flex-col text-primary-600 space-x-1">
             <span>You've been invited to join</span>
             <span className="text-secondary-400">{invite.name}</span>
           </Typography>
@@ -40,9 +40,10 @@ export function AcceptInvitePanel({
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
-            style={loading ? 'disabled' : 'primary'}
+            style="primary"
             onClick={ctaClicked}
-            label="CONFIRM"
+            disabled={loading}
+            label="JOIN"
             className="w-full"
           />
         </div>

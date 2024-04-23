@@ -13,6 +13,7 @@ type Field = 'countryCode' | 'phoneNumber' | 'password'
 type Errors = Partial<Record<Field, string>>
 
 type Props = {
+  phoneNumber?: string
   login: (data: Record<Field, string | number | null>) => void
   registerLinkClicked: MouseEventHandler
   forgotPasswordLinkClicked: MouseEventHandler
@@ -21,6 +22,7 @@ type Props = {
 }
 
 export function LoginPanel({
+  phoneNumber: phoneNumberProp,
   login,
   registerLinkClicked,
   forgotPasswordLinkClicked,
@@ -29,7 +31,7 @@ export function LoginPanel({
 }: Props) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
   const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
   const [password, setPassword] = useState('')
 
   useEnterSubmit({ ctaClicked })
@@ -62,50 +64,55 @@ export function LoginPanel({
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-4 w-full">
-          <Typography style="h6">Log In</Typography>
+        <div className="flex flex-col space-y-6 w-full">
+          <div className="flex flex-col space-y-2">
+            <Typography style="h6">Log In</Typography>
 
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Don't have an account?
-            </Typography>
+            <div className="flex justify-center space-x-1">
+              <Typography style="caption" className="text-primary-600">
+                Don't have an account?
+              </Typography>
 
-            <Anchor style="caption" onClick={registerLinkClicked}>
-              Sign up.
-            </Anchor>
+              <Anchor style="caption" onClick={registerLinkClicked}>
+                Sign up.
+              </Anchor>
+            </div>
           </div>
 
-          <div className="flex space-x-4">
-            <div className="w-32">
-              <CountryCodeDropdown
-                value={countryCode}
-                onChange={setCountryCode}
-                error={errors?.countryCode}
+          <div className="flex flex-col space-y-4">
+            <div className="flex space-x-4">
+              <div className="w-32">
+                <CountryCodeDropdown
+                  value={countryCode}
+                  onChange={setCountryCode}
+                  error={errors?.countryCode}
+                />
+              </div>
+
+              <TextInput
+                placeholder="Phone number"
+                autoComplete="tel-national"
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+                error={errors?.phoneNumber}
               />
             </div>
 
-            <TextInput
-              placeholder="Phone number"
-              autoComplete="tel-national"
-              value={phoneNumber}
-              onChange={setPhoneNumber}
-              error={errors?.phoneNumber}
+            <PasswordInput
+              placeholder="Password"
+              value={password}
+              autoComplete="current-password"
+              onChange={setPassword}
+              error={errors?.password}
             />
           </div>
-
-          <PasswordInput
-            placeholder="Password"
-            value={password}
-            autoComplete="current-password"
-            onChange={setPassword}
-            error={errors?.password}
-          />
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
-            style={loading ? 'disabled' : 'primary'}
+            style="primary"
             onClick={ctaClicked}
+            disabled={loading || !countryCode || !phoneNumber || !password}
             label="LOG IN"
             className="w-full"
           />

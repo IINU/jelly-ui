@@ -1,8 +1,7 @@
 import { Button } from '../atoms/Button'
 import { JellyLogo } from '../atoms/JellyLogo'
 import { Typography } from '../atoms/Typography'
-import { MouseEventHandler, useEffect, useState } from 'react'
-import { Anchor } from '../atoms/Anchor'
+import { useEffect, useState } from 'react'
 import { TextInput } from '../atoms/TextInput'
 import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
@@ -11,16 +10,20 @@ import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 type Field = 'countryCode' | 'phoneNumber'
 type Errors = Partial<Record<Field, string>>
 
+type Invite = {
+  name: string
+}
+
 type Props = {
-  resetPassword: (data: Record<Field, string | number | null>) => void
-  loginLinkClicked: MouseEventHandler
+  next: (data: Record<Field, string | number | null>) => void
   loading?: boolean
+  invite: Invite
   errors?: Errors
 }
 
-export function ResetPasswordPanel({
-  resetPassword,
-  loginLinkClicked,
+export function InvitePanel({
+  next,
+  invite,
   loading,
   errors: propErrors,
 }: Props) {
@@ -43,7 +46,7 @@ export function ResetPasswordPanel({
       return
     }
 
-    resetPassword({
+    next({
       countryCode: countryCode ? countryCode.code : null,
       phoneNumber,
     })
@@ -58,10 +61,9 @@ export function ResetPasswordPanel({
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <div className="flex flex-col space-y-6 w-full">
           <div className="flex flex-col space-y-2">
-            <Typography style="h6">Forgot Password</Typography>
-
-            <Typography style="caption" className="text-primary-600">
-              Enter your phone number and we will text you a reset code.
+            <Typography style="caption" className="flex flex-col text-primary-600 space-x-1">
+              <span>You've been invited to join</span>
+              <span className="text-secondary-400">{invite.name}</span>
             </Typography>
           </div>
 
@@ -89,19 +91,9 @@ export function ResetPasswordPanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !countryCode || !phoneNumber}
-            label="SEND"
+            label="CONTINUE"
             className="w-full"
           />
-
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Already registered?
-            </Typography>
-
-            <Anchor style="caption" onClick={loginLinkClicked}>
-              Log in here.
-            </Anchor>
-          </div>
         </div>
       </div>
     </div>

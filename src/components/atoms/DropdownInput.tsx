@@ -136,9 +136,7 @@ export function DropdownInput<T>({
 
       {error && (
         <div className="text-left px-2">
-          <Typography style="caption" className="text-error-400">
-            {error}
-          </Typography>
+          <Typography style="caption" className="text-error-400">{error}</Typography>
         </div>
       )}
     </div>

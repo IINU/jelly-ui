@@ -55,9 +55,11 @@ export function PasswordInput({
         )}
       </div>
 
-      <div className="text-left px-2">
-        {error && <Typography style="caption" className="text-error-400">{error}</Typography>}
-      </div>
+      {error && (
+        <div className="text-left px-2">
+          <Typography style="caption" className="text-error-400">{error}</Typography>
+        </div>
+      )}
     </div>
   )
 }

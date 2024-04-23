@@ -48,33 +48,38 @@ export function BusinessDetailsPanel({
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-4 w-full">
-          <Typography style="h6">Business Details</Typography>
+        <div className="flex flex-col space-y-6 w-full">
+          <div className="flex flex-col space-y-2">
+            <Typography style="h6">Business Details</Typography>
 
-          <Typography style="caption" className="text-primary-600">
-            Jelly is exclusive to registered businesses.
-          </Typography>
+            <Typography style="caption" className="text-primary-600">
+              Jelly is exclusive to registered businesses.
+            </Typography>
+          </div>
 
-          <TextInput
-            placeholder="Site name"
-            value={name}
-            onChange={setName}
-            error={errors?.name}
-          />
+          <div className="flex flex-col space-y-4">
+            <TextInput
+              placeholder="Site name"
+              value={name}
+              onChange={setName}
+              error={errors?.name}
+            />
 
-          <TextInput
-            placeholder="Email"
-            value={email}
-            autoComplete="email"
-            onChange={setEmail}
-            error={errors?.email}
-          />
+            <TextInput
+              placeholder="Email"
+              value={email}
+              autoComplete="email"
+              onChange={setEmail}
+              error={errors?.email}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
           <Button
-            style={loading ? 'disabled' : 'primary'}
+            style="primary"
             onClick={ctaClicked}
+            disabled={loading || !name || !email}
             label="CONTINUE"
             className="w-full"
           />
