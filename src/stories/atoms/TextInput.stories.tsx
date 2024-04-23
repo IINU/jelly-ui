@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TextShowcase } from '../../showcase/TextShowcase'
 
 const meta = {
-  title: 'Atoms/Input',
+  title: 'Atoms/Text Input',
   component: TextShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof TextShowcase>;
