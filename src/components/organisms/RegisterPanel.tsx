@@ -62,7 +62,7 @@ export function RegisterPanel({
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="space-y-8">
       <div className="shadow w-full rounded-md">
         <div className="rounded-t-md bg-white p-4 flex justify-center">
           <JellyLogo/>
@@ -73,21 +73,23 @@ export function RegisterPanel({
             <Typography style="h6">Create account</Typography>
 
             <div className="flex flex-col space-y-4">
-              <TextInput
-                placeholder="First name"
-                value={firstName}
-                autoComplete="given-name"
-                onChange={setFirstName}
-                error={errors?.firstName}
-              />
+              <div className="flex space-x-4">
+                <TextInput
+                  placeholder="First name"
+                  value={firstName}
+                  autoComplete="given-name"
+                  onChange={setFirstName}
+                  error={errors?.firstName}
+                />
 
-              <TextInput
-                placeholder="Last name"
-                value={lastName}
-                autoComplete="family-name"
-                onChange={setLastName}
-                error={errors?.lastName}
-              />
+                <TextInput
+                  placeholder="Last name"
+                  value={lastName}
+                  autoComplete="family-name"
+                  onChange={setLastName}
+                  error={errors?.lastName}
+                />
+              </div>
 
               <div className="flex space-x-4">
                 <div className="w-32">
@@ -130,11 +132,11 @@ export function RegisterPanel({
         </div>
       </div>
 
-      <div className="py-4">
+      <div className="flex justify-center">
         <div className="flex space-x-1">
-          <Anchor style="caption" onClick={tacClicked} className="text-primary-200">Terms & Conditions</Anchor>
+          <Anchor style="caption" onClick={tacClicked} className="!text-primary-200">Terms & Conditions</Anchor>
           <Typography style="caption" className="text-primary-600">and</Typography>
-          <Anchor style="caption" onClick={privacyPolicyClicked} className="text-primary-200">Privacy Policy</Anchor>
+          <Anchor style="caption" onClick={privacyPolicyClicked} className="!text-primary-200">Privacy Policy</Anchor>
         </div>
       </div>
     </div>
