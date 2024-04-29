@@ -6,7 +6,7 @@ import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type ConfirmPhoneData = {
+export type ConfirmPhoneData = {
   code: string
 }
 
