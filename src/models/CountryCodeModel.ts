@@ -1255,4 +1255,8 @@ export class CountryCodeModel {
   static all(): CountryCode[] {
     return Object.values(countryCodes)
   }
+
+  static findByCode(code: string): CountryCode | null {
+    return Object.values(countryCodes).find(cc => cc.code === code) || null
+  }
 }

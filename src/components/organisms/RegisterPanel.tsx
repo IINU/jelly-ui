@@ -8,36 +8,63 @@ import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type Field = 'firstName' | 'lastName' | 'countryCode' | 'phoneNumber'
-type Errors = Partial<Record<Field, string>>
+export type RegisterData = {
+  firstName: string
+  lastName: string
+  countryCode: string
+  phoneNumber: string
+}
+
+type Errors = Partial<Record<keyof RegisterData, string>>
 
 type Props = {
-  phoneNumber?: string
-  register: (data: Record<Field, string | number | null>) => void
+  register: (data: RegisterData) => void
   loginLinkClicked: MouseEventHandler
   tacClicked: MouseEventHandler
   privacyPolicyClicked: MouseEventHandler
+  onChange?: (data: RegisterData) => void
   loading?: boolean
   errors?: Errors
-}
+} & Partial<RegisterData>
 
 export function RegisterPanel({
-  phoneNumber: phoneNumberProp,
   register,
   loginLinkClicked,
   tacClicked,
   privacyPolicyClicked,
   loading,
-  errors: propErrors,
+  onChange,
+  errors: errorsProp,
+  firstName: firstNameProp,
+  lastName: lastNameProp,
+  countryCode: countryCodeProp,
+  phoneNumber: phoneNumberProp,
 }: Props) {
-  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
+
+  const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
+  const [firstName, setFirstName] = useState(firstNameProp || '')
+  const [lastName, setLastName] = useState(firstNameProp || '')
+  const [countryCode, setCountryCode] = useState(countryCodeProp || '')
   const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
 
+  const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
+    countryCodeProp
+      ? CountryCodeModel.findByCode(countryCodeProp)
+      : CountryCodeModel.find(76)
+  )
+
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setErrors(propErrors || null), [propErrors])
+  useEffect(() => setLastName(lastNameProp || ''), [lastNameProp])
+  useEffect(() => setFirstName(firstNameProp || ''), [firstNameProp])
+  useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
+  useEffect(() => setErrors(errorsProp || null), [errorsProp])
+  useEffect(() => onChange?.({ firstName, lastName, countryCode, phoneNumber }), [firstName, lastName, countryCode, phoneNumber, onChange])
+
+  useEffect(() => {
+    if (!countryCodeProp) return
+    setCountryCodeDropDown(CountryCodeModel.findByCode(countryCodeProp))
+  }, [countryCodeProp])
+  useEffect(() => setCountryCode(countryCodeDropDown?.code || ''), [countryCodeDropDown])
 
   function ctaClicked() {
     setErrors(null)
@@ -53,12 +80,7 @@ export function RegisterPanel({
       return
     }
 
-    register({
-      firstName,
-      lastName,
-      countryCode: countryCode ? countryCode.code : null,
-      phoneNumber,
-    })
+    register({ firstName, lastName, countryCode, phoneNumber })
   }
 
   return (
@@ -94,8 +116,8 @@ export function RegisterPanel({
               <div className="flex space-x-4">
                 <div className="w-32">
                   <CountryCodeDropdown
-                    value={countryCode}
-                    onChange={setCountryCode}
+                    value={countryCodeDropDown}
+                    onChange={setCountryCodeDropDown}
                     error={errors?.countryCode}
                   />
                 </div>

@@ -7,32 +7,54 @@ import { CountryCode, CountryCodeModel } from '../../models/CountryCodeModel'
 import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type Field = 'countryCode' | 'phoneNumber'
-type Errors = Partial<Record<Field, string>>
-
 type Invite = {
   name: string
 }
 
-type Props = {
-  next: (data: Record<Field, string | number | null>) => void
-  loading?: boolean
-  invite: Invite
-  errors?: Errors
+export type InviteData = {
+  countryCode: string
+  phoneNumber: string
 }
+
+type Errors = Partial<Record<keyof InviteData, string>>
+
+type Props = {
+  next: (data: InviteData) => void
+  invite: Invite
+  onChange?: (data: InviteData) => void
+  loading?: boolean
+  errors?: Errors
+} & Partial<InviteData>
 
 export function InvitePanel({
   next,
   invite,
   loading,
-  errors: propErrors,
+  onChange,
+  errors: errorsProp,
+  countryCode: countryCodeProp,
+  phoneNumber: phoneNumberProp,
 }: Props) {
-  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
+  const [countryCode, setCountryCode] = useState(countryCodeProp || '')
+  const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
+
+  const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
+    countryCodeProp
+      ? CountryCodeModel.findByCode(countryCodeProp)
+      : CountryCodeModel.find(76)
+  )
 
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setErrors(propErrors || null), [propErrors])
+  useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
+  useEffect(() => setErrors(errorsProp || null), [errorsProp])
+  useEffect(() => onChange?.({ countryCode, phoneNumber }), [countryCode, phoneNumber, onChange])
+
+  useEffect(() => {
+    if (!countryCodeProp) return
+    setCountryCodeDropDown(CountryCodeModel.findByCode(countryCodeProp))
+  }, [countryCodeProp])
+  useEffect(() => setCountryCode(countryCodeDropDown?.code || ''), [countryCodeDropDown])
 
   function ctaClicked() {
     setErrors(null)
@@ -46,10 +68,7 @@ export function InvitePanel({
       return
     }
 
-    next({
-      countryCode: countryCode ? countryCode.code : null,
-      phoneNumber,
-    })
+    next({ countryCode, phoneNumber })
   }
 
   return (
@@ -70,8 +89,8 @@ export function InvitePanel({
           <div className="flex space-x-4">
             <div className="w-32">
               <CountryCodeDropdown
-                value={countryCode}
-                onChange={setCountryCode}
+                value={countryCodeDropDown}
+                onChange={setCountryCodeDropDown}
                 error={errors?.countryCode}
               />
             </div>

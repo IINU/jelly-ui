@@ -6,11 +6,14 @@ import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type Field = 'code'
-type Errors = Partial<Record<Field, string>>
+type ConfirmPhoneData = {
+  code: string
+}
+
+type Errors = Partial<Record<keyof ConfirmPhoneData, string>>
 
 type Props = {
-  confirmCode: (data: Record<Field, string>) => void
+  confirmCode: (data: ConfirmPhoneData) => void
   resendCodeClicked: MouseEventHandler
   loginLinkClicked: MouseEventHandler
   loading?: boolean
@@ -45,9 +48,7 @@ export function ConfirmPhonePanel({
     }
   }, [])
 
-  const enteredCode = useMemo(() => {
-    return code.join('')
-  }, [code])
+  const enteredCode = useMemo(() => code.join(''), [code])
 
   function selectInput(element: HTMLInputElement | null) {
     if (!element) {

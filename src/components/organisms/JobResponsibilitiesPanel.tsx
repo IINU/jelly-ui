@@ -42,25 +42,25 @@ function values<T extends string, U>(obj: Record<T, U>) {
 
 export function JobResponsibilitiesPanel<T extends string>({
   submit,
-  responsibilities: propResponsibilities,
   loading,
-  errors: propErrors,
+  errors: errorsProp,
+  responsibilities: responsibilitiesProp,
 }: Props<T>) {
-  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
+  const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
   const [responsibilities, setResponsibilities] = useState<
     Record<T, Responsibility>
-  >(propResponsibilities)
+  >(responsibilitiesProp)
 
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setErrors(propErrors || null), [propErrors])
-  useEffect(() => setResponsibilities(propResponsibilities), [propResponsibilities])
+  useEffect(() => setErrors(errorsProp || null), [errorsProp])
+  useEffect(() => setResponsibilities(responsibilitiesProp), [responsibilitiesProp])
 
   function ctaClicked() {
     submit(responsibilities)
   }
 
   function updateResponsibility(key: T, value: boolean) {
-    const copy = {...responsibilities}
+    const copy = { ...responsibilities }
     copy[key].value = value
 
     setResponsibilities(copy)

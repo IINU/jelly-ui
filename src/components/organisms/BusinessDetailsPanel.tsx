@@ -5,26 +5,35 @@ import { useEffect, useState } from 'react'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 import { TextInput } from '../atoms/TextInput'
 
-type Field = 'name' | 'email'
-type Errors = Partial<Record<Field, string>>
+export type BusinessDetailsData = {
+  name: string
+  email: string
+}
+type Errors = Partial<Record<keyof BusinessDetailsData, string>>
 
 type Props = {
-  businessDetails: (data: Record<Field, string>) => void
+  businessDetails: (data: BusinessDetailsData) => void
+  onChange?: (data: BusinessDetailsData) => void
   loading?: boolean
   errors?: Errors
-}
+} & Partial<BusinessDetailsData>
 
 export function BusinessDetailsPanel({
   businessDetails,
   loading,
-  errors: propErrors,
+  onChange,
+  errors: errorsProp,
+  name: nameProp,
+  email: emailProp,
 }: Props) {
-  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
+  const [name, setName] = useState(nameProp || '')
+  const [email, setEmail] = useState(emailProp || '')
 
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setErrors(propErrors || null), [propErrors])
+  useEffect(() => setName(nameProp || ''), [nameProp])
+  useEffect(() => setEmail(emailProp || ''), [emailProp])
+  useEffect(() => onChange?.({ name, email }), [name, email, onChange])
 
   function ctaClicked() {
     setErrors(null)

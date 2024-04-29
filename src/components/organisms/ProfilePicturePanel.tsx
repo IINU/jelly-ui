@@ -16,8 +16,11 @@ import southparkChef from '../../assets/southpark-chef.png'
 import gordanRamsey from '../../assets/gordan-ramsay.png'
 import monicaFriends from '../../assets/monica-friends.jpeg'
 
-type Field = 'image'
-type Errors = Partial<Record<Field, string>>
+export type ProfilePictureData = {
+  image: PresetImage | UploadedImage
+}
+
+type Errors = Partial<Record<keyof ProfilePictureData, string>>
 
 type PresetImage = {
   url: string
@@ -39,7 +42,7 @@ const presetImages: string[] = [
 ]
 
 type Props = {
-  submit: (data: Record<Field, PresetImage | UploadedImage>) => void
+  submit: (data: ProfilePictureData) => void
   loading?: boolean
   errors?: Errors
 }

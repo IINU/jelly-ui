@@ -6,11 +6,15 @@ import { Anchor } from '../atoms/Anchor'
 import { PasswordInput } from '../atoms/PasswordInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type Field = 'password' | 'confirmPassword'
-type Errors = Partial<Record<Field, string>>
+export type NewPasswordData = {
+  password: string
+  confirmPassword: string
+}
+
+type Errors = Partial<Record<keyof NewPasswordData, string>>
 
 type Props = {
-  newPassword: (data: Record<Field, string>) => void
+  newPassword: (data: NewPasswordData) => void
   loginLinkClicked: MouseEventHandler
   loading?: boolean
   errors?: Errors

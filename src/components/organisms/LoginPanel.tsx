@@ -9,33 +9,54 @@ import { CountryCodeDropdown } from '../molecules/CountryCodeDropdown'
 import { PasswordInput } from '../atoms/PasswordInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
-type Field = 'countryCode' | 'phoneNumber' | 'password'
-type Errors = Partial<Record<Field, string>>
-
-type Props = {
-  phoneNumber?: string
-  login: (data: Record<Field, string | number | null>) => void
-  registerLinkClicked: MouseEventHandler
-  forgotPasswordLinkClicked: MouseEventHandler
-  loading?: boolean
-  errors?: Errors
+export type LoginData = {
+  countryCode: string
+  phoneNumber: string
+  password: string
 }
 
+type Errors = Partial<Record<keyof LoginData, string>>
+
+type Props = {
+  login: (data: LoginData) => void
+  registerLinkClicked: MouseEventHandler
+  forgotPasswordLinkClicked: MouseEventHandler
+  onChange?: (data: LoginData) => void
+  loading?: boolean
+  errors?: Errors
+} & Partial<LoginData>
+
 export function LoginPanel({
-  phoneNumber: phoneNumberProp,
   login,
   registerLinkClicked,
   forgotPasswordLinkClicked,
   loading,
-  errors: propErrors,
+  onChange,
+  errors: errorsProp,
+  countryCode: countryCodeProp,
+  phoneNumber: phoneNumberProp,
 }: Props) {
-  const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [countryCode, setCountryCode] = useState<CountryCode | null>(CountryCodeModel.find(76)) // 76 is UK
+  const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
+  const [countryCode, setCountryCode] = useState(countryCodeProp || '')
   const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
   const [password, setPassword] = useState('')
 
+  const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
+    countryCodeProp
+      ? CountryCodeModel.findByCode(countryCodeProp)
+      : CountryCodeModel.find(76)
+  )
+
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setErrors(propErrors || null), [propErrors])
+  useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
+  useEffect(() => setErrors(errorsProp || null), [errorsProp])
+  useEffect(() => onChange?.({ countryCode, phoneNumber, password }), [countryCode, phoneNumber, password, onChange])
+
+  useEffect(() => {
+    if (!countryCodeProp) return
+    setCountryCodeDropDown(CountryCodeModel.findByCode(countryCodeProp))
+  }, [countryCodeProp])
+  useEffect(() => setCountryCode(countryCodeDropDown?.code || ''), [countryCodeDropDown])
 
   function ctaClicked() {
     setErrors(null)
@@ -52,7 +73,7 @@ export function LoginPanel({
 
     login({
       password,
-      countryCode: countryCode ? countryCode.code : null,
+      countryCode,
       phoneNumber,
     })
   }
@@ -83,8 +104,8 @@ export function LoginPanel({
             <div className="flex space-x-4">
               <div className="w-32">
                 <CountryCodeDropdown
-                  value={countryCode}
-                  onChange={setCountryCode}
+                  value={countryCodeDropDown}
+                  onChange={setCountryCodeDropDown}
                   error={errors?.countryCode}
                 />
               </div>

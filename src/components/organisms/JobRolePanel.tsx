@@ -6,13 +6,16 @@ import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 import { CardButton } from '../atoms/CardButton'
 import { IconBriefcase, IconChefHat, IconCoins, IconToolsKitchen } from '@tabler/icons-react'
 
-type Field = 'role'
-type Errors = Partial<Record<Field, string>>
+type Role = 'head-chef' | 'chef' | 'manager' | 'accounting'
 
-type Role = 'head-chef' | 'chef' | 'manager' | 'accounting' | null
+export type JobRoleData = {
+  role: Role
+}
+
+type Errors = Partial<Record<keyof JobRoleData, string>>
 
 type Props = {
-  jobRole: (data: Record<Field, Role>) => void
+  jobRole: (data: JobRoleData) => void
   onboarding?: boolean
   loading?: boolean
   errors?: Errors
@@ -25,21 +28,14 @@ export function JobRolePanel({
   errors: propErrors,
 }: Props) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [role, setRole] = useState<Role>(null)
+  const [role, setRole] = useState<Role | null>(null)
 
   useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {
     setErrors(null)
-
-    const calcErrors: Errors = {}
-    if (!role) calcErrors.role = 'This is required.'
-
-    if (Object.values(calcErrors).filter(Boolean).length) {
-      setErrors(calcErrors)
-      return
-    }
+    if (!role) return setErrors({ role: 'This is required.' })
 
     jobRole({ role })
   }
