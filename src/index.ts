@@ -33,3 +33,4 @@ export { ProfilePicturePanel } from './components/organisms/ProfilePicturePanel'
 export { RegisterPanel } from './components/organisms/RegisterPanel';
 export { ResetPasswordPanel } from './components/organisms/ResetPasswordPanel';
 export { WelcomePanel } from './components/organisms/WelcomePanel';
+export { Navbar } from './components/organisms/Navbar';

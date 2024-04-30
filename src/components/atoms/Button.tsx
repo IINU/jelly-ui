@@ -1,7 +1,7 @@
 import { ComponentType, MouseEventHandler } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 
-export type ButtonStyle = 'primary' | 'secondary' | 'delete' | 'ghost' | 'disabled'
+export type ButtonStyle = 'primary' | 'secondary' | 'delete' | 'ghost' | 'disabled' 
 
 type IconOrLabel = {
   label: string,
