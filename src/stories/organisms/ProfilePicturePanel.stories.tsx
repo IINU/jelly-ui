@@ -3,7 +3,7 @@ import { ProfilePicturePanelShowcase } from '../../showcase/ProfilePicturePanelS
 import { fn } from '@storybook/test'
 
 const meta = {
-  title: 'Organisms/Profile Picture Panel',
+  title: 'Organisms/Onboarding/Profile Picture Panel',
   component: ProfilePicturePanelShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof ProfilePicturePanelShowcase>;

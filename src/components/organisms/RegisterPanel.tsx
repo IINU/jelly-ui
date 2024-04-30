@@ -19,9 +19,9 @@ type Errors = Partial<Record<keyof RegisterData, string>>
 
 type Props = {
   register: (data: RegisterData) => void
-  loginLinkClicked: MouseEventHandler
   tacClicked: MouseEventHandler
   privacyPolicyClicked: MouseEventHandler
+  loginLinkClicked?: MouseEventHandler
   onChange?: (data: RegisterData) => void
   loading?: boolean
   errors?: Errors
@@ -141,15 +141,17 @@ export function RegisterPanel({
               className="w-full"
             />
 
-            <div className="flex justify-center space-x-1">
-              <Typography style="caption" className="text-primary-600">
-                Already registered?
-              </Typography>
+            {loginLinkClicked && (
+              <div className="flex justify-center space-x-1">
+                <Typography style="caption" className="text-primary-600">
+                  Already registered?
+                </Typography>
 
-              <Anchor style="caption" onClick={loginLinkClicked}>
-                Log in here.
-              </Anchor>
-            </div>
+                <Anchor style="caption" onClick={loginLinkClicked}>
+                  Log in here.
+                </Anchor>
+              </div>
+            )}
           </div>
         </div>
       </div>

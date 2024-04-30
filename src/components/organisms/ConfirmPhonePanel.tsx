@@ -15,7 +15,7 @@ type Errors = Partial<Record<keyof ConfirmPhoneData, string>>
 type Props = {
   confirmCode: (data: ConfirmPhoneData) => void
   resendCodeClicked: MouseEventHandler
-  loginLinkClicked: MouseEventHandler
+  loginLinkClicked?: MouseEventHandler
   loading?: boolean
   errors?: Errors
 }
@@ -115,12 +115,12 @@ export function ConfirmPhonePanel({
           <div className="space-y-1">
             <div className="flex justify-center space-x-2">
               {code.map((digit, index) => (
-                <div key={index} className="w-12">
+                <div key={index} className="w-10">
                   <TextInput
                     name={`digit-${index}`}
                     value={digit}
                     onChange={(value) => handleCodeChange(index, value)}
-                    className="text-center"
+                    className="text-center px-0"
                   />
                 </div>
               ))}
@@ -155,15 +155,17 @@ export function ConfirmPhonePanel({
             className="w-full"
           />
 
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Already registered?
-            </Typography>
+          {loginLinkClicked && (
+            <div className="flex justify-center space-x-1">
+              <Typography style="caption" className="text-primary-600">
+                Already registered?
+              </Typography>
 
-            <Anchor style="caption" onClick={loginLinkClicked}>
-              Log in here.
-            </Anchor>
-          </div>
+              <Anchor style="caption" onClick={loginLinkClicked}>
+                Log in here.
+              </Anchor>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { ConfirmPhonePanelShowcase } from '../../showcase/ConfirmPhonePanelShowc
 import { fn } from '@storybook/test'
 
 const meta = {
-  title: 'Organisms/Confirm Phone Panel',
+  title: 'Organisms/Onboarding/Confirm Phone Panel',
   component: ConfirmPhonePanelShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof ConfirmPhonePanelShowcase>;

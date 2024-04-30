@@ -15,7 +15,7 @@ type Errors = Partial<Record<keyof NewPasswordData, string>>
 
 type Props = {
   newPassword: (data: NewPasswordData) => void
-  loginLinkClicked: MouseEventHandler
+  loginLinkClicked?: MouseEventHandler
   loading?: boolean
   errors?: Errors
 }
@@ -99,15 +99,17 @@ export function NewPasswordPanel({
             className="w-full"
           />
 
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Already registered?
-            </Typography>
+          {loginLinkClicked && (
+            <div className="flex justify-center space-x-1">
+              <Typography style="caption" className="text-primary-600">
+                Already registered?
+              </Typography>
 
-            <Anchor style="caption" onClick={loginLinkClicked}>
-              Log in here.
-            </Anchor>
-          </div>
+              <Anchor style="caption" onClick={loginLinkClicked}>
+                Log in here.
+              </Anchor>
+            </div>
+          )}
         </div>
       </div>
     </div>

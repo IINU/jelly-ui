@@ -3,7 +3,7 @@ import { InvitePanelShowcase } from '../../showcase/InvitePanelShowcase'
 import { fn } from '@storybook/test'
 
 const meta = {
-  title: 'Organisms/Invite Panel',
+  title: 'Organisms/Onboarding/Invite Panel',
   component: InvitePanelShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof InvitePanelShowcase>;

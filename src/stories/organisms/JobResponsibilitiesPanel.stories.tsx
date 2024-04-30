@@ -3,7 +3,7 @@ import { JobResponsibilitiesPanelShowcase } from '../../showcase/JobResponsibili
 import { fn } from '@storybook/test'
 
 const meta = {
-  title: 'Organisms/Job Responsibilities Panel',
+  title: 'Organisms/Onboarding/Job Responsibilities Panel',
   component: JobResponsibilitiesPanelShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof JobResponsibilitiesPanelShowcase>;

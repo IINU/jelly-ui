@@ -3,7 +3,7 @@ import { NewPasswordPanelShowcase } from '../../showcase/NewPasswordPanelShowcas
 import { fn } from '@storybook/test'
 
 const meta = {
-  title: 'Organisms/New Password Panel',
+  title: 'Organisms/Onboarding/New Password Panel',
   component: NewPasswordPanelShowcase,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof NewPasswordPanelShowcase>;
