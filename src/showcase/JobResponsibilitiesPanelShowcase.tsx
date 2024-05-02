@@ -1,25 +1,31 @@
-import { JobResponsibilitiesPanel, Responsibility } from '../components/organisms/JobResponsibilitiesPanel'
+import { JobResponsibilitiesPanel } from '../components/organisms/JobResponsibilitiesPanel'
 
 type Props = {
   onClick: () => void
 }
 
-type Responsibilities = 'invoices' | 'spend' | 'recipes' | 'stock' | 'ordering' | 'teams'
+type Responsibility = {
+  id: number
+  name: string
+}
 
 export function JobResponsibilitiesPanelShowcase({ onClick }: Props) {
-  const responsibilities: Record<Responsibilities, Responsibility> = {
-    invoices: { name: 'Handling invoices', value: false },
-    spend: { name: 'Tracking spend / GP', value: false },
-    recipes: { name: 'Costing recipes', value: false },
-    stock: { name: 'Counting stock', value: false },
-    ordering: { name: 'Ordering supplies', value: false },
-    teams: { name: 'Managing teams', value: false },
-  }
+  const responsibilities: Responsibility[] = [
+    { id: 1, name: 'Handling invoices' },
+    { id: 2, name: 'Tracking spend / GP' },
+    { id: 3, name: 'Costing recipes' },
+    { id: 4, name: 'Counting stock' },
+    { id: 5, name: 'Ordering supplies' },
+    { id: 6, name: 'Managing teams' },
+  ]
 
   return (
     <div className="h-[750px] w-[375px] bg-primary-900 flex justify-center items-center px-4">
-      <JobResponsibilitiesPanel<Responsibilities>
-        responsibilities={responsibilities}
+      <JobResponsibilitiesPanel<Responsibility>
+        responsibilities={
+          responsibilities.map(r => ({ item: r, isChecked: false }))
+        }
+        getText={r => r.name}
         submit={onClick}
       />
     </div>
