@@ -6,16 +6,6 @@ import { Anchor } from '../atoms/Anchor'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 import { ProfilePicture } from '../atoms/ProfilePicture'
 
-// Preset profile pictures
-import ratatouille from '../../assets/ratatouille.jpeg'
-import swedishChef from '../../assets/swedish-chef.jpeg'
-import spongebob from '../../assets/spongebob.png'
-import margeSimpson from '../../assets/marge-simpson.png'
-import lunchLadyDoris from '../../assets/lunch-lady-doris.png'
-import southparkChef from '../../assets/southpark-chef.png'
-import gordanRamsey from '../../assets/gordan-ramsay.png'
-import monicaFriends from '../../assets/monica-friends.jpeg'
-
 export type ProfilePictureData = {
   image: PresetImage | UploadedImage
 }
@@ -31,14 +21,13 @@ type UploadedImage = {
 }
 
 const presetImages: string[] = [
-  ratatouille,
-  swedishChef,
-  spongebob,
-  margeSimpson,
-  lunchLadyDoris,
-  southparkChef,
-  gordanRamsey,
-  monicaFriends,
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/remy.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/swedish-chef.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/spongebob.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/marge.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/doris.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/gordan.png',
+  'https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/monica.png',
 ]
 
 type Props = {
@@ -63,7 +52,7 @@ export function ProfilePicturePanel({
   function ctaClicked() {
     setErrors(null)
 
-    const url = selected ? presetImages[selected] : null
+    const url = selected !== null ? presetImages[selected] : null
     if (url) {
       return submit({ image: { url } })
     }
@@ -104,27 +93,25 @@ export function ProfilePicturePanel({
           <Typography style="h6">Choose a profile picture</Typography>
 
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-y-4">
-              {presetImages.map((src, i) => (
-                <div className="flex justify-center items-center">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
+                {uploaded && (
+                  <ProfilePicture
+                    src={URL.createObjectURL(uploaded.file)}
+                    active={selected === -1}
+                    onClick={() => setSelected(-1)}
+                  />
+                )}
+
+                {presetImages.map((src, i) => (
                   <ProfilePicture
                     src={src}
                     active={selected === i}
                     onClick={() => setSelected(i)}
                   />
-                </div>
-              ))}
-            </div>
-
-            {uploaded && (
-              <div className="flex justify-center">
-                <ProfilePicture
-                  src={URL.createObjectURL(uploaded.file)}
-                  active={selected === -1}
-                  onClick={() => setSelected(-1)}
-                />
+                ))}
               </div>
-            )}
+            </div>
           </div>
 
           {errors?.image && (
