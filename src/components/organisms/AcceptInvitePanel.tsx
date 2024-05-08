@@ -5,19 +5,19 @@ import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
 import inviteImage from '../../assets/invite.png'
 
-type Invite = {
+type Kitchen = {
   name: string
 }
 
 type Props = {
   acceptInvite: () => void
-  invite: Invite
+  kitchen?: Kitchen
   loading?: boolean
 }
 
 export function AcceptInvitePanel({
   acceptInvite,
-  invite,
+  kitchen,
   loading,
 }: Props) {
   useEnterSubmit({ ctaClicked })
@@ -35,15 +35,15 @@ export function AcceptInvitePanel({
       <div className="flex flex-col items-center rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <img src={inviteImage} alt="Evelope with a chef hat inside" className="w-36 h-36 mix-blend-darken"/>
 
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <Typography style="h6">You are invited!</Typography>
+        <div className="space-y-2">
+          <Typography style="h6">You are invited!</Typography>
 
+          {kitchen && (
             <Typography style="caption" className="text-primary-600 space-x-1">
               <span>From:</span>
-              <span className="text-secondary-400">{invite.name}</span>
+              <span className="text-secondary-400">{kitchen.name}</span>
             </Typography>
-          </div>
+          )}
 
           <Typography style="caption" className="text-primary-600">
             Great news! You've been invited to a simpler life with Jelly, our

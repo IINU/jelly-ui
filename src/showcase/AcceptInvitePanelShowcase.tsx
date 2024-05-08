@@ -10,7 +10,7 @@ export function AcceptInvitePanelShowcase({ name, onClick }: Props) {
     <div className="h-[750px] w-[375px] bg-primary-900 flex justify-center items-center px-4">
       <AcceptInvitePanel
         acceptInvite={onClick}
-        invite={{ name }}
+        kitchen={{ name }}
       />
     </div>
   )
