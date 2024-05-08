@@ -1,10 +1,10 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import { Anchor } from '../atoms/Anchor'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 import { ProfilePicture } from '../atoms/ProfilePicture'
+import { UploadProfilePictureButton } from '../atoms/UploadProfilePictureButton'
 
 export type ProfilePictureData = {
   image: PresetImage | UploadedImage
@@ -85,22 +85,35 @@ export function ProfilePicturePanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <div className="flex flex-col space-y-6 w-full">
           <Typography style="h6">Choose a profile picture</Typography>
 
+          <input
+            ref={fileInputRef}
+            type="file"
+            onChange={handleFileSelect}
+            className="hidden"
+          />
+
           <div className="space-y-4">
             <div className="flex justify-center">
               <div className="grid grid-cols-2 gap-y-4 gap-x-2">
-                {uploaded && (
+
+
+                {uploaded ? (
                   <ProfilePicture
                     src={URL.createObjectURL(uploaded.file)}
                     active={selected === -1}
-                    onClick={() => setSelected(-1)}
+                    onClick={() => {
+                      selected === -1 ? openFileSelect() : setSelected(-1)
+                    }}
                   />
+                ) : (
+                  <UploadProfilePictureButton onClick={openFileSelect}/>
                 )}
 
                 {presetImages.map((src, i) => (
@@ -128,26 +141,9 @@ export function ProfilePicturePanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || selected === null}
-            label="READY FOR SERVICE"
+            label="Ready For Service"
             className="w-full"
           />
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            onChange={handleFileSelect}
-            className="hidden"
-          />
-
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              Upload your own image
-            </Typography>
-
-            <Anchor style="caption" onClick={openFileSelect}>
-              here.
-            </Anchor>
-          </div>
         </div>
       </div>
     </div>

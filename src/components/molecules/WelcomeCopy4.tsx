@@ -1,10 +1,10 @@
-import basketLarge from '../../assets/basket-large.png'
+import costing from '../../assets/costing.png'
 import { Typography } from '../atoms/Typography'
 
 export function WelcomeCopy4() {
   return (
-    <div className="flex flex-col items-center space-y-6">
-      <img src={basketLarge} alt="Shopping Basket" className="w-24 h-24"/>
+    <div className="flex flex-col items-center space-y-3">
+      <img src={costing} alt="Money Trending Upwards" className="w-36 h-36 mix-blend-darken"/>
 
       <div className="flex flex-col space-y-2">
         <Typography style="h6" className="text-primary-900">

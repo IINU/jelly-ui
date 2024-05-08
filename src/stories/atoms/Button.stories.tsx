@@ -1,41 +1,41 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { ButtonShowcase } from '../../showcase/ButtonShowcase'
 
 const meta = {
   title: 'Atoms/Button',
   component: ButtonShowcase,
   parameters: { layout: 'centered' },
-} satisfies Meta<typeof ButtonShowcase>;
+} satisfies Meta<typeof ButtonShowcase>
 
-export default meta;
+export default meta
 type Story = StoryObj<typeof meta>;
 
 export const ButtonPrimary: Story = {
   args: {
-    style: 'primary'
+    style: 'primary',
   },
-};
+}
 
 export const ButtonSecondary: Story = {
   args: {
-    style: 'secondary'
+    style: 'secondary',
   },
-};
+}
 
 export const ButtonDelete: Story = {
   args: {
-    style: 'delete'
+    style: 'delete',
   },
-};
+}
 
 export const ButtonDisabled: Story = {
   args: {
-    style: 'disabled'
+    style: 'disabled',
   },
-};
+}
 
 export const ButtonGhost: Story = {
   args: {
-    style: 'ghost'
+    style: 'ghost',
   },
-};
+}

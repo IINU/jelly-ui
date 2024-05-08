@@ -1,5 +1,5 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
@@ -11,6 +11,7 @@ import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 export type RegisterData = {
   firstName: string
   lastName: string
+  email: string
   countryCode: string
   phoneNumber: string
 }
@@ -37,6 +38,7 @@ export function RegisterPanel({
   errors: errorsProp,
   firstName: firstNameProp,
   lastName: lastNameProp,
+  email: emailProp,
   countryCode: countryCodeProp,
   phoneNumber: phoneNumberProp,
 }: Props) {
@@ -44,6 +46,7 @@ export function RegisterPanel({
   const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
   const [firstName, setFirstName] = useState(firstNameProp || '')
   const [lastName, setLastName] = useState(firstNameProp || '')
+  const [email, setEmail] = useState(emailProp || '')
   const [countryCode, setCountryCode] = useState(countryCodeProp || '')
   const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
 
@@ -54,11 +57,12 @@ export function RegisterPanel({
   )
 
   useEnterSubmit({ ctaClicked })
-  useEffect(() => setLastName(lastNameProp || ''), [lastNameProp])
   useEffect(() => setFirstName(firstNameProp || ''), [firstNameProp])
+  useEffect(() => setLastName(lastNameProp || ''), [lastNameProp])
+  useEffect(() => setEmail(emailProp || ''), [emailProp])
   useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
   useEffect(() => setErrors(errorsProp || null), [errorsProp])
-  useEffect(() => onChange?.({ firstName, lastName, countryCode, phoneNumber }), [firstName, lastName, countryCode, phoneNumber, onChange])
+  useEffect(() => onChange?.({ firstName, lastName, email, countryCode, phoneNumber }), [firstName, lastName, email, countryCode, phoneNumber, onChange])
 
   useEffect(() => {
     if (!countryCodeProp) return
@@ -72,6 +76,7 @@ export function RegisterPanel({
     const calcError: Errors = {}
     if (!firstName) calcError.firstName = 'This is required.'
     if (!lastName) calcError.lastName = 'This is required.'
+    if (!email) calcError.email = 'This is required.'
     if (!countryCode) calcError.countryCode = 'This is required.'
     if (!phoneNumber) calcError.phoneNumber = 'This is required.'
 
@@ -80,14 +85,14 @@ export function RegisterPanel({
       return
     }
 
-    register({ firstName, lastName, countryCode, phoneNumber })
+    register({ firstName, lastName, email, countryCode, phoneNumber })
   }
 
   return (
     <div className="space-y-8">
       <div className="shadow w-full rounded-md">
         <div className="rounded-t-md bg-white p-4 flex justify-center">
-          <JellyLogo/>
+          <JellyLogoPrimary/>
         </div>
 
         <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
@@ -113,6 +118,14 @@ export function RegisterPanel({
                 />
               </div>
 
+              <TextInput
+                placeholder="Email"
+                value={email}
+                autoComplete="email"
+                onChange={setEmail}
+                error={errors?.email}
+              />
+
               <div className="flex space-x-4">
                 <div className="w-32">
                   <CountryCodeDropdown
@@ -137,7 +150,7 @@ export function RegisterPanel({
               style="primary"
               onClick={ctaClicked}
               disabled={loading || !firstName || !lastName || !countryCode || !phoneNumber}
-              label="CONTINUE"
+              label="Continue"
               className="w-full"
             />
 

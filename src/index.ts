@@ -6,7 +6,7 @@ export { Button } from './components/atoms/Button';
 export { CardButton } from './components/atoms/CardButton';
 export { Dot } from './components/atoms/Dot';
 export { DropdownInput } from './components/atoms/DropdownInput';
-export { JellyLogo } from './components/atoms/JellyLogo';
+export { JellyLogoPrimary } from './components/atoms/svgs/JellyLogoPrimary';
 export { PasswordInput } from './components/atoms/PasswordInput';
 export { ProfilePicture } from './components/atoms/ProfilePicture';
 export { TextInput } from './components/atoms/TextInput';

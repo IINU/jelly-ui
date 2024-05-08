@@ -1,5 +1,5 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { useEffect, useState } from 'react'
 import { TextInput } from '../atoms/TextInput'
@@ -74,7 +74,7 @@ export function InvitePanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
@@ -110,7 +110,7 @@ export function InvitePanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !countryCode || !phoneNumber}
-            label="CONTINUE"
+            label="Continue"
             className="w-full"
           />
         </div>

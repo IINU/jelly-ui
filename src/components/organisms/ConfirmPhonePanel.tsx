@@ -1,8 +1,7 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useMemo, useState } from 'react'
-import { Anchor } from '../atoms/Anchor'
 import { TextInput } from '../atoms/TextInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 
@@ -23,7 +22,6 @@ type Props = {
 export function ConfirmPhonePanel({
   confirmCode,
   resendCodeClicked,
-  loginLinkClicked,
   loading,
   errors: propErrors,
 }: Props) {
@@ -99,16 +97,17 @@ export function ConfirmPhonePanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
         <div className="flex flex-col space-y-6 w-full">
           <div className="flex flex-col space-y-2">
-            <Typography style="h6">Confirm Phone Number</Typography>
+            <Typography style="h6">Verify phone number</Typography>
 
             <Typography style="caption" className="text-primary-600">
-              Enter the 6-digit code sent to your phone number.
+              Enter the 6-digit code sent to your phone number.<br/>
+              It might take a minute to arrive.
             </Typography>
           </div>
 
@@ -134,16 +133,6 @@ export function ConfirmPhonePanel({
               </div>
             )}
           </div>
-
-          <div className="flex justify-center space-x-1">
-            <Typography style="caption" className="text-primary-600">
-              It might take a minute to arrive.
-            </Typography>
-
-            <Anchor style="caption" onClick={resendCodeClicked}>
-              Resend.
-            </Anchor>
-          </div>
         </div>
 
         <div className="flex flex-col space-y-2 w-full">
@@ -151,21 +140,16 @@ export function ConfirmPhonePanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || enteredCode.length !== 6}
-            label="CONFIRM"
+            label="Confirm"
             className="w-full"
           />
 
-          {loginLinkClicked && (
-            <div className="flex justify-center space-x-1">
-              <Typography style="caption" className="text-primary-600">
-                Already registered?
-              </Typography>
-
-              <Anchor style="caption" onClick={loginLinkClicked}>
-                Log in here.
-              </Anchor>
-            </div>
-          )}
+          <Button
+            style="secondary"
+            onClick={resendCodeClicked}
+            label="Resend code"
+            className="w-full"
+          />
         </div>
       </div>
     </div>

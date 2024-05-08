@@ -16,7 +16,7 @@ export function CardButton({
   onClick,
 }: Props) {
   const activeClass = active ? 'border-4 border-secondary-400' : 'border-4 border-white'
-  const baseClass = 'p-4 rounded text-secondary-400 flex flex-col justify-center items-center shadow font-rubik text-lg font-medium h-32 w-full bg-white space-y-2'
+  const baseClass = 'p-4 rounded text-secondary-400 flex flex-col justify-center items-center shadow font-rubik text-lg font-medium min-h-32 w-full bg-white space-y-2'
 
   return (
     <button

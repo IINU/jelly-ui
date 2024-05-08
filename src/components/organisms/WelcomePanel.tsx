@@ -1,6 +1,6 @@
 import { Dot } from '../atoms/Dot'
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useState } from 'react'
 import { WelcomeCopy1 } from '../molecules/WelcomeCopy1'
@@ -23,19 +23,19 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
   const stages = [
     {
       copy: <WelcomeCopy1/>,
-      button: 'START TOUR',
+      button: 'Start Tour',
     },
     {
       copy: <WelcomeCopy2/>,
-      button: 'TOUR: KNOW YOUR SPEND',
+      button: 'Tour: Know Your Spend',
     },
     {
       copy: <WelcomeCopy3/>,
-      button: 'TOUR: REAL-TIME COSTING',
+      button: 'Tour: Real-time Costing',
     },
     {
       copy: <WelcomeCopy4/>,
-      button: 'CREATE ACCOUNT',
+      button: 'Create Account',
     },
   ]
 
@@ -49,16 +49,15 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
   }
 
   return (
-    <div className="shadow w-full rounded-md h-[32rem] flex flex-col">
+    <div className="shadow w-full rounded-md h-[34rem] flex flex-col">
       <div className="rounded-t-md bg-white p-4 flex justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
-      <div
-        className="flex flex-col items-center justify-between rounded-b-md bg-primary-50 px-4 py-8 text-center flex-1">
+      <div className="flex flex-col items-center justify-between rounded-b-md bg-primary-50 px-4 py-8 text-center flex-1">
         {stages[stage].copy}
 
-        <div className="flex flex-col items-center space-y-8">
+        <div className="flex flex-col items-center space-y-8 w-full">
           <div className="flex space-x-2">
             {stages.map((_, i) =>
               <Dot key={i} active={stage === i} onClick={() => setStage(i)}/>)}

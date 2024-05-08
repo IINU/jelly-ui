@@ -1,5 +1,5 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
@@ -71,7 +71,7 @@ export function ResetPasswordPanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
@@ -108,7 +108,7 @@ export function ResetPasswordPanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !countryCode || !phoneNumber}
-            label="SEND"
+            label="Send"
             className="w-full"
           />
 

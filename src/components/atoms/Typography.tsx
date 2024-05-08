@@ -13,7 +13,7 @@ export function Typography({ style = 'body1', children, className }: Props) {
     subtitle1: 'font-rubik text-md font-medium',
     body1: '',
     body2: 'font-rubik text-sm font-medium',
-    caption: 'font-lato text-sm font-medium',
+    caption: 'font-lato text-sm font-semibold',
     h6: "font-rubik text-lg font-medium"
   }
 

@@ -1,12 +1,19 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { useEffect, useState } from 'react'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
 import { CardButton } from '../atoms/CardButton'
-import { IconBriefcase, IconChefHat, IconCoins, IconToolsKitchen } from '@tabler/icons-react'
+import {
+  IconBriefcase,
+  IconBuildingStore,
+  IconChefHat,
+  IconClipboardText,
+  IconCoins,
+  IconToolsKitchen,
+} from '@tabler/icons-react'
 
-type Role = 'head-chef' | 'chef' | 'manager' | 'accounting'
+type Role = 'head-chef' | 'chef' | 'manager' | 'accounting' | 'foh' | 'owner'
 
 export type JobRoleData = {
   role: Role
@@ -43,7 +50,7 @@ export function JobRolePanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
       <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
@@ -66,36 +73,54 @@ export function JobRolePanel({
               )}
           </div>
 
-          <div className="flex space-x-2">
-            <CardButton
-              label="Head Chef"
-              icon={IconChefHat}
-              active={role === 'head-chef'}
-              onClick={() => setRole('head-chef')}
-            />
+          <div className="space-y-2">
+            <div className="flex space-x-2">
+              <CardButton
+                label="Head Chef"
+                icon={IconChefHat}
+                active={role === 'head-chef'}
+                onClick={() => setRole('head-chef')}
+              />
 
-            <CardButton
-              label="Chef"
-              icon={IconToolsKitchen}
-              active={role === 'chef'}
-              onClick={() => setRole('chef')}
-            />
-          </div>
+              <CardButton
+                label="Chef"
+                icon={IconToolsKitchen}
+                active={role === 'chef'}
+                onClick={() => setRole('chef')}
+              />
+            </div>
 
-          <div className="flex space-x-2">
-            <CardButton
-              label="Manager"
-              icon={IconBriefcase}
-              active={role === 'manager'}
-              onClick={() => setRole('manager')}
-            />
+            <div className="flex space-x-2">
+              <CardButton
+                label="Manager"
+                icon={IconBriefcase}
+                active={role === 'manager'}
+                onClick={() => setRole('manager')}
+              />
 
-            <CardButton
-              label="Accounting"
-              icon={IconCoins}
-              active={role === 'accounting'}
-              onClick={() => setRole('accounting')}
-            />
+              <CardButton
+                label="Accounting"
+                icon={IconCoins}
+                active={role === 'accounting'}
+                onClick={() => setRole('accounting')}
+              />
+            </div>
+
+            <div className="flex space-x-2">
+              <CardButton
+                label="Front of house"
+                icon={IconClipboardText}
+                active={role === 'foh'}
+                onClick={() => setRole('foh')}
+              />
+
+              <CardButton
+                label="Owner"
+                icon={IconBuildingStore}
+                active={role === 'owner'}
+                onClick={() => setRole('owner')}
+              />
+            </div>
           </div>
 
           {errors?.role && (
@@ -112,7 +137,7 @@ export function JobRolePanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !role}
-            label="CONTINUE"
+            label="Continue"
             className="w-full"
           />
         </div>

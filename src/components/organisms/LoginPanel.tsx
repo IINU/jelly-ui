@@ -1,5 +1,5 @@
 import { Button } from '../atoms/Button'
-import { JellyLogo } from '../atoms/JellyLogo'
+import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { Anchor } from '../atoms/Anchor'
@@ -81,23 +81,16 @@ export function LoginPanel({
   return (
     <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
-        <JellyLogo/>
+        <JellyLogoPrimary/>
       </div>
 
-      <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-6 w-full">
-          <div className="flex flex-col space-y-2">
-            <Typography style="h6">Log In</Typography>
-
-            <div className="flex justify-center space-x-1">
-              <Typography style="caption" className="text-primary-600">
-                Don't have an account?
-              </Typography>
-
-              <Anchor style="caption" onClick={registerLinkClicked}>
-                Sign up.
-              </Anchor>
-            </div>
+      <div className="space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Typography style="h6">Welcome back!</Typography>
+            <Typography style="caption" className="text-primary-600">
+              Enter your details to log into your account.
+            </Typography>
           </div>
 
           <div className="flex flex-col space-y-4">
@@ -126,6 +119,16 @@ export function LoginPanel({
               onChange={setPassword}
               error={errors?.password}
             />
+
+            <div className="flex justify-center space-x-1">
+              <Typography style="caption" className="text-primary-600">
+                Forgot your password?
+              </Typography>
+
+              <Anchor style="caption" onClick={forgotPasswordLinkClicked}>
+                Reset.
+              </Anchor>
+            </div>
           </div>
         </div>
 
@@ -134,17 +137,17 @@ export function LoginPanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !countryCode || !phoneNumber || !password}
-            label="LOG IN"
+            label="Login"
             className="w-full"
           />
 
           <div className="flex justify-center space-x-1">
             <Typography style="caption" className="text-primary-600">
-              Forgot your password?
+              New here?
             </Typography>
 
-            <Anchor style="caption" onClick={forgotPasswordLinkClicked}>
-              Reset.
+            <Anchor style="caption" onClick={registerLinkClicked}>
+              Signup instead.
             </Anchor>
           </div>
         </div>
