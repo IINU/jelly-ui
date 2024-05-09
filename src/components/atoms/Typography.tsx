@@ -10,7 +10,7 @@ type Props = {
 
 export function Typography({ style = 'body1', children, className }: Props) {
   const styled: Record<TypographyStyle, string> = {
-    subtitle1: 'font-rubik text-md font-medium',
+    subtitle1: 'font-rubik text-base font-medium',
     body1: '',
     body2: 'font-rubik text-sm font-medium',
     caption: 'font-lato text-sm font-medium',
