@@ -9,7 +9,7 @@ export function JobRolePanelShowcase({ onboarding, onClick }: Props) {
   return (
     <div className="h-[750px] w-[375px] bg-primary-900 flex justify-center items-center px-4">
       <JobRolePanel
-        jobRole={onClick}
+        jobRoles={onClick}
         onboarding={onboarding}
       />
     </div>
