@@ -63,7 +63,7 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
               <Dot key={i} active={stage === i} onClick={() => setStage(i)}/>)}
           </div>
 
-          <div className="flex flex-col space-y-2 w-full">
+          <div className="flex flex-col space-y-4 w-full">
             <Button
               style="primary"
               onClick={ctaClicked}

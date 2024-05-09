@@ -145,7 +145,7 @@ export function RegisterPanel({
             </div>
           </div>
 
-          <div className="flex flex-col space-y-2 w-full">
+          <div className="flex flex-col space-y-4 w-full">
             <Button
               style="primary"
               onClick={ctaClicked}
