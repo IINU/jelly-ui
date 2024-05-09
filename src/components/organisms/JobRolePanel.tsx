@@ -16,35 +16,44 @@ import {
 type Role = 'head-chef' | 'chef' | 'manager' | 'accounting' | 'foh' | 'owner'
 
 export type JobRoleData = {
-  role: Role
+  roles: Role[]
 }
 
 type Errors = Partial<Record<keyof JobRoleData, string>>
 
 type Props = {
-  jobRole: (data: JobRoleData) => void
+  jobRoles: (data: JobRoleData) => void
   onboarding?: boolean
   loading?: boolean
   errors?: Errors
 }
 
 export function JobRolePanel({
-  jobRole,
+  jobRoles,
   loading,
   onboarding = true,
   errors: propErrors,
 }: Props) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [role, setRole] = useState<Role | null>(null)
+  const [roles, setRoles] = useState<Role[]>([])
 
   useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {
     setErrors(null)
-    if (!role) return setErrors({ role: 'This is required.' })
+    if (!roles) return setErrors({ roles: 'This is required.' })
 
-    jobRole({ role })
+    jobRoles({ roles })
+  }
+
+  function toggleRole(role: Role) {
+    if (!roles.includes(role)) {
+      return setRoles([...roles, role])
+    }
+
+    const newRoles = [...roles.filter(r => r !== role)]
+    setRoles(newRoles)
   }
 
   return (
@@ -61,8 +70,8 @@ export function JobRolePanel({
             {onboarding
               ? (
                 <Typography style="caption" className="text-primary-600">
-                  Let us personalize your onboarding. Select all the roles that apply
-                  to you.
+                  Let us personalize your onboarding. Select all the roles that
+                  apply to you.
                 </Typography>
               )
               : (
@@ -78,15 +87,15 @@ export function JobRolePanel({
               <CardButton
                 label="Head Chef"
                 icon={IconChefHat}
-                active={role === 'head-chef'}
-                onClick={() => setRole('head-chef')}
+                active={roles.includes('head-chef')}
+                onClick={() => toggleRole('head-chef')}
               />
 
               <CardButton
                 label="Chef"
                 icon={IconToolsKitchen}
-                active={role === 'chef'}
-                onClick={() => setRole('chef')}
+                active={roles.includes('chef')}
+                onClick={() => toggleRole('chef')}
               />
             </div>
 
@@ -94,15 +103,15 @@ export function JobRolePanel({
               <CardButton
                 label="Manager"
                 icon={IconBriefcase}
-                active={role === 'manager'}
-                onClick={() => setRole('manager')}
+                active={roles.includes('manager')}
+                onClick={() => toggleRole('manager')}
               />
 
               <CardButton
                 label="Accounting"
                 icon={IconCoins}
-                active={role === 'accounting'}
-                onClick={() => setRole('accounting')}
+                active={roles.includes('accounting')}
+                onClick={() => toggleRole('accounting')}
               />
             </div>
 
@@ -110,23 +119,23 @@ export function JobRolePanel({
               <CardButton
                 label="Front of house"
                 icon={IconClipboardText}
-                active={role === 'foh'}
-                onClick={() => setRole('foh')}
+                active={roles.includes('foh')}
+                onClick={() => toggleRole('foh')}
               />
 
               <CardButton
                 label="Owner"
                 icon={IconBuildingStore}
-                active={role === 'owner'}
-                onClick={() => setRole('owner')}
+                active={roles.includes('owner')}
+                onClick={() => toggleRole('owner')}
               />
             </div>
           </div>
 
-          {errors?.role && (
+          {errors?.roles && (
             <div className="text-left px-2">
               <Typography style="caption" className="text-error-400">
-                {errors.role}
+                {errors.roles}
               </Typography>
             </div>
           )}
@@ -136,7 +145,7 @@ export function JobRolePanel({
           <Button
             style="primary"
             onClick={ctaClicked}
-            disabled={loading || !role}
+            disabled={loading || !roles.length}
             label="Continue"
             className="w-full"
           />
