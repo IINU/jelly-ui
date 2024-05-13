@@ -1,6 +1,7 @@
 import { IconProps, Icon } from '@tabler/icons-react'
 import { cn } from '../../utils/utils'
 import { Typography } from './Typography'
+import React from 'react'
 
 export const NavTabButton = ({
   NavIcon,

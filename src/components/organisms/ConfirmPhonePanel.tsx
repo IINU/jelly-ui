@@ -2,8 +2,8 @@ import { Button } from '../atoms/Button'
 import { JellyLogoPrimary } from '../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../atoms/Typography'
 import { MouseEventHandler, useEffect, useMemo, useState } from 'react'
-import { TextInput } from '../atoms/TextInput'
 import { useEnterSubmit } from '../../hooks/useEnterSubmit'
+import { NumberInput } from '../atoms/NumberInput'
 
 export type ConfirmPhoneData = {
   code: string
@@ -115,7 +115,7 @@ export function ConfirmPhonePanel({
             <div className="flex justify-center space-x-2">
               {code.map((digit, index) => (
                 <div key={index} className="w-10">
-                  <TextInput
+                  <NumberInput
                     name={`digit-${index}`}
                     value={digit}
                     onChange={(value) => handleCodeChange(index, value)}

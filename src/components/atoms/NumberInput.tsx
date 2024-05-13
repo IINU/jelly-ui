@@ -2,8 +2,8 @@ import { BaseInput, InputProps } from './BaseInput'
 
 type Props = Omit<InputProps, 'type'>
 
-export function PasswordInput(props: Props) {
+export function NumberInput(props: Props) {
   return (
-    <BaseInput {...props} type="password"/>
+    <BaseInput {...props} type="number"/>
   )
 }
