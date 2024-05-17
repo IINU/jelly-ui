@@ -21,16 +21,16 @@ export { WelcomeCopy3 } from './components/molecules/WelcomeCopy3';
 export { WelcomeCopy4 } from './components/molecules/WelcomeCopy4';
 
 // Organisms
-export { AcceptInvitePanel } from './components/organisms/AcceptInvitePanel';
-export { BusinessDetailsPanel } from './components/organisms/BusinessDetailsPanel';
-export { ConfirmPhonePanel } from './components/organisms/ConfirmPhonePanel';
-export { InvitePanel } from './components/organisms/InvitePanel';
-export { JobResponsibilitiesPanel } from './components/organisms/JobResponsibilitiesPanel';
-export { JobRolePanel } from './components/organisms/JobRolePanel';
-export { LoginPanel } from './components/organisms/LoginPanel';
-export { NewPasswordPanel } from './components/organisms/NewPasswordPanel';
-export { ProfilePicturePanel } from './components/organisms/ProfilePicturePanel';
-export { RegisterPanel } from './components/organisms/RegisterPanel';
-export { ResetPasswordPanel } from './components/organisms/ResetPasswordPanel';
-export { WelcomePanel } from './components/organisms/WelcomePanel';
+export { AcceptInvitePanel } from './components/organisms/onboarding/AcceptInvitePanel';
+export { BusinessDetailsPanel } from './components/organisms/onboarding/BusinessDetailsPanel';
+export { ConfirmPhonePanel } from './components/organisms/onboarding/ConfirmPhonePanel';
+export { InvitePanel } from './components/organisms/onboarding/InvitePanel';
+export { JobResponsibilitiesPanel } from './components/organisms/onboarding/JobResponsibilitiesPanel';
+export { JobRolePanel } from './components/organisms/onboarding/JobRolePanel';
+export { LoginPanel } from './components/organisms/onboarding/LoginPanel';
+export { NewPasswordPanel } from './components/organisms/onboarding/NewPasswordPanel';
+export { ProfilePicturePanel } from './components/organisms/onboarding/ProfilePicturePanel';
+export { RegisterPanel } from './components/organisms/onboarding/RegisterPanel';
+export { ResetPasswordPanel } from './components/organisms/onboarding/ResetPasswordPanel';
+export { WelcomePanel } from './components/organisms/onboarding/WelcomePanel';
 export { Navbar } from './components/organisms/Navbar';

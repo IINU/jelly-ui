@@ -10,6 +10,13 @@ export default {
         rubik: ["'Rubik'", 'sans-serif'],
         lato: ["'Lato'", 'sans-serif'],
       },
+      borderRadius: {
+        DEFAULT: '0.5rem'
+      },
+      boxShadow: {
+        low: '0px 2px 3px 0px rgba(76, 89, 110, 0.10)',
+        medium: '0px 4px 6px 0px rgba(76, 89, 110, 0.15)'
+      },
       colors: {
         primary: {
           900: '#1F304A',
