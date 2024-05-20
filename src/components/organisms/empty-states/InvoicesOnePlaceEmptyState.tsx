@@ -10,7 +10,7 @@ export function InvoicesOnePlaceEmptyState({ ctaClicked, disabledText }: Props) 
   return (
     <StatePanel
       title="All your invoices in one place"
-      body="Get all your supplier invoices, spend amounts, products and dates right here. No more sifting through paper."
+      body="No more sifting through stacks of paper. All documents digitised and organised."
       imageSrc={imageSrc}
       ctaText="Add invoices"
       ctaClicked={ctaClicked}
