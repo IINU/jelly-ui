@@ -19,7 +19,6 @@ const meta = {
   component: OnboardingShowcase,
   parameters: {
     backgrounds: { default: 'primary900' },
-    layout: 'fullscreen',
   },
 } satisfies Meta<typeof OnboardingShowcase>
 
