@@ -83,7 +83,7 @@ export function ProfilePicturePanel({
   }
 
   return (
-    <div className="shadow w-full lg:w-max rounded-md">
+    <div className="shadow w-full rounded-md">
       <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
         <JellyLogoPrimary/>
       </div>
@@ -101,7 +101,7 @@ export function ProfilePicturePanel({
 
           <div className="space-y-4">
             <div className="flex justify-center">
-            <div className={`grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-2`}>
+              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
 
 
                 {uploaded ? (
