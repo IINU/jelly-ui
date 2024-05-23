@@ -12,15 +12,12 @@ export { ProfilePicture } from './components/atoms/ProfilePicture';
 export { TextInput } from './components/atoms/TextInput';
 export { ToggleButton } from './components/atoms/ToggleButton';
 export { Typography } from './components/atoms/Typography';
+export { Modal } from './components/atoms/Modal';
 
 // Molecules
 export { CountryCodeDropdown } from './components/molecules/CountryCodeDropdown';
-export { WelcomeCopy1 } from './components/molecules/WelcomeCopy1';
-export { WelcomeCopy2 } from './components/molecules/WelcomeCopy2';
-export { WelcomeCopy3 } from './components/molecules/WelcomeCopy3';
-export { WelcomeCopy4 } from './components/molecules/WelcomeCopy4';
 
-// Organisms
+// Organisms / Onboarding
 export { AcceptInvitePanel } from './components/organisms/onboarding/AcceptInvitePanel';
 export { BusinessDetailsPanel } from './components/organisms/onboarding/BusinessDetailsPanel';
 export { ConfirmPhonePanel } from './components/organisms/onboarding/ConfirmPhonePanel';
@@ -33,7 +30,8 @@ export { ProfilePicturePanel } from './components/organisms/onboarding/ProfilePi
 export { RegisterPanel } from './components/organisms/onboarding/RegisterPanel';
 export { ResetPasswordPanel } from './components/organisms/onboarding/ResetPasswordPanel';
 export { WelcomePanel } from './components/organisms/onboarding/WelcomePanel';
-export { Navbar } from './components/organisms/Navbar';
+
+// Organisms  / Empty States
 export { AccurateStockTakeEmptyState } from './components/organisms/empty-states/AccurateStockTakeEmptyState';
 export { AccurateStockTakeNotPaidState } from './components/organisms/not-paid-states/AccurateStockTakeNotPaidState';
 export { ActualGPFlashEmptyState } from './components/organisms/empty-states/ActualGPFlashEmptyState';
@@ -52,3 +50,8 @@ export { KnowYourSpendingEmptyState } from './components/organisms/empty-states/
 export { KnowYourSpendingNotPaidState } from './components/organisms/not-paid-states/KnowYourSpendingNotPaidState';
 export { LiveMenuMarginsEmptyState } from './components/organisms/empty-states/LiveMenuMarginsEmptyState';
 export { LiveMenuMarginsNotPaidState } from './components/organisms/not-paid-states/LiveMenuMarginsNotPaidState';
+
+// Organisms / Modals
+export { JellySupportModal } from './components/organisms/modals/JellySupportModal';
+
+export { Navbar } from './components/organisms/Navbar';
