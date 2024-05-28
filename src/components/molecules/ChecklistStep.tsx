@@ -20,7 +20,10 @@ export function ChecklistStep({ text, completed, onClick }: Props) {
             : <IconCircle className="text-primary-200"/>}
         </div>
 
-        <Typography style="subtitle1" className="text-primary-900">
+        <Typography
+          style="subtitle1"
+          className={`text-primary-900 ${completed ? 'line-through' : ''}`}
+        >
           {text}
         </Typography>
       </div>

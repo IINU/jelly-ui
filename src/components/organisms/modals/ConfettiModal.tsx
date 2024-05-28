@@ -14,6 +14,22 @@ type Props = {
 export function ConfettiModal({ open, onClose }: Props) {
   const [numberOfPieces, setNumberOfPieces] = useState(200)
   const [showConfetti, setShowConfetti] = useState(false)
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout
@@ -43,7 +59,11 @@ export function ConfettiModal({ open, onClose }: Props) {
     <>
       {showConfetti && (
         <div className="fixed z-20 w-screen h-screen top-0 left-0">
-          <Confetti numberOfPieces={numberOfPieces}/>
+          <Confetti
+            numberOfPieces={numberOfPieces}
+            width={windowDimensions.width}
+            height={windowDimensions.height}
+          />
         </div>
       )}
 
