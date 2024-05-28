@@ -58,7 +58,7 @@ export function ConfettiModal({ open, onClose }: Props) {
   return (
     <>
       {showConfetti && (
-        <div className="fixed z-20 w-screen h-screen top-0 left-0">
+        <div className="fixed z-20 w-screen h-screen top-0 left-0 pointer-events-none">
           <Confetti
             numberOfPieces={numberOfPieces}
             width={windowDimensions.width}
