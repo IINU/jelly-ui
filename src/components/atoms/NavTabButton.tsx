@@ -7,7 +7,6 @@ type Props = {
   text: string
   selected: boolean
   onClick: () => void
-  type: 'desktop' | 'mobile'
 }
 
 export const NavTabButton = ({
@@ -15,37 +14,24 @@ export const NavTabButton = ({
   selected,
   onClick,
   text,
-  type,
 }: Props) => {
-  if (type === 'desktop') {
-    return (
-      <div
-        className={cn(
-          selected
-            ? 'border-opacity-100 text-tertiary-400 border-tertiary-400'
-            : 'border-opacity-0 text-gray-400 border-gray-400',
-          'flex items-center h-full capitalize cursor-pointer border-b-4 px-2 transition-all hover:border-opacity-100 space-x-2',
-        )}
-        onClick={() => onClick()}
-      >
-        <NavIcon size={24}/>
-        <Typography style="subtitle1">{text}</Typography>
-      </div>
-    )
-  }
-
   return (
     <div
       className={cn(
-        selected
-          ? 'border-opacity-100 text-tertiary-400 border-tertiary-400'
-          : 'border-opacity-0 text-gray-400 border-gray-400',
-        'flex flex-col justify-center items-center h-full capitalize cursor-pointer border-b-4 px-2 transition-all hover:border-opacity-100',
+        selected ? 'text-primary-900' : 'text-primary-600',
+        'flex flex-col justify-center items-center',
+        'h-full cursor-pointer px-2 transition-all',
       )}
       onClick={() => onClick()}
     >
       <NavIcon size={24}/>
-      <Typography style="subtitle1">{text}</Typography>
+
+      <Typography style="button">{text}</Typography>
+
+      <div className={cn(
+        selected ? 'bg-tertiary-400' : 'bg-white',
+        'w-3/4 rounded-full h-1 transition-all'
+      )}/>
     </div>
   )
 }

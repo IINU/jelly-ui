@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ModalShowcase } from '../../showcase/ModalShowcase'
-import { TestModal } from '../../components/organisms/modals/TestModal'
 import { ComponentProps, JSXElementConstructor } from 'react'
 import { JSX } from 'react/jsx-runtime'
 import IntrinsicElements = JSX.IntrinsicElements
+import { TestModal } from '../../components/organisms/modals/TestModal'
 import { JellySupportModal } from '../../components/organisms/modals/JellySupportModal'
+import { ConfettiModal } from '../../components/organisms/modals/ConfettiModal'
 
 const meta = {
   title: 'Organisms/Modal',
@@ -38,3 +39,10 @@ export const JellySupportModalStory: ModalStory<typeof JellySupportModal> = {
   },
 }
 
+export const ConfettiModalStory: ModalStory<typeof ConfettiModal> = {
+  name: 'Confetti Modal',
+  args: {
+    component: ConfettiModal,
+    props: {},
+  },
+}

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export type TypographyStyle = 'subtitle1' | 'body1' | 'body2' | 'caption' | 'h6'
+export type TypographyStyle = 'subtitle1' | 'body1' | 'body2' | 'caption' | 'h6' | 'button'
 
 type Props = {
   style?: TypographyStyle
@@ -14,6 +14,7 @@ export function Typography({ style = 'body1', children, className }: Props) {
     body1: 'font-lato text-base font-normal',
     body2: 'font-rubik text-sm font-medium',
     caption: 'font-lato text-sm font-medium',
+    button: 'font-rubik text-sm font-medium',
     h6: "font-rubik text-lg font-medium"
   }
 

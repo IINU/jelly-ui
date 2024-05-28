@@ -1,4 +1,5 @@
 import { ComponentType } from 'react'
+import { AppLayout } from '../layouts/AppLayout'
 
 type Props = {
   state: ComponentType<{ disabledText?: string, ctaClicked: () => void }>
@@ -8,10 +9,12 @@ type Props = {
 
 export function StateShowcase({ state: State, disabledText, onClick }: Props) {
   return (
-    <div className="min-h-full p-4 flex justify-center items-center">
-      <div className="max-w-96 w-full">
-        <State ctaClicked={onClick} disabledText={disabledText}/>
+    <AppLayout state="cookbook">
+      <div className="min-h-full p-4 flex justify-center items-center">
+        <div className="max-w-96 w-full">
+          <State ctaClicked={onClick} disabledText={disabledText}/>
+        </div>
       </div>
-    </div>
+    </AppLayout>
   )
 }

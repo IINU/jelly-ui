@@ -1,57 +1,42 @@
 import { useState } from 'react'
 import {
-  IconCreditCardFilled,
-  IconHomeFilled,
-  IconSettings,
+  IconAdjustmentsHorizontal,
+  IconCreditCard,
+  IconHome,
   IconToolsKitchen2,
 } from '@tabler/icons-react'
 import { NavTabButton } from '../atoms/NavTabButton'
-import { JellyLogoInverted } from '../atoms/svgs/JellyLogoInverted'
 
-type Props = {
-  type: 'desktop' | 'mobile'
-}
-
-export function Navbar({ type = 'desktop' }: Props) {
+export function Navbar() {
   const [selectedIndex, setSelectedIndex] = useState(1)
 
-  const bgStyle = type === 'desktop' ? 'bg-primary-900 top-0' : 'bg-gray-50 bottom-0'
-
   return (
-    <nav className={`flex px-4 justify-between h-16 w-full z-50 shadow-xl ${bgStyle}`}>
-      <div className="flex items-center">
-        {type === 'desktop' ? <JellyLogoInverted/> : ''}
-      </div>
-
-      <div className="flex max-w-[32rem] w-full justify-between">
+    <nav className="flex px-4 py-2 justify-center h-[4.5rem] w-full z-50 bg-white border-t border-primary-200">
+      <div className="flex max-w-[32rem] w-full justify-between items-center">
         <NavTabButton
-          type={type}
           text="Home"
-          icon={IconHomeFilled}
+          icon={IconHome}
           selected={selectedIndex === 2}
           onClick={() => setSelectedIndex(2)}
         />
 
         <NavTabButton
-          type={type}
-          text="Finance"
-          icon={IconCreditCardFilled}
+          text="finance"
+          icon={IconCreditCard}
           selected={selectedIndex === 1}
           onClick={() => setSelectedIndex(1)}
         />
 
         <NavTabButton
-          type={type}
-          text="Kitchen"
+          text="kitchen"
           icon={IconToolsKitchen2}
           selected={selectedIndex === 3}
           onClick={() => setSelectedIndex(3)}
         />
 
         <NavTabButton
-          type={type}
-          text="Settings"
-          icon={IconSettings}
+          text="settings"
+          icon={IconAdjustmentsHorizontal}
           selected={selectedIndex === 4}
           onClick={() => setSelectedIndex(4)}
         />
