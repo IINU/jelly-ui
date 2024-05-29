@@ -10,7 +10,7 @@ type Props = {
 export function StateShowcase({ state: State, disabledText, onClick }: Props) {
   return (
     <AppLayout state="cookbook">
-      <div className="min-h-full p-4 flex justify-center items-center">
+      <div className="min-h-full p-4 flex justify-center">
         <div className="max-w-96 w-full">
           <State ctaClicked={onClick} disabledText={disabledText}/>
         </div>
