@@ -12,7 +12,7 @@ export function InvoicesOnePlaceEmptyState({ ctaClicked, disabledText }: Props) 
       title="All your invoices in one place"
       body="No more sifting through stacks of paper. All documents digitised and organised."
       imageSrc={imageSrc}
-      ctaText="Add invoices"
+      ctaText="Add Invoices"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

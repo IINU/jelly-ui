@@ -12,7 +12,7 @@ export function AccurateStockTakeEmptyState({ ctaClicked, disabledText }: Props)
       title="Accurate and speedy stocktake"
       body="Simply input the quantity of your ingredients and have live prices totalled up for you."
       imageSrc={imageSrc}
-      ctaText="Count stock"
+      ctaText="Count Stock"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

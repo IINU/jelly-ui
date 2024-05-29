@@ -12,7 +12,7 @@ export function DigitalOrderingEmptyState({ ctaClicked, disabledText }: Props) {
       title="Digital ordering - all in one"
       body="Never forget a thing - place orders with all your favourite suppliers."
       imageSrc={imageSrc}
-      ctaText="Place an order"
+      ctaText="Place An Order"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

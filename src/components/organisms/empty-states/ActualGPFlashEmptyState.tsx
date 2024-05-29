@@ -12,7 +12,7 @@ export function ActualGPFlashEmptyState({ ctaClicked, disabledText }: Props) {
       title="Actual GP % in a Flash"
       body="Get your actual GP % through the week, so you are always in control."
       imageSrc={imageSrc}
-      ctaText="Add sales"
+      ctaText="Add Sales"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

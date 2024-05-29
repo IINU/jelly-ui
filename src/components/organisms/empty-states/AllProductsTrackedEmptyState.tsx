@@ -12,7 +12,7 @@ export function AllProductsTrackedEmptyState({ ctaClicked, disabledText }: Props
       title="All your products - tracked"
       body="With JellyPlus/Pro, upload invoices and we’ll update and help track your products."
       imageSrc={imageSrc}
-      ctaText="Add invoices"
+      ctaText="Add Invoices"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

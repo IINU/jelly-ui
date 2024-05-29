@@ -12,7 +12,7 @@ export function AlertPriceChangeEmptyState({ ctaClicked, disabledText }: Props) 
       title="Alert to price changes"
       body="Get notified when product prices go up or down."
       imageSrc={imageSrc}
-      ctaText="Add invoices"
+      ctaText="Add Invoices"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />

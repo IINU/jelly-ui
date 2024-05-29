@@ -12,7 +12,7 @@ export function KnowYourSpendingEmptyState({ ctaClicked, disabledText }: Props) 
       title="Know your spending"
       body="Get your total spend and breakdown by supplier."
       imageSrc={imageSrc}
-      ctaText="Add invoices"
+      ctaText="Add Invoices"
       ctaClicked={ctaClicked}
       disabledText={disabledText}
     />
