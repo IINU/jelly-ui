@@ -76,7 +76,8 @@ export function ConfettiModal({ open, onClose }: Props) {
               <Typography style="h6">You rock!</Typography>
 
               <Typography style="caption">
-                You’ve completed onboarding with flying colours. Here’s your Jelly trophy!
+                You’ve completed onboarding with flying colours. Here’s your
+                Jelly trophy!
               </Typography>
             </div>
           </div>
@@ -84,7 +85,7 @@ export function ConfettiModal({ open, onClose }: Props) {
           <Button
             onClick={handleButtonClick}
             className="w-full"
-            label="Wait, no confetti?"
+            label="Where's the party?"
           />
         </div>
       </Modal>

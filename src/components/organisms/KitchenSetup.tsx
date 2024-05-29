@@ -27,11 +27,15 @@ export function KitchenSetup<T extends Step>(
 
   function getText(pct: number) {
     if (pct === 1) {
-      return 'Well done, you’ve mastered Jelly!'
+      return 'Bravo! You’ve mastered Jelly!'
     }
 
-    if (pct >= 0.8) {
-      return 'Almost there! 🥳'
+    if (pct >= 0.75) {
+      return 'Almost done! It’s looking delicious!'
+    }
+
+    if (pct >= 0.5) {
+      return 'Halfway there! Keep the heat up!'
     }
 
     return 'Complete onboarding to earn the Jelly trophy!'
