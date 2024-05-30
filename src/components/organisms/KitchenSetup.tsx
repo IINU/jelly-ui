@@ -42,7 +42,7 @@ export function KitchenSetup<T extends Step>(
   }
 
   return (
-    <div className="w-full rounded shadow-medium bg-white">
+    <div className="w-full max-h-[calc(100vh-12rem)] min-h-48 rounded shadow-medium bg-white flex flex-col">
       <div className="py-8 px-4 space-y-4">
         <div className="text-center">
           <Typography style="body1" className="text-primary-800">
@@ -54,17 +54,19 @@ export function KitchenSetup<T extends Step>(
           </Typography>
         </div>
 
-        {percentage !== 1 && <ProgressBar percentage={percentage}/>}
+        <ProgressBar percentage={percentage}/>
       </div>
 
-      {steps.map((step, index) => (
-        <ChecklistStep
-          key={getStepKey(step, index)}
-          text={step.text}
-          completed={step.completed}
-          onClick={() => onClick(step)}
-        />
-      ))}
+      <div className="overflow-y-scroll flex-1">
+        {steps.map((step, index) => (
+          <ChecklistStep
+            key={getStepKey(step, index)}
+            text={step.text}
+            completed={step.completed}
+            onClick={() => onClick(step)}
+          />
+        ))}
+      </div>
     </div>
   )
 }

@@ -35,6 +35,13 @@ const preview: Preview = {
             height: '852px',
           },
         },
+        iPhoneSE: {
+          name: 'iPhone SE',
+          styles: {
+            width: '375px',
+            height: '667px',
+          },
+        },
       },
     },
   },
