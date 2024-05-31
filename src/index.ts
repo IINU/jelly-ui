@@ -54,6 +54,7 @@ export { KnowYourSpendingEmptyState } from './components/organisms/empty-states/
 export { KnowYourSpendingNotPaidState } from './components/organisms/not-paid-states/KnowYourSpendingNotPaidState'
 export { LiveMenuMarginsEmptyState } from './components/organisms/empty-states/LiveMenuMarginsEmptyState'
 export { LiveMenuMarginsNotPaidState } from './components/organisms/not-paid-states/LiveMenuMarginsNotPaidState'
+export { UnlockYourMarginsNotPaidState } from './components/organisms/not-paid-states/UnlockYourMarginsNotPaidState'
 
 // Organisms / Modals
 export { JellySupportModal } from './components/organisms/modals/JellySupportModal'
