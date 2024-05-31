@@ -37,7 +37,7 @@ export function Button({
   icon: Icon,
 }: Props) {
   const padding = getPadding(!!label, !!Icon || loading)
-  const base = 'font-rubik font-normal text-sm rounded-full flex items-center justify-center space-x-1 min-w-10 h-10'
+  const base = 'font-rubik font-medium text-sm rounded-full flex items-center justify-center space-x-1 min-w-10 h-10'
 
   const styled: Record<ButtonStyle, string> = {
     primary: 'bg-primary-900 text-white border-2 border-primary-900 hover:bg-primary-800',

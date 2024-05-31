@@ -1,9 +1,14 @@
-import { ReactNode } from 'react'
+import { ComponentType, ReactNode, useState } from 'react'
 import { Typography } from '../components/atoms/Typography'
-import { Navbar } from '../components/organisms/Navbar'
-import { IconSelector } from '@tabler/icons-react'
+import { NavbarMobile } from '../components/organisms/NavbarMobile'
+import { IconAdjustmentsHorizontal, IconHome, IconSelector, IconToolsKitchen2, IconWallet } from '@tabler/icons-react'
 import { ProfilePicture } from '../components/atoms/ProfilePicture'
 import { Button } from '../components/atoms/Button'
+
+type Tab = {
+  text: string
+  icon: ComponentType<{ size?: string | number }>
+}
 
 type Props = {
   state: 'homescreen' | 'cookbook'
@@ -11,6 +16,15 @@ type Props = {
 }
 
 export function AppLayout({ children, state }: Props) {
+  const tabs: Tab[] = [
+    { text: 'home', icon: IconHome },
+    { text: 'finance', icon: IconWallet },
+    { text: 'kitchen', icon: IconToolsKitchen2 },
+    { text: 'settings', icon: IconAdjustmentsHorizontal },
+  ]
+
+  const [currentTab, setCurrentTab] = useState(tabs[0])
+
   return (
     <div className="w-full h-full flex flex-col">
       <div className="h-16 w-full bg-white shadow-medium flex justify-between px-4 z-10">
@@ -62,9 +76,14 @@ export function AppLayout({ children, state }: Props) {
         {children}
       </div>
 
-      <div className="w-full shadow-medium z-10">
-        <Navbar/>
-      </div>
+      <NavbarMobile<Tab>
+        value={currentTab}
+        tabs={tabs}
+        tabToId={tab => tab.text}
+        tabToText={tab => tab.text}
+        tabToIcon={tab => tab.icon}
+        onChange={setCurrentTab}
+      />
     </div>
   )
 }

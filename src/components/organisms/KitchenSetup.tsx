@@ -49,7 +49,7 @@ export function KitchenSetup<T extends Step>(
             {Math.round(percentage * 100)}%
           </Typography>
 
-          <Typography style="body2" className="text-primary-800">
+          <Typography style="caption" className="text-primary-800">
             {getText(percentage)}
           </Typography>
         </div>

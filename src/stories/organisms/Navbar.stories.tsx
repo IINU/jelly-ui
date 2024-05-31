@@ -1,26 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Navbar } from '../../components/organisms/Navbar'
+import { NavbarMobileShowcase } from '../../showcase/NavbarMobileShowcase'
 
 const meta = {
   title: 'Organisms/Navigation',
-  component: Navbar,
+  component: NavbarMobileShowcase,
   parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
-} satisfies Meta<typeof Navbar>
+} satisfies Meta<typeof NavbarMobileShowcase>
 
 export default meta
 type Story = StoryObj<typeof meta>;
 
-export const NavbarDesktop: Story = {
+export const NavbarStory: Story = {
   parameters: {
-    viewport: { defaultViewport: 'macBookPro' },
+    viewport: { defaultViewport: 'iPhoneSE' },
   },
   args: {
     type: 'desktop',
-  },
-}
-
-export const NavbarMobile: Story = {
-  args: {
-    type: 'mobile',
   },
 }

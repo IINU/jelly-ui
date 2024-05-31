@@ -19,7 +19,7 @@ export { CountryCodeDropdown } from './components/molecules/CountryCodeDropdown'
 
 // Organisms
 export { KitchenSetup } from './components/organisms/KitchenSetup'
-export { Navbar } from './components/organisms/Navbar'
+export { NavbarMobile } from './components/organisms/NavbarMobile'
 
 // Organisms / Onboarding
 export { AcceptInvitePanel } from './components/organisms/onboarding/AcceptInvitePanel'
