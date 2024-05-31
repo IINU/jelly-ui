@@ -39,7 +39,6 @@ export function StatePanel({ title, body, imageSrc, ctaClicked, ctaText, disable
           </Typography>
         )}
       </div>
-
     </div>
   )
 }

@@ -14,6 +14,7 @@ import {
 import { InvoicesOnePlaceNotPaidState } from '../../components/organisms/not-paid-states/InvoicesOnePlaceNotPaidState'
 import { KnowYourSpendingNotPaidState } from '../../components/organisms/not-paid-states/KnowYourSpendingNotPaidState'
 import { LiveMenuMarginsNotPaidState } from '../../components/organisms/not-paid-states/LiveMenuMarginsNotPaidState'
+import { UnlockYourMarginsNotPaidState } from '../../components/organisms/not-paid-states/UnlockYourMarginsNotPaidState'
 
 const meta = {
   title: 'Organisms/Not Paid States',
@@ -105,5 +106,14 @@ export const LiveMenuMarginsStory: Story = {
     state: LiveMenuMarginsNotPaidState,
     onClick: fn(),
     disabledText: '',
+  },
+}
+
+export const UnlockYourMarginsStory: Story = {
+  name: 'Unlock Your Margins',
+  args: {
+    state: UnlockYourMarginsNotPaidState,
+    layoutState: 'homescreen',
+    onClick: fn(),
   },
 }
