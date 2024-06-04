@@ -11,7 +11,8 @@ export default {
         lato: ["'Lato'", 'sans-serif'],
       },
       borderRadius: {
-        DEFAULT: '0.5rem'
+        DEFAULT: '0.5rem',
+        lg: '0.625rem',
       },
       boxShadow: {
         low: '0px 2px 3px 0px rgba(76, 89, 110, 0.10)',

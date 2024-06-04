@@ -1,13 +1,13 @@
 import { ComponentType, useState } from 'react'
 import { IconAdjustmentsHorizontal, IconHome, IconToolsKitchen2, IconWallet } from '@tabler/icons-react'
-import { NavbarMobile } from '../components/organisms/NavbarMobile'
+import { NavbarDesktop } from '../components/organisms/NavbarDesktop'
 
 type Tab = {
   text: string
   icon: ComponentType<{ size?: string | number }>
 }
 
-export function NavbarMobileShowcase() {
+export function DesktopNavbarShowcase() {
   const tabs: Tab[] = [
     { text: 'home', icon: IconHome },
     { text: 'finance', icon: IconWallet },
@@ -19,9 +19,7 @@ export function NavbarMobileShowcase() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 w-full"/>
-
-      <NavbarMobile<Tab>
+      <NavbarDesktop<Tab>
         value={currentTab}
         tabs={tabs}
         tabToId={tab => tab.text}
@@ -29,6 +27,8 @@ export function NavbarMobileShowcase() {
         tabToIcon={tab => tab.icon}
         onChange={setCurrentTab}
       />
+
+      <div className="flex-1 w-full"/>
     </div>
   )
 }

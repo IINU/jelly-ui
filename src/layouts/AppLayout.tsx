@@ -72,8 +72,10 @@ export function AppLayout({ children, state }: Props) {
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto bg-primary-100">
-        {children}
+      <div className="flex-1 overflow-y-auto bg-primary-100 flex justify-center">
+        <div className="w-full max-w-[56rem]">
+          {children}
+        </div>
       </div>
 
       <NavbarMobile<Tab>

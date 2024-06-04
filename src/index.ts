@@ -16,10 +16,18 @@ export { Modal } from './components/atoms/Modal'
 
 // Molecules
 export { CountryCodeDropdown } from './components/molecules/CountryCodeDropdown'
+export { DashboardAlert } from './components/molecules/DashboardAlert'
+export { DashboardNumberCard } from './components/molecules/DashboardNumberCard'
+export { DashboardNumberCardCompact } from './components/molecules/DashboardNumberCardCompact'
+export { DashboardPeriodSelector } from './components/molecules/DashboardPeriodSelector'
+export { DashboardPieChart } from './components/molecules/DashboardPieChart'
+export { DashboardSection } from './components/molecules/DashboardSection'
+export { DashboardTrendingStack } from './components/molecules/DashboardTrendingStack'
 
 // Organisms
 export { KitchenSetup } from './components/organisms/KitchenSetup'
 export { NavbarMobile } from './components/organisms/NavbarMobile'
+export { NavbarDesktop } from './components/organisms/NavbarDesktop'
 
 // Organisms / Onboarding
 export { AcceptInvitePanel } from './components/organisms/onboarding/AcceptInvitePanel'
