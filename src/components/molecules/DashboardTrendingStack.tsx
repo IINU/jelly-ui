@@ -2,9 +2,9 @@ import { Typography } from '../atoms/Typography'
 import { IconChevronRight, IconTrendingDown, IconTrendingUp } from '@tabler/icons-react'
 import { accentToText } from '../../utils/accent'
 
-export type DashboardPriceChange = {
-  product: string
-  supplier: string
+export type DashboardTrendingItem = {
+  title: string
+  subtitle: string
   value: string
   trending: 'up' | 'down'
   onClick: () => void
@@ -12,10 +12,10 @@ export type DashboardPriceChange = {
 
 type Props = {
   title: string
-  priceChanges: DashboardPriceChange[]
+  trendingItems: DashboardTrendingItem[]
 }
 
-export function DashboardTrendingStack({ title, priceChanges }: Props) {
+export function DashboardTrendingStack({ title, trendingItems }: Props) {
   return (
     <div className="bg-white w-full rounded-lg shadow-low text-center">
       <div className="pt-6 mb-2">
@@ -24,7 +24,7 @@ export function DashboardTrendingStack({ title, priceChanges }: Props) {
         </Typography>
       </div>
 
-      {priceChanges.map(({ product, supplier, value, trending, onClick }, index) => (
+      {trendingItems.map(({ title, subtitle, value, trending, onClick }, index) => (
         <div
           key={index}
           className="flex justify-between p-4 w-full cursor-pointer"
@@ -33,11 +33,11 @@ export function DashboardTrendingStack({ title, priceChanges }: Props) {
           <div className="flex items-center flex-1">
             <div className="flex flex-col flex-1 justify-center text-left">
               <Typography style="subtitle1" className="text-primary-800">
-                {product}
+                {title}
               </Typography>
 
               <Typography style="subtitle2" className="text-primary-600">
-                {supplier}
+                {subtitle}
               </Typography>
             </div>
           </div>

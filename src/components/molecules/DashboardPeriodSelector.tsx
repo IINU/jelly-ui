@@ -32,14 +32,13 @@ export function DashboardPeriodSelector({ value, onChange }: Props) {
       <Modal open={showModal} onClose={() => setShowModal(false)}>
         <div className="space-y-4 text-center">
           <Typography style="subtitle1">Pick something</Typography>
-          rounded-lg
+
           <div className="space-y-2">
             <Button onClick={onClick('week')} label="Week" className="w-full"/>
             <Button onClick={onClick('month')} label="Month" className="w-full"/>
             <Button onClick={onClick('quarter')} label="Quarter" className="w-full"/>
           </div>
         </div>
-
       </Modal>
 
       <div

@@ -46,17 +46,17 @@ export function DashboardFinanceShowcase() {
 
         <DashboardTrendingStack
           title="Largest Price Changes"
-          priceChanges={[
+          trendingItems={[
             {
-              product: 'Blueberries 500g',
-              supplier: 'Foods LTD.',
+              title: 'Blueberries 500g',
+              subtitle: 'Foods LTD.',
               value: '13.45%',
               trending: 'up',
               onClick: () => console.log('hi'),
             },
             {
-              product: 'Salted butter 250g',
-              supplier: 'Shop Corp Ltd.',
+              title: 'Salted butter 250g',
+              subtitle: 'Shop Corp Ltd.',
               value: '10.46%',
               trending: 'down',
               onClick: () => console.log('hi'),
