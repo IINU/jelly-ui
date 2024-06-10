@@ -38,9 +38,13 @@ export function PieChart({ data, className }: Props) {
 
       {slices.map((slice, index) => {
         const { startAngle, endAngle, color } = slice
+        const radius = 50
+
+        if (startAngle === 0 && endAngle === 360) {
+          return <circle key={index} cx="64" cy="64" r={radius} fill={color}/>
+        }
 
         const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0
-        const radius = 50
 
         const start = index === 0
           ? calcOffsetStart(startAngle, endAngle)
