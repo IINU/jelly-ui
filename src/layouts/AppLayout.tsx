@@ -11,7 +11,7 @@ type Tab = {
 }
 
 type Props = {
-  state: 'homescreen' | 'cookbook'
+  state: 'homescreen' | 'cookbook' | 'title'
   children: ReactNode
 }
 
@@ -42,6 +42,14 @@ export function AppLayout({ children, state }: Props) {
           <div className="flex items-center space-x-2">
             <Typography className="text-primary-900" style="h6">
               Cookbook
+            </Typography>
+          </div>
+        )}
+
+        {state === 'title' && (
+          <div className="flex items-center space-x-2">
+            <Typography className="text-primary-900" style="h6">
+              Screen Title
             </Typography>
           </div>
         )}

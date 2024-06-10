@@ -16,6 +16,7 @@ export { Modal } from './components/atoms/Modal'
 
 // Molecules
 export { CountryCodeDropdown } from './components/molecules/CountryCodeDropdown'
+export { DashboardActions } from './components/molecules/DashboardActions'
 export { DashboardAlert } from './components/molecules/DashboardAlert'
 export { DashboardNumberCard } from './components/molecules/DashboardNumberCard'
 export { DashboardNumberCardCompact } from './components/molecules/DashboardNumberCardCompact'
