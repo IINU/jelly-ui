@@ -1,8 +1,7 @@
 import { Typography } from '../atoms/Typography'
-import { IconSelector } from '@tabler/icons-react'
+import { IconCalendarMonth, IconSelector } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
-import { Modal } from '../atoms/Modal'
-import { Button } from '../atoms/Button'
+import { ActionModal } from './ActionModal'
 
 export type DashboardPeriod = 'week' | 'month' | 'quarter'
 
@@ -29,17 +28,30 @@ export function DashboardPeriodSelector({ value, onChange }: Props) {
 
   return (
     <>
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
-        <div className="space-y-4 text-center">
-          <Typography style="subtitle1">Pick something</Typography>
-
-          <div className="space-y-2">
-            <Button onClick={onClick('week')} label="Week" className="w-full"/>
-            <Button onClick={onClick('month')} label="Month" className="w-full"/>
-            <Button onClick={onClick('quarter')} label="Quarter" className="w-full"/>
-          </div>
-        </div>
-      </Modal>
+      <ActionModal
+        actions={[
+          {
+            title: 'Calendar Week',
+            subtitle: 'From Monday to Sunday',
+            onClick: onClick('week'),
+            icon: IconCalendarMonth,
+          },
+          {
+            title: 'Calendar Month',
+            subtitle: 'From the 1st to the last day of each month',
+            onClick: onClick('month'),
+            icon: IconCalendarMonth,
+          },
+          {
+            title: 'Calendar Quarter',
+            subtitle: 'From the 1st of Month 1 to the last day of Month 3',
+            onClick: onClick('quarter'),
+            icon: IconCalendarMonth,
+          },
+        ]}
+        open={showModal}
+        onClose={() => setShowModal(false)}
+      />
 
       <div
         className="py-2 text-secondary-400 cursor-pointer flex justify-center"
