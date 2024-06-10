@@ -1,8 +1,9 @@
 import { Typography } from '../atoms/Typography'
 import { IconAlertTriangle, IconChevronRight } from '@tabler/icons-react'
+import { ReactNode } from 'react'
 
 type Props = {
-  title: string
+  title: ReactNode
   subtitle?: string
   onClick: () => void
 }

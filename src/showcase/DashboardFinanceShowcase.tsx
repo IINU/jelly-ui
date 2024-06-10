@@ -38,7 +38,13 @@ export function DashboardFinanceShowcase() {
 
         <DashboardSection title="Insights">
           <DashboardAlert
-            title="Missing 1,000 days of sales data"
+            title={(
+              <span className="space-x-1">
+                <span>Missing</span>
+                <span className="text-error-400">1,000</span>
+                <span>days of sales data</span>
+              </span>
+            )}
             subtitle="Figures below might not be accurate, please update your sales data."
             onClick={() => {
               console.log('hi')

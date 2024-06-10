@@ -9,12 +9,16 @@ type Props = {
 }
 
 export function PieChart({ data, className }: Props) {
-  const total = data.reduce((acc, item) => acc + item.value, 0)
+  const total = data.reduce(
+    (acc, item) => acc + (item.value < 0 ? 0 : item.value),
+    0
+  )
+
   let cumulativeValue = 0
 
   const slices = data.map(item => {
     const startAngle = (cumulativeValue / total) * 360
-    cumulativeValue += item.value
+    cumulativeValue += item.value < 0 ? 0 : item.value
     const endAngle = (cumulativeValue / total) * 360
 
     return { ...item, startAngle, endAngle }
