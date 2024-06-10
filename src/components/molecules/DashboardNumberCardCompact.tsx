@@ -40,7 +40,10 @@ export function DashboardNumberCardCompact({ accent, title, subtitle, data, onCl
 
       <div className="flex items-center space-x-1">
         {data && (
-          <Typography style="h6" className={accentToText(accent)}>
+          <Typography
+            style="h6"
+            className={accentToText(accent, 'text-primary-800')}
+          >
             {data}
           </Typography>
         )}

@@ -1,13 +1,12 @@
-export type Accent = 'error' | 'success' | 'tertiary' | 'secondary' | 'none'
+export type Accent = 'error' | 'success' | 'tertiary' | 'secondary'
 
-export function accentToText(accent: Accent = 'none') {
+export function accentToText(accent?: Accent, fallback = 'text-primary-900') {
   const colours: Record<Accent, string> = {
     error: 'text-error-400',
     secondary: 'text-secondary-400',
     success: 'text-success-400',
-    tertiary: 'text-tertiary-400',
-    none: 'text-primary-900'
+    tertiary: 'text-tertiary-400'
   }
 
-  return colours[accent]
+  return accent ? colours[accent] : fallback
 }

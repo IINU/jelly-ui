@@ -70,14 +70,6 @@ export function DashboardKitchenShowcase() {
               console.log('hi')
             }}
           />
-
-          {/*<DashboardAlert*/}
-          {/*  title="Missing 1,000 days of sales data"*/}
-          {/*  subtitle="Figures below might not be accurate, please update your sales data."*/}
-          {/*  onClick={() => {*/}
-          {/*    console.log('hi')*/}
-          {/*  }}*/}
-          {/*/>*/}
         </DashboardSection>
 
         <DashboardSection title="Orders">
