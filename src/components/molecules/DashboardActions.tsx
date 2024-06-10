@@ -15,7 +15,7 @@ type Props = {
 export function DashboardActions({ actions, children }: Props) {
   return (
     <div className="h-full flex flex-col">
-      <div className="bg-white shadow-medium w-full py-2 flex z-20 border-t border-primary-100">
+      <div className="bg-white shadow-medium w-full py-2 flex z-20">
         {actions.map(({ title, onClick, icon: Icon }, index) => (
           <button
             key={index}

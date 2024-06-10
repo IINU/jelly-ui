@@ -27,7 +27,7 @@ export function AppLayout({ children, state }: Props) {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="h-16 w-full bg-white shadow-medium flex justify-between px-4 z-10">
+      <div className="h-16 w-full bg-white shadow-medium flex justify-between px-4 z-10 border-b border-primary-100">
         {state === 'homescreen' && (
           <div className="flex items-center space-x-2 cursor-pointer">
             <IconSelector className="text-secondary-400"/>
