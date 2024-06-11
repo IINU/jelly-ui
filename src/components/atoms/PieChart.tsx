@@ -16,13 +16,18 @@ export function PieChart({ data, className }: Props) {
 
   let cumulativeValue = 0
 
-  const slices = data.map(item => {
+  const slices = []
+  for (const item of data) {
+    if (item.value <= 0) {
+      continue
+    }
+
     const startAngle = (cumulativeValue / total) * 360
     cumulativeValue += item.value < 0 ? 0 : item.value
     const endAngle = (cumulativeValue / total) * 360
 
-    return { ...item, startAngle, endAngle }
-  }).reverse()
+    slices.push({ ...item, startAngle, endAngle })
+  }
 
   function calcOffsetStart(start: number, end: number) {
     const middleAngle = (end + start) / 2
@@ -38,7 +43,11 @@ export function PieChart({ data, className }: Props) {
 
   return (
     <svg viewBox="0 0 128 128" className={className}>
-      {slices.map((slice, index) => {
+      {slices.length < data.length && (
+        <circle cx="64" cy="64" r="53" fill="#F4F5F6"/>
+      )}
+
+      {slices.reverse().map((slice, index) => {
         const { startAngle, endAngle, color } = slice
         const radius = 50
 
@@ -66,7 +75,7 @@ export function PieChart({ data, className }: Props) {
                 d={`M${start.x},${start.y} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`}
                 fill={color}
                 stroke="#F4F5F6"
-                stroke-width="10"
+                strokeWidth="10"
               />
             )}
 
