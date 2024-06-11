@@ -5,7 +5,6 @@ import { DashboardPeriod, DashboardPeriodSelector } from '../components/molecule
 import { useState } from 'react'
 import { DashboardAlert } from '../components/molecules/DashboardAlert'
 import { DashboardPieChart } from '../components/molecules/DashboardPieChart'
-import { DashboardTrendingStack } from '../components/molecules/DashboardTrendingStack'
 import { DashboardActions } from '../components/molecules/DashboardActions'
 import { IconReceipt, IconTrendingUp } from '@tabler/icons-react'
 
@@ -38,6 +37,13 @@ export function DashboardFinanceShowcase() {
 
         <DashboardSection title="Insights">
           <DashboardAlert
+            title="Large Price Changes"
+            subtitle="See all the price changes from your suppliers"
+            onClick={() => console.log('hi')}
+            icon={IconTrendingUp}
+          />
+
+          <DashboardAlert
             title={(
               <span className="space-x-1">
                 <span>Missing</span>
@@ -56,26 +62,6 @@ export function DashboardFinanceShowcase() {
             data="£1,234.56"
             dataPoint1={{ value: 20, text: 'Spend' }}
             dataPoint2={{ value: 80, text: 'GP' }}
-          />
-
-          <DashboardTrendingStack
-            title="Largest Price Changes"
-            trendingItems={[
-              {
-                title: 'Blueberries 500g',
-                subtitle: 'Foods LTD.',
-                value: '13.45%',
-                trending: 'up',
-                onClick: () => console.log('hi'),
-              },
-              {
-                title: 'Salted butter 250g',
-                subtitle: 'Shop Corp Ltd.',
-                value: '10.46%',
-                trending: 'down',
-                onClick: () => console.log('hi'),
-              },
-            ]}
           />
         </DashboardSection>
       </DashboardActions>

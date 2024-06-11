@@ -11,7 +11,7 @@ type Props = {
 export function PieChart({ data, className }: Props) {
   const total = data.reduce(
     (acc, item) => acc + (item.value < 0 ? 0 : item.value),
-    0
+    0,
   )
 
   let cumulativeValue = 0
@@ -22,13 +22,13 @@ export function PieChart({ data, className }: Props) {
     const endAngle = (cumulativeValue / total) * 360
 
     return { ...item, startAngle, endAngle }
-  })
+  }).reverse()
 
   function calcOffsetStart(start: number, end: number) {
     const middleAngle = (end + start) / 2
 
-    const offsetX = 6 * Math.sin(middleAngle * (Math.PI / 180))
-    const offsetY = 6 * -Math.cos(middleAngle * (Math.PI / 180))
+    const offsetX = 3 * Math.sin(middleAngle * (Math.PI / 180))
+    const offsetY = 3 * -Math.cos(middleAngle * (Math.PI / 180))
 
     return {
       x: 64 + offsetX,
@@ -38,8 +38,6 @@ export function PieChart({ data, className }: Props) {
 
   return (
     <svg viewBox="0 0 128 128" className={className}>
-      <circle cx="64" cy="64" r="53" fill="#F4F5F6"/>
-
       {slices.map((slice, index) => {
         const { startAngle, endAngle, color } = slice
         const radius = 50
@@ -61,11 +59,23 @@ export function PieChart({ data, className }: Props) {
         const y2 = start.y - radius * Math.cos(endAngle * (Math.PI / 180))
 
         return (
-          <path
-            key={index}
-            d={`M${start.x},${start.y} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`}
-            fill={color}
-          />
+          <>
+            {endAngle === 360 && (
+              <path
+                key={index + '-stroke'}
+                d={`M${start.x},${start.y} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`}
+                fill={color}
+                stroke="#F4F5F6"
+                stroke-width="10"
+              />
+            )}
+
+            <path
+              key={index}
+              d={`M${start.x},${start.y} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`}
+              fill={color}
+            />
+          </>
         )
       })}
     </svg>
