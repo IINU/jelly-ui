@@ -12,7 +12,7 @@ export function DashboardFinanceShowcase() {
   const [period, setPeriod] = useState<DashboardPeriod>('week')
 
   return (
-    <AppLayout state="homescreen">
+    <AppLayout state="title">
       <DashboardActions
         actions={[
           { title: 'Invoices', onClick: () => console.log('hi'), icon: IconReceipt },
