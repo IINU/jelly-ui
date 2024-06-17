@@ -24,6 +24,13 @@ export { PeriodSelector } from './components/molecules/PeriodSelector'
 export { DashboardPieChart } from './components/molecules/DashboardPieChart'
 export { DashboardSection } from './components/molecules/DashboardSection'
 export { DashboardTrendingStack } from './components/molecules/DashboardTrendingStack'
+export { InsightsBarChart } from './components/molecules/InsightsBarChart'
+export { InsightsDateNavigator } from './components/molecules/InsightsDateNavigator'
+export { InsightsDayChart } from './components/molecules/InsightsDayChart'
+export { InsightsLineChart } from './components/molecules/InsightsLineChart'
+export { InsightsListGroup } from './components/molecules/InsightsListGroup'
+export { InsightsListItem } from './components/molecules/InsightsListItem'
+export { InsightsStockRangeSelect } from './components/molecules/InsightsStockRangeSelect'
 
 // Organisms
 export { KitchenSetup } from './components/organisms/KitchenSetup'
