@@ -20,8 +20,11 @@ export function ActionModal({ open, onClose, actions }: Props) {
   return (
     <Modal open={open} onClose={onClose} className="!p-0" hideCloseButton>
       {actions.map(({ onClick, title, subtitle, icon: Icon }, index) => (
-        <div key={index} onClick={onClick}
-             className="px-3 py-4 flex space-x-2 border-t border-primary-100 first:border-none">
+        <div
+          key={index}
+          onClick={onClick}
+          className="px-3 py-4 flex space-x-2 border-t border-primary-100 first:border-none cursor-pointer"
+        >
           <div className="flex items-center">
             <Icon className="text-primary-900"/>
           </div>

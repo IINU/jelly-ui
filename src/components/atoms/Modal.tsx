@@ -16,11 +16,11 @@ export function Modal({ open, onClose, children, className, hideCloseButton = fa
 
   return (
     <div
-      className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-50 px-4 cursor-pointer"
+      className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-50 cursor-pointer !m-0 !p-4"
       onClick={onClose}
     >
       <div
-        className={`relative bg-white rounded w-full max-w-md py-8 px-4 cursor-default ${className}`}
+        className={`relative bg-white rounded w-full max-w-md max-h-full py-8 px-4 overflow-y-auto cursor-default ${className}`}
         onClick={e => e.stopPropagation()}
       >
         {!hideCloseButton && (

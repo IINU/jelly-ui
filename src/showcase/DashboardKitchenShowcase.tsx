@@ -1,15 +1,43 @@
 import { AppLayout } from '../layouts/AppLayout'
-import { IconBasket, IconBook, IconBuildingStore, IconTrendingUp } from '@tabler/icons-react'
+import { IconBasket, IconBook, IconBuildingStore, IconCalendarMonth, IconTrendingUp } from '@tabler/icons-react'
 import { Typography } from '../components/atoms/Typography'
 import { DashboardNumberCard } from '../components/molecules/DashboardNumberCard'
 import { DashboardNumberCardCompact } from '../components/molecules/DashboardNumberCardCompact'
 import { DashboardSection } from '../components/molecules/DashboardSection'
-import { DashboardPeriod, DashboardPeriodSelector } from '../components/molecules/DashboardPeriodSelector'
-import { useState } from 'react'
+import { PeriodSelector } from '../components/molecules/PeriodSelector'
+import { ComponentType, useState } from 'react'
 import { DashboardActions } from '../components/molecules/DashboardActions'
 
+type DashboardPeriod = {
+  label: string
+  title: string
+  subtitle: string
+  icon: ComponentType<{ className?: string }>
+}
+
 export function DashboardKitchenShowcase() {
-  const [period, setPeriod] = useState<DashboardPeriod>('week')
+  const periods: DashboardPeriod[] = [
+    {
+      label: 'This Calendar Week',
+      title: 'Calendar Week',
+      subtitle: 'From Monday to Sunday',
+      icon: IconCalendarMonth,
+    },
+    {
+      label: 'This Calendar Month',
+      title: 'Calendar Month',
+      subtitle: 'From the 1st to the last day of each month',
+      icon: IconCalendarMonth,
+    },
+    {
+      label: 'This Calendar Quarter',
+      title: 'Calendar Quarter',
+      subtitle: 'From the 1st of Month 1 to the last day of Month 3',
+      icon: IconCalendarMonth,
+    },
+  ]
+
+  const [period, setPeriod] = useState<DashboardPeriod>(periods[0])
 
   return (
     <AppLayout state="title">
@@ -21,9 +49,14 @@ export function DashboardKitchenShowcase() {
         ]}
       >
         <div className="pt-4">
-          <DashboardPeriodSelector
+          <PeriodSelector
+            periods={periods}
             value={period}
             onChange={setPeriod}
+            labelExtractor={p => p.label}
+            titleExtractor={p => p.title}
+            subtitleExtractor={p => p.subtitle}
+            iconExtractor={p => p.icon}
           />
         </div>
 

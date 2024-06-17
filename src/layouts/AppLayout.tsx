@@ -5,25 +5,29 @@ import { IconAdjustmentsHorizontal, IconHome, IconSelector, IconToolsKitchen2, I
 import { ProfilePicture } from '../components/atoms/ProfilePicture'
 import { Button } from '../components/atoms/Button'
 
-type Tab = {
+type NavButton = {
   text: string
   icon: ComponentType<{ size?: string | number }>
 }
 
 type Props = {
-  state: 'homescreen' | 'cookbook' | 'title'
+  title?: string
+  tabs?: string[]
+  activeTab?: number
+  actionButton?: string
+  state: 'homescreen' | 'tabbed' | 'title'
   children: ReactNode
 }
 
-export function AppLayout({ children, state }: Props) {
-  const tabs: Tab[] = [
+export function AppLayout({ title, children, state, tabs = ['Menus', 'Dishes & Recipes'], activeTab = 0, actionButton }: Props) {
+  const navButtons: NavButton[] = [
     { text: 'home', icon: IconHome },
     { text: 'finance', icon: IconWallet },
     { text: 'kitchen', icon: IconToolsKitchen2 },
     { text: 'settings', icon: IconAdjustmentsHorizontal },
   ]
 
-  const [currentTab, setCurrentTab] = useState(tabs[0])
+  const [currentNavButton, setCurrentNavButton] = useState(navButtons[0])
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -38,10 +42,10 @@ export function AppLayout({ children, state }: Props) {
           </div>
         )}
 
-        {state === 'cookbook' && (
+        {state === 'tabbed' && (
           <div className="flex items-center space-x-2">
             <Typography className="text-primary-900" style="h6">
-              Cookbook
+              {title || 'Cookbook'}
             </Typography>
           </div>
         )}
@@ -49,7 +53,7 @@ export function AppLayout({ children, state }: Props) {
         {state === 'title' && (
           <div className="flex items-center space-x-2">
             <Typography className="text-primary-900" style="h6">
-              Screen Title
+              {title || 'Screen Title'}
             </Typography>
           </div>
         )}
@@ -62,21 +66,26 @@ export function AppLayout({ children, state }: Props) {
             />
           )}
 
-          {state === 'cookbook' && (
-            <Button onClick={() => console.log('Nothing')} style="primary" label="Create"/>
+          {actionButton && (
+            <Button
+              onClick={() => console.log('Nothing')}
+              style="primary"
+              label={actionButton}
+            />
           )}
         </div>
       </div>
 
-      {state === 'cookbook' && (
+      {state === 'tabbed' && (
         <div className="w-full bg-primary-50 flex shadow-medium text-center cursor-pointer">
-          <div className="w-full border-b-[3px] border-primary-900 py-3">
-            <Typography style="button">Menus</Typography>
-          </div>
-
-          <div className="w-full border-b-[3px] border-primary-200 py-3">
-            <Typography style="button">Dishes & Recipes</Typography>
-          </div>
+          {tabs.map((tab, index) => (
+            <div
+              key={index}
+              className={`w-full border-b-[3px] py-3 ${index === activeTab ? 'border-primary-900' : 'border-primary-200'}`}
+            >
+              <Typography style="button">{tab}</Typography>
+            </div>
+          ))}
         </div>
       )}
 
@@ -86,13 +95,13 @@ export function AppLayout({ children, state }: Props) {
         </div>
       </div>
 
-      <NavbarMobile<Tab>
-        value={currentTab}
-        tabs={tabs}
+      <NavbarMobile<NavButton>
+        value={currentNavButton}
+        tabs={navButtons}
         tabToId={tab => tab.text}
         tabToText={tab => tab.text}
         tabToIcon={tab => tab.icon}
-        onChange={setCurrentTab}
+        onChange={setCurrentNavButton}
       />
     </div>
   )

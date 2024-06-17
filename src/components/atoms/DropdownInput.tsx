@@ -15,6 +15,7 @@ type Props<T> = {
   loading?: boolean
   icon?: React.ComponentType<{ className?: string }>
   className?: string
+  searchable?: boolean
 };
 
 export function DropdownInput<T>({
@@ -30,6 +31,7 @@ export function DropdownInput<T>({
   icon: Icon,
   loading = false,
   className,
+  searchable = true,
 }: Props<T>) {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
@@ -98,19 +100,37 @@ export function DropdownInput<T>({
   return (
     <div ref={wrapperRef} className="w-full space-y-1">
       <div className="relative w-full">
-        <input
-          name={name}
-          type="text"
-          className={`${baseClass} ${borderClass} ${className}`}
-          placeholder={placeholder}
-          value={search}
-          onFocus={() => {
-            setInputValue(null)
-            onChange(null)
-            setOpen(true)
-          }}
-          onChange={e => setSearch(e.target.value)}
-        />
+        {searchable ? (
+          <input
+            name={name}
+            type="text"
+            className={`${baseClass} ${borderClass} ${className} w-full text-ellipsis overflow-hidden whitespace-nowrap pr-8`}
+            placeholder={placeholder}
+            value={search}
+            onFocus={() => {
+              setInputValue(null)
+              onChange(null)
+              setOpen(true)
+            }}
+            onChange={e => setSearch(e.target.value)}
+          />
+        ) : (
+          <div
+            className={`${baseClass} ${borderClass} ${className} `}
+            onClick={() => {
+              setInputValue(null)
+              onChange(null)
+              setOpen(true)
+            }}
+          >
+            <Typography
+              style="body1"
+              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap pr-6 ${search ? 'text-primary-900' : 'text-primary-600'}`}
+            >
+              {search || placeholder}
+            </Typography>
+          </div>
+        )}
 
         {Icon && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
