@@ -19,7 +19,14 @@ type Props = {
   children: ReactNode
 }
 
-export function AppLayout({ title, children, state, tabs = ['Menus', 'Dishes & Recipes'], activeTab = 0, actionButton }: Props) {
+export function AppLayout({
+  title,
+  children,
+  state,
+  tabs = ['Menus', 'Dishes & Recipes'],
+  activeTab = 0,
+  actionButton,
+}: Props) {
   const navButtons: NavButton[] = [
     { text: 'home', icon: IconHome },
     { text: 'finance', icon: IconWallet },
@@ -31,7 +38,7 @@ export function AppLayout({ title, children, state, tabs = ['Menus', 'Dishes & R
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="h-16 w-full bg-white shadow-medium flex justify-between px-4 z-10 border-b border-primary-100">
+      <div className="h-16 w-full bg-white flex justify-between px-4 border-b border-primary-200">
         {state === 'homescreen' && (
           <div className="flex items-center space-x-2 cursor-pointer">
             <IconSelector className="text-secondary-400"/>
@@ -89,7 +96,9 @@ export function AppLayout({ title, children, state, tabs = ['Menus', 'Dishes & R
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto bg-primary-100 flex justify-center">
+      <div id="second-nav"></div>
+
+      <div className="flex-1 overflow-y-auto bg-primary-50 flex justify-center">
         <div className="w-full max-w-[56rem]">
           {children}
         </div>

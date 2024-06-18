@@ -1,12 +1,20 @@
 import { AppLayout } from '../layouts/AppLayout'
-import { IconBasket, IconBook, IconBuildingStore, IconCalendarMonth, IconTrendingUp } from '@tabler/icons-react'
+import {
+  IconBasket,
+  IconBook2,
+  IconBuildingStore,
+  IconCalendarMonth,
+  IconTrendingUp,
+} from '@tabler/icons-react'
 import { Typography } from '../components/atoms/Typography'
 import { DashboardNumberCard } from '../components/molecules/DashboardNumberCard'
 import { DashboardNumberCardCompact } from '../components/molecules/DashboardNumberCardCompact'
 import { DashboardSection } from '../components/molecules/DashboardSection'
 import { PeriodSelector } from '../components/molecules/PeriodSelector'
 import { ComponentType, useState } from 'react'
-import { DashboardActions } from '../components/molecules/DashboardActions'
+import { DashboardNav } from '../components/molecules/DashboardNav'
+import { DashboardNavItem } from '../components/molecules/DashboardNavItem'
+import { Portal } from '../layouts/Portal'
 
 type DashboardPeriod = {
   label: string
@@ -40,89 +48,89 @@ export function DashboardKitchenShowcase() {
   const [period, setPeriod] = useState<DashboardPeriod>(periods[0])
 
   return (
-    <AppLayout state="title">
-      <DashboardActions
-        actions={[
-          { title: 'Cookbook', onClick: () => console.log('hi'), icon: IconBook },
-          { title: 'Stock', onClick: () => console.log('hi'), icon: IconBasket },
-          { title: 'Orders', onClick: () => console.log('hi'), icon: IconBuildingStore },
-        ]}
-      >
-        <div className="pt-4">
-          <PeriodSelector
-            periods={periods}
-            value={period}
-            onChange={setPeriod}
-            labelExtractor={p => p.label}
-            titleExtractor={p => p.title}
-            subtitleExtractor={p => p.subtitle}
-            iconExtractor={p => p.icon}
-          />
-        </div>
+    <AppLayout state="title" actionButton="Place Order">
+      <Portal id="second-nav">
+        <DashboardNav>
+          <DashboardNavItem title="Cookbook" onClick={() => console.log('hi')} icon={IconBook2}/>
+          <DashboardNavItem title="Stock" onClick={() => console.log('hi')} icon={IconBasket}/>
+          <DashboardNavItem title="Orders" onClick={() => console.log('hi')} icon={IconBuildingStore}/>
+        </DashboardNav>
+      </Portal>
 
-        <DashboardSection title="Cookbook">
-          <DashboardNumberCard
-            accent="secondary"
-            title="Updates in cookbook"
-            data="30"
-          />
+      <div className="pt-4">
+        <PeriodSelector
+          periods={periods}
+          value={period}
+          onChange={setPeriod}
+          labelExtractor={p => p.label}
+          titleExtractor={p => p.title}
+          subtitleExtractor={p => p.subtitle}
+          iconExtractor={p => p.icon}
+        />
+      </div>
 
-          <DashboardNumberCardCompact
-            accent="error"
-            title="Weekend Brunch"
-            subtitle="70% target"
-            data="55.22%"
-            onClick={() => {
-              console.log('hi')
-            }}
-          />
-        </DashboardSection>
+      <DashboardSection title="Cookbook">
+        <DashboardNumberCard
+          accent="secondary"
+          title="Updates in cookbook"
+          data="30"
+        />
 
-        <DashboardSection title="Stock">
-          <DashboardNumberCard
-            accent="secondary"
-            title="Total stock value"
-            data="£1,245.56"
-            dataCaption="(excl. VAT)"
-            bottomContent={(
-              <div className="flex justify-center">
-                <div className="flex items-center space-x-1">
-                  <IconTrendingUp size={16} className="text-error-400"/>
-                  <Typography style="caption" className="text-error-400">27%</Typography>
-                  <Typography style="caption" className="text-primary-600">vs this time last week</Typography>
-                </div>
+        <DashboardNumberCardCompact
+          accent="error"
+          title="Weekend Brunch"
+          subtitle="70% target"
+          data="55.22%"
+          onClick={() => {
+            console.log('hi')
+          }}
+        />
+      </DashboardSection>
+
+      <DashboardSection title="Stock">
+        <DashboardNumberCard
+          accent="secondary"
+          title="Total stock value"
+          data="£1,245.56"
+          dataCaption="(excl. VAT)"
+          bottomContent={(
+            <div className="flex justify-center">
+              <div className="flex items-center space-x-1">
+                <IconTrendingUp size={16} className="text-error-400"/>
+                <Typography style="caption" className="text-error-400">27%</Typography>
+                <Typography style="caption" className="text-primary-600">vs this time last week</Typography>
               </div>
-            )}
-          />
+            </div>
+          )}
+        />
 
-          <DashboardNumberCardCompact
-            title="Freezer section"
-            subtitle="Tue 07 May"
-            data="£2053.87"
-            onClick={() => {
-              console.log('hi')
-            }}
-          />
-        </DashboardSection>
+        <DashboardNumberCardCompact
+          title="Freezer section"
+          subtitle="Tue 07 May"
+          data="£2053.87"
+          onClick={() => {
+            console.log('hi')
+          }}
+        />
+      </DashboardSection>
 
-        <DashboardSection title="Orders">
-          <DashboardNumberCard
-            accent="secondary"
-            title="Placed this period"
-            data="6"
-            dataCaption="Orders"
-          />
+      <DashboardSection title="Orders">
+        <DashboardNumberCard
+          accent="secondary"
+          title="Placed this period"
+          data="6"
+          dataCaption="Orders"
+        />
 
-          <DashboardNumberCardCompact
-            title="Ginger Pig Ltd."
-            subtitle="Tue 07 May 04:26"
-            data="JJ tan"
-            onClick={() => {
-              console.log('hi')
-            }}
-          />
-        </DashboardSection>
-      </DashboardActions>
+        <DashboardNumberCardCompact
+          title="Ginger Pig Ltd."
+          subtitle="Tue 07 May 04:26"
+          data="JJ tan"
+          onClick={() => {
+            console.log('hi')
+          }}
+        />
+      </DashboardSection>
     </AppLayout>
   )
 }
