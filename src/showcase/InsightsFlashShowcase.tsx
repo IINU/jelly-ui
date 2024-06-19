@@ -144,6 +144,7 @@ export function InsightsFlashShowcase() {
       />
 
       <InsightsDateNavigator
+        heading="July"
         title="£24,021.25"
         subtitle={(
           <>
