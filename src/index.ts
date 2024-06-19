@@ -16,6 +16,7 @@ export { Typography } from './components/atoms/Typography'
 export { Modal } from './components/atoms/Modal'
 
 // Molecules
+export { ActionModal } from './components/molecules/ActionModal'
 export { CountryCodeDropdown } from './components/molecules/CountryCodeDropdown'
 export { DashboardAlert } from './components/molecules/DashboardAlert'
 export { DashboardNav } from './components/molecules/DashboardNav'
