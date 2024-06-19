@@ -12,29 +12,32 @@ type Props = {
 }
 
 export function Modal({ open, onClose, children, className, hideCloseButton = false }: Props) {
-  const modalRoot = getOrCreateModalRoot();
-  const elRef = useRef<HTMLDivElement | null>(null);
+  const modalRoot = getOrCreateModalRoot()
+  const elRef = useRef<HTMLDivElement | null>(null)
 
   if (!elRef.current) {
-    elRef.current = document.createElement('div');
+    elRef.current = document.createElement('div')
   }
 
   useEffect(() => {
-    const el = elRef.current!;
-    modalRoot.appendChild(el);
+    const el = elRef.current!
+    modalRoot.appendChild(el)
     return () => {
-      modalRoot.removeChild(el);
-    };
-  }, [modalRoot]);
+      modalRoot.removeChild(el)
+    }
+  }, [modalRoot])
 
   if (!open) {
-    return null;
+    return null
   }
 
   const modalContent = (
     <div
       className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-50 cursor-pointer !m-0 !p-4"
-      onClick={onClose}
+      onClick={(e => {
+        e.stopPropagation()
+        onClose()
+      })}
     >
       <div
         className={`relative bg-white rounded w-full max-w-md max-h-full py-8 px-4 overflow-y-auto cursor-default ${className}`}
@@ -54,5 +57,5 @@ export function Modal({ open, onClose, children, className, hideCloseButton = fa
     </div>
   )
 
-  return createPortal(modalContent, elRef.current);
+  return createPortal(modalContent, elRef.current)
 }
