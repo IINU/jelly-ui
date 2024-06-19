@@ -2,7 +2,7 @@ import { ComponentType, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
-export type InputProps = {
+type Props = {
   name?: string
   placeholder?: string
   autoComplete?: HTMLInputAutoCompleteAttribute
@@ -12,21 +12,19 @@ export type InputProps = {
   loading?: boolean
   icon?: ComponentType<{ className?: string }>
   className?: string
-  type: 'text' | 'password' | 'number'
 }
 
-export function BaseInput({
+export function TextareaInput({
   name,
   placeholder,
   autoComplete,
-  type,
   value,
   onChange,
   error,
   icon: Icon,
   loading = false,
   className = '',
-}: InputProps) {
+}: Props) {
   if (loading) {
     Icon = IconLoader2
   }
@@ -39,10 +37,9 @@ export function BaseInput({
 
   return (
     <div className="w-full space-y-1">
-      <div className="relative w-full">
-        <input
+      <div className="relative w-full flex">
+        <textarea
           name={name}
-          type={type}
           className={`${baseClass} ${borderClass} ${className}`}
           autoComplete={autoComplete}
           placeholder={placeholder}
@@ -51,7 +48,7 @@ export function BaseInput({
         />
 
         {Icon && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+          <div className="absolute inset-y-0 right-0 flex items-start p-3">
             <Icon className={`w-6 h-6 text-primary-900 ${loading ? 'animate-spin' : ''}`}/>
           </div>
         )}
