@@ -1,5 +1,7 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { IconX } from '@tabler/icons-react'
+import { getOrCreateModalRoot } from '../../utils/utils'
+import { createPortal } from 'react-dom'
 
 type Props = {
   open: boolean
@@ -10,11 +12,26 @@ type Props = {
 }
 
 export function Modal({ open, onClose, children, className, hideCloseButton = false }: Props) {
-  if (!open) {
-    return <></>
+  const modalRoot = getOrCreateModalRoot();
+  const elRef = useRef<HTMLDivElement | null>(null);
+
+  if (!elRef.current) {
+    elRef.current = document.createElement('div');
   }
 
-  return (
+  useEffect(() => {
+    const el = elRef.current!;
+    modalRoot.appendChild(el);
+    return () => {
+      modalRoot.removeChild(el);
+    };
+  }, [modalRoot]);
+
+  if (!open) {
+    return null;
+  }
+
+  const modalContent = (
     <div
       className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-50 cursor-pointer !m-0 !p-4"
       onClick={onClose}
@@ -36,4 +53,6 @@ export function Modal({ open, onClose, children, className, hideCloseButton = fa
       </div>
     </div>
   )
+
+  return createPortal(modalContent, elRef.current);
 }
