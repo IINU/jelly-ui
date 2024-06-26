@@ -33,7 +33,9 @@ export function InsightsLineChart({ data }: Props) {
   }
 
   const yScale = (value: number) => {
-    return height - yPadding - (value / maxValue) * (height - yPadding * 2)
+    const scale = maxValue <= 0 ? 0 : value / maxValue
+
+    return height - yPadding - scale * (height - yPadding * 2)
   }
 
   // Spend line path
@@ -75,20 +77,19 @@ export function InsightsLineChart({ data }: Props) {
           />
 
           {/* y-axis labels and grid lines */}
-          {yAxisLabels.map(({ value, y }) => (
-            <g key={value}>
-              <text
-                x={xPadding}
-                y={y + 5}
-                textAnchor="end"
-                fontSize={14}
-                fontFamily="lato"
-                fontWeight={400}
-                fill="#798392"
-              >
-                {formatMoneyShort(value)}
-              </text>
-            </g>
+          {yAxisLabels.map(({ value, y }, i) => (
+            <text
+              key={`y-label-${i}`}
+              x={xPadding}
+              y={y + 5}
+              textAnchor="end"
+              fontSize={14}
+              fontFamily="lato"
+              fontWeight={400}
+              fill="#798392"
+            >
+              {formatMoneyShort(value)}
+            </text>
           ))}
 
           {/* Spend Line */}
@@ -96,12 +97,12 @@ export function InsightsLineChart({ data }: Props) {
             <path d={spendLine} fill="none" stroke="#48B7E3" strokeWidth={2}/>
           )}
 
-          {data.every(d => d.spend !== undefined) && data.map(d => (
+          {data.every(d => d.spend !== undefined) && data.map((d, i) => (
             <circle
+              key={`spend-circle-${i}`}
               data-tooltip-id="line-tooltip"
               data-tooltip-content={'Spend: ' + formatMoney(d.spend ?? 0)}
               data-tooltip-class-name="!text-secondary-400"
-              key={d.date.toString()}
               cx={xScale(d.date) + 16}
               cy={yScale(d.spend ?? 0)}
               r={6}
@@ -114,12 +115,12 @@ export function InsightsLineChart({ data }: Props) {
             <path d={salesLine} fill="none" stroke="#A7C242" strokeWidth={2}/>
           )}
 
-          {data.every(d => d.sales !== undefined) && data.map(d => (
+          {data.every(d => d.sales !== undefined) && data.map((d, i) => (
             <circle
+              key={`sale-circle-${i}`}
               data-tooltip-id="line-tooltip"
               data-tooltip-content={'Sales: ' + formatMoney(d.sales ?? 0)}
               data-tooltip-class-name="!text-success-400"
-              key={d.date.toString()}
               cx={xScale(d.date) + 16}
               cy={yScale(d.sales ?? 0)}
               r={6}
@@ -128,9 +129,9 @@ export function InsightsLineChart({ data }: Props) {
           ))}
 
           {/* Labels */}
-          {data.map(d => (
+          {data.map((d, i) => (
             <text
-              key={d.date.toString()}
+              key={`x-label-${i}`}
               x={xScale(d.date) + 16}
               y={height - 2}
               textAnchor="middle"
