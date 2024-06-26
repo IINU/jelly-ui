@@ -7,13 +7,14 @@ export { CardButton } from './components/atoms/CardButton'
 export { Dot } from './components/atoms/Dot'
 export { DropdownInput } from './components/atoms/DropdownInput'
 export { JellyLogoPrimary } from './components/atoms/svgs/JellyLogoPrimary'
+export { Modal } from './components/atoms/Modal'
+export { NumberInput } from './components/atoms/NumberInput'
 export { PasswordInput } from './components/atoms/PasswordInput'
 export { ProfilePicture } from './components/atoms/ProfilePicture'
 export { TextInput } from './components/atoms/TextInput'
 export { TextareaInput } from './components/atoms/TextareaInput'
 export { ToggleButton } from './components/atoms/ToggleButton'
 export { Typography } from './components/atoms/Typography'
-export { Modal } from './components/atoms/Modal'
 
 // Molecules
 export { ActionModal } from './components/molecules/ActionModal'
@@ -67,7 +68,9 @@ export { AllProductsTrackedNotPaidState } from './components/organisms/not-paid-
 export { DigitalOrderingEmptyState } from './components/organisms/empty-states/DigitalOrderingEmptyState'
 export { DigitalOrderingNotPaidState } from './components/organisms/not-paid-states/DigitalOrderingNotPaidState'
 export { FastestCostingOnPlanetEmptyState } from './components/organisms/empty-states/FastestCostingOnPlanetEmptyState'
-export { FastestCostingOnPlanetNotPaidState } from './components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
+export {
+  FastestCostingOnPlanetNotPaidState,
+} from './components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
 export { InvoicesOnePlaceEmptyState } from './components/organisms/empty-states/InvoicesOnePlaceEmptyState'
 export { InvoicesOnePlaceNotPaidState } from './components/organisms/not-paid-states/InvoicesOnePlaceNotPaidState'
 export { KnowYourSpendingEmptyState } from './components/organisms/empty-states/KnowYourSpendingEmptyState'
