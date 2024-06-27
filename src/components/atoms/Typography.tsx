@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode
 }
 
-export function Typography({ style = 'body1', children, className }: Props) {
+export function Typography({ style = 'body1', children, className = '' }: Props) {
   const styled: Record<TypographyStyle, string> = {
     subtitle1: 'font-rubik text-base font-medium leading-5',
     subtitle2: 'font-rubik text-base font-normal',

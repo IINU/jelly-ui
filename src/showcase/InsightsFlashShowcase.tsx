@@ -145,14 +145,7 @@ export function InsightsFlashShowcase() {
 
       <InsightsDateNavigator
         heading="July"
-        title="£24,021.25"
-        subtitle={(
-          <>
-            <span className="font-medium">2%</span>{' '}
-            from last week
-            <br/>
-          </>
-        )}
+        title="75.2% GP"
         back={() => console.log('hi')}
         forward={() => console.log('hi')}
       />

@@ -18,6 +18,7 @@ import { InsightsLineChart } from '../components/molecules/InsightsLineChart'
 import { InsightsListItem } from '../components/molecules/InsightsListItem'
 import { formatMoney } from '../utils/utils'
 import { InsightsListGroup } from '../components/molecules/InsightsListGroup'
+import { Typography } from '../components/atoms/Typography'
 
 type DashboardPeriod = {
   id: string
@@ -117,11 +118,11 @@ export function InsightsSpendShowcase() {
         heading="July"
         title="£24,021.25"
         subtitle={(
-          <>
-            <span className="font-medium">2%</span>{' '}
-            from last week
-            <br/>
-          </>
+          <div className="flex space-x-1">
+            <Typography style="subtitle1">20%</Typography>
+
+            <Typography style="body2">vs prior {period.id}</Typography>
+          </div>
         )}
         back={() => console.log('hi')}
         forward={() => console.log('hi')}

@@ -6,7 +6,7 @@ import { ReactNode } from 'react'
 type Props = {
   heading: ReactNode
   title: ReactNode
-  subtitle: ReactNode
+  subtitle?: ReactNode
   back: () => void
   forward: () => void
   backDisabled?: boolean
@@ -26,7 +26,7 @@ export function InsightsDateNavigator({ heading, title, subtitle, back, forward,
       <div className="flex-1 flex flex-col items-center space-y-1 text-primary-900">
         <Typography style="body2">{heading}</Typography>
         <Typography style="h4">{title}</Typography>
-        <Typography style="subtitle2">{subtitle}</Typography>
+        {subtitle}
       </div>
 
       <Button
