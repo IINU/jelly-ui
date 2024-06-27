@@ -24,7 +24,7 @@ export function InsightsListItem({
 }: Props) {
   const borders = 'border-b border-primary-100 last:border-none'
   const cursor = onClick ? 'cursor-pointer' : 'cursor-default'
-  const padding = onClick ? 'py-4 pl-4 pr-2' : 'p-4'
+  const padding = onClick ? 'py-4 pl-3 pr-2' : 'py-4 px-3'
 
   className = `${borders} ${padding} ${cursor} ${className}`
 
@@ -33,7 +33,7 @@ export function InsightsListItem({
       className={`bg-white flex justify-between items-center space-x-4 ${className}`}
       onClick={onClick}
     >
-      <div className="flex flex-col items-start justify-center space-y-1 min-w-0">
+      <div className="flex flex-col items-start justify-center min-w-0">
         <Typography
           style="subtitle1"
           className="text-primary-800  text-ellipsis overflow-hidden whitespace-nowrap w-full"
@@ -42,7 +42,7 @@ export function InsightsListItem({
         </Typography>
 
         <Typography
-          style="subtitle2"
+          style="body2"
           className="text-primary-600 text-ellipsis overflow-hidden whitespace-nowrap w-full"
         >
           {subtitle}
