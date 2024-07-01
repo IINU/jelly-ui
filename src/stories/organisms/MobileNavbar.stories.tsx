@@ -4,7 +4,7 @@ import { MobileNavbarShowcase } from '../../showcase/MobileNavbarShowcase'
 const meta = {
   title: 'Organisms/Navigation',
   component: MobileNavbarShowcase,
-  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
+  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary050' } },
 } satisfies Meta<typeof MobileNavbarShowcase>
 
 export default meta

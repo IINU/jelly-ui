@@ -16,6 +16,7 @@ const preview: Preview = {
         { name: 'white', value: '#FFFFFF' },
         { name: 'primary900', value: '#1F304A' },
         { name: 'primary200', value: '#DBDEE2' },
+        { name: 'primary050', value: '#F4F5F6' },
       ],
     },
     viewport: {

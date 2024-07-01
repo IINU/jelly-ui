@@ -4,7 +4,7 @@ import { InsightsPriceAlertShowcase } from '../../showcase/InsightsPriceAlertSho
 const meta = {
   title: 'Organisms/Insights',
   component: InsightsPriceAlertShowcase,
-  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
+  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary050' } },
 } satisfies Meta<typeof InsightsPriceAlertShowcase>
 
 export default meta

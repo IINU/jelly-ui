@@ -4,7 +4,7 @@ import { DashboardFinanceShowcase } from '../../showcase/DashboardFinanceShowcas
 const meta = {
   title: 'Organisms/Dashboard',
   component: DashboardFinanceShowcase,
-  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
+  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary050' } },
 } satisfies Meta<typeof DashboardFinanceShowcase>
 
 export default meta

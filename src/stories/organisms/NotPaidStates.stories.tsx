@@ -20,7 +20,7 @@ const meta = {
   title: 'Organisms/Not Paid States',
   component: StateShowcase,
   parameters: {
-    backgrounds: { default: 'primary200' },
+    backgrounds: { default: 'primary050' },
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof StateShowcase>

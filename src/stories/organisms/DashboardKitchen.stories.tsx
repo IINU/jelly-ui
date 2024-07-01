@@ -4,7 +4,7 @@ import { DashboardKitchenShowcase } from '../../showcase/DashboardKitchenShowcas
 const meta = {
   title: 'Organisms/Dashboard',
   component: DashboardKitchenShowcase,
-  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
+  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary050' } },
 } satisfies Meta<typeof DashboardKitchenShowcase>
 
 export default meta

@@ -5,6 +5,7 @@ import { Typography } from './Typography'
 export type InputProps = {
   name?: string
   placeholder?: string
+  disabled?: boolean
   autoComplete?: HTMLInputAutoCompleteAttribute
   value: string
   onChange: (s: string) => void
@@ -18,6 +19,7 @@ export type InputProps = {
 export function BaseInput({
   name,
   placeholder,
+  disabled,
   autoComplete,
   type,
   value,
@@ -31,11 +33,13 @@ export function BaseInput({
     Icon = IconLoader2
   }
 
-  const baseClass = 'w-full bg-white placeholder:text-primary-600 text-base font-lato px-3 py-2 rounded-lg focus:outline-0 focus-visible:outline-0'
+  const baseClass = 'w-full placeholder:text-primary-600 text-base font-lato px-3 py-2 rounded-lg focus:outline-0 focus-visible:outline-0'
 
   const borderClass = error
     ? 'border-2 border-error-400'
     : 'border-2 border-primary-100'
+
+  const disabledClass = disabled ? 'bg-primary-100' : 'bg-white'
 
   return (
     <div className="w-full space-y-1">
@@ -43,7 +47,8 @@ export function BaseInput({
         <input
           name={name}
           type={type}
-          className={`${baseClass} ${borderClass} ${className}`}
+          disabled={disabled}
+          className={`${baseClass} ${borderClass} ${disabledClass} ${className}`}
           autoComplete={autoComplete}
           placeholder={placeholder}
           value={value}

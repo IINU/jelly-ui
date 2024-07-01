@@ -36,12 +36,12 @@ export function formatMoney(value: number): string {
   return result
 }
 
-export function getOrCreateModalRoot() {
-  let modalRoot = document.getElementById('modal-root')
+export function getOrCreateDivRoot(name: string): HTMLElement {
+  let modalRoot = document.getElementById(`${name}-root`)
 
   if (!modalRoot) {
     modalRoot = document.createElement('div')
-    modalRoot.id = 'modal-root'
+    modalRoot.id = `${name}-root`
     document.body.appendChild(modalRoot)
   }
 

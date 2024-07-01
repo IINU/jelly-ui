@@ -1,7 +1,14 @@
 import { ComponentType, ReactNode, useState } from 'react'
 import { Typography } from '../components/atoms/Typography'
 import { NavbarMobile } from '../components/organisms/NavbarMobile'
-import { IconAdjustmentsHorizontal, IconHome, IconSelector, IconToolsKitchen2, IconWallet } from '@tabler/icons-react'
+import {
+  IconAdjustmentsHorizontal,
+  IconArrowLeft,
+  IconHome,
+  IconSelector,
+  IconToolsKitchen2,
+  IconWallet,
+} from '@tabler/icons-react'
 import { ProfilePicture } from '../components/atoms/ProfilePicture'
 import { Button } from '../components/atoms/Button'
 
@@ -15,7 +22,8 @@ type Props = {
   tabs?: string[]
   activeTab?: number
   actionButton?: string
-  state: 'homescreen' | 'tabbed' | 'title'
+  actionClick?: () => void
+  state: 'homescreen' | 'backscreen' | 'tabbed' | 'title'
   children: ReactNode
 }
 
@@ -26,6 +34,7 @@ export function AppLayout({
   tabs = ['Menus', 'Dishes & Recipes'],
   activeTab = 0,
   actionButton,
+  actionClick,
 }: Props) {
   const navButtons: NavButton[] = [
     { text: 'home', icon: IconHome },
@@ -43,8 +52,26 @@ export function AppLayout({
           <div className="flex items-center space-x-2 cursor-pointer">
             <IconSelector className="text-secondary-400"/>
 
-            <Typography className="text-secondary-400" style="subtitle1">
-              Bun & Done - Bank
+            <div>
+              {title && (
+                <Typography className="text-primary-900" style="subtitle1">
+                  {title}
+                </Typography>
+              )}
+
+              <Typography className="text-secondary-400" style="subtitle1">
+                Soho London
+              </Typography>
+            </div>
+          </div>
+        )}
+
+        {state === 'backscreen' && (
+          <div className="flex items-center space-x-1 cursor-pointer">
+            <IconArrowLeft className="text-primary-900"/>
+
+            <Typography className="text-primary-900" style="subtitle1">
+              {title}
             </Typography>
           </div>
         )}
@@ -66,7 +93,7 @@ export function AppLayout({
         )}
 
         <div className="flex items-center">
-          {state === 'homescreen' && (
+          {state === 'homescreen' && !actionButton && (
             <ProfilePicture
               src="https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/remy.png"
               className="w-[2.5rem] h-[2.5rem]"
@@ -75,7 +102,7 @@ export function AppLayout({
 
           {actionButton && (
             <Button
-              onClick={() => console.log('Nothing')}
+              onClick={() => actionClick?.()}
               style="primary"
               label={actionButton}
             />

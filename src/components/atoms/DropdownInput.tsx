@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { IconChevronDown, IconChevronUp, IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
+import { getOrCreateDivRoot } from '../../utils/utils'
+import { useDropdownPosition } from '../../hooks/useDropdownPosition'
+import { DropdownOptions } from './DropdownOptions'
 
 type Props<T> = {
   name?: string
@@ -36,7 +40,10 @@ export function DropdownInput<T>({
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [inputValue, setInputValue] = useState<T | null>(value)
+
+  const dropdownRoot = getOrCreateDivRoot('dropdown')
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     setInputValue(value)
@@ -70,7 +77,7 @@ export function DropdownInput<T>({
     setOpen(false)
   }
 
-  const baseClass = 'w-full bg-white placeholder:text-primary-600 text-base font-lato px-3 py-2 rounded-lg focus:outline-0 focus-visible:outline-0'
+  const baseClass = 'w-full bg-white placeholder:text-primary-600 text-base font-lato rounded-lg'
   const borderClass = error ? 'border-2 border-error-400' : 'border-2 border-primary-100'
 
   if (loading) {
@@ -82,11 +89,11 @@ export function DropdownInput<T>({
   // Handle outside click to close the dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (!wrapperRef.current) {
+      if (!wrapperRef.current || !dropdownRef.current) {
         return
       }
 
-      if (!wrapperRef.current.contains(event.target as Node)) {
+      if (!wrapperRef.current.contains(event.target as Node) && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false)
       }
     }
@@ -95,16 +102,30 @@ export function DropdownInput<T>({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [wrapperRef])
+  }, [wrapperRef, dropdownRef])
+
+  if (!dropdownRef.current) {
+    dropdownRef.current = document.createElement('div')
+  }
+
+  useEffect(() => {
+    const el = dropdownRef.current!
+    dropdownRoot.appendChild(el)
+    return () => {
+      dropdownRoot.removeChild(el)
+    }
+  }, [dropdownRoot])
+
+  const dropdownPosition = useDropdownPosition(wrapperRef, dropdownRef, open)
 
   return (
-    <div ref={wrapperRef} className="w-full space-y-1">
-      <div className="relative w-full">
+    <div ref={wrapperRef} className="w-full space-y-1 relative">
+      <div className={`flex w-full ${baseClass} ${borderClass} ${className}`}>
         {searchable ? (
           <input
             name={name}
             type="text"
-            className={`${baseClass} ${borderClass} ${className} w-full text-ellipsis overflow-hidden whitespace-nowrap pr-8`}
+            className="pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0"
             placeholder={placeholder}
             value={search}
             onFocus={() => {
@@ -116,7 +137,7 @@ export function DropdownInput<T>({
           />
         ) : (
           <div
-            className={`${baseClass} ${borderClass} ${className} `}
+            className={`pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap`}
             onClick={() => {
               setInputValue(null)
               onChange(null)
@@ -125,7 +146,7 @@ export function DropdownInput<T>({
           >
             <Typography
               style="body1"
-              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap pr-6 ${search ? 'text-primary-900' : 'text-primary-600'}`}
+              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap ${search ? 'text-primary-900' : 'text-primary-600'}`}
             >
               {search || placeholder}
             </Typography>
@@ -133,30 +154,37 @@ export function DropdownInput<T>({
         )}
 
         {Icon && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+          <div
+            className="flex items-center px-1.5 cursor-pointer"
+            onClick={() => {
+              setInputValue(null)
+              onChange(null)
+              setOpen(!open)
+            }}
+          >
             <Icon className={`w-6 h-6 text-primary-900 ${loading ? 'animate-spin' : ''}`}/>
           </div>
         )}
       </div>
 
-      {open && (
-        <ul
-          className="absolute w-64 mt-1 max-h-60 overflow-auto bg-white border border-gray-200 rounded-md shadow-lg text-left z-10">
-          {filteredOptions.map(option => (
-            <li
-              key={optionToId(option)}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleOptionClick(option)}
-            >
-              {optionToLabel(option)}
-            </li>
-          ))}
-        </ul>
+      {open && createPortal(
+        <DropdownOptions<T>
+          options={filteredOptions}
+          optionToId={optionToId}
+          optionToLabel={optionToLabel}
+          handleOptionClick={handleOptionClick}
+          dropdownRef={dropdownRef}
+          dropdownPosition={dropdownPosition}
+          wrapperRef={wrapperRef}
+        />,
+        dropdownRoot,
       )}
 
       {error && (
         <div className="text-left px-2">
-          <Typography style="caption" className="text-error-400">{error}</Typography>
+          <Typography style="caption" className="text-error-400">
+            {error}
+          </Typography>
         </div>
       )}
     </div>

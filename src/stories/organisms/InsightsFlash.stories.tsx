@@ -4,7 +4,7 @@ import { InsightsFlashShowcase } from '../../showcase/InsightsFlashShowcase'
 const meta = {
   title: 'Organisms/Insights',
   component: InsightsFlashShowcase,
-  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary200' } },
+  parameters: { layout: 'fullscreen', backgrounds: { default: 'primary050' } },
 } satisfies Meta<typeof InsightsFlashShowcase>
 
 export default meta
