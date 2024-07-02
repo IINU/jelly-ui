@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Typography } from '../atoms/Typography'
 import { IconSelector } from '@tabler/icons-react'
 import { formatMoney } from '../../utils/utils'
@@ -7,31 +7,45 @@ import { DropdownInput } from '../atoms/DropdownInput'
 import { NumberInput } from '../atoms/NumberInput'
 import { Button } from '../atoms/Button'
 
+export type StockSelectorData<T> = {
+  adjustments: number
+  selectedStock: T[]
+}
+
 type Props<T> = {
   type: 'open' | 'close'
   stockTakes: T[]
-  onChange: (value: number) => void
+  onSubmit: (data: StockSelectorData<T>) => Promise<void>
   optionToId: (option: T) => string | number
   optionToLabel: (option: T) => string
   optionToValue: (option: T) => number
-}
+} & StockSelectorData<T>
 
 export function InsightsStockSelector<T>({
   type,
+  adjustments: initialAdjustments,
+  selectedStock: initialSelectedStock,
   stockTakes,
   optionToId,
   optionToLabel,
   optionToValue,
-  onChange,
+  onSubmit,
 }: Props<T>) {
+  const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showAddButton, setShowAddButton] = useState(false)
   const [value, setValue] = useState(0)
-  const [finalValue, setFinalValue] = useState(0)
-  const [manualAdjustments, setManualAdjustments] = useState('')
-  const [manualAdjustmentsValue, setManualAdjustmentsValue] = useState(0)
+  const [adjustments, setAdjustments] = useState('')
+  const [adjustmentsValue, setAdjustmentsValue] = useState(0)
   const [selectedStock, setSelectedStock] = useState<(T | null)[]>([])
-  const [numberOfInputs, setNumberOfInputs] = useState(1)
+  const [numberOfInputs, setNumberOfInputs] = useState(initialSelectedStock.length)
+
+  useEffect(() => setAdjustments(initialAdjustments.toString()), [initialAdjustments])
+  useEffect(() => setAdjustmentsValue(initialAdjustments), [initialAdjustments])
+  useEffect(() => {
+    setNumberOfInputs(initialSelectedStock.length)
+    setSelectedStock(initialSelectedStock)
+  }, [initialSelectedStock])
 
   function setStock(stock: T | null, index: number) {
     const selected = [...selectedStock]
@@ -47,27 +61,51 @@ export function InsightsStockSelector<T>({
       0,
     )
 
-    setValue(stockTotal + manualAdjustmentsValue)
-  }, [optionToValue, selectedStock, manualAdjustmentsValue])
+    setValue(stockTotal + adjustmentsValue)
+  }, [optionToValue, selectedStock, adjustmentsValue])
 
   useEffect(() => {
-    if (manualAdjustments.trim() === '') {
-      setManualAdjustmentsValue(0)
+    if (adjustments.trim() === '') {
+      setAdjustmentsValue(0)
     }
 
-    const parsed = parseFloat(manualAdjustments)
+    const parsed = parseFloat(adjustments)
 
     if (!Number.isNaN(parsed)) {
-      setManualAdjustmentsValue(parsed)
+      setAdjustmentsValue(parsed)
     }
-  }, [manualAdjustments])
+  }, [adjustments])
+
+  const finalValue = useMemo(() => {
+    return adjustmentsValue + selectedStock.reduce((acc, s) => acc + (s ? optionToValue(s) : 0), 0)
+  }, [adjustmentsValue, selectedStock, optionToValue])
 
   useEffect(
     () => setShowAddButton(!!selectedStock[numberOfInputs - 1]),
     [numberOfInputs, selectedStock],
   )
 
-  useEffect(() => onChange(finalValue), [onChange, finalValue])
+  async function handleSubmit() {
+    if (loading) return
+
+    const stock: T[] = []
+    for (const selected of selectedStock) {
+      if (selected) stock.push(selected)
+    }
+
+    setLoading(true)
+
+    try {
+      await onSubmit({
+        adjustments: adjustmentsValue,
+        selectedStock: stock,
+      })
+
+      setShowModal(false)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <>
@@ -112,8 +150,8 @@ export function InsightsStockSelector<T>({
               </Typography>
 
               <NumberInput
-                value={manualAdjustments}
-                onChange={setManualAdjustments}
+                value={adjustments}
+                onChange={setAdjustments}
                 placeholder={
                   type === 'open'
                     ? 'Enter opening stock value (£)'
@@ -133,10 +171,8 @@ export function InsightsStockSelector<T>({
             </div>
 
             <Button
-              onClick={() => {
-                setFinalValue(value)
-                setShowModal(false)
-              }}
+              onClick={handleSubmit}
+              loading={loading}
               label="Submit"
               className="w-full"
             />

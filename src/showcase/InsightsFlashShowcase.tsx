@@ -137,7 +137,22 @@ export function InsightsFlashShowcase() {
           { id: 2, name: 'Xmas Stock', value: 10030.24, createdAt: new Date() },
           { id: 3, name: 'Fridge', value: 5030.24, createdAt: new Date() },
         ]}
-        onChange={() => void 0}
+        open={{
+          selectedStock: [
+            { id: 1, name: 'Sunday Stock', value: 20030.24, createdAt: new Date() },
+            { id: 2, name: 'Xmas Stock', value: 10030.24, createdAt: new Date() },
+          ],
+          adjustments: 5000
+        }}
+        close={{
+          selectedStock: [
+            { id: 2, name: 'Xmas Stock', value: 10030.24, createdAt: new Date() },
+            { id: 3, name: 'Fridge', value: 5030.24, createdAt: new Date() },
+          ],
+          adjustments: -5000
+        }}
+        onOpenSubmit={() => new Promise(resolve => setTimeout(() => resolve(), 400))}
+        onCloseSubmit={() => new Promise(resolve => setTimeout(() => resolve(), 400))}
         optionToId={s => s.id}
         optionToLabel={s => `${s.name} (${format(s.createdAt, 'EEE d MMM yy')} ${formatMoney(s.value)})`}
         optionToValue={s => s.value}

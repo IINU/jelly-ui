@@ -1,26 +1,29 @@
-import { useEffect, useState } from 'react'
-import { InsightsStockSelector } from './InsightsStockSelector'
+import { InsightsStockSelector, StockSelectorData } from './InsightsStockSelector'
+
+type StockRangeData<T> = {
+  open: StockSelectorData<T>
+  close: StockSelectorData<T>
+}
 
 type Props<T> = {
   stockTakes: T[]
-  onChange: (open: number, close: number) => void
+  onOpenSubmit: (data: StockSelectorData<T>) => Promise<void>
+  onCloseSubmit: (data: StockSelectorData<T>) => Promise<void>
   optionToId: (option: T) => string | number
   optionToLabel: (option: T) => string
   optionToValue: (option: T) => number
-}
+} & StockRangeData<T>
 
 export function InsightsStockRangeSelect<T>({
   stockTakes,
-  onChange,
+  open: openData,
+  close: closeData,
+  onOpenSubmit,
+  onCloseSubmit,
   optionToId,
   optionToValue,
   optionToLabel,
 }: Props<T>) {
-  const [open, setOpen] = useState(0)
-  const [close, setClose] = useState(0)
-
-  useEffect(() => onChange(open, close), [onChange, open, close])
-
   return (
     <div className="px-4 py-2 grid grid-cols-2 gap-2 bg-white">
       <InsightsStockSelector<T>
@@ -29,7 +32,8 @@ export function InsightsStockRangeSelect<T>({
         optionToId={optionToId}
         optionToLabel={optionToLabel}
         optionToValue={optionToValue}
-        onChange={v => setOpen(v)}
+        onSubmit={onOpenSubmit}
+        {...openData}
       />
 
       <InsightsStockSelector<T>
@@ -38,7 +42,8 @@ export function InsightsStockRangeSelect<T>({
         optionToId={optionToId}
         optionToLabel={optionToLabel}
         optionToValue={optionToValue}
-        onChange={v => setClose(v)}
+        onSubmit={onCloseSubmit}
+        {...closeData}
       />
     </div>
   )
