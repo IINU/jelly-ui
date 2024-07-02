@@ -9,7 +9,7 @@ type Props = {
 }
 
 export function Pill({ label, variant, className = '' }: Props) {
-  const baseClass = 'h-7 px-4 rounded-full inline-flex items-center justify-center'
+  const baseClass = 'h-6 px-3 rounded-full inline-flex items-center justify-center'
 
   const variantClasses: Record<PillVariant, string> = {
     primary: 'bg-primary-900 text-white',
