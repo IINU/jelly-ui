@@ -8,7 +8,7 @@ import { NumberInput } from '../atoms/NumberInput'
 import { Button } from '../atoms/Button'
 
 export type StockSelectorData<T> = {
-  adjustments: number
+  adjustments: number | null
   selectedStock: T[]
 }
 
@@ -34,14 +34,15 @@ export function InsightsStockSelector<T>({
   const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showAddButton, setShowAddButton] = useState(false)
-  const [value, setValue] = useState(0)
-  const [adjustments, setAdjustments] = useState('')
-  const [adjustmentsValue, setAdjustmentsValue] = useState(0)
+  const [value, setValue] = useState<number | null>(null)
+  const [adjustments, setAdjustments] = useState<string>('')
+  const [adjustmentsValue, setAdjustmentsValue] = useState<number | null>(0)
   const [selectedStock, setSelectedStock] = useState<(T | null)[]>([])
   const [numberOfInputs, setNumberOfInputs] = useState(initialSelectedStock.length || 1)
 
-  useEffect(() => setAdjustments(initialAdjustments.toString()), [initialAdjustments])
+  useEffect(() => setAdjustments((initialAdjustments ?? '').toString()), [initialAdjustments])
   useEffect(() => setAdjustmentsValue(initialAdjustments), [initialAdjustments])
+
   useEffect(() => {
     setNumberOfInputs(initialSelectedStock.length || 1)
     setSelectedStock(initialSelectedStock)
@@ -56,17 +57,21 @@ export function InsightsStockSelector<T>({
   }
 
   useEffect(() => {
+    if (selectedStock.length === 0 && adjustmentsValue === null) {
+      return setValue(null)
+    }
+
     const stockTotal = selectedStock.reduce(
       (acc, s) => (s ? optionToValue(s) : 0) + acc,
       0,
     )
 
-    setValue(stockTotal + adjustmentsValue)
+    setValue(stockTotal + (adjustmentsValue ?? 0))
   }, [optionToValue, selectedStock, adjustmentsValue])
 
   useEffect(() => {
     if (adjustments.trim() === '') {
-      setAdjustmentsValue(0)
+      return setAdjustmentsValue(null)
     }
 
     const parsed = parseFloat(adjustments)
@@ -76,8 +81,13 @@ export function InsightsStockSelector<T>({
     }
   }, [adjustments])
 
-  const finalValue = useMemo(() => {
-    return adjustmentsValue + selectedStock.reduce((acc, s) => acc + (s ? optionToValue(s) : 0), 0)
+  const finalValue: number | null = useMemo(() => {
+    if (selectedStock.length === 0 && adjustmentsValue === null) {
+      return null
+    }
+
+    return (adjustmentsValue ?? 0)
+      + selectedStock.reduce((acc, s) => acc + (s ? optionToValue(s) : 0), 0)
   }, [adjustmentsValue, selectedStock, optionToValue])
 
   useEffect(
@@ -166,7 +176,11 @@ export function InsightsStockSelector<T>({
               </Typography>
 
               <Typography style="h6" className="text-secondary-400">
-                {formatMoney(value)}
+                {value === null ? (
+                  <span>£--</span>
+                ) : (
+                  <span>{formatMoney(value)}</span>
+                )}
               </Typography>
             </div>
 
@@ -187,19 +201,19 @@ export function InsightsStockSelector<T>({
 
         <div
           className="border-2 border-gray-200 px-4 py-2 flex space-x-2 rounded-lg cursor-pointer"
-          title={formatMoney(finalValue)}
+          title={finalValue ? formatMoney(finalValue) : 'No value set.'}
           onClick={() => setShowModal(true)}
         >
-          {finalValue ? (
+          {finalValue === null ? (
+            <Typography style="body1" className="text-primary-600 flex-1">
+              Select...
+            </Typography>
+          ) : (
             <Typography
               style="body1"
               className="text-primary-900 flex-1 max-w-full text-ellipsis overflow-hidden whitespace-nowrap"
             >
               {formatMoney(finalValue)}
-            </Typography>
-          ) : (
-            <Typography style="body1" className="text-primary-600 flex-1">
-              Select...
             </Typography>
           )}
 

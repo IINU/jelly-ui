@@ -138,18 +138,12 @@ export function InsightsFlashShowcase() {
           { id: 3, name: 'Fridge', value: 5030.24, createdAt: new Date() },
         ]}
         open={{
-          selectedStock: [
-            { id: 1, name: 'Sunday Stock', value: 20030.24, createdAt: new Date() },
-            { id: 2, name: 'Xmas Stock', value: 10030.24, createdAt: new Date() },
-          ],
-          adjustments: 5000
+          selectedStock: [],
+          adjustments: null
         }}
         close={{
-          selectedStock: [
-            { id: 2, name: 'Xmas Stock', value: 10030.24, createdAt: new Date() },
-            { id: 3, name: 'Fridge', value: 5030.24, createdAt: new Date() },
-          ],
-          adjustments: -5000
+          selectedStock: [],
+          adjustments: null
         }}
         onOpenSubmit={() => new Promise(resolve => setTimeout(() => resolve(), 400))}
         onCloseSubmit={() => new Promise(resolve => setTimeout(() => resolve(), 400))}
