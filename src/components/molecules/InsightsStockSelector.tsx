@@ -38,12 +38,12 @@ export function InsightsStockSelector<T>({
   const [adjustments, setAdjustments] = useState('')
   const [adjustmentsValue, setAdjustmentsValue] = useState(0)
   const [selectedStock, setSelectedStock] = useState<(T | null)[]>([])
-  const [numberOfInputs, setNumberOfInputs] = useState(initialSelectedStock.length)
+  const [numberOfInputs, setNumberOfInputs] = useState(initialSelectedStock.length || 1)
 
   useEffect(() => setAdjustments(initialAdjustments.toString()), [initialAdjustments])
   useEffect(() => setAdjustmentsValue(initialAdjustments), [initialAdjustments])
   useEffect(() => {
-    setNumberOfInputs(initialSelectedStock.length)
+    setNumberOfInputs(initialSelectedStock.length || 1)
     setSelectedStock(initialSelectedStock)
   }, [initialSelectedStock])
 
@@ -116,7 +116,7 @@ export function InsightsStockSelector<T>({
           </Typography>
 
           <div className="space-y-4">
-            {Array.from({ length: numberOfInputs || 1 }).map((_, i) => (
+            {Array.from({ length: numberOfInputs }).map((_, i) => (
               <div key={i} className="space-y-2">
                 <Typography style="caption" className="text-primary-800">
                   Select stock
