@@ -116,7 +116,7 @@ export function InsightsStockSelector<T>({
           </Typography>
 
           <div className="space-y-4">
-            {Array.from({ length: numberOfInputs }).map((_, i) => (
+            {Array.from({ length: numberOfInputs || 1 }).map((_, i) => (
               <div key={i} className="space-y-2">
                 <Typography style="caption" className="text-primary-800">
                   Select stock
