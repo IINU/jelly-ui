@@ -1,7 +1,6 @@
 import { Typography } from '../atoms/Typography'
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
-import { Tooltip } from 'react-tooltip'
-import { formatMoney } from '../../utils/utils'
+import { InsightsTooltip } from './InsightsTooltip'
 
 export type InsightsDayChartDataPoint = {
   date: Date
@@ -43,29 +42,7 @@ export function InsightsDayChart({ startDate, data }: Props) {
 
   return (
     <>
-      <Tooltip
-        id="day-tooltip"
-        className="z-10 !bg-white !shadow-medium !p-2.5 !opacity-100 text-center"
-        render={({ content }) => {
-          const data = content ? JSON.parse(content) : { spend: 0, sales: undefined }
-
-          return (
-            <>
-              {data.sales !== undefined && (
-                <Typography style="subtitle1" className="text-success-400">
-                  Sales {formatMoney(data.sales)}
-                </Typography>
-              )}
-
-              {data.spend !== undefined && (
-                <Typography style="subtitle1" className="text-secondary-400">
-                  Spend: {formatMoney(data.spend)}
-                </Typography>
-              )}
-            </>
-          )
-        }}
-      />
+      <InsightsTooltip/>
 
       <div className="bg-white p-4 flex justify-center">
         <div className="space-y-2 max-w-[24rem]">
@@ -91,8 +68,12 @@ export function InsightsDayChart({ startDate, data }: Props) {
                 <div
                   key={day.toString()}
                   className={`flex flex-col items-center border-2 border-white hover:border-primary-900 hover:bg-primary-900 hover:text-white text-primary-600 ${isCurrentMonth ? '' : 'invisible'}`}
-                  data-tooltip-id="day-tooltip"
-                  data-tooltip-content={JSON.stringify(dayData)}
+                  data-tooltip-id="insights-tooltip"
+                  data-tooltip-content={JSON.stringify({
+                    title: format(day, 'd MMMM'),
+                    spend: dayData?.spend,
+                    sales: dayData?.sales,
+                  })}
                 >
                   <div
                     className="w-[40px] h-[40px] bg-primary-100 flex flex-col justify-end"

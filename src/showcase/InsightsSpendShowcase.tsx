@@ -11,8 +11,10 @@ import {
   eachMonthOfInterval,
   endOfMonth,
   endOfQuarter,
+  endOfWeek,
   startOfMonth,
   startOfQuarter,
+  startOfWeek,
 } from 'date-fns'
 import { InsightsLineChart } from '../components/molecules/InsightsLineChart'
 import { InsightsListItem } from '../components/molecules/InsightsListItem'
@@ -55,7 +57,18 @@ export function InsightsSpendShowcase() {
 
   const [period, setPeriod] = useState<DashboardPeriod>(periods[0])
 
-  function generateFakeData(startDate: Date) {
+  function generateFakeBarData(startDate: Date) {
+    const weekStart = startOfWeek(startDate, { weekStartsOn: 1 })
+    const weekEnd = endOfWeek(startDate, { weekStartsOn: 1 })
+    const days = eachDayOfInterval({ start: weekStart, end: weekEnd })
+
+    return days.map((day) => ({
+      date: day,
+      spend: Math.floor(Math.random() * 2500),
+    }))
+  }
+
+  function generateFakeDayData(startDate: Date) {
     const monthStart = startOfMonth(startDate)
     const monthEnd = endOfMonth(startDate)
     const days = eachDayOfInterval({ start: monthStart, end: monthEnd })
@@ -130,22 +143,14 @@ export function InsightsSpendShowcase() {
 
       {period.id === periods[0].id && (
         <InsightsBarChart
-          data={[
-            { label: 'M', spend: 25000 },
-            { label: 'T', spend: 31000 },
-            { label: 'W', spend: 111000 },
-            { label: 'T', spend: 20000 },
-            { label: 'F', spend: 40000 },
-            { label: 'S', spend: 60000 },
-            { label: 'S', spend: 80000 },
-          ]}
+          data={generateFakeBarData(new Date())}
         />
       )}
 
       {period.id === periods[1].id && (
         <InsightsDayChart
           startDate={new Date()}
-          data={generateFakeData(new Date())}
+          data={generateFakeDayData(new Date())}
         />
       )}
 

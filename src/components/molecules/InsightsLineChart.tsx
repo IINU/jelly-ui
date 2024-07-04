@@ -1,6 +1,6 @@
-import { formatDate } from 'date-fns'
-import { Tooltip } from 'react-tooltip'
-import { formatMoney, formatMoneyShort } from '../../utils/utils'
+import { format, formatDate } from 'date-fns'
+import { formatMoneyShort, roundValueUp } from '../../utils/utils'
+import { InsightsTooltip } from './InsightsTooltip'
 
 export type InsightsDayChartDataPoint = {
   date: Date
@@ -15,7 +15,9 @@ type Props = {
 
 export function InsightsLineChart({ data }: Props) {
   // Get max value for scaling
-  const maxValue = Math.max(...data.map(d => Math.max(d.spend ?? 0, d.sales ?? 0)))
+  const maxValue = roundValueUp(
+    Math.max(...data.map(d => Math.max(d.spend ?? 0, d.sales ?? 0))),
+  )
 
   // SVG dimensions and padding
   const width = 320
@@ -33,9 +35,9 @@ export function InsightsLineChart({ data }: Props) {
   }
 
   const yScale = (value: number) => {
-    const scale = maxValue <= 0 ? 0 : value / maxValue
+    const scale = maxValue <= 0 ? 0 : (value / maxValue)
 
-    return height - yPadding - scale * (height - yPadding * 2)
+    return height - yPadding - (scale * (height - yPadding * 2))
   }
 
   // Spend line path
@@ -54,16 +56,13 @@ export function InsightsLineChart({ data }: Props) {
 
     return {
       value,
-      y: yScale(value)
+      y: yScale(value),
     }
   })
 
   return (
     <>
-      <Tooltip
-        id="line-tooltip"
-        className="z-10 !bg-white !shadow-medium !font-rubik !text-base !font-medium !p-2.5 !opacity-100"
-      />
+      <InsightsTooltip/>
 
       <div className="py-6 bg-white flex justify-center">
         <svg className="w-80 h-64">
@@ -100,9 +99,8 @@ export function InsightsLineChart({ data }: Props) {
           {data.every(d => d.spend !== undefined) && data.map((d, i) => (
             <circle
               key={`spend-circle-${i}`}
-              data-tooltip-id="line-tooltip"
-              data-tooltip-content={'Spend: ' + formatMoney(d.spend ?? 0)}
-              data-tooltip-class-name="!text-secondary-400"
+              data-tooltip-id="insights-tooltip"
+              data-tooltip-content={JSON.stringify({ title: format(d.date, 'MMMM'), spend: d.spend })}
               cx={xScale(d.date) + 16}
               cy={yScale(d.spend ?? 0)}
               r={6}
@@ -118,9 +116,8 @@ export function InsightsLineChart({ data }: Props) {
           {data.every(d => d.sales !== undefined) && data.map((d, i) => (
             <circle
               key={`sale-circle-${i}`}
-              data-tooltip-id="line-tooltip"
-              data-tooltip-content={'Sales: ' + formatMoney(d.sales ?? 0)}
-              data-tooltip-class-name="!text-success-400"
+              data-tooltip-id="insights-tooltip"
+              data-tooltip-content={JSON.stringify({ title: format(d.date, 'MMMM'), sales: d.sales })}
               cx={xScale(d.date) + 16}
               cy={yScale(d.sales ?? 0)}
               r={6}

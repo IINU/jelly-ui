@@ -1,9 +1,10 @@
 import { Typography } from '../atoms/Typography'
-import { Tooltip } from 'react-tooltip'
-import { formatMoney } from '../../utils/utils'
+import { formatMoney, formatMoneyShort, roundValueUp } from '../../utils/utils'
+import { InsightsTooltip } from './InsightsTooltip'
+import { format } from 'date-fns'
 
 export type InsightsBarChartDataPoint = {
-  label: string
+  date: Date
 } & (
   | { spend: number; sales?: number }
   | { spend?: number; sales: number }
@@ -14,27 +15,29 @@ type Props = {
 }
 
 export function InsightsBarChart({ data }: Props) {
-  const maxValue = Math.max(...data.map(item => Math.max(item.spend ?? 0, item.sales ?? 0)))
-  const axisLabels = Array.from({ length: 3 }, (_, i) => Math.round(maxValue / 2 * i)).reverse()
+  const maxValue = roundValueUp(
+    Math.max(...data.map(item => Math.max(item.spend ?? 0, item.sales ?? 0)))
+  )
 
   return (
     <>
-      <Tooltip
-        id="bar-tooltip"
-        className="z-10 !bg-white !shadow-medium !font-rubik !text-base !font-medium !p-2.5 !opacity-100"
-      />
+      <InsightsTooltip/>
 
       <div className="bg-white p-4 flex">
         <div className="flex flex-col justify-between h-64 mr-2">
-          {axisLabels.map((label, index) => (
-            <Typography
-              key={index}
-              style="body2"
-              className="text-right text-primary-600"
-            >
-              {formatMoney(label)}
-            </Typography>
-          ))}
+          <Typography
+            style="body2"
+            className="text-right text-primary-600"
+          >
+            {formatMoneyShort(maxValue)}
+          </Typography>
+
+          <Typography
+            style="body2"
+            className="text-right text-primary-600"
+          >
+            {formatMoney(0)}
+          </Typography>
         </div>
 
         <div className="w-full">
@@ -43,9 +46,8 @@ export function InsightsBarChart({ data }: Props) {
               <div key={index} className="flex items-end justify-center space-x-0.5 w-full">
                 {item.spend !== undefined && (
                   <div
-                    data-tooltip-id="bar-tooltip"
-                    data-tooltip-content={'Spend: ' + formatMoney(item.spend)}
-                    data-tooltip-class-name="!text-secondary-400"
+                    data-tooltip-id="insights-tooltip"
+                    data-tooltip-content={JSON.stringify({ title: format(item.date, 'd MMMM'), spend: item.spend })}
                     className="w-2.5 flex items-end justify-center relative rounded-t-full bg-secondary-400"
                     style={{ height: `${(item.spend / maxValue) * 100}%` }}
                   />
@@ -53,9 +55,8 @@ export function InsightsBarChart({ data }: Props) {
 
                 {item.sales !== undefined && (
                   <div
-                    data-tooltip-id="bar-tooltip"
-                    data-tooltip-content={'Sales: ' + formatMoney(item.sales)}
-                    data-tooltip-class-name="!text-success-400"
+                    data-tooltip-id="insights-tooltip"
+                    data-tooltip-content={JSON.stringify({ title: format(item.date, 'd MMMM'), sales: item.sales })}
                     className="w-2.5 flex items-end justify-center relative rounded-t-full bg-success-400"
                     style={{ height: `${(item.sales / maxValue) * 100}%` }}
                   />
@@ -68,7 +69,7 @@ export function InsightsBarChart({ data }: Props) {
             {data.map((item, index) => (
               <div key={index} className="w-full flex justify-center">
                 <Typography style="caption" className="text-primary-600">
-                  {item.label}
+                  {format(item.date, 'iiiii')}
                 </Typography>
               </div>
             ))}

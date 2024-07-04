@@ -1,5 +1,13 @@
-export function cn(...classes: (string | undefined)[]): string {
-  return classes.filter(Boolean).join(' ')
+export function roundValueUp(value: number): number {
+  if (value >= 1_000_000) {
+    return Math.ceil(value / 1_000_000) * 1_000_000
+  } else if (value >= 10_000) {
+    return Math.ceil(value / 10_000) * 10_000
+  } else if (value >= 1_000) {
+    return Math.ceil(value / 1_000) * 1_000
+  } else {
+    return Math.ceil(value / 100) * 100
+  }
 }
 
 export function formatMoneyShort(value: number): string {
