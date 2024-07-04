@@ -8,11 +8,15 @@ type Props = {
   data: string
   dataCaption?: string
   bottomContent?: ReactNode
+  onClick?: () => void
 }
 
-export function DashboardNumberCard({ accent, title, data, dataCaption, bottomContent }: Props) {
+export function DashboardNumberCard({ accent, title, data, dataCaption, bottomContent, onClick }: Props) {
+  const base = 'bg-white space-y-2 py-8 w-full rounded-lg shadow-low text-center'
+  const pointer = onClick ? 'cursor-pointer' : ''
+
   return (
-    <div className="bg-white space-y-2 py-8 w-full rounded-lg shadow-low text-center">
+    <div className={`${base} ${pointer}`} onClick={onClick}>
       <Typography style="subtitle1">{title}</Typography>
 
       <div className="w-full">
