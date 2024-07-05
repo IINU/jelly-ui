@@ -82,13 +82,13 @@ export function InsightsStockSelector<T>({
   }, [adjustments])
 
   const finalValue: number | null = useMemo(() => {
-    if (selectedStock.length === 0 && adjustmentsValue === null) {
+    if (initialSelectedStock.length === 0 && initialAdjustments === null) {
       return null
     }
 
-    return (adjustmentsValue ?? 0)
-      + selectedStock.reduce((acc, s) => acc + (s ? optionToValue(s) : 0), 0)
-  }, [adjustmentsValue, selectedStock, optionToValue])
+    return (initialAdjustments ?? 0)
+      + initialSelectedStock.reduce((acc, s) => acc + (s ? optionToValue(s) : 0), 0)
+  }, [initialAdjustments, initialSelectedStock, optionToValue])
 
   useEffect(
     () => setShowAddButton(!!selectedStock[numberOfInputs - 1]),
@@ -119,7 +119,16 @@ export function InsightsStockSelector<T>({
 
   return (
     <>
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal
+        open={showModal}
+        onClose={() => {
+          setNumberOfInputs(initialSelectedStock.length || 1)
+          setSelectedStock(initialSelectedStock)
+          setAdjustments((initialAdjustments ?? '').toString())
+          setAdjustmentsValue(initialAdjustments)
+          setShowModal(false)
+        }}
+      >
         <div className="space-y-6">
           <Typography style="h6" className="text-primary-900">
             {type === 'open' ? 'Set opening stock' : 'Set closing stock'}
