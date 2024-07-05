@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { IconChevronDown, IconChevronUp, IconLoader2 } from '@tabler/icons-react'
+import { IconLoader2, IconSelector, IconX } from '@tabler/icons-react'
 import { Typography } from './Typography'
 import { getOrCreateDivRoot } from '../../utils/utils'
 import { useDropdownPosition } from '../../hooks/useDropdownPosition'
@@ -50,6 +50,8 @@ export function DropdownInput<T>({
   }, [value])
 
   useEffect(() => {
+    if (!searchable) return
+
     if (inputValue) {
       setSearch(
         optionToSearchValue
@@ -59,7 +61,11 @@ export function DropdownInput<T>({
     } else {
       setSearch('')
     }
-  }, [optionToLabel, optionToSearchValue, inputValue])
+
+    if (open) {
+      setSearch('')
+    }
+  }, [optionToLabel, optionToSearchValue, inputValue, searchable, open])
 
   const filteredOptions = useMemo(() => {
     if (!search) {
@@ -82,8 +88,10 @@ export function DropdownInput<T>({
 
   if (loading) {
     Icon = IconLoader2
+  } else if (inputValue !== null) {
+    Icon = IconX
   } else {
-    Icon = open ? IconChevronUp : IconChevronDown
+    Icon = IconSelector
   }
 
   // Handle outside click to close the dropdown
@@ -128,34 +136,34 @@ export function DropdownInput<T>({
             className="pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0"
             placeholder={placeholder}
             value={search}
-            onFocus={() => {
-              setInputValue(null)
-              onChange(null)
-              setOpen(true)
-            }}
+            onFocus={() => setOpen(true)}
             onChange={e => setSearch(e.target.value)}
           />
         ) : (
           <div
             className={`pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap`}
-            onClick={() => {
-              setInputValue(null)
-              onChange(null)
-              setOpen(true)
-            }}
+            onClick={() => setOpen(true)}
           >
             <Typography
               style="body1"
-              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap ${search ? 'text-primary-900' : 'text-primary-600'}`}
+              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap ${inputValue && !open ? 'text-primary-900' : 'text-primary-600'}`}
             >
-              {search || placeholder}
+              {
+                inputValue && !open
+                  ? (
+                    optionToSearchValue
+                      ? optionToSearchValue(inputValue)
+                      : optionToLabel(inputValue)
+                  )
+                  : placeholder
+              }
             </Typography>
           </div>
         )}
 
         {Icon && (
           <div
-            className="flex items-center px-1.5 cursor-pointer"
+            className="flex items-center pr-2 cursor-pointer"
             onClick={() => {
               setInputValue(null)
               onChange(null)
@@ -169,6 +177,7 @@ export function DropdownInput<T>({
 
       {open && createPortal(
         <DropdownOptions<T>
+          selectedOption={inputValue}
           options={filteredOptions}
           optionToId={optionToId}
           optionToLabel={optionToLabel}

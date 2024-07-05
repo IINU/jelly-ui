@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 type DropdownOptionsProps<T> = {
+  selectedOption: T | null
   options: T[]
   optionToId: (option: T) => number | string
   optionToLabel: (option: T) => string
@@ -11,6 +12,7 @@ type DropdownOptionsProps<T> = {
 }
 
 export function DropdownOptions<T>({
+  selectedOption,
   options,
   optionToId,
   optionToLabel,
@@ -54,6 +56,14 @@ export function DropdownOptions<T>({
     return () => window.removeEventListener('keydown', keydownListener)
   }, [focusedIndex, handleOptionClick, options])
 
+  function getBorderColour(i: number, option: T): string {
+    if (!selectedOption || optionToId(option) !== optionToId(selectedOption)) {
+      return i === focusedIndex ? 'border-primary-100' : 'border-white'
+    }
+
+    return 'border-primary-900'
+  }
+
   return (
     <div
       ref={dropdownRef}
@@ -71,7 +81,7 @@ export function DropdownOptions<T>({
         <div
           key={optionToId(option)}
           ref={(el) => (optionRefs.current[index] = el)}
-          className={`px-4 py-2 hover:bg-gray-100 cursor-pointer focus:outline-0 focus-visible:outline-0 ${focusedIndex === index ? 'bg-gray-100' : ''}`}
+          className={`pl-3 pr-4 py-2 border-l-4 cursor-pointer focus:outline-0 focus-visible:outline-0 ${focusedIndex === index ? 'bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
           onClick={() => handleOptionClick(option)}
           onMouseEnter={() => setFocusedIndex(index)}
           tabIndex={0}

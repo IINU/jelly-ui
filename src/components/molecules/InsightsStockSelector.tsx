@@ -143,7 +143,7 @@ export function InsightsStockSelector<T>({
 
                 <DropdownInput
                   options={stockTakes}
-                  value={selectedStock[i]}
+                  value={selectedStock[i] || null}
                   optionToId={optionToId}
                   optionToLabel={optionToLabel}
                   onChange={(stock) => setStock(stock, i)}
@@ -209,7 +209,7 @@ export function InsightsStockSelector<T>({
         </Typography>
 
         <div
-          className="border-2 border-gray-200 px-4 py-2 flex space-x-2 rounded-lg cursor-pointer"
+          className="border-2 border-gray-200 pl-4 pr-3 py-2 flex space-x-2 rounded-lg cursor-pointer"
           title={finalValue ? formatMoney(finalValue) : 'No value set.'}
           onClick={() => setShowModal(true)}
         >

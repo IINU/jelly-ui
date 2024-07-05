@@ -30,7 +30,7 @@ const countries: Country[] = [
   {
     id: 5,
     name: 'Japan',
-  }
+  },
 ]
 
 export function DropdownShowcase({ error }: Props) {
