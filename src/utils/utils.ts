@@ -56,3 +56,6 @@ export function getOrCreateDivRoot(name: string): HTMLElement {
   return modalRoot
 }
 
+export async function sleep(duration: number) {
+  await new Promise(resolve => setTimeout(resolve, duration))
+}

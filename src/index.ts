@@ -36,7 +36,13 @@ export { InsightsLineChart } from './components/molecules/InsightsLineChart'
 export { InsightsListGroup } from './components/molecules/InsightsListGroup'
 export { InsightsListItem } from './components/molecules/InsightsListItem'
 export { InsightsStockRangeSelect } from './components/molecules/InsightsStockRangeSelect'
+export { Note } from './components/molecules/Note'
+export { Notes } from './components/molecules/Notes'
 export { PeriodSelector } from './components/molecules/PeriodSelector'
+export { TodoNoTasks } from './components/molecules/TodoNoTasks'
+export { TodoSection } from './components/molecules/TodoSection'
+export { TodoTask } from './components/molecules/TodoTask'
+export { TodoTaskProgress } from './components/molecules/TodoTaskProgress'
 
 // Organisms
 export { KitchenSetup } from './components/organisms/KitchenSetup'
@@ -81,5 +87,8 @@ export { LiveMenuMarginsNotPaidState } from './components/organisms/not-paid-sta
 export { UnlockYourMarginsNotPaidState } from './components/organisms/not-paid-states/UnlockYourMarginsNotPaidState'
 
 // Organisms / Modals
-export { JellySupportModal } from './components/organisms/modals/JellySupportModal'
+export { AddNoteModal } from './components/organisms/modals/AddNoteModal'
 export { ConfettiModal } from './components/organisms/modals/ConfettiModal'
+export { JellySupportModal } from './components/organisms/modals/JellySupportModal'
+export { TodoCreateModal } from './components/organisms/modals/TodoCreateModal'
+export { TodoEditModal } from './components/organisms/modals/TodoEditModal'

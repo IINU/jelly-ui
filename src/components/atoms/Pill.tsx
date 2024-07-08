@@ -14,7 +14,7 @@ export function Pill({ label, variant, className = '' }: Props) {
   const variantClasses: Record<PillVariant, string> = {
     primary: 'bg-primary-900 text-white',
     success: 'bg-success-200 text-primary-900',
-    secondary: 'bg-primary-200 text-primary-900',
+    secondary: 'bg-primary-100 text-primary-900',
   }
 
   return (

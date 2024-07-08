@@ -25,6 +25,8 @@ type Props = {
   actionClick?: () => void
   state: 'homescreen' | 'backscreen' | 'tabbed' | 'title'
   children: ReactNode
+  hideNav?: boolean
+  bottomContent?: ReactNode
 }
 
 export function AppLayout({
@@ -35,6 +37,8 @@ export function AppLayout({
   activeTab = 0,
   actionButton,
   actionClick,
+  hideNav = false,
+  bottomContent,
 }: Props) {
   const navButtons: NavButton[] = [
     { text: 'home', icon: IconHome },
@@ -131,14 +135,22 @@ export function AppLayout({
         </div>
       </div>
 
-      <NavbarMobile<NavButton>
-        value={currentNavButton}
-        tabs={navButtons}
-        tabToId={tab => tab.text}
-        tabToText={tab => tab.text}
-        tabToIcon={tab => tab.icon}
-        onChange={setCurrentNavButton}
-      />
+      {!!bottomContent && (
+        <div className="py-4 px-2 space-x-2 flex border-t border-primary-200 bg-white">
+          {bottomContent}
+        </div>
+      )}
+
+      {!hideNav && (
+        <NavbarMobile<NavButton>
+          value={currentNavButton}
+          tabs={navButtons}
+          tabToId={tab => tab.text}
+          tabToText={tab => tab.text}
+          tabToIcon={tab => tab.icon}
+          onChange={setCurrentNavButton}
+        />
+      )}
     </div>
   )
 }
