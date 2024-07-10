@@ -28,6 +28,7 @@ export { DashboardNumberCardCompact } from './components/molecules/DashboardNumb
 export { DashboardPieChart } from './components/molecules/DashboardPieChart'
 export { DashboardSection } from './components/molecules/DashboardSection'
 export { DashboardTrendingStack } from './components/molecules/DashboardTrendingStack'
+export { DetailsSection } from './components/molecules/DetailsSection'
 export { InfoAlert } from './components/molecules/InfoAlert'
 export { InsightsBarChart } from './components/molecules/InsightsBarChart'
 export { InsightsDateNavigator } from './components/molecules/InsightsDateNavigator'
