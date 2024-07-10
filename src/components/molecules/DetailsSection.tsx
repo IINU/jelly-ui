@@ -4,10 +4,11 @@ import { Typography } from '../atoms/Typography'
 type Props = {
   title?: string
   rightTitle?: string
+  className?: string
   children: ReactNode
 }
 
-export function DetailsSection({ title, rightTitle, children }: Props) {
+export function DetailsSection({ title, rightTitle, className = 'py-6 px-4', children }: Props) {
   return (
     <>
       {title && (
