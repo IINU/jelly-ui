@@ -8,7 +8,12 @@ type Props = {
   children: ReactNode
 }
 
-export function DetailsSection({ title, rightTitle, className = 'py-6 px-4', children }: Props) {
+export function DetailsSection({
+  title,
+  rightTitle,
+  className = 'py-6 px-4',
+  children,
+}: Props) {
   return (
     <>
       {title && (
@@ -25,7 +30,7 @@ export function DetailsSection({ title, rightTitle, className = 'py-6 px-4', chi
         </div>
       )}
 
-      <div className="py-6 px-4">
+      <div className={className}>
         {children}
       </div>
     </>
