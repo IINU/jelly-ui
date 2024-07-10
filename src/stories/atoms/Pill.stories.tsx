@@ -13,17 +13,27 @@ type Story = StoryObj<typeof meta>;
 export const PillPrimary: Story = {
   args: {
     variant: 'primary',
+    label: 'Invoice'
   },
 }
 
 export const PillSecondary: Story = {
   args: {
     variant: 'secondary',
+    label: 'Invoice'
   },
 }
 
 export const PillSuccess: Story = {
   args: {
     variant: 'success',
+    label: 'Invoice'
+  },
+}
+
+export const PillOutlined: Story = {
+  args: {
+    variant: 'outlined',
+    label: 'Invoice'
   },
 }
