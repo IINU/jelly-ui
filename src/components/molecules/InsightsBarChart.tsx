@@ -42,8 +42,8 @@ export function InsightsBarChart({ data }: Props) {
 
         <div className="w-full">
           <div className="flex justify-around h-64 w-full relative border-b border-primary-200">
-            {data.map((item, index) => (
-              <div key={index} className="flex items-end justify-center space-x-0.5 w-full">
+            {data.map((item) => (
+              <div key={format(item.date, 'yyyy-MM-dd')} className="flex items-end justify-center space-x-0.5 w-full">
                 {item.spend !== undefined && (
                   <div
                     data-tooltip-id="insights-tooltip"
