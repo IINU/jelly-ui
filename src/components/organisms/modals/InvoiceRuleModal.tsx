@@ -71,7 +71,7 @@ export function InvoiceRuleModal({
       open={open}
       onClose={() => {
         setApprovalThreshold(approvalThresholdProp)
-        setApproveAllInvoices(approveAllInvoices)
+        setApproveAllInvoices(approveAllInvoicesProp)
         setThreshold(approvalThresholdProp === null ? '' : approvalThresholdProp.toString())
         onClose()
       }}
