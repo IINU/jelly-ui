@@ -91,6 +91,7 @@ export { UnlockYourMarginsNotPaidState } from './components/organisms/not-paid-s
 // Organisms / Modals
 export { AddNoteModal } from './components/organisms/modals/AddNoteModal'
 export { ConfettiModal } from './components/organisms/modals/ConfettiModal'
+export { InvoiceRuleModal } from './components/organisms/modals/InvoiceRuleModal'
 export { JellySupportModal } from './components/organisms/modals/JellySupportModal'
 export { TodoCreateModal } from './components/organisms/modals/TodoCreateModal'
 export { TodoEditModal } from './components/organisms/modals/TodoEditModal'

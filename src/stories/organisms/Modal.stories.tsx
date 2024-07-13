@@ -6,6 +6,7 @@ import IntrinsicElements = JSX.IntrinsicElements
 import { TestModal } from '../../components/organisms/modals/TestModal'
 import { JellySupportModal } from '../../components/organisms/modals/JellySupportModal'
 import { ConfettiModal } from '../../components/organisms/modals/ConfettiModal'
+import { InvoiceRuleModal } from '../../components/organisms/modals/InvoiceRuleModal'
 
 const meta = {
   title: 'Organisms/Modal',
@@ -46,3 +47,16 @@ export const ConfettiModalStory: ModalStory<typeof ConfettiModal> = {
     props: {},
   },
 }
+
+export const InvoiceRuleModalStory: ModalStory<typeof InvoiceRuleModal> = {
+  name: 'Invoice Rule Modal',
+  args: {
+    component: InvoiceRuleModal,
+    props: {
+      onSave: () => Promise.resolve(),
+      approveAllInvoices: false,
+      approvalThreshold: null,
+    },
+  },
+}
+
