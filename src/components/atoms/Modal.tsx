@@ -33,7 +33,7 @@ export function Modal({ open, onClose, children, className, hideCloseButton = fa
 
   return createPortal((
     <div
-      className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-50 cursor-pointer !m-0 !p-4"
+      className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-40 cursor-pointer !m-0 !p-4"
       onClick={(e => {
         e.stopPropagation()
         onClose()
