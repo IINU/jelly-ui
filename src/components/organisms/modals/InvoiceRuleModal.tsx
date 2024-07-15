@@ -4,6 +4,7 @@ import { Button } from '../../atoms/Button'
 import { useEffect, useState } from 'react'
 import { NumberInput } from '../../atoms/NumberInput'
 import { ToggleButton } from '../../atoms/ToggleButton'
+import { IconCurrencyPound } from '@tabler/icons-react'
 
 export type InvoiceRuleData = {
   approveAllInvoices: boolean
@@ -94,6 +95,7 @@ export function InvoiceRuleModal({
                 error={errors?.approvalThreshold}
                 disabled={approveAllInvoices}
                 onChange={setThreshold}
+                leftIcon={IconCurrencyPound}
               />
             </div>
 

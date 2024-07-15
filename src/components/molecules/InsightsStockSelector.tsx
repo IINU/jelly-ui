@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Typography } from '../atoms/Typography'
-import { IconSelector } from '@tabler/icons-react'
+import { IconCurrencyPound, IconSelector } from '@tabler/icons-react'
 import { formatMoney } from '../../utils/utils'
 import { Modal } from '../atoms/Modal'
 import { DropdownInput } from '../atoms/DropdownInput'
@@ -173,9 +173,10 @@ export function InsightsStockSelector<T>({
                 onChange={setAdjustments}
                 placeholder={
                   type === 'open'
-                    ? 'Enter opening stock value (£)'
-                    : 'Enter closing stock value (£)'
+                    ? 'Enter opening stock value'
+                    : 'Enter closing stock value'
                 }
+                leftIcon={IconCurrencyPound}
               />
             </div>
 
