@@ -171,11 +171,7 @@ export function InsightsStockSelector<T>({
               <NumberInput
                 value={adjustments}
                 onChange={setAdjustments}
-                placeholder={
-                  type === 'open'
-                    ? 'Enter opening stock value'
-                    : 'Enter closing stock value'
-                }
+                placeholder="Enter stock adjustments"
                 leftIcon={IconCurrencyPound}
               />
             </div>
