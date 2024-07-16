@@ -20,6 +20,7 @@ type Props<T> = {
   icon?: React.ComponentType<{ className?: string }>
   className?: string
   searchable?: boolean
+  disabled?: boolean
 };
 
 export function DropdownInput<T>({
@@ -36,7 +37,12 @@ export function DropdownInput<T>({
   loading = false,
   className,
   searchable = true,
+  disabled = false,
 }: Props<T>) {
+  if (disabled) {
+    searchable = false
+  }
+
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [inputValue, setInputValue] = useState<T | null>(value)
@@ -83,12 +89,15 @@ export function DropdownInput<T>({
     setOpen(false)
   }
 
-  const baseClass = 'w-full bg-white placeholder:text-primary-600 text-base font-lato rounded-lg'
+  const baseClass = disabled
+    ? 'w-full bg-primary-100 text-base font-lato rounded-lg'
+    : 'w-full bg-white text-base font-lato rounded-lg'
+
   const borderClass = error ? 'border-2 border-error-400' : 'border-2 border-primary-100'
 
   if (loading) {
     Icon = IconLoader2
-  } else if (inputValue !== null) {
+  } else if (inputValue !== null && !disabled) {
     Icon = IconX
   } else {
     Icon = IconSelector
@@ -133,16 +142,22 @@ export function DropdownInput<T>({
           <input
             name={name}
             type="text"
-            className="pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0"
+            className="pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0 placeholder:text-primary-600"
             placeholder={placeholder}
             value={search}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              if (disabled) return
+              setOpen(true)
+            }}
             onChange={e => setSearch(e.target.value)}
           />
         ) : (
           <div
             className={`pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap`}
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              if (disabled) return
+              setOpen(true)
+            }}
           >
             <Typography
               style="body1"
@@ -163,8 +178,9 @@ export function DropdownInput<T>({
 
         {Icon && (
           <div
-            className="flex items-center pr-2 cursor-pointer"
+            className={`flex items-center pr-2 ${disabled ? '' : 'cursor-pointer'}`}
             onClick={() => {
+              if (disabled) return
               setInputValue(null)
               onChange(null)
               setOpen(!open)

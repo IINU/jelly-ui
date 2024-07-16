@@ -32,6 +32,49 @@ export function TextShowcase({ placeholder, error }: Props) {
           placeholder={placeholder}
           value={text}
           onChange={setText}
+          leftIcon={IconChefHat}
+          error={error}
+        />
+
+        <TextInput
+          placeholder={placeholder}
+          value={text}
+          onChange={setText}
+          loading={true}
+          error={error}
+        />
+
+        <TextInput
+          disabled
+          placeholder={placeholder}
+          value={text}
+          onChange={setText}
+          error={error}
+        />
+
+        <TextInput
+          disabled
+          placeholder={placeholder}
+          value={text}
+          onChange={setText}
+          icon={IconChefHat}
+          error={error}
+        />
+
+        <TextInput
+          disabled
+          placeholder={placeholder}
+          value={text}
+          onChange={setText}
+          leftIcon={IconChefHat}
+          error={error}
+        />
+
+        <TextInput
+          disabled
+          placeholder={placeholder}
+          value={text}
+          onChange={setText}
           loading={true}
           error={error}
         />

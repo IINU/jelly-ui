@@ -13,6 +13,7 @@ export type StockSelectorData<T> = {
 }
 
 type Props<T> = {
+  readonly?: boolean
   type: 'open' | 'close'
   stockTakes: T[]
   onSubmit: (data: StockSelectorData<T>) => Promise<void>
@@ -22,6 +23,7 @@ type Props<T> = {
 } & StockSelectorData<T>
 
 export function InsightsStockSelector<T>({
+  readonly = false,
   type,
   adjustments: initialAdjustments,
   selectedStock: initialSelectedStock,
@@ -206,9 +208,12 @@ export function InsightsStockSelector<T>({
         </Typography>
 
         <div
-          className="border-2 border-gray-200 pl-4 pr-3 py-2 flex space-x-2 rounded-lg cursor-pointer"
+          className={`border-2 border-primary-100 pl-4 pr-3 py-2 flex space-x-2 rounded-lg ${readonly ? 'bg-primary-100' : 'cursor-pointer'}`}
           title={finalValue ? formatMoney(finalValue) : 'No value set.'}
-          onClick={() => setShowModal(true)}
+          onClick={() => {
+            if (readonly) return
+            setShowModal(true)
+          }}
         >
           {finalValue === null ? (
             <Typography style="body1" className="text-primary-600 flex-1">
@@ -223,7 +228,7 @@ export function InsightsStockSelector<T>({
             </Typography>
           )}
 
-          <IconSelector className="text-secondary-400"/>
+          <IconSelector className="text-primary-900"/>
         </div>
       </div>
     </>

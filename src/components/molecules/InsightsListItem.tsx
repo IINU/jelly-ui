@@ -4,6 +4,7 @@ import { Accent, accentToText } from '../../utils/accent'
 import { IconChevronRight } from '@tabler/icons-react'
 
 type Props = {
+  readonly?: boolean
   title: string
   subtitle: string
   data: string
@@ -14,6 +15,7 @@ type Props = {
 }
 
 export function InsightsListItem({
+  readonly = false,
   title,
   subtitle,
   data,
@@ -22,6 +24,10 @@ export function InsightsListItem({
   accent,
   className = '',
 }: Props) {
+  if (readonly) {
+    onClick = undefined
+  }
+
   const borders = 'border-b border-primary-100 last:border-none'
   const cursor = onClick ? 'cursor-pointer' : 'cursor-default'
   const padding = onClick ? 'py-4 pl-3 pr-2' : 'py-4 px-3'

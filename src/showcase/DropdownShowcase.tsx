@@ -59,6 +59,17 @@ export function DropdownShowcase({ error }: Props) {
           error={error}
           loading={true}
         />
+
+        <DropdownInput<Country>
+          placeholder="Country"
+          value={country}
+          options={countries}
+          optionToId={c => c.id}
+          optionToLabel={c => c.name}
+          onChange={setCountry}
+          error={error}
+          disabled
+        />
       </div>
     </div>
   )

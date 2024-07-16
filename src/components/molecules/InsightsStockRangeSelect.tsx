@@ -6,6 +6,7 @@ type StockRangeData<T> = {
 }
 
 type Props<T> = {
+  readonly?: boolean
   stockTakes: T[]
   onOpenSubmit: (data: StockSelectorData<T>) => Promise<void>
   onCloseSubmit: (data: StockSelectorData<T>) => Promise<void>
@@ -15,6 +16,7 @@ type Props<T> = {
 } & StockRangeData<T>
 
 export function InsightsStockRangeSelect<T>({
+  readonly = false,
   stockTakes,
   open: openData,
   close: closeData,
@@ -27,6 +29,7 @@ export function InsightsStockRangeSelect<T>({
   return (
     <div className="px-4 py-2 grid grid-cols-2 gap-2 bg-white">
       <InsightsStockSelector<T>
+        readonly={readonly}
         type="open"
         stockTakes={stockTakes}
         optionToId={optionToId}
@@ -37,6 +40,7 @@ export function InsightsStockRangeSelect<T>({
       />
 
       <InsightsStockSelector<T>
+        readonly={readonly}
         type="close"
         stockTakes={stockTakes}
         optionToId={optionToId}
