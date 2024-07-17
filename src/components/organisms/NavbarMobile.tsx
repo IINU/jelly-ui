@@ -15,9 +15,9 @@ export function NavbarMobile<T>(
 ) {
   return (
     <div
-      className="h-[4.5rem] w-full bg-white flex items-center justify-center z-10 border-t border-primary-200 shadow-medium"
+      className="h-[5.25rem] w-full bg-white flex items-center justify-center z-10 border-t border-primary-200 shadow-medium"
     >
-      <div className="flex justify-between max-w-[32rem] w-full">
+      <div className="flex justify-between max-w-[32rem] w-full mb-2">
         {tabs.map(tab => (
           <NavBarButton
             key={tabToId(tab)}
