@@ -1,17 +1,20 @@
 import { IconChevronRight, IconCircle, IconCircleCheckFilled } from '@tabler/icons-react'
 import { Typography } from '../atoms/Typography'
+import { CSSProperties } from 'react'
 
 type Props = {
   title: string
   subtitle?: string
   completed: boolean
   onClick: () => void
+  style?: CSSProperties
 }
 
-export function TodoTask({ title, subtitle, completed, onClick }: Props) {
+export function TodoTask({ title, subtitle, completed, onClick, style }: Props) {
   return (
     <div
       onClick={() => !completed && onClick()}
+      style={style}
       className="py-4 pl-3 pr-2 flex justify-between last:border-none border-b border-primary-200 cursor-pointer first:rounded-t last:rounded-b bg-white shadow-low"
     >
       <div className="flex space-x-2">
