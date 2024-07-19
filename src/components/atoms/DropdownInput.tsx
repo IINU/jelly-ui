@@ -142,7 +142,7 @@ export function DropdownInput<T>({
           <input
             name={name}
             type="text"
-            className="pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0 placeholder:text-primary-600"
+            className="pl-3 py-2 text-base rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0 placeholder:text-primary-600"
             placeholder={placeholder}
             value={search}
             onFocus={() => {

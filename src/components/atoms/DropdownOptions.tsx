@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Typography } from './Typography'
 
 type DropdownOptionsProps<T> = {
   selectedOption: T | null
@@ -67,7 +68,7 @@ export function DropdownOptions<T>({
   return (
     <div
       ref={dropdownRef}
-      className="fixed max-h-44 overflow-y-auto bg-white border border-gray-200 rounded-md shadow-lg text-left z-50"
+      className="fixed max-h-44 overflow-y-auto bg-white rounded-md shadow-lg text-left z-50"
       style={{
         top: dropdownPosition === 'top'
           ? (wrapperRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY - (dropdownRef.current?.offsetHeight ?? 0)
@@ -86,7 +87,9 @@ export function DropdownOptions<T>({
           onMouseEnter={() => setFocusedIndex(index)}
           tabIndex={0}
         >
-          {optionToLabel(option)}
+          <Typography style="body1">
+            {optionToLabel(option)}
+          </Typography>
         </div>
       ))}
     </div>
