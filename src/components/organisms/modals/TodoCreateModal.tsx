@@ -37,6 +37,12 @@ export function TodoCreateModal<T>({
   const [description, setDescription] = useState('')
   const [assignee, setAssignee] = useState<T | null>(null)
 
+  function clearData() {
+    setAssignee(null)
+    setTitle('')
+    setDescription('')
+  }
+
   async function ctaClicked() {
     if (loading) return
 
@@ -51,13 +57,21 @@ export function TodoCreateModal<T>({
         description: description.trim() ? description.trim() : null,
         assignee,
       })
+
+      clearData()
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal
+      open={open}
+      onClose={() => {
+        onClose()
+        clearData()
+      }}
+    >
       <div className="space-y-6">
         <Typography style="h6">Add a new task</Typography>
 
