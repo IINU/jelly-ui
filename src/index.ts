@@ -41,6 +41,7 @@ export { InsightsStockRangeSelect } from './components/molecules/InsightsStockRa
 export { Note } from './components/molecules/Note'
 export { Notes } from './components/molecules/Notes'
 export { PeriodSelector } from './components/molecules/PeriodSelector'
+export { TodoKitchenClear } from './components/molecules/TodoKitchenClear'
 export { TodoNoTasks } from './components/molecules/TodoNoTasks'
 export { TodoSection } from './components/molecules/TodoSection'
 export { TodoTask } from './components/molecules/TodoTask'
