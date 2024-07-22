@@ -13,7 +13,7 @@ type Props = {
 export function TodoTask({ title, subtitle, completed, onClick, style }: Props) {
   return (
     <div
-      onClick={() => !completed && onClick()}
+      onClick={onClick}
       style={style}
       className="py-4 pl-3 pr-2 flex justify-between last:border-none border-b border-primary-200 cursor-pointer first:rounded-t last:rounded-b bg-white shadow-low"
     >
