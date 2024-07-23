@@ -39,7 +39,7 @@ export function ResetPasswordPanel({
   const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
     countryCodeProp
       ? CountryCodeModel.findByCode(countryCodeProp)
-      : CountryCodeModel.find(76)
+      : CountryCodeModel.find(76),
   )
 
   useEnterSubmit({ ctaClicked })
@@ -74,7 +74,8 @@ export function ResetPasswordPanel({
         <JellyLogoPrimary/>
       </div>
 
-      <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+      <div
+        className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
         <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
           <div className="jui-flex jui-flex-col jui-pace-y-2">
             <Typography style="h6" className="jui-text-primary-900">
@@ -120,7 +121,11 @@ export function ResetPasswordPanel({
                 Already registered?
               </Typography>
 
-              <Anchor style="caption" onClick={loginLinkClicked}>
+              <Anchor
+                style="caption"
+                onClick={loginLinkClicked}
+                className="jui-text-secondary-400"
+              >
                 Log in here.
               </Anchor>
             </div>

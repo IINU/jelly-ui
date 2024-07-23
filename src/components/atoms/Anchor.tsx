@@ -23,7 +23,7 @@ export function Anchor({ style = 'body1', className = '', onClick, children }: P
 
   return (
     <a
-      className={`jui-text-secondary-400 ${styled[style]} ${className}`}
+      className={`${styled[style]} ${className}`}
       href="#"
       onClick={e => {
         e.preventDefault()

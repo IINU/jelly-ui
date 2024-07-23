@@ -53,7 +53,7 @@ export function RegisterPanel({
   const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
     countryCodeProp
       ? CountryCodeModel.findByCode(countryCodeProp)
-      : CountryCodeModel.find(76)
+      : CountryCodeModel.find(76),
   )
 
   useEnterSubmit({ ctaClicked })
@@ -62,7 +62,13 @@ export function RegisterPanel({
   useEffect(() => setEmail(emailProp || ''), [emailProp])
   useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
   useEffect(() => setErrors(errorsProp || null), [errorsProp])
-  useEffect(() => onChange?.({ firstName, lastName, email, countryCode, phoneNumber }), [firstName, lastName, email, countryCode, phoneNumber, onChange])
+  useEffect(() => onChange?.({
+    firstName,
+    lastName,
+    email,
+    countryCode,
+    phoneNumber,
+  }), [firstName, lastName, email, countryCode, phoneNumber, onChange])
 
   useEffect(() => {
     if (!countryCodeProp) return
@@ -95,7 +101,8 @@ export function RegisterPanel({
           <JellyLogoPrimary/>
         </div>
 
-        <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div
+          className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
           <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
             <Typography style="h6" className="jui-text-primary-900">
               Create account
@@ -162,7 +169,11 @@ export function RegisterPanel({
                   Already registered?
                 </Typography>
 
-                <Anchor style="caption" onClick={loginLinkClicked}>
+                <Anchor
+                  style="caption"
+                  onClick={loginLinkClicked}
+                  className="jui-text-secondary-400"
+                >
                   Log in here.
                 </Anchor>
               </div>
@@ -173,9 +184,25 @@ export function RegisterPanel({
 
       <div className="jui-flex jui-justify-center">
         <div className="jui-flex jui-space-x-1">
-          <Anchor style="caption" onClick={tacClicked} className="jui-text-primary-200">Terms & Conditions</Anchor>
-          <Typography style="caption" className="jui-text-primary-600">and</Typography>
-          <Anchor style="caption" onClick={privacyPolicyClicked} className="jui-text-primary-200">Privacy Policy</Anchor>
+          <Anchor
+            style="caption"
+            onClick={tacClicked}
+            className="jui-text-primary-200"
+          >
+            Terms & Conditions
+          </Anchor>
+
+          <Typography style="caption" className="jui-text-primary-600">
+            and
+          </Typography>
+
+          <Anchor
+            style="caption"
+            onClick={privacyPolicyClicked}
+            className="jui-text-primary-200"
+          >
+            Privacy Policy
+          </Anchor>
         </div>
       </div>
     </div>

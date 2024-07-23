@@ -128,7 +128,11 @@ export function LoginPanel({
                 Forgot your password?
               </Typography>
 
-              <Anchor style="caption" onClick={forgotPasswordLinkClicked}>
+              <Anchor
+                style="caption"
+                onClick={forgotPasswordLinkClicked}
+                className="jui-text-secondary-400"
+              >
                 Reset.
               </Anchor>
             </div>
@@ -149,7 +153,11 @@ export function LoginPanel({
               New here?
             </Typography>
 
-            <Anchor style="caption" onClick={registerLinkClicked}>
+            <Anchor
+              style="caption"
+              onClick={registerLinkClicked}
+              className="jui-text-secondary-400"
+            >
               Signup instead.
             </Anchor>
           </div>

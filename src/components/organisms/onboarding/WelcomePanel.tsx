@@ -54,7 +54,8 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
         <JellyLogoPrimary/>
       </div>
 
-      <div className="jui-flex jui-flex-col jui-items-center jui-justify-between jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center jui-flex-1">
+      <div
+        className="jui-flex jui-flex-col jui-items-center jui-justify-between jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center jui-flex-1">
         {stages[stage].copy}
 
         <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-w-full">
@@ -78,7 +79,11 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
                   Already registered?
                 </Typography>
 
-                <Anchor style="caption" onClick={loginLinkClicked}>
+                <Anchor
+                  style="caption"
+                  onClick={loginLinkClicked}
+                  className="jui-text-secondary-400"
+                >
                   Log in here.
                 </Anchor>
               </div>

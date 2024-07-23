@@ -107,7 +107,11 @@ export function NewPasswordPanel({
                 Already registered?
               </Typography>
 
-              <Anchor style="caption" onClick={loginLinkClicked}>
+              <Anchor
+                style="caption"
+                onClick={loginLinkClicked}
+                className="jui-text-secondary-400"
+              >
                 Log in here.
               </Anchor>
             </div>
