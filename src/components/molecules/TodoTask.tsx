@@ -27,7 +27,7 @@ export function TodoTask({ title, subtitle, completed, onClick, style }: Props) 
         <div className="jui-flex jui-flex-col jui-items-start jui-justify-center">
           <Typography
             style="subtitle1"
-            className={`jui-text-primary-900 jui-capitalize ${completed ? 'jui-line-through' : ''}`}
+            className={`jui-text-primary-900 jui-line-clamp-1 jui-capitalize ${completed ? 'jui-line-through' : ''}`}
           >
             {title}
           </Typography>
@@ -35,7 +35,7 @@ export function TodoTask({ title, subtitle, completed, onClick, style }: Props) 
           {subtitle && (
             <Typography
               style="subtitle2"
-              className="jui-text-primary-400 jui-capitalize"
+              className="jui-text-primary-400 jui-line-clamp-1 jui-capitalize"
             >
               {subtitle}
             </Typography>
