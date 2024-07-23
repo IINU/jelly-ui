@@ -131,15 +131,15 @@ export function InsightsStockSelector<T>({
           setShowModal(false)
         }}
       >
-        <div className="space-y-6">
-          <Typography style="h6" className="text-primary-900">
+        <div className="jui-space-y-6">
+          <Typography style="h6" className="jui-text-primary-900">
             {type === 'open' ? 'Set opening stock' : 'Set closing stock'}
           </Typography>
 
-          <div className="space-y-4">
+          <div className="jui-space-y-4">
             {Array.from({ length: numberOfInputs }).map((_, i) => (
-              <div key={i} className="space-y-2">
-                <Typography style="caption" className="text-primary-800">
+              <div key={i} className="jui-space-y-2">
+                <Typography style="caption" className="jui-text-primary-800">
                   Select stock
                 </Typography>
 
@@ -155,7 +155,7 @@ export function InsightsStockSelector<T>({
               </div>
             ))}
 
-            <div className="w-full flex justify-center">
+            <div className="jui-w-full jui-flex jui-justify-center">
               {showAddButton && (
                 <Button
                   style="secondary"
@@ -165,8 +165,8 @@ export function InsightsStockSelector<T>({
               )}
             </div>
 
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 Manual adjustments
               </Typography>
 
@@ -178,12 +178,12 @@ export function InsightsStockSelector<T>({
               />
             </div>
 
-            <div className="flex justify-between py-4 border-t border-primary-100">
-              <Typography style="subtitle1" className="text-primary-900">
+            <div className="jui-flex jui-justify-between jui-py-4 jui-border-t jui-border-primary-100">
+              <Typography style="subtitle1" className="jui-text-primary-900">
                 Total
               </Typography>
 
-              <Typography style="h6" className="text-secondary-400">
+              <Typography style="h6" className="jui-text-secondary-400">
                 {value === null ? (
                   <span>£--</span>
                 ) : (
@@ -196,19 +196,19 @@ export function InsightsStockSelector<T>({
               onClick={handleSubmit}
               loading={loading}
               label="Submit"
-              className="w-full"
+              className="jui-w-full"
             />
           </div>
         </div>
       </Modal>
 
-      <div className="w-full space-y-2">
-        <Typography style="caption" className="text-primary-800">
+      <div className="jui-w-full jui-space-y-2">
+        <Typography style="caption" className="jui-text-primary-800">
           {type === 'open' ? 'Open stock' : 'Closing stock'}
         </Typography>
 
         <div
-          className={`border-2 border-primary-100 pl-4 pr-3 py-2 flex space-x-2 rounded-lg ${readonly ? 'bg-primary-100' : 'cursor-pointer'}`}
+          className={`jui-border-2 jui-border-primary-100 jui-pl-4 jui-pr-3 jui-py-2 jui-flex jui-space-x-2 jui-rounded-lg ${readonly ? 'jui-bg-primary-100' : 'jui-cursor-pointer'}`}
           title={finalValue ? formatMoney(finalValue) : 'No value set.'}
           onClick={() => {
             if (readonly) return
@@ -216,19 +216,19 @@ export function InsightsStockSelector<T>({
           }}
         >
           {finalValue === null ? (
-            <Typography style="body1" className="text-primary-600 flex-1">
+            <Typography style="body1" className="jui-text-primary-600 jui-flex-1">
               Select...
             </Typography>
           ) : (
             <Typography
               style="body1"
-              className="text-primary-900 flex-1 max-w-full text-ellipsis overflow-hidden whitespace-nowrap"
+              className="jui-text-primary-900 jui-flex-1 jui-max-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap"
             >
               {formatMoney(finalValue)}
             </Typography>
           )}
 
-          <IconSelector className="text-primary-900"/>
+          <IconSelector className="jui-text-primary-900"/>
         </div>
       </div>
     </>

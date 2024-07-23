@@ -77,17 +77,17 @@ export function InvoiceRuleModal({
         onClose()
       }}
     >
-      <div className="space-y-8">
-        <div className="space-y-6">
+      <div className="jui-space-y-8">
+        <div className="jui-space-y-6">
           <Typography style="h6">Set auto-approve rule</Typography>
 
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+          <div className="jui-space-y-4">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 Auto-approve{' '}
-                <span className="font-semibold text-primary-900">IF</span>
+                <span className="jui-font-semibold jui-text-primary-900">IF</span>
                 {' '}invoice total is{' '}
-                <span className="font-semibold text-primary-900">LESS THAN</span>
+                <span className="jui-font-semibold jui-text-primary-900">LESS THAN</span>
               </Typography>
 
               <NumberInput
@@ -99,8 +99,8 @@ export function InvoiceRuleModal({
               />
             </div>
 
-            <div className="flex justify-between items-center w-full py-3">
-              <Typography style="body2" className="text-primary-800">
+            <div className="jui-flex jui-justify-between jui-items-center jui-w-full jui-py-3">
+              <Typography style="body2" className="jui-text-primary-800">
                 Auto-approve all
               </Typography>
 
@@ -117,7 +117,7 @@ export function InvoiceRuleModal({
           onClick={ctaClicked}
           loading={loading}
           disabled={loading}
-          className="w-full mt-4"
+          className="jui-w-full jui-mt-4"
           label="Save Rule"
         />
       </div>

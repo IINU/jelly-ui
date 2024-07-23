@@ -110,7 +110,7 @@ export function InsightsSpendShowcase() {
       activeTab={0}
       actionButton="Add Invoices"
     >
-      <div className="h-12 flex items-center justify-center bg-primary-50">
+      <div className="jui-h-12 jui-flex jui-items-center jui-justify-center jui-bg-primary-50">
         <PeriodSelector
           periods={periods}
           value={period}
@@ -131,7 +131,7 @@ export function InsightsSpendShowcase() {
         heading="July"
         title="£24,021.25"
         subtitle={(
-          <div className="flex space-x-1">
+          <div className="jui-flex jui-space-x-1">
             <Typography style="subtitle1">20%</Typography>
 
             <Typography style="body2">vs prior {period.id}</Typography>

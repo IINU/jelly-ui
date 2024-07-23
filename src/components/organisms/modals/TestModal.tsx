@@ -11,8 +11,8 @@ type Props = {
 export function TestModal({ open, onClose, ctaClicked }: Props) {
   return (
     <Modal open={open} onClose={onClose}>
-      <div className="space-y-8">
-        <div className="text-center space-y-2">
+      <div className="jui-space-y-8">
+        <div className="jui-text-center jui-space-y-2">
           <Typography style="h6">This is an example modal</Typography>
 
           <Typography style="caption">
@@ -22,7 +22,7 @@ export function TestModal({ open, onClose, ctaClicked }: Props) {
 
         <Button
           onClick={ctaClicked}
-          className="w-full mt-4"
+          className="jui-w-full jui-mt-4"
           label="Like this one"
         />
       </div>

@@ -21,10 +21,10 @@ type Props = {
 
 function getPadding(label: boolean, icon: boolean) {
   if (!icon) {
-    return 'px-5'
+    return 'jui-px-5'
   }
 
-  return label ? 'pl-5 pr-4' : 'p-0'
+  return label ? 'jui-pl-5 jui-pr-4' : 'jui-p-0'
 }
 
 export function Button({
@@ -37,14 +37,14 @@ export function Button({
   icon: Icon,
 }: Props) {
   const padding = getPadding(!!label, !!Icon || loading)
-  const base = 'font-rubik font-medium text-sm rounded-full flex items-center justify-center space-x-1 min-w-[2.5rem] h-[2.5rem] border-2'
+  const base = 'jui-font-rubik jui-font-medium jui-text-sm jui-rounded-full jui-flex jui-items-center jui-justify-center jui-space-x-1 jui-min-w-[2.5rem] jui-h-[2.5rem] jui-border-2'
 
   const styled: Record<ButtonStyle, string> = {
-    primary: 'bg-primary-900 text-white border-primary-900 hover:bg-primary-800',
-    secondary: 'bg-white text-primary-900 border-primary-200 hover:bg-primary-200',
-    delete: 'bg-white text-error-400 border-error-400 hover:bg-error-200',
-    ghost: 'bg-white text-primary-900 border-white hover:bg-primary-100 hover:border-primary-100',
-    disabled: 'bg-gray-400 text-white border-gray-400 cursor-not-allowed',
+    primary: 'jui-bg-primary-900 jui-text-white jui-border-primary-900 hover:jui-bg-primary-800',
+    secondary: 'jui-bg-white jui-text-primary-900 jui-border-primary-200 hover:jui-bg-primary-200',
+    delete: 'jui-bg-white jui-text-error-400 jui-border-error-400 hover:jui-bg-error-200',
+    ghost: 'jui-bg-white jui-text-primary-900 jui-border-white hover:jui-bg-primary-100 hover:jui-border-primary-100',
+    disabled: 'jui-bg-gray-400 jui-text-white jui-border-gray-400 jui-cursor-not-allowed',
   }
 
   if (loading) {
@@ -64,7 +64,7 @@ export function Button({
       {label && <span>{label}</span>}
 
       {loading
-        ? <IconLoader2 className="animate-spin"/>
+        ? <IconLoader2 className="jui-animate-spin"/>
         : Icon && <Icon/>}
     </button>
   )

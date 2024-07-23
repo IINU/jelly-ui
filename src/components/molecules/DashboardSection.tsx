@@ -9,11 +9,11 @@ type Props = {
 export function DashboardSection({ title, children }: Props) {
   return (
     <>
-      <div className="p-4 text-primary-800">
+      <div className="jui-p-4 jui-text-primary-800">
         <Typography style="subtitle2">{title}</Typography>
       </div>
 
-      <div className="px-4 pb-2 space-y-4">
+      <div className="jui-px-4 jui-pb-2 jui-space-y-4">
         {children}
       </div>
     </>

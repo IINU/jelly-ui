@@ -9,17 +9,17 @@ type Props = {
 }
 
 export function NavBarButtonDesktop({ icon: Icon, active, onClick, text }: Props) {
-  const buttonBase = 'flex justify-center items-center w-full border-b-4 h-16'
+  const buttonBase = 'jui-flex jui-justify-center jui-items-center jui-w-full jui-border-b-4 jui-h-16'
 
   const buttonText = active
-    ? 'text-tertiary-400 border-tertiary-400'
-    : 'text-primary-400 border-primary-900'
+    ? 'jui-text-tertiary-400 jui-border-tertiary-400'
+    : 'jui-text-primary-400 jui-border-primary-900'
 
   return (
     <button onClick={onClick} className={`${buttonBase} ${buttonText}`}>
-      <div className="flex items-center space-x-2">
+      <div className="jui-flex jui-items-center jui-space-x-2">
         <Icon size={24}/>
-        <Typography style="button" className="capitalize">{text}</Typography>
+        <Typography style="button" className="jui-capitalize">{text}</Typography>
       </div>
     </button>
   )

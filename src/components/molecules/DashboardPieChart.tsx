@@ -26,28 +26,28 @@ export function DashboardPieChart({ title, data, dataPoint1, dataPoint2 }: Props
   ]
 
   return (
-    <div className="bg-white space-y-2 py-8 w-full rounded-lg shadow-low text-center">
-      <Typography style="subtitle1" className="text-primary-800">
+    <div className="jui-bg-white jui-space-y-2 jui-py-8 jui-w-full jui-rounded-lg jui-shadow-low jui-text-center">
+      <Typography style="subtitle1" className="jui-text-primary-800">
         {title}
       </Typography>
 
-      <Typography style="h4" className="text-primary-900">
+      <Typography style="h4" className="jui-text-primary-900">
         {data}
       </Typography>
 
-      <div className="flex justify-center">
-        <div className="relative flex justify-center max-w-[26rem] w-full">
-          <div className="realtive w-64 h-64">
-            <PieChart data={pieChartData} className="w-64 h-64"/>
+      <div className="jui-flex jui-justify-center">
+        <div className="jui-relative jui-flex jui-justify-center jui-max-w-[26rem] jui-w-full">
+          <div className="jui-realtive jui-w-64 jui-h-64">
+            <PieChart data={pieChartData} className="jui-w-64 jui-h-64"/>
 
-            <div className="absolute top-0 right-0 text-right px-8 z-10">
-              <Typography style="subtitle1" className="text-primary-800">{dataPoint1.text}</Typography>
-              <Typography style="h6" className="text-error-400">{dataPoint1.value}%</Typography>
+            <div className="jui-absolute jui-top-0 jui-right-0 jui-text-right jui-px-8 jui-z-10">
+              <Typography style="subtitle1" className="jui-text-primary-800">{dataPoint1.text}</Typography>
+              <Typography style="h6" className="jui-text-error-400">{dataPoint1.value}%</Typography>
             </div>
 
-            <div className="absolute bottom-0 left-0 text-left px-8 z-10">
-              <Typography style="subtitle1" className="text-primary-800">{dataPoint2.text}</Typography>
-              <Typography style="h6" className="text-success-400">{dataPoint2.value}%</Typography>
+            <div className="jui-absolute jui-bottom-0 jui-left-0 jui-text-left jui-px-8 jui-z-10">
+              <Typography style="subtitle1" className="jui-text-primary-800">{dataPoint2.text}</Typography>
+              <Typography style="h6" className="jui-text-success-400">{dataPoint2.value}%</Typography>
             </div>
           </div>
         </div>

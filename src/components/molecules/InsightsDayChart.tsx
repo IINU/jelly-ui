@@ -44,19 +44,19 @@ export function InsightsDayChart({ startDate, data }: Props) {
     <>
       <InsightsTooltip/>
 
-      <div className="bg-white p-4 flex justify-center">
-        <div className="space-y-2 max-w-[24rem]">
-          <div className="grid grid-cols-7 gap-1">
+      <div className="jui-bg-white jui-p-4 jui-flex jui-justify-center">
+        <div className="jui-space-y-2 jui-max-w-[24rem]">
+          <div className="jui-grid jui-grid-cols-7 jui-gap-1">
             {daysOfWeek.map((day) => (
-              <div key={day} className="w-full flex justify-center">
-                <Typography style="caption" className="text-primary-600">
+              <div key={day} className="jui-w-full jui-flex jui-justify-center">
+                <Typography style="caption" className="jui-text-primary-600">
                   {day}
                 </Typography>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-7 gap-1">
+          <div className="jui-grid jui-grid-cols-7 jui-gap-1">
             {days.map((day) => {
               const isCurrentMonth = day >= monthStart && day <= monthEnd
               const dayData = getDataForDay(day)
@@ -67,7 +67,7 @@ export function InsightsDayChart({ startDate, data }: Props) {
               return (
                 <div
                   key={day.toString()}
-                  className={`flex flex-col items-center border-2 border-white hover:border-primary-900 hover:bg-primary-900 hover:text-white text-primary-600 ${isCurrentMonth ? '' : 'invisible'}`}
+                  className={`jui-flex jui-flex-col jui-items-center jui-border-2 jui-border-white hover:jui-border-primary-900 hover:jui-bg-primary-900 hover:jui-text-white jui-text-primary-600 ${isCurrentMonth ? '' : 'jui-invisible'}`}
                   data-tooltip-id="insights-tooltip"
                   data-tooltip-content={JSON.stringify({
                     title: format(day, 'd MMMM'),
@@ -76,15 +76,15 @@ export function InsightsDayChart({ startDate, data }: Props) {
                   })}
                 >
                   <div
-                    className="w-[40px] h-[40px] bg-primary-100 flex flex-col justify-end"
+                    className="jui-w-[40px] jui-h-[40px] jui-bg-primary-50 jui-flex jui-flex-col jui-justify-end"
                   >
                     <div
-                      className={`bg-success-400 w-full`}
+                      className={`jui-bg-success-400 jui-w-full`}
                       style={{ height: `${salesHeight}px` }}
                     />
 
                     <div
-                      className={`bg-secondary-400 w-full`}
+                      className={`jui-bg-secondary-400 jui-w-full`}
                       style={{ height: `${spendHeight}px` }}
                     />
                   </div>

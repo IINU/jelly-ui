@@ -11,19 +11,19 @@ type Props = {
 export function DetailsSection({
   title,
   rightTitle,
-  className = 'py-6 px-4',
+  className = 'jui-py-6 jui-px-4',
   children,
 }: Props) {
   return (
     <>
       {title && (
-        <div className="py-2 px-3 bg-primary-100 flex items-center justify-between">
-          <Typography style="subtitle2" className="text-primary-800">
+        <div className="jui-py-2 jui-px-3 jui-bg-primary-100 jui-flex jui-items-center jui-justify-between">
+          <Typography style="subtitle2" className="jui-text-primary-800">
             {title}
           </Typography>
 
           {rightTitle && (
-            <Typography style="button" className="text-primary-800">
+            <Typography style="button" className="jui-text-primary-800">
               {rightTitle}
             </Typography>
           )}

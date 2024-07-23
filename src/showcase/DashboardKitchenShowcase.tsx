@@ -57,7 +57,7 @@ export function DashboardKitchenShowcase() {
         </DashboardNav>
       </Portal>
 
-      <div className="pt-4">
+      <div className="jui-pt-4">
         <PeriodSelector
           periods={periods}
           value={period}
@@ -94,11 +94,17 @@ export function DashboardKitchenShowcase() {
           data="£1,245.56"
           dataCaption="(excl. VAT)"
           bottomContent={(
-            <div className="flex justify-center">
-              <div className="flex items-center space-x-1">
-                <IconTrendingUp size={16} className="text-error-400"/>
-                <Typography style="caption" className="text-error-400">27%</Typography>
-                <Typography style="caption" className="text-primary-600">vs this time last week</Typography>
+            <div className="jui-flex jui-justify-center">
+              <div className="jui-flex jui-items-center jui-space-x-1">
+                <IconTrendingUp size={16} className="jui-text-error-400"/>
+
+                <Typography style="caption" className="jui-text-error-400">
+                  27%
+                </Typography>
+
+                <Typography style="caption" className="jui-text-primary-600">
+                  vs this time last week
+                </Typography>
               </div>
             </div>
           )}

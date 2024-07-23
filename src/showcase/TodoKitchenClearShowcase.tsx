@@ -35,7 +35,7 @@ export function TodoKitchenClearShowcase() {
         assigneeToLabel={a => a.name}
       />
 
-      <div className="space-y-8 py-6 px-4">
+      <div className="jui-space-y-8 jui-py-6 jui-px-4">
         <TodoKitchenClear/>
 
         <TodoSection title="Completed on 18th of May">

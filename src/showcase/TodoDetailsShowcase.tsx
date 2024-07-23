@@ -85,30 +85,30 @@ export function TodoDetailsShowcase() {
             <Button
               onClick={() => setShowEditModal(true)}
               label="Edit Task"
-              className="w-full"
+              className="jui-w-full"
               style="secondary"
             />
 
             <Button
               onClick={() => 0}
               label="Completed"
-              className="w-full"
+              className="jui-w-full"
             />
           </>
         )}
       >
         <DetailsSection>
-          <div className="space-y-3">
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+          <div className="jui-space-y-3">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 Title
               </Typography>
 
               <TextInput disabled value="Count stock" onChange={() => 0}/>
             </div>
 
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 Description
               </Typography>
 
@@ -119,8 +119,8 @@ export function TodoDetailsShowcase() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 Assignee (Optional)
               </Typography>
 
@@ -130,7 +130,7 @@ export function TodoDetailsShowcase() {
         </DetailsSection>
 
         <DetailsSection title="History">
-          <div className="space-y-4">
+          <div className="jui-space-y-4">
             <Notes
               notes={notes}
               titleExtractor={n => n.title}
@@ -138,7 +138,7 @@ export function TodoDetailsShowcase() {
               typeExtractor={n => n.variant}
             />
 
-            <div className="flex justify-center">
+            <div className="jui-flex jui-justify-center">
               <Button
                 onClick={() => setShowModal(true)}
                 label="Add Note"

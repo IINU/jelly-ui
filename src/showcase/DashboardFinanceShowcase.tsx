@@ -50,7 +50,7 @@ export function DashboardFinanceShowcase() {
         </DashboardNav>
       </Portal>
 
-      <div className="pt-4">
+      <div className="jui-pt-4">
         <PeriodSelector
           periods={periods}
           value={period}
@@ -81,9 +81,9 @@ export function DashboardFinanceShowcase() {
 
         <DashboardAlert
           title={(
-            <span className="space-x-1">
+            <span className="jui-space-x-1">
                 <span>Missing</span>
-                <span className="text-error-400">1,000</span>
+                <span className="jui-text-error-400">1,000</span>
                 <span>days of sales data</span>
               </span>
           )}

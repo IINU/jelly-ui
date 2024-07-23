@@ -91,7 +91,7 @@ export function InsightsPriceAlertShowcase() {
       activeTab={2}
       actionButton="Add Invoices"
     >
-      <div className="h-12 bg-primary-50 grid grid-cols-2">
+      <div className="jui-h-12 jui-bg-primary-50 jui-grid jui-grid-cols-2">
         <PeriodSelector
           periods={suppliers}
           value={supplier}

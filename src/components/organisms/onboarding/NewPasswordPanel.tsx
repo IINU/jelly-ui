@@ -55,23 +55,25 @@ export function NewPasswordPanel({
   }
 
   return (
-    <div className="shadow w-full rounded-md">
-      <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
+    <div className="jui-shadow jui-w-full jui-rounded-md">
+      <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
         <JellyLogoPrimary/>
       </div>
 
-      <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-6 w-full">
-          <div className="flex flex-col space-y-2">
-            <Typography style="h6">New Password</Typography>
+      <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
+          <div className="jui-flex jui-flex-col jui-space-y-2">
+            <Typography style="h6" className="jui-text-primary-900">
+              New Password
+            </Typography>
 
-            <Typography style="caption" className="text-primary-600">
+            <Typography style="caption" className="jui-text-primary-600">
               We take pride in best-in-class-security. Password must be 8 or
               more characters long.
             </Typography>
           </div>
 
-          <div className="flex flex-col space-y-4">
+          <div className="jui-flex jui-flex-col jui-space-y-4">
             <PasswordInput
               placeholder="Password"
               value={password}
@@ -90,7 +92,7 @@ export function NewPasswordPanel({
           </div>
         </div>
 
-        <div className="flex flex-col space-y-4 w-full">
+        <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
           <Button
             style="primary"
             onClick={ctaClicked}
@@ -100,8 +102,8 @@ export function NewPasswordPanel({
           />
 
           {loginLinkClicked && (
-            <div className="flex justify-center space-x-1">
-              <Typography style="caption" className="text-primary-600">
+            <div className="jui-flex jui-justify-center jui-space-x-1">
+              <Typography style="caption" className="jui-text-primary-600">
                 Already registered?
               </Typography>
 

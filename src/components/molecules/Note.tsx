@@ -10,19 +10,19 @@ type Props = {
 
 export function Note({ title, body, variant = 'default' }: Props) {
   const variantClass: Record<NoteVariant, string> = {
-    default: 'bg-primary-100 border-primary-100',
-    system: 'bg-transparent border-transparent',
-    error: 'bg-error-200 border-error-400',
+    default: 'jui-bg-primary-100 jui-border-primary-100',
+    system: 'jui-bg-transparent jui-border-transparent',
+    error: 'jui-bg-error-200 jui-border-error-400',
   }
 
   return (
-    <div className="space-y-2">
-      <Typography style="caption" className="text-primary-800">
+    <div className="jui-space-y-2">
+      <Typography style="caption" className="jui-text-primary-800">
         {title}
       </Typography>
 
-      <div className={`${variantClass[variant]} border-2 rounded-lg px-3.5 py-1.5`}>
-        <Typography style="body1" className="text-primary-900">
+      <div className={`${variantClass[variant]} jui-border-2 jui-rounded-lg jui-px-3.5 jui-py-1.5`}>
+        <Typography style="body1" className="jui-text-primary-900">
           {body}
         </Typography>
       </div>

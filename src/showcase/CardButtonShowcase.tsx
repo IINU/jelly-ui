@@ -9,8 +9,8 @@ type Props = {
 
 export function CardButtonShowcase({ label, onClick }: Props) {
   return (
-    <div className="flex flex-col w-96">
-      <div className="flex px-8 py-8 bg-white space-x-2 w-96">
+    <div className="jui-flex jui-flex-col jui-w-96">
+      <div className="jui-flex jui-px-8 jui-py-8 jui-bg-white jui-space-x-2 jui-w-96">
         <CardButton
           label={label}
           icon={IconChefHat}
@@ -26,7 +26,7 @@ export function CardButtonShowcase({ label, onClick }: Props) {
         />
       </div>
 
-      <div className="flex px-8 py-8 bg-black space-x-2 w-96">
+      <div className="jui-flex jui-px-8 jui-py-8 jui-bg-black jui-space-x-2 jui-w-96">
         <CardButton
           label={label}
           icon={IconChefHat}

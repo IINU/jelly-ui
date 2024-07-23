@@ -5,7 +5,7 @@ import { fn } from '@storybook/test'
 const meta = {
   title: 'Atoms/Toggle Button',
   component: ToggleButtonShowcase,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'iPhoneSE' },
 } satisfies Meta<typeof ToggleButtonShowcase>
 
 export default meta

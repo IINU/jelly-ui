@@ -59,4 +59,3 @@ export const InvoiceRuleModalStory: ModalStory<typeof InvoiceRuleModal> = {
     },
   },
 }
-

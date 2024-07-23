@@ -27,7 +27,7 @@ export function InsightsStockRangeSelect<T>({
   optionToLabel,
 }: Props<T>) {
   return (
-    <div className="px-4 py-2 grid grid-cols-2 gap-2 bg-white">
+    <div className="jui-px-4 jui-py-2 jui-grid jui-grid-cols-2 jui-gap-2 jui-bg-white">
       <InsightsStockSelector<T>
         readonly={readonly}
         type="open"

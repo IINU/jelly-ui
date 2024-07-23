@@ -8,13 +8,13 @@ type Props = {
 
 export function TodoTaskProgress({ completed, total }: Props) {
   return (
-    <div className="py-8 px-4 space-y-4 text-center shadow-low bg-white rounded">
+    <div className="jui-py-8 jui-px-4 jui-space-y-4 jui-text-center jui-shadow-low jui-bg-white jui-rounded">
       <div>
-        <Typography style="caption" className="text-primary-800">
+        <Typography style="caption" className="jui-text-primary-800">
           Tasks completed this week
         </Typography>
 
-        <Typography style="caption" className="text-primary-800">
+        <Typography style="caption" className="jui-text-primary-800">
           {completed} out of {total}
         </Typography>
       </div>

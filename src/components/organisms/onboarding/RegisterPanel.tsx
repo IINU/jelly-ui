@@ -89,18 +89,20 @@ export function RegisterPanel({
   }
 
   return (
-    <div className="space-y-8">
-      <div className="shadow w-full rounded-md">
-        <div className="rounded-t-md bg-white p-4 flex justify-center">
+    <div className="jui-space-y-8">
+      <div className="jui-shadow jui-w-full jui-rounded-md">
+        <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-justify-center">
           <JellyLogoPrimary/>
         </div>
 
-        <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-          <div className="flex flex-col space-y-6 w-full">
-            <Typography style="h6">Create account</Typography>
+        <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+          <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
+            <Typography style="h6" className="jui-text-primary-900">
+              Create account
+            </Typography>
 
-            <div className="flex flex-col space-y-4">
-              <div className="flex space-x-4">
+            <div className="jui-flex jui-flex-col jui-space-y-4">
+              <div className="jui-flex jui-space-x-4">
                 <TextInput
                   placeholder="First name"
                   value={firstName}
@@ -126,8 +128,8 @@ export function RegisterPanel({
                 error={errors?.email}
               />
 
-              <div className="flex space-x-4">
-                <div className="w-32">
+              <div className="jui-flex jui-space-x-4">
+                <div className="jui-w-32">
                   <CountryCodeDropdown
                     value={countryCodeDropDown}
                     onChange={setCountryCodeDropDown}
@@ -145,18 +147,18 @@ export function RegisterPanel({
             </div>
           </div>
 
-          <div className="flex flex-col space-y-4 w-full">
+          <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
             <Button
               style="primary"
               onClick={ctaClicked}
               disabled={loading || !firstName || !lastName || !countryCode || !phoneNumber}
               label="Continue"
-              className="w-full"
+              className="jui-w-full"
             />
 
             {loginLinkClicked && (
-              <div className="flex justify-center space-x-1">
-                <Typography style="caption" className="text-primary-600">
+              <div className="jui-flex jui-justify-center jui-space-x-1">
+                <Typography style="caption" className="jui-text-primary-600">
                   Already registered?
                 </Typography>
 
@@ -169,11 +171,11 @@ export function RegisterPanel({
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <div className="flex space-x-1">
-          <Anchor style="caption" onClick={tacClicked} className="!text-primary-200">Terms & Conditions</Anchor>
-          <Typography style="caption" className="text-primary-600">and</Typography>
-          <Anchor style="caption" onClick={privacyPolicyClicked} className="!text-primary-200">Privacy Policy</Anchor>
+      <div className="jui-flex jui-justify-center">
+        <div className="jui-flex jui-space-x-1">
+          <Anchor style="caption" onClick={tacClicked} className="jui-text-primary-200">Terms & Conditions</Anchor>
+          <Typography style="caption" className="jui-text-primary-600">and</Typography>
+          <Anchor style="caption" onClick={privacyPolicyClicked} className="jui-text-primary-200">Privacy Policy</Anchor>
         </div>
       </div>
     </div>

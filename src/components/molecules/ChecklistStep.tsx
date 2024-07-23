@@ -11,26 +11,26 @@ export function ChecklistStep({ text, completed, onClick }: Props) {
   return (
     <div
       onClick={() => !completed && onClick()}
-      className="py-4 pl-3 pr-2 flex justify-between border-t border-primary-200 cursor-pointer"
+      className="jui-py-4 jui-pl-3 jui-pr-2 jui-flex jui-justify-between jui-border-t jui-border-primary-200 jui-cursor-pointer"
     >
-      <div className="flex space-x-2">
-        <div className="flex items-center">
+      <div className="jui-flex jui-space-x-2">
+        <div className="jui-flex jui-items-center">
           {completed
-            ? <IconCircleCheckFilled className="text-success-400"/>
-            : <IconCircle className="text-primary-200"/>}
+            ? <IconCircleCheckFilled className="jui-text-success-400"/>
+            : <IconCircle className="jui-text-primary-200"/>}
         </div>
 
         <Typography
           style="subtitle1"
-          className={`text-primary-900 ${completed ? 'line-through' : ''}`}
+          className={`jui-text-primary-900 ${completed ? 'jui-line-through' : ''}`}
         >
           {text}
         </Typography>
       </div>
 
       {!completed && (
-        <div className="flex items-center">
-          <IconChevronRight className="text-primary-400"/>
+        <div className="jui-flex jui-items-center">
+          <IconChevronRight className="jui-text-primary-400"/>
         </div>
       )}
     </div>

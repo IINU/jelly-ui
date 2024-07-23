@@ -18,7 +18,7 @@ export function DesktopNavbarShowcase() {
   const [currentTab, setCurrentTab] = useState(tabs[0])
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="jui-flex jui-flex-col jui-h-full">
       <NavbarDesktop<Tab>
         value={currentTab}
         tabs={tabs}
@@ -28,7 +28,7 @@ export function DesktopNavbarShowcase() {
         onChange={setCurrentTab}
       />
 
-      <div className="flex-1 w-full"/>
+      <div className="jui-flex-1 jui-w-full"/>
     </div>
   )
 }

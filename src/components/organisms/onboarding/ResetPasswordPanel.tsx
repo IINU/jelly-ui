@@ -69,23 +69,25 @@ export function ResetPasswordPanel({
   }
 
   return (
-    <div className="shadow w-full rounded-md">
-      <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
+    <div className="jui-shadow jui-w-full jui-rounded-md">
+      <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
         <JellyLogoPrimary/>
       </div>
 
-      <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-6 w-full">
-          <div className="flex flex-col space-y-2">
-            <Typography style="h6">Forgot Password</Typography>
+      <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
+          <div className="jui-flex jui-flex-col jui-pace-y-2">
+            <Typography style="h6" className="jui-text-primary-900">
+              Forgot Password
+            </Typography>
 
-            <Typography style="caption" className="text-primary-600">
+            <Typography style="caption" className="jui-text-primary-600">
               Enter your phone number and we will text you a reset code.
             </Typography>
           </div>
 
-          <div className="flex space-x-4">
-            <div className="w-32">
+          <div className="jui-flex jui-space-x-4">
+            <div className="jui-w-32">
               <CountryCodeDropdown
                 value={countryCodeDropDown}
                 onChange={setCountryCodeDropDown}
@@ -103,18 +105,18 @@ export function ResetPasswordPanel({
           </div>
         </div>
 
-        <div className="flex flex-col space-y-4 w-full">
+        <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
           <Button
             style="primary"
             onClick={ctaClicked}
             disabled={loading || !countryCode || !phoneNumber}
             label="Send"
-            className="w-full"
+            className="jui-w-full"
           />
 
           {loginLinkClicked && (
-            <div className="flex justify-center space-x-1">
-              <Typography style="caption" className="text-primary-600">
+            <div className="jui-flex jui-justify-center jui-space-x-1">
+              <Typography style="caption" className="jui-text-primary-600">
                 Already registered?
               </Typography>
 

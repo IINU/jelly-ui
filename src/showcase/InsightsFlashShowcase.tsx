@@ -127,7 +127,7 @@ export function InsightsFlashShowcase() {
       activeTab={1}
       actionButton="Add Invoices"
     >
-      <div className="h-12 flex items-center justify-center bg-primary-50">
+      <div className="jui-h-12 jui-flex jui-items-center jui-justify-center jui-bg-primary-50">
         <PeriodSelector
           periods={periods}
           value={period}

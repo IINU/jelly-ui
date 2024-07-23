@@ -11,7 +11,7 @@ type Props = {
   hideCloseButton?: boolean
 }
 
-export function Modal({ open, onClose, children, className, hideCloseButton = false }: Props) {
+export function Modal({ open, onClose, children, className = '', hideCloseButton = false }: Props) {
   const modalRoot = getOrCreateDivRoot('modal')
   const elRef = useRef<HTMLDivElement | null>(null)
 
@@ -33,22 +33,22 @@ export function Modal({ open, onClose, children, className, hideCloseButton = fa
 
   return createPortal((
     <div
-      className="fixed inset-0 bg-primary-900 bg-opacity-90 flex items-center justify-center z-40 cursor-pointer !m-0 !p-4"
+      className="jui-fixed jui-inset-0 jui-bg-primary-900 jui-bg-opacity-90 jui-flex jui-items-center jui-justify-center jui-z-40 jui-cursor-pointer !jui-m-0 !jui-p-4"
       onClick={(e => {
         e.stopPropagation()
         onClose()
       })}
     >
       <div
-        className={`relative bg-white rounded w-full max-w-md max-h-full py-8 px-4 overflow-y-auto cursor-default ${className}`}
+        className={`jui-relative jui-bg-white jui-rounded jui-w-full jui-max-w-md jui-max-h-full jui-py-8 jui-px-4 jui-overflow-y-auto jui-cursor-default ${className}`}
         onClick={e => e.stopPropagation()}
       >
         {!hideCloseButton && (
           <button
             onClick={onClose}
-            className="absolute top-0 right-0 mt-3 mr-3 text-gray-500 hover:text-gray-800"
+            className="jui-absolute jui-top-0 jui-right-0 jui-mt-3 jui-mr-3 jui-text-primary-900 hover:jui-text-primary-600"
           >
-            <IconX className="text-primary-900"/>
+            <IconX/>
           </button>
         )}
 

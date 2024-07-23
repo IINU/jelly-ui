@@ -15,7 +15,7 @@ type Props = {
 
 export function InsightsDateNavigator({ heading, title, subtitle, back, forward, backDisabled, forwardDisabled }: Props) {
   return (
-    <div className="w-full flex space-x-3 items-center bg-white p-3 border-b border-primary-200">
+    <div className="jui-w-full jui-flex jui-space-x-3 jui-items-center jui-bg-white jui-p-3 jui-border-b jui-border-primary-200">
       <Button
         style="secondary"
         disabled={backDisabled}
@@ -23,7 +23,7 @@ export function InsightsDateNavigator({ heading, title, subtitle, back, forward,
         icon={IconChevronLeft}
       />
 
-      <div className="flex-1 flex flex-col items-center space-y-1 text-primary-900">
+      <div className="jui-flex-1 jui-flex jui-flex-col jui-items-center jui-space-y-1 jui-text-primary-900">
         <Typography style="body2">{heading}</Typography>
         <Typography style="h4">{title}</Typography>
         {subtitle}

@@ -64,8 +64,8 @@ export function InsightsLineChart({ data }: Props) {
     <>
       <InsightsTooltip/>
 
-      <div className="py-6 bg-white flex justify-center">
-        <svg className="w-80 h-64">
+      <div className="jui-py-6 jui-bg-white jui-flex jui-justify-center">
+        <svg className="jui-w-80 jui-h-64">
           {/* Axes */}
           <line
             x1={xPadding + 6}

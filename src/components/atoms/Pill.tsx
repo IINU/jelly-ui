@@ -10,14 +10,14 @@ type Props = {
 }
 
 export function Pill({ label, onClick, variant, className = '' }: Props) {
-  const baseClass = 'h-[1.25rem] px-[0.6875rem] rounded-full inline-flex items-center justify-center border'
-  const clickable = onClick ? 'cursor-pointer' : ''
+  const baseClass = 'jui-h-[1.25rem] jui-px-[0.6875rem] jui-rounded-full jui-inline-flex jui-items-center jui-justify-center jui-border'
+  const clickable = onClick ? 'jui-cursor-pointer' : ''
 
   const variantClasses: Record<PillVariant, string> = {
-    primary: 'bg-primary-900 border-primary-900 text-white',
-    success: 'bg-success-200 border-success-200 text-primary-900',
-    secondary: 'bg-primary-200 border-primary-200 text-primary-900',
-    outlined: 'bg-transparent border-primary-400 text-primary-900'
+    primary: 'jui-bg-primary-900 jui-border-primary-900 jui-text-white',
+    success: 'jui-bg-success-200 jui-border-success-200 jui-text-primary-900',
+    secondary: 'jui-bg-primary-200 jui-border-primary-200 jui-text-primary-900',
+    outlined: 'jui-bg-transparent jui-border-primary-400 jui-text-primary-900'
   }
 
   return (
@@ -25,7 +25,7 @@ export function Pill({ label, onClick, variant, className = '' }: Props) {
       className={`${baseClass} ${variantClasses[variant]} ${clickable} ${className}`}
       onClick={onClick}
     >
-      <p className="font-rubik text-xs font-medium">{label}</p>
+      <p className="jui-font-rubik jui-text-xs jui-font-medium">{label}</p>
     </div>
   )
 }

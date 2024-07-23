@@ -50,20 +50,20 @@ export function AppLayout({
   const [currentNavButton, setCurrentNavButton] = useState(navButtons[0])
 
   return (
-    <div className="w-full h-full flex flex-col">
-      <div className="h-16 w-full bg-white flex justify-between px-4 border-b border-primary-200">
+    <div className="jui-w-full jui-h-full jui-flex jui-flex-col">
+      <div className="jui-h-16 jui-w-full jui-bg-white jui-flex jui-justify-between jui-px-4 jui-border-b jui-border-primary-200">
         {state === 'homescreen' && (
-          <div className="flex items-center space-x-2 cursor-pointer">
-            <IconSelector className="text-secondary-400"/>
+          <div className="jui-flex jui-items-center jui-space-x-2 jui-cursor-pointer">
+            <IconSelector className="jui-text-secondary-400"/>
 
             <div>
               {title && (
-                <Typography className="text-primary-900" style="subtitle1">
+                <Typography className="jui-text-primary-900" style="subtitle1">
                   {title}
                 </Typography>
               )}
 
-              <Typography className="text-secondary-400" style="subtitle1">
+              <Typography className="jui-text-secondary-400" style="subtitle1">
                 Soho London
               </Typography>
             </div>
@@ -71,36 +71,36 @@ export function AppLayout({
         )}
 
         {state === 'backscreen' && (
-          <div className="flex items-center space-x-1 cursor-pointer">
-            <IconArrowLeft className="text-primary-900"/>
+          <div className="jui-flex jui-items-center jui-space-x-1 jui-cursor-pointer">
+            <IconArrowLeft className="jui-text-primary-900"/>
 
-            <Typography className="text-primary-900" style="subtitle1">
+            <Typography className="jui-text-primary-900" style="subtitle1">
               {title}
             </Typography>
           </div>
         )}
 
         {state === 'tabbed' && (
-          <div className="flex items-center space-x-2">
-            <Typography className="text-primary-900" style="h6">
+          <div className="jui-flex jui-items-center jui-space-x-2">
+            <Typography className="jui-text-primary-900" style="h6">
               {title || 'Cookbook'}
             </Typography>
           </div>
         )}
 
         {state === 'title' && (
-          <div className="flex items-center space-x-2">
-            <Typography className="text-primary-900" style="h6">
+          <div className="jui-flex jui-items-center jui-space-x-2">
+            <Typography className="jui-text-primary-900" style="h6">
               {title || 'Screen Title'}
             </Typography>
           </div>
         )}
 
-        <div className="flex items-center">
+        <div className="jui-flex jui-items-center">
           {state === 'homescreen' && !actionButton && (
             <ProfilePicture
               src="https://iinu-pictures-production.s3.eu-west-2.amazonaws.com/profile-pictures/remy.png"
-              className="w-[2.5rem] h-[2.5rem]"
+              className="!jui-w-[2.5rem] !jui-h-[2.5rem]"
             />
           )}
 
@@ -115,11 +115,11 @@ export function AppLayout({
       </div>
 
       {state === 'tabbed' && (
-        <div className="w-full bg-primary-50 flex shadow-medium text-center cursor-pointer">
+        <div className="jui-w-full jui-bg-primary-50 jui-flex jui-shadow-medium jui-text-center jui-cursor-pointer">
           {tabs.map((tab, index) => (
             <div
               key={index}
-              className={`w-full border-b-[3px] py-3 ${index === activeTab ? 'border-primary-900' : 'border-primary-200'}`}
+              className={`jui-w-full jui-border-b-[3px] jui-py-3 ${index === activeTab ? 'jui-border-primary-900' : 'jui-border-primary-200'}`}
             >
               <Typography style="button">{tab}</Typography>
             </div>
@@ -129,14 +129,14 @@ export function AppLayout({
 
       <div id="second-nav"></div>
 
-      <div className="flex-1 overflow-y-auto bg-primary-50 flex justify-center">
-        <div className="w-full max-w-[56rem]">
+      <div className="jui-flex-1 jui-overflow-y-auto jui-bg-primary-50 jui-flex jui-justify-center">
+        <div className="jui-w-full jui-max-w-[56rem]">
           {children}
         </div>
       </div>
 
       {!!bottomContent && (
-        <div className="py-4 px-2 space-x-2 flex border-t border-primary-200 bg-white">
+        <div className="jui-py-4 jui-px-2 jui-space-x-2 jui-flex jui-border-t jui-border-primary-200 jui-bg-white">
           {bottomContent}
         </div>
       )}

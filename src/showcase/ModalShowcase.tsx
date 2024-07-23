@@ -15,7 +15,7 @@ export function ModalShowcase<T>({ component: Component, props }: Props<T>) {
 
   return (
     <AppLayout state="homescreen">
-      <div className="p-4">
+      <div className="jui-p-4">
         <Component
           open={open}
           onClose={() => setOpen(false)}

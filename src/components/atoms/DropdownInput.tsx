@@ -90,10 +90,10 @@ export function DropdownInput<T>({
   }
 
   const baseClass = disabled
-    ? 'w-full bg-primary-100 text-base font-lato rounded-lg'
-    : 'w-full bg-white text-base font-lato rounded-lg'
+    ? 'jui-w-full jui-bg-primary-100 jui-text-base jui-font-lato jui-rounded-lg'
+    : 'jui-w-full jui-bg-white jui-text-base jui-font-lato jui-rounded-lg'
 
-  const borderClass = error ? 'border-2 border-error-400' : 'border-2 border-primary-100'
+  const borderClass = error ? 'jui-border-2 jui-border-error-400' : 'jui-border-2 jui-border-primary-100'
 
   if (loading) {
     Icon = IconLoader2
@@ -136,13 +136,13 @@ export function DropdownInput<T>({
   const dropdownPosition = useDropdownPosition(wrapperRef, dropdownRef, open)
 
   return (
-    <div ref={wrapperRef} className="w-full space-y-1 relative">
-      <div className={`flex w-full ${baseClass} ${borderClass} ${className}`}>
+    <div ref={wrapperRef} className="jui-w-full jui-space-y-1 jui-relative">
+      <div className={`jui-flex jui-w-full ${baseClass} ${borderClass} ${className}`}>
         {searchable ? (
           <input
             name={name}
             type="text"
-            className="pl-3 py-2 text-base rounded w-full text-ellipsis overflow-hidden whitespace-nowrap focus:outline-0 focus-visible:outline-0 placeholder:text-primary-600"
+            className="jui-pl-3 jui-py-2 jui-text-base jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600"
             placeholder={placeholder}
             value={search}
             onFocus={() => {
@@ -153,7 +153,7 @@ export function DropdownInput<T>({
           />
         ) : (
           <div
-            className={`pl-3 py-2 rounded w-full text-ellipsis overflow-hidden whitespace-nowrap`}
+            className={`jui-pl-3 jui-py-2 jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap`}
             onClick={() => {
               if (disabled) return
               setOpen(true)
@@ -161,7 +161,7 @@ export function DropdownInput<T>({
           >
             <Typography
               style="body1"
-              className={`w-full text-ellipsis overflow-hidden whitespace-nowrap ${inputValue && !open ? 'text-primary-900' : 'text-primary-600'}`}
+              className={`jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap ${inputValue && !open ? 'jui-text-primary-900' : 'jui-text-primary-600'}`}
             >
               {
                 inputValue && !open
@@ -178,7 +178,7 @@ export function DropdownInput<T>({
 
         {Icon && (
           <div
-            className={`flex items-center pr-2 ${disabled ? '' : 'cursor-pointer'}`}
+            className={`jui-flex jui-items-center jui-pr-2 ${disabled ? '' : 'jui-cursor-pointer'}`}
             onClick={() => {
               if (disabled) return
               setInputValue(null)
@@ -186,7 +186,7 @@ export function DropdownInput<T>({
               setOpen(!open)
             }}
           >
-            <Icon className={`w-6 h-6 text-primary-900 ${loading ? 'animate-spin' : ''}`}/>
+            <Icon className={`jui-w-6 jui-h-6 jui-text-primary-900 ${loading ? 'jui-animate-spin' : ''}`}/>
           </div>
         )}
       </div>
@@ -206,8 +206,8 @@ export function DropdownInput<T>({
       )}
 
       {error && (
-        <div className="text-left px-2">
-          <Typography style="caption" className="text-error-400">
+        <div className="jui-text-left jui-px-2">
+          <Typography style="caption" className="jui-text-error-400">
             {error}
           </Typography>
         </div>

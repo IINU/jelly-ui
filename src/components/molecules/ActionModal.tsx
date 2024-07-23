@@ -18,29 +18,29 @@ type Props = {
 
 export function ActionModal({ open, onClose, actions }: Props) {
   return (
-    <Modal open={open} onClose={onClose} className="!p-0" hideCloseButton>
+    <Modal open={open} onClose={onClose} className="!jui-p-0" hideCloseButton>
       {actions.map(({ onClick, title, subtitle, icon: Icon }, index) => (
         <div
           key={index}
           onClick={onClick}
-          className="px-3 py-4 flex space-x-2 border-t border-primary-100 first:border-none cursor-pointer"
+          className="jui-px-3 jui-py-4 jui-flex jui-space-x-2 jui-border-t jui-border-primary-100 first:jui-border-none jui-cursor-pointer"
         >
-          <div className="flex items-center">
-            <Icon className="text-primary-900"/>
+          <div className="jui-flex jui-items-center">
+            <Icon className="jui-text-primary-900"/>
           </div>
 
-          <div className="flex-1 flex flex-col justify-center">
-            <Typography style="subtitle1" className="text-primary-900">
+          <div className="jui-flex-1 jui-flex jui-flex-col jui-justify-center">
+            <Typography style="subtitle1" className="jui-text-primary-900">
               {title}
             </Typography>
 
-            <Typography style="subtitle2" className="text-primary-400">
+            <Typography style="subtitle2" className="jui-text-primary-400">
               {subtitle}
             </Typography>
           </div>
 
-          <div className="flex items-center">
-            <IconChevronRight className="text-primary-400"/>
+          <div className="jui-flex jui-items-center">
+            <IconChevronRight className="jui-text-primary-400"/>
           </div>
         </div>
       ))}

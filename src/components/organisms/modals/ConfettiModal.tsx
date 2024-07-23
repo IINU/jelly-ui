@@ -58,7 +58,7 @@ export function ConfettiModal({ open, onClose }: Props) {
   return (
     <>
       {showConfetti && (
-        <div className="fixed z-20 w-screen h-screen top-0 left-0 pointer-events-none">
+        <div className="jui-fixed jui-z-20 jui-w-screen jui-h-screen jui-top-0 jui-left-0 jui-pointer-events-none">
           <Confetti
             numberOfPieces={numberOfPieces}
             width={windowDimensions.width}
@@ -68,14 +68,14 @@ export function ConfettiModal({ open, onClose }: Props) {
       )}
 
       <Modal open={open} onClose={onClose}>
-        <div className="space-y-8">
-          <div className="flex flex-col items-center w-full">
-            <img src={imageSrc} alt="Trophy" className="w-52"/>
+        <div className="jui-space-y-8">
+          <div className="jui-flex jui-flex-col jui-items-center jui-w-full">
+            <img src={imageSrc} alt="Trophy" className="jui-w-52"/>
 
-            <div className="text-center space-y-2">
-              <Typography style="h6">You rock!</Typography>
+            <div className="jui-text-center jui-space-y-2">
+              <Typography style="h6" className="jui-text-primary-900">You rock!</Typography>
 
-              <Typography style="caption">
+              <Typography style="caption" className="jui-text-primary-800">
                 You’ve completed onboarding with flying colours. Here’s your
                 Jelly trophy!
               </Typography>
@@ -84,7 +84,7 @@ export function ConfettiModal({ open, onClose }: Props) {
 
           <Button
             onClick={handleButtonClick}
-            className="w-full"
+            className="jui-w-full"
             label="Where's the party?"
           />
         </div>

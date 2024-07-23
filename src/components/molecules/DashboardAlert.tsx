@@ -15,32 +15,32 @@ export function DashboardAlert({
   onClick,
   icon: Icon = IconAlertTriangle
 }: Props) {
-  const containerPadding = 'py-4 pl-3 pr-2'
-  const containerBase = `bg-white flex justify-between w-full rounded-lg shadow-low space-x-2 cursor-pointer`
+  const containerPadding = 'jui-py-4 jui-pl-3 jui-pr-2'
+  const containerBase = `jui-bg-white jui-flex jui-justify-between jui-w-full jui-rounded-lg jui-shadow-low jui-space-x-2 jui-cursor-pointer`
 
   return (
     <div
       className={`${containerBase} ${containerPadding}`}
       onClick={onClick}
     >
-      <div className="flex items-center">
+      <div className="jui-flex jui-items-center">
         <Icon/>
       </div>
 
-      <div className="flex items-center flex-1">
-        <div className="flex flex-col flex-1 justify-center text-left">
-          <Typography style="subtitle1" className="text-primary-900">
+      <div className="jui-flex jui-items-center jui-flex-1">
+        <div className="jui-flex jui-flex-col jui-flex-1 jui-justify-center jui-text-left">
+          <Typography style="subtitle1" className="jui-text-primary-900">
             {title}
           </Typography>
 
-          <Typography style="subtitle2" className="text-primary-400">
+          <Typography style="subtitle2" className="jui-text-primary-400">
             {subtitle}
           </Typography>
         </div>
       </div>
 
-      <div className="flex items-center space-x-1">
-        <IconChevronRight className="text-primary-600"/>
+      <div className="jui-flex jui-items-center jui-space-x-1">
+        <IconChevronRight className="jui-text-primary-600"/>
       </div>
     </div>
   )

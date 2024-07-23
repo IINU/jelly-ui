@@ -10,14 +10,14 @@ type Props = {
 
 export function Typography({ style = 'body1', children, className = '' }: Props) {
   const styled: Record<TypographyStyle, string> = {
-    subtitle1: 'font-rubik text-base font-medium leading-5',
-    subtitle2: 'font-rubik text-base font-normal leading-4',
-    body1: 'font-lato text-base font-normal',
-    body2: 'font-lato text-sm font-normal leading-[1.125rem]',
-    caption: 'font-lato text-sm font-bold leading-5',
-    button: 'font-rubik text-sm font-medium',
-    h4: 'font-rubik text-[2rem] font-medium leading-8',
-    h6: 'font-rubik text-[1.25rem] font-medium',
+    subtitle1: 'jui-font-rubik jui-text-base jui-font-medium jui-leading-[1.3125rem]',
+    subtitle2: 'jui-font-rubik jui-text-base jui-font-normal jui-leading-4',
+    body1: 'jui-font-lato jui-text-base jui-font-normal',
+    body2: 'jui-font-lato jui-text-sm jui-font-normal jui-leading-[1.125rem]',
+    caption: 'jui-font-lato jui-text-sm jui-font-bold jui-leading-5',
+    button: 'jui-font-rubik jui-text-sm jui-font-medium',
+    h4: 'jui-font-rubik jui-text-[2rem] jui-font-medium jui-leading-8',
+    h6: 'jui-font-rubik jui-text-[1.25rem] jui-font-medium',
   }
 
   return (

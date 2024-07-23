@@ -8,8 +8,8 @@ export function OnboardingShowcase<
   T extends ComponentType<any>
 >({ component: Component, ...props }: Props<T>) {
   return (
-    <div className="min-h-full p-4 flex justify-center items-center">
-      <div className="max-w-96 w-full">
+    <div className="jui-min-h-full jui-p-4 jui-flex jui-justify-center jui-items-center">
+      <div className="jui-max-w-96 jui-w-full">
         <Component {...props} />
       </div>
     </div>

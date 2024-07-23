@@ -65,11 +65,13 @@ export function AddNoteModal<T>({
         onClose()
       }}
     >
-      <div className="space-y-12">
-        <div className="space-y-6">
-          <Typography style="h6">{title}</Typography>
+      <div className="jui-space-y-12">
+        <div className="jui-space-y-6">
+          <Typography style="h6" className="jui-text-primary-900">
+            {title}
+          </Typography>
 
-          <div className="space-y-2.5">
+          <div className="jui-space-y-2.5">
             <Notes
               notes={notes}
               keyExtractor={keyExtractor}
@@ -78,8 +80,8 @@ export function AddNoteModal<T>({
               typeExtractor={typeExtractor}
             />
 
-            <div className="space-y-2">
-              <Typography style="caption" className="text-primary-800">
+            <div className="jui-space-y-2">
+              <Typography style="caption" className="jui-text-primary-800">
                 #{notes.length + 1}
               </Typography>
 
@@ -97,7 +99,7 @@ export function AddNoteModal<T>({
           onClick={handleButtonClick}
           disabled={!note.trim() || loading}
           loading={loading}
-          className="w-full"
+          className="jui-w-full"
           label="Submit"
         />
       </div>

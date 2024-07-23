@@ -45,8 +45,8 @@ export function KitchenSetupShowcase() {
 
   return (
     <AppLayout state="homescreen">
-      <div className="min-h-full p-4 flex justify-center items-center">
-        <div className="max-w-[32rem] w-full">
+      <div className="jui-min-h-full jui-p-4 jui-flex jui-justify-center jui-items-center">
+        <div className="jui-max-w-[32rem] jui-w-full">
           <ConfettiModal
             open={showModal}
             onClose={() => setShowModal(false)}

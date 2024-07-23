@@ -55,12 +55,12 @@ export function PeriodSelector<T>({
       />
 
       <div
-        className="py-2 text-secondary-400 cursor-pointer flex justify-center bg-primary-50 "
+        className="jui-py-2 jui-text-secondary-400 jui-cursor-pointer jui-flex jui-justify-center jui-bg-primary-50"
         onClick={() => setShowModal(true)}
       >
-        <div className="flex text-center justify-center space-x-1 w-full">
-          <div className="flex space-x-1 items-center min-w-0 px-2">
-            <Typography style="button" className="capitalize flex-1 text-ellipsis overflow-hidden whitespace-nowrap">
+        <div className="jui-flex jui-text-center jui-justify-center jui-space-x-1 jui-w-full">
+          <div className="jui-flex jui-space-x-1 jui-items-center jui-min-w-0 jui-px-2">
+            <Typography style="button" className="jui-capitalize jui-flex-1 jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap">
               {labelExtractor(period)}
             </Typography>
 

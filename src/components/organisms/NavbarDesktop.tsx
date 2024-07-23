@@ -16,12 +16,12 @@ export function NavbarDesktop<T>(
 ) {
   return (
     <div
-      className="flex justify-center h-16 bg-primary-900 z-10 shadow-medium"
+      className="jui-flex jui-justify-center jui-h-16 jui-bg-primary-900 jui-z-10 jui-shadow-medium"
     >
-      <div className="max-w-[56rem] w-full flex items-center justify-between">
+      <div className="jui-max-w-[56rem] jui-w-full jui-flex jui-items-center jui-justify-between">
         <JellyLogoInverted/>
 
-        <div className="flex justify-between max-w-[32rem] w-full">
+        <div className="jui-flex jui-justify-between jui-max-w-[32rem] jui-w-full">
           {tabs.map(tab => (
             <NavBarButtonDesktop
               key={tabToId(tab)}

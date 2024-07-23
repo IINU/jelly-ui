@@ -20,7 +20,7 @@ export function Notes<T>({
   }
 
   return (
-    <div className="space-y-2.5">
+    <div className="jui-space-y-2.5">
       {notes.map((n, i) => (
         <Note
           key={keyExtractor(n, i)}

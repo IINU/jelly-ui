@@ -83,26 +83,27 @@ export function ProfilePicturePanel({
   }
 
   return (
-    <div className="shadow w-full rounded-md">
-      <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
+    <div className="jui-shadow jui-w-full jui-rounded-md">
+      <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
         <JellyLogoPrimary/>
       </div>
 
-      <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-6 w-full">
-          <Typography style="h6">Choose a profile picture</Typography>
+      <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
+          <Typography style="h6" className="jui-text-primary-900">
+            Choose a profile picture
+          </Typography>
 
           <input
             ref={fileInputRef}
             type="file"
             onChange={handleFileSelect}
-            className="hidden"
+            className="jui-hidden"
           />
 
-          <div className="space-y-4">
-            <div className="flex justify-center">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-2">
-
+          <div className="jui-space-y-4">
+            <div className="jui-flex jui-justify-center">
+              <div className="jui-grid jui-grid-cols-2 jui-gap-y-4 jui-gap-x-2">
 
                 {uploaded ? (
                   <ProfilePicture
@@ -128,21 +129,21 @@ export function ProfilePicturePanel({
           </div>
 
           {errors?.image && (
-            <div className="text-left px-2">
-              <Typography style="caption" className="text-error-400">
+            <div className="jui-text-left jui-px-2">
+              <Typography style="caption" className="jui-text-error-400">
                 {errors.image}
               </Typography>
             </div>
           )}
         </div>
 
-        <div className="flex flex-col space-y-2 w-full">
+        <div className="jui-flex jui-flex-col jui-space-y-2 jui-w-full">
           <Button
             style="primary"
             onClick={ctaClicked}
             disabled={loading || selected === null}
             label="Ready For Service"
-            className="w-full"
+            className="jui-w-full"
           />
         </div>
       </div>

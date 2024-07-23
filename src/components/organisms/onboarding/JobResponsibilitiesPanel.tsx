@@ -48,24 +48,26 @@ export function JobResponsibilitiesPanel<T>({
   }
 
   return (
-    <div className="shadow w-full rounded-md">
-      <div className="rounded-t-md bg-white p-4 flex flex-col items-center justify-center">
+    <div className="jui-shadow jui-w-full jui-rounded-md">
+      <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
         <JellyLogoPrimary />
       </div>
 
-      <div className="flex flex-col items-center space-y-8 rounded-b-md bg-primary-50 px-4 py-8 text-center">
-        <div className="flex flex-col space-y-6 w-full">
-          <div className="flex flex-col space-y-2">
-            <Typography style="h6">Tell us about your work</Typography>
+      <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
+          <div className="jui-flex jui-flex-col jui-space-y-2">
+            <Typography style="h6" className="jui-text-primary-900">
+              Tell us about your work
+            </Typography>
 
-            <Typography style="caption" className="text-primary-600">
+            <Typography style="caption" className="jui-text-primary-600">
               Select all the areas of responsibility that apply to you.
             </Typography>
           </div>
 
-          <div className="flex flex-col">
+          <div className="jui-flex jui-flex-col">
             {responsibilities.map((responsibility, index) => (
-              <div key={index} className="flex justify-between items-center p-3 border-b border-primary-100 w-full">
+              <div key={index} className="jui-flex jui-justify-between jui-items-center jui-p-3 jui-border-b jui-border-primary-100 jui-w-full">
                 <Typography style="caption">
                   {getText(responsibility.item)}
                 </Typography>
@@ -80,8 +82,8 @@ export function JobResponsibilitiesPanel<T>({
           </div>
 
           {errors?.responsibilities && (
-            <div className="text-left px-2">
-              <Typography style="caption" className="text-error-400">
+            <div className="jui-text-left jui-px-2">
+              <Typography style="caption" className="jui-text-error-400">
                 {errors.responsibilities}
               </Typography>
             </div>
@@ -93,7 +95,7 @@ export function JobResponsibilitiesPanel<T>({
           onClick={ctaClicked}
           disabled={loading || responsibilities.every(r => !r.isChecked)}
           label="Continue"
-          className="w-full"
+          className="jui-w-full"
         />
       </div>
     </div>

@@ -41,21 +41,21 @@ export function BaseInput({
     Icon = IconLoader2
   }
 
-  const padding = LeftIcon ? 'py-2 pr-3 pl-10' : 'py-2 px-3'
-  const baseClass = `w-full placeholder:text-primary-600 text-base font-lato ${padding} rounded-lg focus:outline-0 focus-visible:outline-0`
+  const padding = LeftIcon ? 'jui-py-2 jui-pr-3 jui-pl-10' : 'jui-py-2 jui-px-3'
+  const baseClass = `jui-w-full placeholder:jui-text-primary-600 jui-text-base jui-font-lato ${padding} jui-rounded-lg focus:jui-outline-0 focus-visible:jui-outline-0`
 
   const borderClass = error
-    ? 'border-2 border-error-400'
-    : 'border-2 border-primary-100'
+    ? 'jui-border-2 jui-border-error-400'
+    : 'jui-border-2 jui-border-primary-100'
 
-  const disabledClass = disabled ? 'bg-primary-100' : 'bg-white'
+  const disabledClass = disabled ? 'jui-bg-primary-100' : 'jui-bg-white'
 
   return (
-    <div className="w-full space-y-1">
-      <div className="relative w-full">
+    <div className="jui-w-full jui-space-y-1">
+      <div className="jui-relative jui-w-full">
         {LeftIcon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-            <LeftIcon className="w-6 h-6 text-primary-900"/>
+          <div className="jui-absolute jui-inset-y-0 jui-left-0 jui-pl-3 jui-flex jui-items-center">
+            <LeftIcon className="jui-w-6 jui-h-6 jui-text-primary-900"/>
           </div>
         )}
 
@@ -74,15 +74,15 @@ export function BaseInput({
         />
 
         {Icon && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <Icon className={`w-6 h-6 text-primary-900 ${loading ? 'animate-spin' : ''}`}/>
+          <div className="jui-absolute jui-inset-y-0 jui-right-0 jui-pr-3 jui-flex jui-items-center">
+            <Icon className={`jui-w-6 jui-h-6 jui-text-primary-900 ${loading ? 'jui-animate-spin' : ''}`}/>
           </div>
         )}
       </div>
 
       {error && (
-        <div className="text-left px-2">
-          <Typography style="caption" className="text-error-400">{error}</Typography>
+        <div className="jui-text-left jui-px-2">
+          <Typography style="caption" className="jui-text-error-400">{error}</Typography>
         </div>
       )}
     </div>

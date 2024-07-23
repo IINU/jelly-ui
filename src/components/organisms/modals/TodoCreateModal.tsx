@@ -72,12 +72,12 @@ export function TodoCreateModal<T>({
         clearData()
       }}
     >
-      <div className="space-y-6">
+      <div className="jui-space-y-6">
         <Typography style="h6">Add a new task</Typography>
 
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Typography style="caption" className="text-primary-800">
+        <div className="jui-space-y-4">
+          <div className="jui-space-y-2">
+            <Typography style="caption" className="jui-text-primary-800">
               Title
             </Typography>
 
@@ -89,8 +89,8 @@ export function TodoCreateModal<T>({
             />
           </div>
 
-          <div className="space-y-2">
-            <Typography style="caption" className="text-primary-800">
+          <div className="jui-space-y-2">
+            <Typography style="caption" className="jui-text-primary-800">
               Description (Optional)
             </Typography>
 
@@ -102,8 +102,8 @@ export function TodoCreateModal<T>({
             />
           </div>
 
-          <div className="space-y-2">
-            <Typography style="caption" className="text-primary-800">
+          <div className="jui-space-y-2">
+            <Typography style="caption" className="jui-text-primary-800">
               Assignee (Optional)
             </Typography>
 
@@ -123,7 +123,7 @@ export function TodoCreateModal<T>({
           onClick={ctaClicked}
           loading={loading}
           disabled={!title.trim() || loading}
-          className="w-full mt-4"
+          className="jui-w-full"
           label="Create Task"
         />
       </div>

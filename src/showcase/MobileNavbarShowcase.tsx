@@ -18,8 +18,8 @@ export function MobileNavbarShowcase() {
   const [currentTab, setCurrentTab] = useState(tabs[0])
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 w-full"/>
+    <div className="jui-flex jui-flex-col jui-h-full">
+      <div className="jui-flex-1 jui-w-full"/>
 
       <NavbarMobile<Tab>
         value={currentTab}

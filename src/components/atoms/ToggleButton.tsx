@@ -17,15 +17,15 @@ export function ToggleButton({ value, onChange, size = 'small' }: Props) {
   }, [value])
 
   const buttonSizes: Record<Size, string> = {
-    small: 'h-[1.125rem] w-[1.875rem] px-[0.1875rem]',
-    medium: 'h-6 w-[2.625rem] px-[0.1875rem]',
-    large: 'h-8 w-14 px-1',
+    small: 'jui-h-[1.125rem] jui-w-[1.875rem] jui-px-[0.1875rem]',
+    medium: 'jui-h-6 jui-w-[2.625rem] jui-px-[0.1875rem]',
+    large: 'jui-h-8 jui-w-14 jui-px-1',
   }
 
   const circleSizes: Record<Size, string> = {
-    small: 'h-3 w-3',
-    medium: 'h-[1.125rem] w-[1.125rem]',
-    large: 'h-6 w-6',
+    small: 'jui-h-3 jui-w-3',
+    medium: 'jui-h-[1.125rem] jui-w-[1.125rem]',
+    large: 'jui-h-6 jui-w-6',
   }
 
   const iconSizes: Record<Size, string> = {
@@ -34,9 +34,9 @@ export function ToggleButton({ value, onChange, size = 'small' }: Props) {
     large: '1.25rem',
   }
 
-  const activeClass = checked ? 'bg-success-400' : 'bg-primary-200'
-  const base = 'rounded-full  transition-colors duration-300 ease-in-out shadow-inner'
-  const circleBase = 'rounded-full bg-white block text-success-400 flex items-center justify-center transition-transform duration-300 ease-in-out shadow'
+  const activeClass = checked ? 'jui-bg-success-400' : 'jui-bg-primary-200'
+  const base = 'jui-rounded-full jui-transition-colors jui-duration-300 jui-ease-in-out jui-shadow-inner'
+  const circleBase = 'jui-rounded-full jui-bg-white jui-block jui-text-success-400 jui-flex jui-items-center jui-justify-center jui-transition-transform jui-duration-300 jui-ease-in-out jui-shadow'
 
   return (
     <button
@@ -44,11 +44,11 @@ export function ToggleButton({ value, onChange, size = 'small' }: Props) {
       onClick={() => onChange(!checked)}
       className={`${buttonSizes[size]} ${activeClass} ${base}`}
     >
-      <span className={`${circleSizes[size]} ${circleBase} ${checked ? 'translate-x-full' : ''}`}>
+      <span className={`${circleSizes[size]} ${circleBase} ${checked ? 'jui-translate-x-full' : ''}`}>
         <IconCheck
           size={iconSizes[size]}
           stroke="0.25rem"
-          className={`transition-opacity duration-300 ease-in-out ${checked ? 'opacity-100' : 'opacity-0'}`}
+          className={`jui-transition-opacity jui-duration-300 jui-ease-in-out ${checked ? 'jui-opacity-100' : 'jui-opacity-0'}`}
         />
       </span>
     </button>

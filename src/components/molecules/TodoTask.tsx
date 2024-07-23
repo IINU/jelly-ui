@@ -15,19 +15,19 @@ export function TodoTask({ title, subtitle, completed, onClick, style }: Props) 
     <div
       onClick={onClick}
       style={style}
-      className="py-4 pl-3 pr-2 flex justify-between last:border-none border-b border-primary-200 cursor-pointer first:rounded-t last:rounded-b bg-white shadow-low"
+      className="jui-py-4 jui-pl-3 jui-pr-2 jui-flex jui-justify-between last:jui-border-none jui-border-b jui-border-primary-200 jui-cursor-pointer first:jui-rounded-t last:jui-rounded-b jui-bg-white jui-shadow-low"
     >
-      <div className="flex space-x-2">
-        <div className="flex items-center">
+      <div className="jui-flex jui-space-x-2">
+        <div className="jui-flex jui-items-center">
           {completed
-            ? <IconCircleCheckFilled className="text-success-400"/>
-            : <IconCircle className="text-primary-200"/>}
+            ? <IconCircleCheckFilled className="jui-text-success-400"/>
+            : <IconCircle className="jui-text-primary-200"/>}
         </div>
 
-        <div className="flex flex-col items-start justify-center">
+        <div className="jui-flex jui-flex-col jui-items-start jui-justify-center">
           <Typography
             style="subtitle1"
-            className={`text-primary-900 ${completed ? 'line-through' : ''}`}
+            className={`jui-text-primary-900 jui-capitalize ${completed ? 'jui-line-through' : ''}`}
           >
             {title}
           </Typography>
@@ -35,7 +35,7 @@ export function TodoTask({ title, subtitle, completed, onClick, style }: Props) 
           {subtitle && (
             <Typography
               style="subtitle2"
-              className="text-primary-400"
+              className="jui-text-primary-400 jui-capitalize"
             >
               {subtitle}
             </Typography>
@@ -44,8 +44,8 @@ export function TodoTask({ title, subtitle, completed, onClick, style }: Props) 
       </div>
 
       {!completed && (
-        <div className="flex items-center">
-          <IconChevronRight className="text-primary-400"/>
+        <div className="jui-flex jui-items-center">
+          <IconChevronRight className="jui-text-primary-400"/>
         </div>
       )}
     </div>

@@ -17,9 +17,9 @@ type Props = {
 
 export function DashboardTrendingStack({ title, trendingItems }: Props) {
   return (
-    <div className="bg-white w-full rounded-lg shadow-low text-center">
-      <div className="pt-6 mb-2">
-        <Typography style="subtitle1" className="text-primary-800">
+    <div className="jui-bg-white jui-w-full jui-rounded-lg jui-shadow-low jui-text-center">
+      <div className="jui-pt-6 jui-mb-2">
+        <Typography style="subtitle1" className="jui-text-primary-800">
           {title}
         </Typography>
       </div>
@@ -27,25 +27,25 @@ export function DashboardTrendingStack({ title, trendingItems }: Props) {
       {trendingItems.map(({ title, subtitle, value, trending, onClick }, index) => (
         <div
           key={index}
-          className="flex justify-between p-4 w-full cursor-pointer"
+          className="jui-flex jui-justify-between jui-p-4 jui-w-full jui-cursor-pointer"
           onClick={onClick}
         >
-          <div className="flex items-center flex-1">
-            <div className="flex flex-col flex-1 justify-center text-left">
-              <Typography style="subtitle1" className="text-primary-800">
+          <div className="jui-flex jui-items-center jui-flex-1">
+            <div className="jui-flex jui-flex-col jui-flex-1 jui-justify-center jui-text-left">
+              <Typography style="subtitle1" className="jui-text-primary-800">
                 {title}
               </Typography>
 
-              <Typography style="subtitle2" className="text-primary-600">
+              <Typography style="subtitle2" className="jui-text-primary-600">
                 {subtitle}
               </Typography>
             </div>
           </div>
 
-          <div className="flex items-center space-x-1">
-            <div className="flex items-center flex-1">
+          <div className="jui-flex jui-items-center jui-space-x-1">
+            <div className="jui-flex jui-items-center jui-flex-1">
               <div
-                className={`flex flex-col flex-1 justify-center items-center text-left ${accentToText(trending === 'up' ? 'error' : 'success')}`}
+                className={`jui-flex jui-flex-col jui-flex-1 jui-justify-center jui-items-center jui-text-left ${accentToText(trending === 'up' ? 'error' : 'success')}`}
               >
                 {trending === 'up' ? <IconTrendingUp/> : <IconTrendingDown/>}
 
@@ -53,7 +53,7 @@ export function DashboardTrendingStack({ title, trendingItems }: Props) {
               </div>
             </div>
 
-            <IconChevronRight className="text-primary-400"/>
+            <IconChevronRight className="jui-text-primary-400"/>
           </div>
         </div>
       ))}

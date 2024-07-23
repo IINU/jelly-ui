@@ -11,8 +11,8 @@ type Props = {
 export function StateShowcase({ state: State, disabledText, onClick, layoutState = 'tabbed' }: Props) {
   return (
     <AppLayout state={layoutState}>
-      <div className="min-h-full p-4 flex justify-center">
-        <div className="max-w-96 w-full">
+      <div className="jui-min-h-full jui-p-4 jui-flex jui-justify-center">
+        <div className="jui-max-w-96 jui-w-full">
           <State ctaClicked={onClick} disabledText={disabledText}/>
         </div>
       </div>

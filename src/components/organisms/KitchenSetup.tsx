@@ -42,14 +42,14 @@ export function KitchenSetup<T extends Step>(
   }
 
   return (
-    <div className="w-full max-h-[calc(100vh-12rem)] min-h-48 rounded shadow-medium bg-white flex flex-col">
-      <div className="py-8 px-4 space-y-4">
-        <div className="text-center">
-          <Typography style="body1" className="text-primary-800">
+    <div className="jui-w-full jui-max-h-[calc(100vh-12rem)] jui-min-h-48 jui-rounded jui-shadow-medium jui-bg-white jui-flex jui-flex-col">
+      <div className="jui-py-8 jui-px-4 jui-space-y-4">
+        <div className="jui-text-center">
+          <Typography style="body1" className="jui-text-primary-800">
             {Math.round(percentage * 100)}%
           </Typography>
 
-          <Typography style="caption" className="text-primary-800">
+          <Typography style="caption" className="jui-text-primary-800">
             {getText(percentage)}
           </Typography>
         </div>
@@ -57,7 +57,7 @@ export function KitchenSetup<T extends Step>(
         <ProgressBar percentage={percentage}/>
       </div>
 
-      <div className="overflow-y-scroll flex-1">
+      <div className="jui-overflow-y-scroll jui-flex-1">
         {steps.map((step, index) => (
           <ChecklistStep
             key={getStepKey(step, index)}

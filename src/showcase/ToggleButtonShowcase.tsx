@@ -5,8 +5,8 @@ export function ToggleButtonShowcase() {
   const [checked, setChecked] = useState(false)
 
   return (
-    <div className="flex">
-      <div className="flex flex-col px-16 py-8 bg-black space-y-2">
+    <div className="jui-flex">
+      <div className="jui-w-full jui-flex jui-flex-col jui-items-center jui-py-12 jui-bg-black jui-space-y-4">
         <ToggleButton
           size="small"
           value={checked}
@@ -26,7 +26,7 @@ export function ToggleButtonShowcase() {
         />
       </div>
 
-      <div className="flex flex-col px-16 py-8 bg-white space-y-2">
+      <div className="jui-w-full jui-flex jui-flex-col jui-items-center jui-py-12 jui-bg-white jui-space-y-4">
         <ToggleButton
           size="small"
           value={checked}

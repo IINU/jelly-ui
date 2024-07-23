@@ -7,8 +7,8 @@ type Props = {
 
 export function PillShowcase({ variant, label = 'Invoice' }: Props) {
   return (
-    <div className="w-full flex flex-col">
-      <div className="w-full p-8 bg-white space-y-2">
+    <div className="jui-w-full jui-flex jui-flex-col">
+      <div className="jui-w-full jui-p-8 jui-bg-white jui-space-y-2">
         <Pill variant={variant} label={label} />
       </div>
     </div>

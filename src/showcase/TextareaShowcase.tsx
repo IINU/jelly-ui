@@ -11,8 +11,8 @@ export function TextareaShowcase({ placeholder, error }: Props) {
   const [text, setText] = useState<string>('')
 
   return (
-    <div className="flex">
-      <div className="px-16 py-8 bg-white space-y-2 w-[24rem]">
+    <div className="jui-flex">
+      <div className="jui-px-16 jui-py-8 jui-bg-white jui-space-y-2 jui-w-[24rem]">
         <TextareaInput
           placeholder={placeholder}
           value={text}

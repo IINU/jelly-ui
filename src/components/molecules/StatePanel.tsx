@@ -12,29 +12,29 @@ type Props = {
 
 export function StatePanel({ title, body, imageSrc, ctaClicked, ctaText, disabledText }: Props) {
   return (
-    <div className="w-full shadow-medium rounded text-center">
-      <div className="px-4 py-6 space-y-1 bg-white rounded-t">
-        <Typography style="h6" className="text-primary-900">
+    <div className="jui-w-full jui-shadow-medium jui-rounded jui-text-center">
+      <div className="jui-px-4 jui-py-6 jui-space-y-1 jui-bg-white jui-rounded-t">
+        <Typography style="h6" className="jui-text-primary-900">
           {title}
         </Typography>
 
-        <Typography style="body1" className="text-primary-900">
+        <Typography style="body1" className="jui-text-primary-900">
           {body}
         </Typography>
       </div>
 
-      <img src={imageSrc} alt="feature demo" className="w-full" />
+      <img src={imageSrc} alt="feature demo" className="jui-w-full" />
 
-      <div className="p-4 bg-white rounded-b space-y-4">
+      <div className="jui-p-4 jui-bg-white jui-rounded-b jui-space-y-4">
         <Button
           onClick={ctaClicked}
           disabled={!!disabledText}
           label={ctaText}
-          className="w-full"
+          className="jui-w-full"
         />
 
         {disabledText && (
-          <Typography style="caption" className="text-primary-600">
+          <Typography style="caption" className="jui-text-primary-600">
             {disabledText}
           </Typography>
         )}

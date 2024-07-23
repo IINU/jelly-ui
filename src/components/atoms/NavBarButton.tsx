@@ -9,11 +9,11 @@ type Props = {
 }
 
 export function NavBarButton({ icon: Icon, active, onClick, text }: Props) {
-  const buttonBase = 'flex flex-col items-center space-y-0.5 w-full'
-  const buttonText = active ? 'text-primary-900' : 'text-primary-600'
+  const buttonBase = 'jui-flex jui-flex-col jui-items-center jui-space-y-0.5 jui-w-full'
+  const buttonText = active ? 'jui-text-primary-900' : 'jui-text-primary-600'
 
-  const accentBarBase = 'w-1/3 rounded-full h-1'
-  const accentBarBg = active ? 'bg-tertiary-400' : 'bg-white'
+  const accentBarBase = 'jui-w-1/3 jui-rounded-full jui-h-1'
+  const accentBarBg = active ? 'jui-bg-tertiary-400' : 'jui-bg-white'
 
   return (
     <button onClick={onClick} className={`${buttonBase} ${buttonText}`}>

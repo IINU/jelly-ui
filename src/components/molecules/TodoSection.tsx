@@ -9,8 +9,8 @@ type Props = {
 
 export function TodoSection({ title, children, style }: Props) {
   return (
-    <div className="space-y-6" style={style}>
-      <Typography style="subtitle2" className="text-primary-800">
+    <div className="jui-space-y-6" style={style}>
+      <Typography style="subtitle2" className="jui-text-primary-800">
         {title}
       </Typography>
 

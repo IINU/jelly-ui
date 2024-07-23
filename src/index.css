@@ -24,7 +24,7 @@
 }
 
 @layer utilities {
-    .pb-safe {
+    .jui-pb-safe {
         padding-bottom: env(safe-area-inset-bottom);
     }
 }

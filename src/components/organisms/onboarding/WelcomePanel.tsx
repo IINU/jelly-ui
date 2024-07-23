@@ -49,32 +49,32 @@ export function WelcomePanel({ next, loading, loginLinkClicked }: Props) {
   }
 
   return (
-    <div className="shadow w-full rounded-md h-[34rem] flex flex-col">
-      <div className="rounded-t-md bg-white p-4 flex justify-center">
+    <div className="jui-shadow jui-w-full jui-rounded-md jui-h-[34rem] jui-flex jui-flex-col">
+      <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-justify-center">
         <JellyLogoPrimary/>
       </div>
 
-      <div className="flex flex-col items-center justify-between rounded-b-md bg-primary-50 px-4 py-8 text-center flex-1">
+      <div className="jui-flex jui-flex-col jui-items-center jui-justify-between jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center jui-flex-1">
         {stages[stage].copy}
 
-        <div className="flex flex-col items-center space-y-8 w-full">
-          <div className="flex space-x-2">
+        <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-w-full">
+          <div className="jui-flex jui-space-x-2">
             {stages.map((_, i) =>
               <Dot key={i} active={stage === i} onClick={() => setStage(i)}/>)}
           </div>
 
-          <div className="flex flex-col space-y-4 w-full">
+          <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
             <Button
               style="primary"
               onClick={ctaClicked}
               disabled={loading}
               label={stages[stage].button}
-              className="w-full"
+              className="jui-w-full"
             />
 
             {loginLinkClicked && (
-              <div className="flex justify-center space-x-1">
-                <Typography style="caption" className="text-primary-600">
+              <div className="jui-flex jui-justify-center jui-space-x-1">
+                <Typography style="caption" className="jui-text-primary-600">
                   Already registered?
                 </Typography>
 

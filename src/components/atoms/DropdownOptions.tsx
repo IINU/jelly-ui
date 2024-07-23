@@ -59,16 +59,16 @@ export function DropdownOptions<T>({
 
   function getBorderColour(i: number, option: T): string {
     if (!selectedOption || optionToId(option) !== optionToId(selectedOption)) {
-      return i === focusedIndex ? 'border-primary-100' : 'border-white'
+      return i === focusedIndex ? 'jui-border-primary-100' : 'jui-border-white'
     }
 
-    return 'border-primary-900'
+    return 'jui-border-primary-900'
   }
 
   return (
     <div
       ref={dropdownRef}
-      className="fixed max-h-44 overflow-y-auto bg-white rounded-md shadow-lg text-left z-50"
+      className="jui-fixed jui-max-h-44 jui-overflow-y-auto jui-bg-white jui-rounded-md jui-shadow-lg jui-text-left jui-z-50"
       style={{
         top: dropdownPosition === 'top'
           ? (wrapperRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY - (dropdownRef.current?.offsetHeight ?? 0)
@@ -82,7 +82,7 @@ export function DropdownOptions<T>({
         <div
           key={optionToId(option)}
           ref={(el) => (optionRefs.current[index] = el)}
-          className={`pl-3 pr-4 py-2 border-l-4 cursor-pointer focus:outline-0 focus-visible:outline-0 ${focusedIndex === index ? 'bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
+          className={`jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 ${focusedIndex === index ? 'jui-bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
           onClick={() => handleOptionClick(option)}
           onMouseEnter={() => setFocusedIndex(index)}
           tabIndex={0}

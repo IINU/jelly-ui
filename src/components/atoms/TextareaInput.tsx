@@ -31,17 +31,17 @@ export function TextareaInput({
     Icon = IconLoader2
   }
 
-  const baseClass = 'w-full placeholder:text-primary-600 text-base font-lato px-3 py-2 rounded-lg focus:outline-0 focus-visible:outline-0'
+  const baseClass = 'jui-w-full placeholder:jui-text-primary-600 jui-text-base jui-font-lato jui-px-3 jui-py-2 jui-rounded-lg focus:jui-outline-0 focus-visible:jui-outline-0'
 
   const borderClass = error
-    ? 'border-2 border-error-400'
-    : 'border-2 border-primary-100'
+    ? 'jui-border-2 jui-border-error-400'
+    : 'jui-border-2 jui-border-primary-100'
 
-  const disabledClass = disabled ? 'bg-primary-100' : 'bg-white'
+  const disabledClass = disabled ? 'jui-bg-primary-100' : 'jui-bg-white'
 
   return (
-    <div className="w-full space-y-1">
-      <div className="relative w-full flex">
+    <div className="jui-w-full jui-space-y-1">
+      <div className="jui-relative jui-w-full jui-flex">
         <textarea
           name={name}
           disabled={disabled}
@@ -53,15 +53,17 @@ export function TextareaInput({
         />
 
         {Icon && (
-          <div className="absolute inset-y-0 right-0 flex items-start p-3">
-            <Icon className={`w-6 h-6 text-primary-900 ${loading ? 'animate-spin' : ''}`}/>
+          <div className="jui-absolute jui-inset-y-0 jui-right-0 jui-flex jui-items-start jui-p-3">
+            <Icon className={`jui-w-6 jui-h-6 jui-text-primary-900 ${loading ? 'jui-animate-spin' : ''}`}/>
           </div>
         )}
       </div>
 
       {error && (
-        <div className="text-left px-2">
-          <Typography style="caption" className="text-error-400">{error}</Typography>
+        <div className="jui-text-left jui-px-2">
+          <Typography style="caption" className="jui-text-error-400">
+            {error}
+          </Typography>
         </div>
       )}
     </div>
