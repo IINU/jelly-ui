@@ -193,6 +193,7 @@ export function InsightsFlashShowcase() {
       <InsightsListGroup title="By sales">
         {generateFakeFlashData(new Date()).map(data => (
           <InsightsListItem
+            automated={true}
             key={data.date.toString()}
             title={format(data.date, 'd MMMM')}
             subtitle={format(data.date, 'iiii')}
