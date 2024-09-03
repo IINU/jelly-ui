@@ -33,7 +33,7 @@ export function DropdownInput<T>({
   optionToSearchValue,
   onChange,
   error,
-  icon: Icon,
+  icon: Icon = IconSelector,
   loading = false,
   className,
   searchable = true,
@@ -95,13 +95,17 @@ export function DropdownInput<T>({
 
   const borderClass = error ? 'jui-border-2 jui-border-error-400' : 'jui-border-2 jui-border-primary-100'
 
-  if (loading) {
-    Icon = IconLoader2
-  } else if (inputValue !== null && !disabled) {
-    Icon = IconX
-  } else {
-    Icon = IconSelector
-  }
+  const RightIcon = useMemo(() => {
+    if (loading) {
+      return IconLoader2
+    }
+
+    if (inputValue !== null && !disabled) {
+      return IconX
+    }
+
+    return Icon
+  }, [loading, inputValue, disabled, Icon])
 
   // Handle outside click to close the dropdown
   useEffect(() => {
@@ -176,7 +180,7 @@ export function DropdownInput<T>({
           </div>
         )}
 
-        {Icon && (
+        {RightIcon && (
           <div
             className={`jui-flex jui-items-center jui-pr-2 ${disabled ? '' : 'jui-cursor-pointer'}`}
             onClick={() => {
@@ -186,7 +190,7 @@ export function DropdownInput<T>({
               setOpen(!open)
             }}
           >
-            <Icon className={`jui-w-6 jui-h-6 jui-text-primary-900 ${loading ? 'jui-animate-spin' : ''}`}/>
+            <RightIcon className={`jui-w-6 jui-h-6 jui-text-primary-900 ${loading ? 'jui-animate-spin' : ''}`}/>
           </div>
         )}
       </div>
