@@ -58,18 +58,18 @@ export function InsightsListItem({
         className={`jui-bg-white jui-flex jui-justify-between jui-items-center jui-space-x-4 ${className}`}
         onClick={onClick}
       >
-        <div className="jui-flex jui-flex-col jui-items-start jui-justify-center jui-min-w-0 jui-space-y-2">
+        <div className="jui-flex jui-flex-col jui-items-start jui-justify-center jui-space-y-2">
           <div>
             <Typography
               style="subtitle1"
-              className="jui-text-primary-800 jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap jui-w-full"
+              className="jui-text-primary-800 jui-line-clamp-1 jui-flex-1"
             >
               {title}
             </Typography>
 
             <Typography
               style="body2"
-              className="jui-text-primary-600 jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap jui-w-full"
+              className="jui-text-primary-600 jui-line-clamp-1 jui-flex-1"
             >
               {subtitle}
             </Typography>
