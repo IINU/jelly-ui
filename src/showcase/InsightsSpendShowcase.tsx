@@ -130,6 +130,7 @@ export function InsightsSpendShowcase() {
       <InsightsDateNavigator
         heading="July"
         title="£24,021.25"
+        caption="(excl. VAT)"
         subtitle={(
           <div className="jui-flex jui-space-x-1">
             <Typography style="subtitle1">20%</Typography>
