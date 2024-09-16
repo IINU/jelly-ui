@@ -7,6 +7,7 @@ import { Modal } from '../atoms/Modal'
 
 type Props = {
   automated?: boolean
+  overridden?: boolean
   readonly?: boolean
   title: string
   subtitle: string
@@ -19,6 +20,7 @@ type Props = {
 
 export function InsightsListItem({
   automated = false,
+  overridden = false,
   readonly = false,
   title,
   subtitle,
@@ -79,6 +81,17 @@ export function InsightsListItem({
             <Pill
               variant="success"
               label="Automated"
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowModal(true)
+              }}
+            />
+          )}
+
+          {overridden && (
+            <Pill
+              variant="success"
+              label="Overridden"
               onClick={(e) => {
                 e.stopPropagation()
                 setShowModal(true)
