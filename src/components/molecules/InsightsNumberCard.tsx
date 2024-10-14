@@ -12,7 +12,7 @@ type Props = {
 }
 
 export function InsightsNumberCard({ accent, title, data, dataCaption, bottomContent, onClick }: Props) {
-  const base = 'jui-bg-white jui-space-y-2 jui-py-8 jui-w-full jui-text-center sm:jui-border-r jui-border-b jui-border-primary-100 last:jui-border-none'
+  const base = 'jui-bg-white jui-space-y-2 jui-py-8 jui-w-full jui-text-center sm:jui-border-r sm:jui-border-b-0 jui-border-b jui-border-primary-100 last:jui-border-none'
   const pointer = onClick ? 'cursor-pointer' : ''
 
   return (
