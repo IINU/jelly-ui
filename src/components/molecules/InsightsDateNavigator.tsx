@@ -16,7 +16,7 @@ type Props = {
 
 export function InsightsDateNavigator({ heading, title, subtitle, caption, back, forward, backDisabled, forwardDisabled }: Props) {
   return (
-    <div className="jui-w-full jui-flex jui-space-x-3 jui-items-center jui-bg-white jui-p-3 jui-border-b jui-border-primary-200">
+    <div className="jui-w-full jui-flex jui-space-x-3 jui-items-center jui-bg-white jui-p-3 jui-border-b jui-border-primary-100">
       <Button
         style="secondary"
         disabled={backDisabled}

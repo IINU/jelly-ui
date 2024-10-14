@@ -7,7 +7,8 @@ import { InsightsDateNavigator } from '../components/molecules/InsightsDateNavig
 import { InsightsScatterChart } from '../components/molecules/InsightsScatterChart'
 import { Typography } from '../components/atoms/Typography'
 import { Table } from '../components/atoms/Table'
-import { DashboardNumberCard } from '../components/molecules/DashboardNumberCard'
+import { InsightsListGroup } from '../components/molecules/InsightsListGroup'
+import { InsightsNumberCard } from '../components/molecules/InsightsNumberCard'
 
 type DashboardPeriod = {
   id: string
@@ -160,45 +161,36 @@ export function InsightsSalesMixShowcase() {
         forward={() => console.log('hi')}
       />
 
-      <div className="jui-p-4 jui-space-y-4 jui-bg-primary-50">
-        <DashboardNumberCard title="Total Revenue" data="£21,340"/>
-        <DashboardNumberCard title="Total Profit" data="£6,255"/>
+      <div className="jui-bg-white sm:jui-flex jui-flex-none">
+        <InsightsNumberCard title="Total Revenue" data="£21,340"/>
+        <InsightsNumberCard title="Total Profit" data="£6,255"/>
       </div>
 
-      <div className="jui-space-y-4">
-        <div>
-          <div className="jui-px-4 jui-py-2 jui-bg-primary-50">
-            <Typography style="subtitle2" className="jui-text-primary-800">
-              Analytics
-            </Typography>
+      <div>
+        <InsightsListGroup title="Analytics">
+          <div className="jui-bg-white">
+            <InsightsScatterChart<Dish>
+              items={data}
+              profitExtractor={item => item.profit}
+              quantityExtractor={item => item.quantity}
+              tooltipContent={customTooltipContent}
+            />
           </div>
+        </InsightsListGroup>
 
-          <InsightsScatterChart<Dish>
-            items={data}
-            profitExtractor={item => item.profit}
-            quantityExtractor={item => item.quantity}
-            tooltipContent={customTooltipContent}
-          />
-        </div>
-
-        <div>
-          <div className="jui-px-4 jui-bg-primary-50 jui-flex jui-justify-between">
-            <div className="jui-py-2">
-              <Typography style="subtitle2" className="jui-text-primary-800">
-                Data
-              </Typography>
-            </div>
-
-            <div className="jui-flex jui-items-center jui-space-x-1">
-              <Typography style="subtitle2" className="jui-text-secondary-400">
+        <InsightsListGroup
+          title="Data"
+          rightContent={(
+            <div className="jui-flex jui-items-center jui-space-x-1 jui-py-2">
+              <Typography style="button" className="jui-text-secondary-400">
                 Qty. Sold
               </Typography>
 
               <IconSelector className="jui-text-secondary-400" />
             </div>
-          </div>
-
-          <div className="jui-bg-primary-50 jui-p-4">
+          )}
+        >
+          <div className="jui-bg-white jui-p-4">
             <Table
               columns={[
                 {
@@ -260,7 +252,7 @@ export function InsightsSalesMixShowcase() {
               ]}
             />
           </div>
-        </div>
+        </InsightsListGroup>
       </div>
     </AppLayout>
   )
