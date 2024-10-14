@@ -20,6 +20,16 @@ export function formatMoneyShort(value: number): string {
   }
 }
 
+export function formatValueShort(value: number): string {
+  if (value >= 1_000_000) {
+    return `${(value / 1_000_000).toFixed(0)}m`
+  } else if (value >= 1_000) {
+    return `${(value / 1_000).toFixed(0)}k`
+  } else {
+    return `${value}`
+  }
+}
+
 export function formatMoney(value: number): string {
   // Convert the value to a fixed decimal string with at least 2 decimal places
   const formattedValue = value.toFixed(2)
