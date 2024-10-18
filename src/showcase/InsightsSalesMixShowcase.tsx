@@ -186,17 +186,22 @@ export function InsightsSalesMixShowcase() {
                 Qty. Sold
               </Typography>
 
-              <IconSelector className="jui-text-secondary-400" />
+              <IconSelector className="jui-text-secondary-400"/>
             </div>
           )}
         >
-          <div className="jui-bg-white jui-p-4">
+          <div className="jui-bg-white">
             <Table
               columns={[
                 {
                   column: {
-                    title: 'Dish name',
-                    className: 'jui-min-w-48',
+                    title: (
+                      <>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Menu Item</Typography>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Name</Typography>
+                      </>
+                    ),
+                    className: 'jui-min-w-24',
                   },
                   row: {
                     contentExtractor: (item) => item.dishName,
@@ -204,8 +209,14 @@ export function InsightsSalesMixShowcase() {
                 },
                 {
                   column: {
-                    title: 'Qty. Sold',
-                    className: 'jui-min-w-24',
+                    title: (
+                      <>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Qty</Typography>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Sold</Typography>
+                      </>
+                    ),
+                    className: 'jui-min-w-12',
+                    textAlign: 'right',
                   },
                   row: {
                     contentExtractor: (item) => item.qtySold.toLocaleString(),
@@ -214,8 +225,14 @@ export function InsightsSalesMixShowcase() {
                 },
                 {
                   column: {
-                    title: 'GP %',
-                    className: 'jui-min-w-24',
+                    title: (
+                      <>
+                        <Typography style="subtitle1" className="jui-text-primary-800">GP</Typography>
+                        <Typography style="subtitle1" className="jui-text-primary-800">%</Typography>
+                      </>
+                    ),
+                    className: 'jui-min-w-12',
+                    textAlign: 'right',
                   },
                   row: {
                     contentExtractor: (item) => `${(item.gp * 100).toFixed(1)}%`,
@@ -224,8 +241,14 @@ export function InsightsSalesMixShowcase() {
                 },
                 {
                   column: {
-                    title: 'Total gross profit',
-                    className: 'jui-min-w-40',
+                    title: (
+                      <>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Total</Typography>
+                        <Typography style="subtitle1" className="jui-text-primary-800">Gross Profit</Typography>
+                      </>
+                    ),
+                    className: 'jui-min-w-24',
+                    textAlign: 'right',
                   },
                   row: {
                     contentExtractor: (item) => {

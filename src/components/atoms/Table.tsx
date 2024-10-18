@@ -1,9 +1,11 @@
 import { Typography } from './Typography'
+import { ReactNode } from 'react'
 
 type Column = {
   idExtractor?: (index: number) => number | string
-  title: string
+  title: ReactNode
   className?: string
+  textAlign?: 'left' | 'right'
 }
 
 type Row<T> = {
@@ -25,15 +27,15 @@ type Props<T> = {
 export function Table<T>({ columns, rows }: Props<T>) {
   return (
     <div className="jui-overflow-x-auto">
-      <table className="jui-min-w-full jui-table-auto jui-border-collapse jui-border jui-border-gray-200">
+      <table className="jui-min-w-full jui-table-auto jui-border-collapse">
         <thead>
-        <tr className="jui-bg-primary-100 jui-text-left">
+        <tr className="jui-bg-primary-100 jui-text-left jui-whitespace-nowrap">
           {columns.map(({ column }, i) => (
             <th
               key={column.idExtractor ? column.idExtractor(i) : `col-${i}`}
-              className={`jui-px-4 jui-py-2 jui-border jui-border-primary-200 ${column.className ?? ''}`}
+              className={`jui-px-3 jui-py-2 ${column.className ?? ''} ${column.textAlign === 'right' ? 'jui-text-right' : 'jui-text-left'}`}
             >
-              <Typography className="jui-text-primary-900">
+              <Typography style="subtitle1" className="jui-text-primary-900">
                 {column.title}
               </Typography>
             </th>
@@ -43,11 +45,11 @@ export function Table<T>({ columns, rows }: Props<T>) {
 
         <tbody>
         {rows.map((item, i) => (
-          <tr key={`row-${i}`}>
+          <tr key={`row-${i}`} className="jui-border-b jui-border-primary-100 jui-whitespace-nowrap">
             {columns.map(({ row }, j) => (
               <td
                 key={row.idExtractor ? row.idExtractor(item, j) : `row-col-${i}-${j}`}
-                className={`jui-px-4 jui-py-2 jui-border jui-bg-white jui-border-primary-100 ${row.textAlign === 'right' ? 'jui-text-right' : 'jui-text-left'}`}
+                className={`jui-px-3 jui-py-2 jui-bg-white ${row.textAlign === 'right' ? 'jui-text-right' : 'jui-text-left'}`}
               >
                 <Typography className="jui-text-primary-900">
                   {row.contentExtractor(item)}
