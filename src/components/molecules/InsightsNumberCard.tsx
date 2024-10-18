@@ -17,12 +17,14 @@ export function InsightsNumberCard({ accent, title, data, dataCaption, bottomCon
 
   return (
     <div className={`${base} ${pointer}`} onClick={onClick}>
-      <Typography style="subtitle1">{title}</Typography>
+      <Typography style="subtitle1" className="jui-text-primary-800">
+        {title}
+      </Typography>
 
       <div className="jui-w-full">
         <Typography
           style="h4"
-          className={accentToText(accent, 'jui-text-primary-800')}
+          className={accentToText(accent)}
         >
           {data}
         </Typography>
