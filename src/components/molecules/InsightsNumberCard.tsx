@@ -20,7 +20,10 @@ export function InsightsNumberCard({ accent, title, data, dataCaption, bottomCon
       <Typography style="subtitle1">{title}</Typography>
 
       <div className="jui-w-full">
-        <Typography style="h4" className={accentToText(accent)}>
+        <Typography
+          style="h4"
+          className={accentToText(accent, 'jui-text-primary-800')}
+        >
           {data}
         </Typography>
 
