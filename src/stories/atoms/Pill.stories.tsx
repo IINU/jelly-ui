@@ -44,3 +44,10 @@ export const PillGhost: Story = {
     label: 'Invoice'
   },
 }
+
+export const PillWarning: Story = {
+  args: {
+    variant: 'warning',
+    label: 'Invoice'
+  },
+}

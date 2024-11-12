@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react'
 
-export type PillVariant = 'primary' | 'secondary' | 'success' | 'outlined' | 'ghost'
+export type PillVariant = 'primary' | 'secondary' | 'success' | 'outlined' | 'ghost' | 'warning'
 
 type Props = {
   variant: PillVariant
@@ -19,6 +19,7 @@ export function Pill({ label, onClick, variant, className = '' }: Props) {
     secondary: 'jui-bg-primary-200 jui-border-primary-200 jui-text-primary-900',
     outlined: 'jui-bg-transparent jui-border-primary-400 jui-text-primary-900',
     ghost: 'jui-bg-transparent jui-border-transparent jui-text-primary-900',
+    warning: 'jui-bg-tertiary-200 jui-border-tertiary-200 jui-text-primary-900',
   }
 
   return (
