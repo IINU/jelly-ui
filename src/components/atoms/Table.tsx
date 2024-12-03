@@ -10,7 +10,7 @@ type Column = {
 
 type Row<T> = {
   idExtractor?: (item: T, index: number) => number | string
-  contentExtractor: (item: T) => string
+  contentExtractor: (item: T) => ReactNode
   textAlign?: 'left' | 'right'
 }
 
