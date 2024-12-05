@@ -82,6 +82,8 @@ export function InsightsSalesMixShowcase() {
     profit: number
     quantity: number
     productName: string
+    isBest: boolean
+    isWorst: boolean
   }
 
   function generateRandomData(numEntries: number): Dish[] {
@@ -98,13 +100,44 @@ export function InsightsSalesMixShowcase() {
         profit: randomProfit,
         quantity: randomQuantity,
         productName: randomProduct,
+        isBest: false,
+        isWorst: false,
       })
+    }
+
+    if (randomData.length < 2) {
+      return randomData
+    }
+
+    let lowest = Infinity
+    let highest = -Infinity
+    let lowestIndex = null
+    let highestIndex = null
+
+    for (const [i, dish] of randomData.entries()) {
+      if (dish.profit > highest) {
+        highest = dish.profit
+        highestIndex = i
+      }
+
+      if (dish.profit < lowest) {
+        lowest = dish.profit
+        lowestIndex = i
+      }
+    }
+
+    if (lowestIndex) {
+      randomData[lowestIndex].isWorst = true
+    }
+
+    if (highestIndex) {
+      randomData[highestIndex].isBest = true
     }
 
     return randomData
   }
 
-  const data: Dish[] = generateRandomData(40)
+  const data: Dish[] = generateRandomData(20)
 
   const customTooltipContent = (dataPoint: Dish) => {
     return (
@@ -173,6 +206,8 @@ export function InsightsSalesMixShowcase() {
               items={data}
               profitExtractor={item => item.profit}
               quantityExtractor={item => item.quantity}
+              isBestExtractor={item => item.isBest}
+              isWorstExtractor={item => item.isWorst}
               tooltipContent={customTooltipContent}
             />
           </div>
@@ -204,7 +239,7 @@ export function InsightsSalesMixShowcase() {
                     className: 'jui-min-w-24',
                   },
                   row: {
-                    contentExtractor: (item) => item.dishName,
+                    contentExtractor: (item) => item.productName,
                   },
                 },
                 {
@@ -219,7 +254,7 @@ export function InsightsSalesMixShowcase() {
                     textAlign: 'right',
                   },
                   row: {
-                    contentExtractor: (item) => item.qtySold.toLocaleString(),
+                    contentExtractor: (item) => item.quantity.toLocaleString(),
                     textAlign: 'right',
                   },
                 },
@@ -235,7 +270,7 @@ export function InsightsSalesMixShowcase() {
                     textAlign: 'right',
                   },
                   row: {
-                    contentExtractor: (item) => `${(item.gp * 100).toFixed(1)}%`,
+                    contentExtractor: () => `${(0.7 * 100).toFixed(1)}%`,
                     textAlign: 'right',
                   },
                 },
@@ -252,7 +287,7 @@ export function InsightsSalesMixShowcase() {
                   },
                   row: {
                     contentExtractor: (item) => {
-                      return (item.totalGrossProfit / 100).toLocaleString(
+                      return (item.profit / 100).toLocaleString(
                         undefined,
                         { currency: 'GBP', style: 'currency' },
                       )
@@ -261,18 +296,7 @@ export function InsightsSalesMixShowcase() {
                   },
                 },
               ]}
-              rows={[
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-                { dishName: 'Spaghetti Carbonara', qtySold: 20, gp: 0.812, totalGrossProfit: 25775181 },
-              ]}
+              rows={data}
             />
           </div>
         </InsightsListGroup>
