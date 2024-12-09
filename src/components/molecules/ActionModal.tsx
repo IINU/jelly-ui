@@ -7,7 +7,7 @@ type Action = {
   title: string
   subtitle?: string
   onClick: () => void
-  icon: ComponentType<{ className?: string }>
+  icon?: ComponentType<{ className?: string }>
 }
 
 type Props = {
@@ -25,9 +25,11 @@ export function ActionModal({ open, onClose, actions }: Props) {
           onClick={onClick}
           className="jui-px-3 jui-py-4 jui-flex jui-space-x-2 jui-border-t jui-border-primary-100 first:jui-border-none jui-cursor-pointer"
         >
-          <div className="jui-flex jui-items-center">
-            <Icon className="jui-text-primary-900"/>
-          </div>
+          {Icon && (
+            <div className="jui-flex jui-items-center">
+              <Icon className="jui-text-primary-900"/>
+            </div>
+          )}
 
           <div className="jui-flex-1 jui-flex jui-flex-col jui-justify-center">
             <Typography style="subtitle1" className="jui-text-primary-900">
