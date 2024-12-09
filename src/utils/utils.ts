@@ -26,7 +26,7 @@ export function formatValueShort(value: number): string {
   } else if (value >= 1_000) {
     return `${(value / 1_000).toFixed(0)}k`
   } else {
-    return `${value}`
+    return `${Math.round(value * 10) / 10}`
   }
 }
 

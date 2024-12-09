@@ -269,8 +269,6 @@ export function InsightsScatterChart<T>({
               const yPos = yScale(quantityExtractor(item))
               const isBest = isBestExtractor(item)
               const isWorst = isWorstExtractor(item)
-              // const isBest = i === bestIndex
-              // const isWorst = i === worstIndex
 
               return (
                 <g
