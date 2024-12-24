@@ -11,22 +11,30 @@ export function roundValueUp(value: number): number {
 }
 
 export function formatMoneyShort(value: number): string {
-  if (value >= 1_000_000) {
-    return `£${(value / 1_000_000).toFixed(0)}m`
-  } else if (value >= 1_000) {
-    return `£${(value / 1_000).toFixed(0)}k`
-  } else {
-    return `£${value}`
-  }
+  return `£${formatValueShort(value)}`
 }
 
 export function formatValueShort(value: number): string {
-  if (value >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(0)}m`
-  } else if (value >= 1_000) {
-    return `${(value / 1_000).toFixed(0)}k`
+  // Keep track of negative/positive
+  const sign = value < 0 ? '-' : ''
+  const absValue = Math.abs(value)
+
+  // A small helper to strip trailing “.0”
+  function stripTrailingZero(val: string): string {
+    return val.endsWith('.0') ? val.slice(0, -2) : val
+  }
+
+  if (absValue >= 1_000_000) {
+    // Millions
+    const millions = (absValue / 1_000_000).toFixed(1)
+    return `${sign}${stripTrailingZero(millions)}m`
+  } else if (absValue >= 1_000) {
+    // Thousands
+    const thousands = (absValue / 1_000).toFixed(1)
+    return `${sign}${stripTrailingZero(thousands)}k`
   } else {
-    return `${Math.round(value * 10) / 10}`
+    // Less than 1k
+    return `${sign}${absValue}`
   }
 }
 
