@@ -86,7 +86,7 @@ export function InvoiceRuleModal({
               <Typography style="caption" className="jui-text-primary-800">
                 Auto-approve{' '}
                 <span className="jui-font-semibold jui-text-primary-900">IF</span>
-                {' '}invoice total is{' '}
+                {' '}document total is{' '}
                 <span className="jui-font-semibold jui-text-primary-900">LESS THAN</span>
               </Typography>
 
