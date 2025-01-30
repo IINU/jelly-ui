@@ -4,6 +4,7 @@ export function useDropdownPosition(
   wrapperRef: RefObject<HTMLDivElement>,
   dropdownRef: RefObject<HTMLDivElement>,
   open: boolean,
+  spaceBelow: number = 200,
 ) {
   const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom')
 
@@ -14,7 +15,7 @@ export function useDropdownPosition(
         const availableSpaceBelow = window.innerHeight - rect.bottom
         const availableSpaceAbove = rect.top
 
-        if (availableSpaceBelow < 200 && availableSpaceAbove > availableSpaceBelow) {
+        if (availableSpaceBelow < spaceBelow && availableSpaceAbove > availableSpaceBelow) {
           setDropdownPosition('top')
           dropdownRef.current.style.top = `${rect.top + window.scrollY - dropdownRef.current.offsetHeight}px`
         } else {

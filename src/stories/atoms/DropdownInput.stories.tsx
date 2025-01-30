@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { DropdownShowcase } from '../../showcase/DropdownShowcase'
+import { DropdownInputShowcase } from '../../showcase/DropdownInputShowcase'
 
 const meta = {
   title: 'Atoms/Dropdown Input',
-  component: DropdownShowcase,
+  component: DropdownInputShowcase,
   parameters: { layout: 'centered' },
-} satisfies Meta<typeof DropdownShowcase>
+} satisfies Meta<typeof DropdownInputShowcase>
 
 export default meta
 type Story = StoryObj<typeof meta>;

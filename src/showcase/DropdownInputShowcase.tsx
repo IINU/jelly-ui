@@ -33,7 +33,7 @@ const countries: Country[] = [
   },
 ]
 
-export function DropdownShowcase({ error }: Props) {
+export function DropdownInputShowcase({ error }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
