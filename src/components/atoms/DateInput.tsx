@@ -1,14 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  ChangeEvent,
-  FocusEvent
-} from 'react'
+import { ComponentType, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { format, parse, isValid } from 'date-fns'
-import { IconX, IconLoader2, IconCalendarMonth } from '@tabler/icons-react'
+import { format } from 'date-fns'
+import { IconCalendarMonth, IconLoader2, IconX } from '@tabler/icons-react'
 import { Typography } from './Typography'
 import { getOrCreateDivRoot } from '../../utils/utils'
 import { useDropdownPosition } from '../../hooks/useDropdownPosition'
@@ -21,7 +14,7 @@ type DateInputProps = {
   onChange: (value: Date | null) => void
   error?: string
   loading?: boolean
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: ComponentType<{ className?: string }>
   className?: string
   disabled?: boolean
   /** Date format to display in the input field. Defaults to 'MM/dd/yyyy' */
@@ -29,7 +22,6 @@ type DateInputProps = {
 }
 
 export function DateInput({
-  name,
   placeholder = 'Select date',
   value,
   onChange,
@@ -41,8 +33,7 @@ export function DateInput({
   displayFormat = 'dd/MM/yyyy',
 }: DateInputProps) {
   const [open, setOpen] = useState(false)
-  const [inputValue, setInputValue] = useState(value ? format(value, displayFormat) : '')
-  const calendarRoot = getOrCreateDivRoot('date') // Will create/find a div with id="date-root"
+  const calendarRoot = getOrCreateDivRoot('date')
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const calendarRef = useRef<HTMLDivElement | null>(null)
@@ -51,10 +42,7 @@ export function DateInput({
   const [selectedDate, setSelectedDate] = useState<Date | null>(value)
 
   // Keep inputValue up to date when `value` changes externally
-  useEffect(() => {
-    setSelectedDate(value)
-    setInputValue(value ? format(value, displayFormat) : '')
-  }, [value, displayFormat])
+  useEffect(() => setSelectedDate(value), [value])
 
   // Build our container if it doesn't exist
   if (!calendarRef.current) {
@@ -84,6 +72,7 @@ export function DateInput({
         setOpen(false)
       }
     }
+
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
@@ -93,28 +82,10 @@ export function DateInput({
     (date: Date) => {
       setSelectedDate(date)
       onChange(date)
-      setInputValue(format(date, displayFormat))
       setOpen(false)
     },
-    [displayFormat, onChange]
+    [onChange],
   )
-
-  // If user types in the input, we just store it. We'll validate on blur
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value)
-  }
-
-  // On blur, parse the typed value. If valid date => call onChange. If invalid => revert to last known good date
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const parsed = parse(e.target.value, displayFormat, new Date())
-    if (isValid(parsed)) {
-      setSelectedDate(parsed)
-      onChange(parsed)
-    } else {
-      // revert to last known valid date or empty
-      setInputValue(selectedDate ? format(selectedDate, displayFormat) : '')
-    }
-  }
 
   const baseClass = disabled
     ? 'jui-w-full jui-bg-primary-100 jui-text-base jui-font-lato jui-rounded-lg'
@@ -136,19 +107,18 @@ export function DateInput({
     <div ref={wrapperRef} className="jui-w-full jui-space-y-1 jui-relative">
       {/* Input Field */}
       <div className={`jui-flex jui-w-full ${baseClass} ${borderClass} ${className}`}>
-        <input
-          name={name}
-          type="text"
-          className="jui-pl-3 jui-py-2 jui-text-base jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600"
-          placeholder={placeholder}
-          value={inputValue}
-          onFocus={() => {
+        <div
+          className="jui-pl-3 jui-py-2 jui-text-base jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap"
+          onClick={() => {
             if (!disabled) setOpen(true)
           }}
-          onChange={handleInputChange}
-          onBlur={handleBlur}
-          disabled={disabled}
-        />
+        >
+          {selectedDate ? (
+            <p>{format(selectedDate, displayFormat)}</p>
+          ) : (
+            <p className="jui-text-primary-600">{placeholder}</p>
+          )}
+        </div>
 
         {/* Right icon click behavior */}
         <div
@@ -160,7 +130,6 @@ export function DateInput({
             if (selectedDate) {
               // Clear
               setSelectedDate(null)
-              setInputValue('')
               onChange(null)
             } else {
               // Open calendar
@@ -177,17 +146,16 @@ export function DateInput({
       </div>
 
       {/* The Calendar Portal */}
-      {open &&
-        createPortal(
-          <DatePickerCalendar
-            calendarRef={calendarRef}
-            wrapperRef={wrapperRef}
-            dropdownPosition={dropdownPosition}
-            selectedDate={selectedDate}
-            onDateChange={handleDateChange}
-          />,
-          calendarRoot
-        )}
+      {open && createPortal(
+        <DatePickerCalendar
+          calendarRef={calendarRef}
+          wrapperRef={wrapperRef}
+          dropdownPosition={dropdownPosition}
+          selectedDate={selectedDate}
+          onDateChange={handleDateChange}
+        />,
+        calendarRoot,
+      )}
 
       {/* Show Error */}
       {error && (

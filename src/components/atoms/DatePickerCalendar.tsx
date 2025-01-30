@@ -111,19 +111,19 @@ export function DatePickerCalendar({
           const isCurrentMonth = isSameMonth(day, displayMonth)
           const isSelected = selectedDate && isSameDay(day, selectedDate)
 
-          const currentClass = isCurrentMonth
-            ? 'jui-text-primary-900'
-            : 'jui-text-primary-200'
+          const textColour = isCurrentMonth
+            ? isSelected ? 'jui-text-white' : 'jui-text-primary-900'
+            : 'jui-text-primary-200';
 
           const selectedClass = isSelected
-            ? 'jui-bg-primary-900 jui-text-primary-50 jui-font-semibold'
+            ? 'jui-bg-primary-900 jui-font-semibold'
             : 'hover:jui-bg-primary-50'
 
           return (
             <div
               key={idx}
               onClick={() => onDateChange(day)}
-              className={`jui-text-center jui-py-2 jui-rounded jui-cursor-pointer ${currentClass} ${selectedClass}`}
+              className={`jui-text-center jui-py-2 jui-rounded jui-cursor-pointer ${textColour} ${selectedClass}`}
             >
               {format(day, 'd')}
             </div>
