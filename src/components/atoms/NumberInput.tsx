@@ -8,6 +8,6 @@ type Props = Omit<InputProps, 'type'> & {
 
 export function NumberInput(props: Props) {
   return (
-    <BaseInput {...props} type="number"/>
+    <BaseInput {...props} type="number" inputMode="decimal"/>
   )
 }
