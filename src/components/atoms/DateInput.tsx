@@ -103,54 +103,56 @@ export function DateInput({
   return (
     <>
       <Modal open={open} onClose={() => setOpen(false)} hideCloseButton>
-        {/* Header / Navigation */}
-        <div className="jui-flex jui-justify-between jui-items-center jui-py-1">
-          <div className={navClass} onClick={prevMonth}>
-            <IconChevronLeft className="jui-text-primary-900" />
-          </div>
-
-          <Typography style="body1" className="jui-font-semibold jui-text-primary-900">
-            {format(displayMonth, 'MMMM yyyy')}
-          </Typography>
-
-          <div className={navClass} onClick={nextMonth}>
-            <IconChevronRight className="jui-text-primary-900" />
-          </div>
-        </div>
-
-        {/* Day of week labels */}
-        <div className="jui-grid jui-grid-cols-7 jui-gap-1">
-          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(dow => (
-            <div key={dow} className="jui-text-center jui-font-semibold jui-text-xs jui-text-primary-700">
-              {dow}
+        <div className="jui-space-y-3">
+          {/* Header / Navigation */}
+          <div className="jui-flex jui-justify-between jui-items-center jui-py-1">
+            <div className={navClass} onClick={prevMonth}>
+              <IconChevronLeft className="jui-text-primary-900" />
             </div>
-          ))}
-        </div>
 
-        {/* Calendar Grid */}
-        <div className="jui-grid jui-grid-cols-7 jui-gap-1">
-          {days.map((day, idx) => {
-            const isCurrentMonth = isSameMonth(day, displayMonth)
-            const isSelected = selectedDate && isSameDay(day, selectedDate)
+            <Typography style="body1" className="jui-font-semibold jui-text-primary-900">
+              {format(displayMonth, 'MMMM yyyy')}
+            </Typography>
 
-            const textColour = isCurrentMonth
-              ? isSelected ? 'jui-text-white' : 'jui-text-primary-900'
-              : 'jui-text-primary-200';
+            <div className={navClass} onClick={nextMonth}>
+              <IconChevronRight className="jui-text-primary-900" />
+            </div>
+          </div>
 
-            const selectedClass = isSelected
-              ? 'jui-bg-primary-900 jui-font-semibold'
-              : 'hover:jui-bg-primary-50'
-
-            return (
-              <div
-                key={idx}
-                onClick={() => handleDateChange(day)}
-                className={`jui-text-center jui-py-2 jui-rounded jui-cursor-pointer ${textColour} ${selectedClass}`}
-              >
-                {format(day, 'd')}
+          {/* Day of week labels */}
+          <div className="jui-grid jui-grid-cols-7 jui-gap-1">
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(dow => (
+              <div key={dow} className="jui-text-center jui-font-semibold jui-text-xs jui-text-primary-700">
+                {dow}
               </div>
-            )
-          })}
+            ))}
+          </div>
+
+          {/* Calendar Grid */}
+          <div className="jui-grid jui-grid-cols-7 jui-gap-1">
+            {days.map((day, idx) => {
+              const isCurrentMonth = isSameMonth(day, displayMonth)
+              const isSelected = selectedDate && isSameDay(day, selectedDate)
+
+              const textColour = isCurrentMonth
+                ? isSelected ? 'jui-text-white' : 'jui-text-primary-900'
+                : 'jui-text-primary-200';
+
+              const selectedClass = isSelected
+                ? 'jui-bg-primary-900 jui-font-semibold'
+                : 'hover:jui-bg-primary-50'
+
+              return (
+                <div
+                  key={idx}
+                  onClick={() => handleDateChange(day)}
+                  className={`jui-text-center jui-py-2 jui-rounded jui-cursor-pointer ${textColour} ${selectedClass}`}
+                >
+                  {format(day, 'd')}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </Modal>
 
