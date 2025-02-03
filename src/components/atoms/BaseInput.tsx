@@ -1,4 +1,4 @@
-import { ComponentType, HTMLInputAutoCompleteAttribute } from 'react'
+import { ComponentType, FocusEventHandler, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
@@ -9,6 +9,7 @@ export type InputProps = {
   autoComplete?: HTMLInputAutoCompleteAttribute
   value: string
   onChange: (s: string) => void
+  onBlur?: FocusEventHandler<HTMLInputElement>
   error?: string
   loading?: boolean
   icon?: ComponentType<{ className?: string }>
@@ -28,6 +29,7 @@ export function BaseInput({
   type,
   value,
   onChange,
+  onBlur,
   error,
   icon: Icon,
   leftIcon: LeftIcon,
@@ -68,6 +70,7 @@ export function BaseInput({
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
+          onBlur={onBlur}
           min={min}
           max={max}
           step={step}

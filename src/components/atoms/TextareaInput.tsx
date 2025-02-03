@@ -1,4 +1,4 @@
-import { ComponentType, HTMLInputAutoCompleteAttribute } from 'react'
+import { ComponentType, FocusEventHandler, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
@@ -9,6 +9,7 @@ type Props = {
   autoComplete?: HTMLInputAutoCompleteAttribute
   value: string
   onChange: (s: string) => void
+  onBlur?: FocusEventHandler<HTMLTextAreaElement>
   error?: string
   loading?: boolean
   icon?: ComponentType<{ className?: string }>
@@ -22,6 +23,7 @@ export function TextareaInput({
   autoComplete,
   value,
   onChange,
+  onBlur,
   error,
   icon: Icon,
   loading = false,
@@ -50,6 +52,7 @@ export function TextareaInput({
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
+          onBlur={onBlur}
         />
 
         {Icon && (
