@@ -1,4 +1,4 @@
-import { ComponentType, FocusEventHandler, HTMLInputAutoCompleteAttribute } from 'react'
+import { ComponentType, FocusEventHandler, HTMLAttributes, HTMLInputAutoCompleteAttribute } from 'react'
 import { IconLoader2 } from '@tabler/icons-react'
 import { Typography } from './Typography'
 
@@ -16,6 +16,7 @@ export type InputProps = {
   leftIcon?: ComponentType<{ className?: string }>
   className?: string
   type: 'text' | 'password' | 'number'
+  inputMode?: HTMLAttributes<HTMLInputElement>['inputMode'],
   min?: number
   max?: number
   step?: number
@@ -27,6 +28,7 @@ export function BaseInput({
   disabled,
   autoComplete,
   type,
+  inputMode,
   value,
   onChange,
   onBlur,
@@ -64,6 +66,7 @@ export function BaseInput({
         <input
           name={name}
           type={type}
+          inputMode={inputMode}
           disabled={disabled}
           className={`${baseClass} ${borderClass} ${disabledClass} ${className}`}
           autoComplete={autoComplete}
