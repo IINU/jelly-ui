@@ -48,7 +48,7 @@ export function BaseInput({
   const padding = LeftIcon ? 'jui-py-2 jui-pr-3 jui-pl-10' : 'jui-py-2 jui-px-3'
   const baseClass = `jui-w-full placeholder:jui-text-primary-600 jui-text-base jui-font-lato ${padding} jui-rounded-lg focus:jui-outline-0 focus-visible:jui-outline-0`
 
-  const borderClass = error
+  const borderClass = error !== undefined
     ? 'jui-border-2 jui-border-error-400'
     : 'jui-border-2 jui-border-primary-100'
 

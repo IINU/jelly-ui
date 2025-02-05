@@ -56,7 +56,7 @@ export function DateInput({
     ? 'jui-w-full jui-bg-primary-100 jui-text-base jui-font-lato jui-rounded-lg'
     : 'jui-w-full jui-bg-white jui-text-base jui-font-lato jui-rounded-lg'
 
-  const borderClass = error
+  const borderClass = error !== undefined
     ? 'jui-border-2 jui-border-error-400'
     : 'jui-border-2 jui-border-primary-100'
 
