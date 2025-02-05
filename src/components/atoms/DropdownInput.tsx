@@ -209,7 +209,7 @@ export function DropdownInput<T>({
         dropdownRoot,
       )}
 
-      {error && (
+      {error !== undefined && (
         <div className="jui-text-left jui-px-2">
           <Typography style="caption" className="jui-text-error-400">
             {error}
