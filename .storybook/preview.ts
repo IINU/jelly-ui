@@ -45,6 +45,19 @@ const preview: Preview = {
         },
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Button',
+          'Atoms', [
+            'Dropdowns', [
+              'Dropdown Input',
+              'Async Dropdown Input',
+            ]
+          ]
+        ],
+      },
+    }
   },
 }
 

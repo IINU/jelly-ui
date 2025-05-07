@@ -2,7 +2,8 @@ import { DropdownInput } from '../components/atoms/DropdownInput'
 import { useState } from 'react'
 
 type Props = {
-  error: string
+  error?: string
+  searchable?: boolean
 }
 
 type Country = {
@@ -33,7 +34,7 @@ const countries: Country[] = [
   },
 ]
 
-export function DropdownInputShowcase({ error }: Props) {
+export function DropdownInputShowcase({ error, searchable }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -47,6 +48,7 @@ export function DropdownInputShowcase({ error }: Props) {
           optionToLabel={c => c.name}
           onChange={setCountry}
           error={error}
+          searchable={searchable}
         />
 
         <DropdownInput<Country>
@@ -58,6 +60,7 @@ export function DropdownInputShowcase({ error }: Props) {
           onChange={setCountry}
           error={error}
           loading={true}
+          searchable={searchable}
         />
 
         <DropdownInput<Country>
@@ -69,6 +72,7 @@ export function DropdownInputShowcase({ error }: Props) {
           onChange={setCountry}
           error={error}
           disabled
+          searchable={searchable}
         />
       </div>
     </div>
