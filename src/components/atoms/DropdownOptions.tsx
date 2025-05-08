@@ -10,6 +10,7 @@ type DropdownOptionsProps<T> = {
   dropdownRef: React.RefObject<HTMLDivElement>
   dropdownPosition: 'bottom' | 'top'
   wrapperRef: React.RefObject<HTMLDivElement>
+  dropdownStatusText?: string
 }
 
 export function DropdownOptions<T>({
@@ -21,6 +22,7 @@ export function DropdownOptions<T>({
   dropdownRef,
   dropdownPosition,
   wrapperRef,
+  dropdownStatusText,
 }: DropdownOptionsProps<T>) {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
   const optionRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -78,7 +80,9 @@ export function DropdownOptions<T>({
       }}
       tabIndex={-1}
     >
-      {options.map((option, index) => (
+      {dropdownStatusText
+        ? <div className="jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 jui-text-primary-600">{dropdownStatusText}</div>
+        : options.map((option, index) => (
         <div
           key={optionToId(option)}
           ref={(el) => (optionRefs.current[index] = el)}
