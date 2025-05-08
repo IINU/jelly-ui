@@ -115,6 +115,7 @@ export function DropdownUI<T>({
             type="text"
             className="jui-pl-3 jui-py-2 jui-text-base jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600"
             placeholder={placeholder}
+            autoComplete="off"
             value={open ? search
               : (selectedValue ? optionToLabel(selectedValue) : '')}
             onFocus={() => {
