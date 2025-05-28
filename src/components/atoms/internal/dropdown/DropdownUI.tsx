@@ -1,9 +1,9 @@
-import {useEffect, useMemo, useRef, useState} from 'react'
+import {useEffect, useMemo, useRef, useState, ReactNode} from 'react'
 import { createPortal } from 'react-dom'
 import { IconLoader2, IconSelector, IconX } from '@tabler/icons-react'
 import {getOrCreateDivRoot} from "../../../../utils/utils";
 import {Typography} from "../../Typography";
-import {DropdownOptions} from "../../DropdownOptions";
+import {DropdownOptions} from "./DropdownOptions";
 import {BaseDropdownProps} from "./dropdown.types";
 import {useDropdownPosition} from "../../../../hooks/useDropdownPosition";
 
@@ -12,7 +12,7 @@ type Props<T> = BaseDropdownProps<T> & {
   search: string
   handleSearchChange: (search: string) => void
   options: T[]
-  dropdownStatusText?: string
+  dropdownStatusContent?: ReactNode
   open: boolean
   setOpen: (open: boolean) => void
   loading: boolean
@@ -33,7 +33,7 @@ export function DropdownUI<T>({
   disabled = false,
   search,
   handleSearchChange,
-  dropdownStatusText,
+  dropdownStatusContent,
   options,
   loading,
   open,
@@ -176,7 +176,7 @@ export function DropdownUI<T>({
           dropdownRef={dropdownRef}
           dropdownPosition={dropdownPosition}
           wrapperRef={wrapperRef}
-          dropdownStatusText={dropdownStatusText}
+          dropdownStatusContent={dropdownStatusContent}
         />,
         dropdownRoot,
       )}

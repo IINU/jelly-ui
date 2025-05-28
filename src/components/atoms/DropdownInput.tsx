@@ -13,6 +13,7 @@ export function DropdownInput<T>({
   options,
   loading=false,
   searchable=true,
+  emptyContent,
   ...restProps
 }: Props<T>) {
   const [search, setSearch] = useState('')
@@ -45,6 +46,8 @@ export function DropdownInput<T>({
       setOpen={setOpen}
       loading={loading}
       options={filteredOptions}
+      dropdownStatusContent={(filteredOptions.length === 0 && !loading)
+        ? emptyContent : undefined}
     />
   )
 }

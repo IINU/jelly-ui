@@ -1,9 +1,11 @@
 import { AsyncDropdownInput } from '../components/atoms/AsyncDropdownInput'
 import {useState} from 'react'
+import {Typography} from "../components/atoms/Typography";
 
 type Props = {
   error?: string
   placeholder?: string
+  useEmptyContent?: boolean
 }
 
 type Country = {
@@ -38,7 +40,7 @@ const fetchCountries = async (search: string): Promise<Country[]> => {
   )
 }
 
-export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
+export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -56,6 +58,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
           error={error}
           fetchOptions={fetchCountries}
           debounceMs={300}
+          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -72,6 +75,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
           error={error}
           fetchOptions={fetchCountries}
           debounceMs={300}
+          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -89,6 +93,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
           fetchOptions={fetchCountries}
           debounceMs={300}
           disabled
+          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -105,8 +110,17 @@ export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
           error={error}
           fetchOptions={async () => await fetchCountries("triggerError")}
           debounceMs={300}
+          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
     </div>
+  )
+}
+
+function EmptyContent() {
+  return (
+    <Typography style="body1" className="jui-truncate">
+      A custom message when no options are found.
+    </Typography>
   )
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Typography } from './Typography'
+import {useState, useEffect, useRef, FC, HTMLProps, forwardRef, RefObject, ReactNode} from 'react'
+import {Typography} from '../../Typography'
 
 type DropdownOptionsProps<T> = {
   selectedOption: T | null
@@ -7,10 +7,10 @@ type DropdownOptionsProps<T> = {
   optionToId: (option: T) => number | string
   optionToLabel: (option: T) => string
   handleOptionClick: (option: T) => void
-  dropdownRef: React.RefObject<HTMLDivElement>
+  dropdownRef: RefObject<HTMLDivElement>
   dropdownPosition: 'bottom' | 'top'
-  wrapperRef: React.RefObject<HTMLDivElement>
-  dropdownStatusText?: string
+  wrapperRef: RefObject<HTMLDivElement>
+  dropdownStatusContent?: ReactNode
 }
 
 export function DropdownOptions<T>({
@@ -22,7 +22,7 @@ export function DropdownOptions<T>({
   dropdownRef,
   dropdownPosition,
   wrapperRef,
-  dropdownStatusText,
+  dropdownStatusContent,
 }: DropdownOptionsProps<T>) {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
   const optionRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -80,22 +80,44 @@ export function DropdownOptions<T>({
       }}
       tabIndex={-1}
     >
-      {dropdownStatusText
-        ? <div className="jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 jui-text-primary-600">{dropdownStatusText}</div>
+      {dropdownStatusContent
+        ? <DropdownOptionItem>
+          {typeof dropdownStatusContent === 'string' ? (
+            <Typography style="body1" className="jui-text-primary-600">
+              {dropdownStatusContent}
+            </Typography>
+          ) : dropdownStatusContent}
+        </DropdownOptionItem>
         : options.map((option, index) => (
-        <div
-          key={optionToId(option)}
-          ref={(el) => (optionRefs.current[index] = el)}
-          className={`jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 ${focusedIndex === index ? 'jui-bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
-          onClick={() => handleOptionClick(option)}
-          onMouseEnter={() => setFocusedIndex(index)}
-          tabIndex={0}
-        >
-          <Typography style="body1">
-            {optionToLabel(option)}
-          </Typography>
-        </div>
-      ))}
+          <DropdownOptionItem
+            key={optionToId(option)}
+            ref={(el) => (optionRefs.current[index] = el)}
+            className={`jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 ${focusedIndex === index ? 'jui-bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
+            onClick={() => handleOptionClick(option)}
+            onMouseEnter={() => setFocusedIndex(index)}
+            tabIndex={0}
+          >
+            <Typography style="body1">
+              {optionToLabel(option)}
+            </Typography>
+          </DropdownOptionItem>
+        ))}
     </div>
   )
 }
+
+const DropdownOptionItem: FC<HTMLProps<HTMLDivElement>> = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
+  ({children, className, ...props}, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={`jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 ${className ?? ''}`}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
+DropdownOptionItem.displayName = 'DropdownOptionItem'
