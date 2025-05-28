@@ -1,7 +1,11 @@
 import { ToggleButton } from '../components/atoms/ToggleButton'
 import { useState } from 'react'
 
-export function ToggleButtonShowcase() {
+type Props = {
+  disabled?: boolean
+}
+
+export function ToggleButtonShowcase({disabled}: Props) {
   const [checked, setChecked] = useState(false)
 
   return (
@@ -11,18 +15,21 @@ export function ToggleButtonShowcase() {
           size="small"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
 
         <ToggleButton
           size="medium"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
 
         <ToggleButton
           size="large"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
       </div>
 
@@ -31,18 +38,21 @@ export function ToggleButtonShowcase() {
           size="small"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
 
         <ToggleButton
           size="medium"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
 
         <ToggleButton
           size="large"
           value={checked}
           onChange={setChecked}
+          disabled={disabled}
         />
       </div>
     </div>

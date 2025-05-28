@@ -7,9 +7,10 @@ type Props = {
   value: boolean
   onChange: (v: boolean) => void
   size?: Size
+  disabled?: boolean
 }
 
-export function ToggleButton({ value, onChange, size = 'small' }: Props) {
+export function ToggleButton({ value, onChange, size = 'small', disabled }: Props) {
   const [checked, setChecked] = useState(value)
 
   useEffect(() => {
@@ -34,7 +35,9 @@ export function ToggleButton({ value, onChange, size = 'small' }: Props) {
     large: '1.25rem',
   }
 
-  const activeClass = checked ? 'jui-bg-success-400' : 'jui-bg-primary-200'
+  const activeClass = checked
+    ? (disabled ? 'jui-bg-success-200 jui-opacity-50' : 'jui-bg-success-400')
+    : (disabled ? 'jui-bg-primary-100 jui-opacity-50' : 'jui-bg-primary-200')
   const base = 'jui-rounded-full jui-transition-colors jui-duration-300 jui-ease-in-out jui-shadow-inner'
   const circleBase = 'jui-rounded-full jui-bg-white jui-block jui-text-success-400 jui-flex jui-items-center jui-justify-center jui-transition-transform jui-duration-300 jui-ease-in-out jui-shadow'
 
