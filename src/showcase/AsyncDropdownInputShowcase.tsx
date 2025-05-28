@@ -3,6 +3,7 @@ import {useState} from 'react'
 
 type Props = {
   error?: string
+  placeholder?: string
 }
 
 type Country = {
@@ -37,7 +38,7 @@ const fetchCountries = async (search: string): Promise<Country[]> => {
   )
 }
 
-export function AsyncDropdownInputShowcase({ error }: Props) {
+export function AsyncDropdownInputShowcase({ error, placeholder }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -47,7 +48,7 @@ export function AsyncDropdownInputShowcase({ error }: Props) {
           Uncontrolled
         </div>
         <AsyncDropdownInput
-          placeholder="Type to search countries..."
+          placeholder={placeholder ?? "Type to search countries..."}
           value={null}
           onChange={() => {}}
           optionToId={c => c.id}
@@ -63,7 +64,7 @@ export function AsyncDropdownInputShowcase({ error }: Props) {
           Controlled <span className="jui-text-xs jui-font-normal">(Selected: {country?.name ?? 'None'})</span>
         </div>
         <AsyncDropdownInput
-          placeholder="Type to search countries..."
+          placeholder={placeholder ?? "Type to search countries..."}
           value={country}
           onChange={setCountry}
           optionToId={c => c.id}
@@ -79,7 +80,7 @@ export function AsyncDropdownInputShowcase({ error }: Props) {
           Disabled
         </div>
         <AsyncDropdownInput
-          placeholder="Type to search countries..."
+          placeholder={placeholder ?? "Type to search countries..."}
           value={null}
           onChange={() => {}}
           optionToId={c => c.id}
@@ -96,7 +97,7 @@ export function AsyncDropdownInputShowcase({ error }: Props) {
           Failed fetching
         </div>
         <AsyncDropdownInput
-          placeholder="Type to search countries..."
+          placeholder={placeholder ?? "Type to search countries..."}
           value={null}
           onChange={() => {}}
           optionToId={c => c.id}
