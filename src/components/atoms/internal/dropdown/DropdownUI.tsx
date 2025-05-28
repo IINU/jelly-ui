@@ -62,6 +62,8 @@ export function DropdownUI<T>({
     ? 'jui-border-2 jui-border-error-400'
     : 'jui-border-2 jui-border-primary-100'
 
+  const inputClass = 'jui-pl-3 jui-py-2 jui-min-h-[2.5rem] jui-rounded jui-flex-1'
+
   const RightIcon = useMemo(() => {
     if (loading) {
       return IconLoader2
@@ -108,12 +110,12 @@ export function DropdownUI<T>({
 
   return (
     <div ref={wrapperRef} className="jui-w-full jui-space-y-1 jui-relative">
-      <div className={`jui-flex jui-w-full ${baseClass} ${borderClass} ${className}`}>
+      <div className={`jui-flex ${baseClass} ${borderClass} ${className}`}>
         {searchable ? (
           <input
             name={name}
             type="text"
-            className="jui-pl-3 jui-py-2 jui-text-base jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600"
+            className={`${inputClass} jui-truncate jui-text-base focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600`}
             placeholder={placeholder}
             autoComplete="off"
             value={open ? search
@@ -126,7 +128,7 @@ export function DropdownUI<T>({
           />
         ) : (
           <div
-            className={`jui-pl-3 jui-py-2 jui-rounded jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap`}
+            className={`${inputClass} jui-flex jui-items-center`}
             onClick={() => {
               if (disabled) return
               setOpen(true)
@@ -134,7 +136,7 @@ export function DropdownUI<T>({
           >
             <Typography
               style="body1"
-              className={`jui-w-full jui-text-ellipsis jui-overflow-hidden jui-whitespace-nowrap ${selectedValue && !open ? 'jui-text-primary-900' : 'jui-text-primary-600'}`}
+              className={`jui-truncate ${selectedValue && !open ? 'jui-text-primary-900' : 'jui-text-primary-600'}`}
             >
               {
                 selectedValue && !open
