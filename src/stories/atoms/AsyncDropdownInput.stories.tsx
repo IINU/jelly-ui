@@ -5,6 +5,11 @@ const meta = {
   title: 'Atoms/Dropdowns/Async Dropdown Input',
   component: AsyncDropdownInputShowcase,
   parameters: { layout: 'centered' },
+  argTypes: {
+    customEmptyContent: {
+      name: 'Apply a `emptyContent` prop?',
+    },
+  }
 } satisfies Meta<typeof AsyncDropdownInputShowcase>
 
 export default meta

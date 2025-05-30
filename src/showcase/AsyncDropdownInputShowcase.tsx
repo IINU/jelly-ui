@@ -5,7 +5,7 @@ import {Typography} from "../components/atoms/Typography";
 type Props = {
   error?: string
   placeholder?: string
-  useEmptyContent?: boolean
+  customEmptyContent?: boolean
 }
 
 type Country = {
@@ -40,7 +40,7 @@ const fetchCountries = async (search: string): Promise<Country[]> => {
   )
 }
 
-export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent }: Props) {
+export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyContent }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -58,7 +58,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent
           error={error}
           fetchOptions={fetchCountries}
           debounceMs={300}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -75,7 +75,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent
           error={error}
           fetchOptions={fetchCountries}
           debounceMs={300}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -93,7 +93,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent
           fetchOptions={fetchCountries}
           debounceMs={300}
           disabled
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
 
@@ -110,7 +110,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, useEmptyContent
           error={error}
           fetchOptions={async () => await fetchCountries("triggerError")}
           debounceMs={300}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
     </div>

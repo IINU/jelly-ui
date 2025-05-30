@@ -5,7 +5,7 @@ import { Typography } from "../components/atoms/Typography";
 type Props = {
   error?: string
   searchable?: boolean
-  useEmptyContent?: boolean
+  customEmptyContent?: boolean
 }
 
 type Country = {
@@ -36,7 +36,7 @@ const countries: Country[] = [
   },
 ]
 
-export function DropdownInputShowcase({ error, searchable, useEmptyContent }: Props) {
+export function DropdownInputShowcase({ error, searchable, customEmptyContent }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -51,7 +51,7 @@ export function DropdownInputShowcase({ error, searchable, useEmptyContent }: Pr
           onChange={setCountry}
           error={error}
           searchable={searchable}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
 
         <DropdownInput<Country>
@@ -64,7 +64,7 @@ export function DropdownInputShowcase({ error, searchable, useEmptyContent }: Pr
           error={error}
           loading={true}
           searchable={searchable}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
 
         <DropdownInput<Country>
@@ -77,7 +77,7 @@ export function DropdownInputShowcase({ error, searchable, useEmptyContent }: Pr
           error={error}
           disabled
           searchable={searchable}
-          emptyContent={useEmptyContent ? <EmptyContent /> : undefined}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
     </div>
