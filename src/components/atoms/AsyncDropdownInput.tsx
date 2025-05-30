@@ -1,11 +1,13 @@
-import {useEffect, useCallback, useMemo, useRef, useReducer, useState} from 'react'
+import {useEffect, useCallback, useMemo, useRef, useReducer, useState, ReactNode} from 'react'
 import debounce from 'lodash/debounce'
 import {BaseDropdownProps} from "./internal/dropdown/dropdown.types";
 import {DropdownUI} from "./internal/dropdown/DropdownUI";
 
+type DropdownStatus = 'normal' | 'searching' | 'empty'
+
 type State<T> = {
   search: string;
-  dropdownStatusText?: string;
+  dropdownStatus: DropdownStatus;
   loading: boolean;
   options: T[];
   fetchError?: string;
@@ -63,17 +65,17 @@ function reducer<T>(state: State<T>, action: Action<T>): State<T> {
       if (options.length || fetchError) {
         return {
           ...state,
-          dropdownStatusText: undefined,
+          dropdownStatus: 'normal',
         }
       } else if (firstFetchDone) {
         return {
           ...state,
-          dropdownStatusText: 'No matches found',
+          dropdownStatus: 'empty',
         }
       } else {
         return {
           ...state,
-          dropdownStatusText: 'Searching...',
+          dropdownStatus: 'searching',
         }
       }
     }
@@ -89,6 +91,7 @@ export function AsyncDropdownInput<T>({
   error,
   fetchOptions,
   debounceMs = 300,
+  emptyContent,
   ...restProps
 }: Props<T>) {
   const [open, setOpen] = useState(false)
@@ -97,9 +100,10 @@ export function AsyncDropdownInput<T>({
     loading: false,
     options: [],
     fetchError: undefined,
-    firstFetchDone: false
+    firstFetchDone: false,
+    dropdownStatus: 'normal'
   });
-  const { search, loading, options, fetchError, dropdownStatusText, firstFetchDone } = state
+  const { search, loading, options, fetchError, dropdownStatus, firstFetchDone } = state
 
   const cache = useRef<{ [key: string]: T[] }>({})
 
@@ -166,6 +170,20 @@ export function AsyncDropdownInput<T>({
     setOpen={setOpen}
     loading={loading}
     options={options}
-    dropdownStatusText={dropdownStatusText}
+    dropdownStatusContent={generateDropdownStatusContent(dropdownStatus, emptyContent)}
   />
+}
+
+const generateDropdownStatusContent = (
+  status: DropdownStatus,
+  emptyContent?: ReactNode
+): ReactNode => {
+  switch (status) {
+    case 'normal':
+      return null;
+    case 'searching':
+      return 'Searching...';
+    case 'empty':
+      return emptyContent ?? 'No matches found';
+  }
 }

@@ -1,4 +1,4 @@
-import { ComponentType } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 export type BaseDropdownProps<T> = {
   name?: string
@@ -12,4 +12,5 @@ export type BaseDropdownProps<T> = {
   icon?: ComponentType<{ className?: string }>
   className?: string
   disabled?: boolean
+  emptyContent?: ReactNode
 }

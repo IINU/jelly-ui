@@ -1,9 +1,11 @@
 import { DropdownInput } from '../components/atoms/DropdownInput'
 import { useState } from 'react'
+import { Typography } from "../components/atoms/Typography";
 
 type Props = {
   error?: string
   searchable?: boolean
+  customEmptyContent?: boolean
 }
 
 type Country = {
@@ -34,7 +36,7 @@ const countries: Country[] = [
   },
 ]
 
-export function DropdownInputShowcase({ error, searchable }: Props) {
+export function DropdownInputShowcase({ error, searchable, customEmptyContent }: Props) {
   const [country, setCountry] = useState<Country | null>(null)
 
   return (
@@ -49,6 +51,7 @@ export function DropdownInputShowcase({ error, searchable }: Props) {
           onChange={setCountry}
           error={error}
           searchable={searchable}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
 
         <DropdownInput<Country>
@@ -61,6 +64,7 @@ export function DropdownInputShowcase({ error, searchable }: Props) {
           error={error}
           loading={true}
           searchable={searchable}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
 
         <DropdownInput<Country>
@@ -73,8 +77,17 @@ export function DropdownInputShowcase({ error, searchable }: Props) {
           error={error}
           disabled
           searchable={searchable}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
     </div>
+  )
+}
+
+function EmptyContent() {
+  return (
+    <Typography style="body1" className="jui-truncate">
+      A custom message when no options are found.
+    </Typography>
   )
 }
