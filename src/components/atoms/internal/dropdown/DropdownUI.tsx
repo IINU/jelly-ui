@@ -44,6 +44,15 @@ export function DropdownUI<T>({
   }
 
   const [selectedValue, setSelectedValue] = useState<T | null>(value)
+  const displayValue = useMemo(() => {
+    if (open || !selectedValue) {
+      return searchable ? search : placeholder
+    }
+    return optionToSearchValue
+      ? optionToSearchValue(selectedValue)
+      : optionToLabel(selectedValue)
+  }, [open, optionToLabel, optionToSearchValue, placeholder, search, searchable, selectedValue])
+
   const dropdownRoot = getOrCreateDivRoot('dropdown')
   const wrapperRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
@@ -62,7 +71,7 @@ export function DropdownUI<T>({
     ? 'jui-border-2 jui-border-error-400'
     : 'jui-border-2 jui-border-primary-100'
 
-  const inputClass = 'jui-pl-3 jui-py-2 jui-min-h-[2.5rem] jui-rounded jui-flex-1'
+  const inputClass = 'jui-pl-3 jui-py-2 jui-min-h-[2.5rem] jui-rounded jui-flex-1 jui-w-full'
 
   const RightIcon = useMemo(() => {
     if (loading) {
@@ -118,8 +127,7 @@ export function DropdownUI<T>({
             className={`${inputClass} jui-truncate jui-text-base focus:jui-outline-0 focus-visible:jui-outline-0 placeholder:jui-text-primary-600`}
             placeholder={placeholder}
             autoComplete="off"
-            value={open ? search
-              : (selectedValue ? optionToLabel(selectedValue) : '')}
+            value={displayValue}
             onFocus={() => {
               if (disabled) return
               setOpen(true)
@@ -138,15 +146,7 @@ export function DropdownUI<T>({
               style="body1"
               className={`jui-truncate ${selectedValue && !open ? 'jui-text-primary-900' : 'jui-text-primary-600'}`}
             >
-              {
-                selectedValue && !open
-                  ? (
-                    optionToSearchValue
-                      ? optionToSearchValue(selectedValue)
-                      : optionToLabel(selectedValue)
-                  )
-                  : placeholder
-              }
+              {displayValue}
             </Typography>
           </div>
         )}
