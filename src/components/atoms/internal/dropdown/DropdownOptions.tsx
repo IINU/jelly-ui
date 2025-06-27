@@ -11,6 +11,7 @@ type DropdownOptionsProps<T> = {
   dropdownPosition: 'bottom' | 'top'
   wrapperRef: RefObject<HTMLDivElement>
   dropdownStatusContent?: ReactNode
+  optionsBottomContent?: ReactNode
 }
 
 export function DropdownOptions<T>({
@@ -23,6 +24,7 @@ export function DropdownOptions<T>({
   dropdownPosition,
   wrapperRef,
   dropdownStatusContent,
+  optionsBottomContent,
 }: DropdownOptionsProps<T>) {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
   const optionRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -88,20 +90,23 @@ export function DropdownOptions<T>({
             </Typography>
           ) : dropdownStatusContent}
         </DropdownOptionItem>
-        : options.map((option, index) => (
-          <DropdownOptionItem
-            key={optionToId(option)}
-            ref={(el) => (optionRefs.current[index] = el)}
-            className={`jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 ${focusedIndex === index ? 'jui-bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
-            onClick={() => handleOptionClick(option)}
-            onMouseEnter={() => setFocusedIndex(index)}
-            tabIndex={0}
-          >
-            <Typography style="body1">
-              {optionToLabel(option)}
-            </Typography>
-          </DropdownOptionItem>
-        ))}
+        : <>
+            {options.map((option, index) => (
+            <DropdownOptionItem
+              key={optionToId(option)}
+              ref={(el) => (optionRefs.current[index] = el)}
+              className={`jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 ${focusedIndex === index ? 'jui-bg-primary-100' : ''} ${(getBorderColour(index, option))}`}
+              onClick={() => handleOptionClick(option)}
+              onMouseEnter={() => setFocusedIndex(index)}
+              tabIndex={0}
+            >
+              <Typography style="body1">
+                {optionToLabel(option)}
+              </Typography>
+            </DropdownOptionItem>
+          ))}
+          {options.length > 0 ? optionsBottomContent : null}
+        </>}
     </div>
   )
 }
