@@ -13,4 +13,5 @@ export type BaseDropdownProps<T> = {
   className?: string
   disabled?: boolean
   emptyContent?: ReactNode
+  optionsBottomContent?: ReactNode
 }
