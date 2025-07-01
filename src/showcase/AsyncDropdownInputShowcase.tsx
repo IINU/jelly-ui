@@ -113,6 +113,24 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
       </div>
+
+      <div>
+        <div className="jui-text-base jui-font-semibold jui-mb-1">
+          Content underneath Options
+        </div>
+        <AsyncDropdownInput
+          placeholder={placeholder ?? "Type to search countries..."}
+          value={country}
+          onChange={setCountry}
+          optionToId={c => c.id}
+          optionToLabel={c => c.name}
+          error={error}
+          fetchOptions={fetchCountries}
+          debounceMs={300}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
+          optionsBottomContent={<div className="jui-bg-orange-500 jui-text-center jui-text-white jui-p-4">Custom content here</div>}
+        />
+      </div>
     </div>
   )
 }

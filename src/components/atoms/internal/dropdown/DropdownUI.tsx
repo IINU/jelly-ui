@@ -13,6 +13,7 @@ type Props<T> = BaseDropdownProps<T> & {
   handleSearchChange: (search: string) => void
   options: T[]
   dropdownStatusContent?: ReactNode
+  optionsBottomContent?: ReactNode
   open: boolean
   setOpen: (open: boolean) => void
   loading: boolean
@@ -38,6 +39,7 @@ export function DropdownUI<T>({
   loading,
   open,
   setOpen,
+  optionsBottomContent,
 }: Props<T>) {
   if (disabled) {
     searchable = false
@@ -166,7 +168,7 @@ export function DropdownUI<T>({
         )}
       </div>
 
-      {open && createPortal(
+      {open && !error && createPortal(
         <DropdownOptions<T>
           selectedOption={selectedValue}
           options={options}
@@ -177,6 +179,7 @@ export function DropdownUI<T>({
           dropdownPosition={dropdownPosition}
           wrapperRef={wrapperRef}
           dropdownStatusContent={dropdownStatusContent}
+          optionsBottomContent={optionsBottomContent}
         />,
         dropdownRoot,
       )}

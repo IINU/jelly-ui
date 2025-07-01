@@ -92,6 +92,7 @@ export function AsyncDropdownInput<T>({
   fetchOptions,
   debounceMs = 300,
   emptyContent,
+  optionsBottomContent,
   ...restProps
 }: Props<T>) {
   const [open, setOpen] = useState(false)
@@ -170,13 +171,15 @@ export function AsyncDropdownInput<T>({
     setOpen={setOpen}
     loading={loading}
     options={options}
-    dropdownStatusContent={generateDropdownStatusContent(dropdownStatus, emptyContent)}
+    optionsBottomContent={optionsBottomContent}
+    dropdownStatusContent={generateDropdownStatusContent(dropdownStatus, emptyContent, optionsBottomContent)}
   />
 }
 
 const generateDropdownStatusContent = (
   status: DropdownStatus,
-  emptyContent?: ReactNode
+  emptyContent?: ReactNode,
+  optionsBottomContent?: ReactNode
 ): ReactNode => {
   switch (status) {
     case 'normal':
@@ -184,6 +187,10 @@ const generateDropdownStatusContent = (
     case 'searching':
       return 'Searching...';
     case 'empty':
+      if (optionsBottomContent) {
+        return null
+      }
+
       return emptyContent ?? 'No matches found';
   }
 }
