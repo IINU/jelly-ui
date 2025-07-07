@@ -187,7 +187,7 @@ export function DropdownUI<T>({
                 return
               }
 
-              if (!selectedValue){
+              if (selectedValue){
                 setSelectedValue(null)
                 onChange(null)
               }
