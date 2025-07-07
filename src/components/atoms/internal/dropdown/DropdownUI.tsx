@@ -197,7 +197,7 @@ export function DropdownUI<T>({
         )}
       </div>
 
-      {open && !error && createPortal(
+      {open && createPortal(
         <DropdownOptions<T>
           selectedOption={selectedValue}
           options={options}
