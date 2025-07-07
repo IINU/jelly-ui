@@ -187,8 +187,11 @@ export function DropdownUI<T>({
                 return
               }
 
-              setSelectedValue(null)
-              onChange(null)
+              if (!selectedValue){
+                setSelectedValue(null)
+                onChange(null)
+              }
+
               setOpen(!open)
             }}
           >
