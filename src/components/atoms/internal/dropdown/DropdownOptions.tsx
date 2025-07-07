@@ -26,11 +26,6 @@ export function DropdownOptions<T>({
   dropdownStatusContent,
   optionsBottomContent,
 }: DropdownOptionsProps<T>) {
-  console.log('dropdownOptions :>> ', JSON.stringify({
-      selectedOption,
-      options,
-      dropdownPosition,
-  }));
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
   const optionRefs = useRef<(HTMLDivElement | null)[]>([])
 

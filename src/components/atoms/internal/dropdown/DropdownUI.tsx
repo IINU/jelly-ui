@@ -48,20 +48,11 @@ export function DropdownUI<T>({
   const [selectedValue, setSelectedValue] = useState<T | null>(value)
   const displayValue = useMemo(() => {
     if (open || !selectedValue) {
-      console.log('displayValue useMemo EARLY RETURN :>> ', {
-        open, optionToLabel, optionToSearchValue, placeholder, search, searchable, selectedValue,
-      });
-
       return searchable ? search : placeholder
     }
     const result = optionToSearchValue
       ? optionToSearchValue(selectedValue)
       : optionToLabel(selectedValue)
-
-      console.log('displayValue useMemo :>> ', {
-        open, optionToLabel, optionToSearchValue, placeholder, search, searchable, selectedValue,
-        result
-      });
 
       return result
   }, [open, optionToLabel, optionToSearchValue, placeholder, search, searchable, selectedValue])
@@ -71,8 +62,6 @@ export function DropdownUI<T>({
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   function handleOptionClick(option: T) {
-    console.log('handleOptionClick :>> ', option);
-
     setSelectedValue(option)
     onChange(option)
     setOpen(false)
@@ -132,17 +121,6 @@ export function DropdownUI<T>({
 
   const dropdownPosition = useDropdownPosition(wrapperRef, dropdownRef, open)
 
-  console.log('render Dropdown UI :>> ', JSON.stringify({
-    searchable,
-    selectedValue,
-    name,
-    displayValue,
-    disabled,
-    open,
-    error,
-    dropdownPosition,
-  }));
-
   return (
     <div ref={wrapperRef} className="jui-w-full jui-space-y-1 jui-relative">
       <div className={`jui-flex ${baseClass} ${borderClass} ${className}`}>
@@ -181,8 +159,6 @@ export function DropdownUI<T>({
           <div
             className={`jui-flex jui-items-center jui-pr-2 ${disabled ? '' : 'jui-cursor-pointer'}`}
             onClick={() => {
-              console.log('onClick ICON :>> ', {open,disabled});
-
               if (disabled) {
                 return
               }
