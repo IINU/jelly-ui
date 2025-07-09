@@ -50,9 +50,11 @@ export function DropdownUI<T>({
     if (open || !selectedValue) {
       return searchable ? search : placeholder
     }
-    return optionToSearchValue
+    const result = optionToSearchValue
       ? optionToSearchValue(selectedValue)
       : optionToLabel(selectedValue)
+
+      return result
   }, [open, optionToLabel, optionToSearchValue, placeholder, search, searchable, selectedValue])
 
   const dropdownRoot = getOrCreateDivRoot('dropdown')
@@ -157,9 +159,15 @@ export function DropdownUI<T>({
           <div
             className={`jui-flex jui-items-center jui-pr-2 ${disabled ? '' : 'jui-cursor-pointer'}`}
             onClick={() => {
-              if (disabled) return
-              setSelectedValue(null)
-              onChange(null)
+              if (disabled) {
+                return
+              }
+
+              if (selectedValue){
+                setSelectedValue(null)
+                onChange(null)
+              }
+
               setOpen(!open)
             }}
           >
@@ -168,7 +176,7 @@ export function DropdownUI<T>({
         )}
       </div>
 
-      {open && !error && createPortal(
+      {open && createPortal(
         <DropdownOptions<T>
           selectedOption={selectedValue}
           options={options}
