@@ -105,7 +105,7 @@ export function DropdownOptions<T>({
               </Typography>
             </DropdownOptionItem>
           ))}
-          {options.length ? optionsBottomContent : null}
+          {optionsBottomContent}
         </>}
     </div>
   )

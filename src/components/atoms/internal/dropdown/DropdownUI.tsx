@@ -159,15 +159,9 @@ export function DropdownUI<T>({
           <div
             className={`jui-flex jui-items-center jui-pr-2 ${disabled ? '' : 'jui-cursor-pointer'}`}
             onClick={() => {
-              if (disabled) {
-                return
-              }
-
-              if (selectedValue){
-                setSelectedValue(null)
-                onChange(null)
-              }
-
+              if (disabled) return
+              setSelectedValue(null)
+              onChange(null)
               setOpen(!open)
             }}
           >
@@ -176,7 +170,7 @@ export function DropdownUI<T>({
         )}
       </div>
 
-      {open && createPortal(
+      {open && !error && createPortal(
         <DropdownOptions<T>
           selectedOption={selectedValue}
           options={options}
