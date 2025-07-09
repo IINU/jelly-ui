@@ -111,7 +111,6 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           fetchOptions={async () => await fetchCountries("triggerError")}
           debounceMs={300}
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
-          optionsBottomContent={<div className="jui-bg-orange-500 jui-text-center jui-text-white jui-p-4">Custom content here</div>}
         />
       </div>
 
