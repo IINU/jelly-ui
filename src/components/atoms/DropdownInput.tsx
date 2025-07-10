@@ -41,7 +41,8 @@ export function DropdownInput<T>({
       optionToLabel={optionToLabel}
       searchable={searchable}
       search={search}
-      handleSearchChange={setSearch}
+      onSearchInputChange={setSearch}
+      onFocus={() => setOpen(true)}
       open={open}
       setOpen={setOpen}
       loading={loading}
