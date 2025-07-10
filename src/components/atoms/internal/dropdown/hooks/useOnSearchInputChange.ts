@@ -4,7 +4,7 @@ import { AsyncDropdownAction } from '../dropdown.types'
 
 type UseSearchOnInputChangeParams<T> = {
   open: boolean
-  fetchFn: (term: string) => Promise<T[]>
+  fetchFn: (term: string, signal?: AbortSignal) => Promise<T[]>
   debounceMs: number
   dispatch: React.Dispatch<AsyncDropdownAction<T>>
 }
@@ -16,34 +16,54 @@ export function useOnSearchInputChange<T>({
   dispatch,
 }: UseSearchOnInputChangeParams<T>) {
   const cache = useRef<Record<string, T[]>>({})
-  const fetchRef = useRef(fetchFn);
-  
+  const fetchRef = useRef<(term: string, signal?: AbortSignal) => Promise<T[]>>(fetchFn)
+  const abortControllerRef = useRef<AbortController | null>(null)
+
   useEffect(() => {
-    fetchRef.current = fetchFn;
-  }, [fetchFn]);
+    fetchRef.current = fetchFn
+  }, [fetchFn])
+
+  useEffect(() => {
+    return () => {
+      abortControllerRef.current?.abort()
+    }
+  }, [])
 
   const debouncedFetch = useMemo(
     () =>
       debounce(async (searchTerm: string) => {
         try {
+          abortControllerRef.current?.abort()
+          const controller = new AbortController()
+          abortControllerRef.current = controller
+
           dispatch({ type: 'FETCH_START', searchTerm })
-       
-          if (cache.current[searchTerm]){
-            dispatch({ type: 'FETCH_SUCCESS', resultingOptions: cache.current[searchTerm] })
+
+          if (cache.current[searchTerm]) {
+            dispatch({
+              type: 'FETCH_SUCCESS',
+              resultingOptions: cache.current[searchTerm],
+            })
 
             return
           }
 
-          // TODO cancellable promises
-          const results = await fetchRef.current(searchTerm)
+          const results = await fetchRef.current(searchTerm, controller.signal)
+
+          if (controller.signal.aborted) return
+
+          cache.current[searchTerm] = results
           
           dispatch({ type: 'FETCH_SUCCESS', resultingOptions: results })
-          
-          cache.current[searchTerm] = results
-        } catch (err) {
+        } catch (err: unknown) {
+          if (err instanceof DOMException && err.name === 'AbortError') {
+            return
+          }
+
           dispatch({
             type: 'FETCH_ERROR',
-            errorMessage: err instanceof Error ? err.message : 'Failed to fetch options',
+            errorMessage:
+              err instanceof Error ? err.message : 'Failed to fetch options',
           })
         }
       }, debounceMs),
@@ -56,6 +76,7 @@ export function useOnSearchInputChange<T>({
         debouncedFetch(newSearch)
       } else {
         cache.current = {}
+        abortControllerRef.current?.abort()
       }
     },
     [open, debouncedFetch],
