@@ -1,19 +1,21 @@
-import {useEffect, useMemo, useRef, useState, ReactNode} from 'react'
+import { useEffect, useMemo, useRef, useState, ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { IconLoader2, IconSelector, IconX } from '@tabler/icons-react'
-import {getOrCreateDivRoot} from "../../../../utils/utils";
-import {Typography} from "../../Typography";
-import {DropdownOptions} from "./DropdownOptions";
-import {BaseDropdownProps} from "./dropdown.types";
-import {useDropdownPosition} from "../../../../hooks/useDropdownPosition";
+import { Typography } from "../../Typography";
+import { DropdownOptions } from "./DropdownOptions";
+import { BaseDropdownProps } from "./dropdown.types";
+import { useDropdownPosition } from "../../../../hooks/useDropdownPosition";
+import { getOrCreateDivRoot } from '../../../../utils/utils';
 
 type Props<T> = BaseDropdownProps<T> & {
   searchable: boolean
   search: string
-  handleSearchChange: (search: string) => void
+  onSearchInputChange: (search: string) => void
+  onFocus: () => void
   options: T[]
   dropdownStatusContent?: ReactNode
   optionsBottomContent?: ReactNode
+  showErrorMessage?: boolean
   open: boolean
   setOpen: (open: boolean) => void
   loading: boolean
@@ -27,13 +29,15 @@ export function DropdownUI<T>({
   optionToLabel,
   optionToSearchValue,
   onChange,
+  onFocus,
   error,
   icon: Icon = IconSelector,
   className,
   searchable,
   disabled = false,
+  showErrorMessage = true,
   search,
-  handleSearchChange,
+  onSearchInputChange,
   dropdownStatusContent,
   options,
   loading,
@@ -59,6 +63,7 @@ export function DropdownUI<T>({
 
   const dropdownRoot = getOrCreateDivRoot('dropdown')
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const errorContainerRef = useRef<HTMLDivElement | null>(null)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   function handleOptionClick(option: T) {
@@ -102,22 +107,11 @@ export function DropdownUI<T>({
     }
 
     document.addEventListener('mousedown', handleClickOutside)
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [wrapperRef, dropdownRef, setOpen])
-
-  if (!dropdownRef.current) {
-    dropdownRef.current = document.createElement('div')
-  }
-
-  useEffect(() => {
-    const el = dropdownRef.current!
-    dropdownRoot.appendChild(el)
-    return () => {
-      dropdownRoot.removeChild(el)
-    }
-  }, [dropdownRoot])
 
   const dropdownPosition = useDropdownPosition(wrapperRef, dropdownRef, open)
 
@@ -134,9 +128,10 @@ export function DropdownUI<T>({
             value={displayValue}
             onFocus={() => {
               if (disabled) return
-              setOpen(true)
+
+              onFocus()
             }}
-            onChange={e => handleSearchChange(e.target.value)}
+            onChange={e => onSearchInputChange(e.target.value)} // rename into onSearchInputChange
           />
         ) : (
           <div
@@ -186,14 +181,15 @@ export function DropdownUI<T>({
           dropdownRef={dropdownRef}
           dropdownPosition={dropdownPosition}
           wrapperRef={wrapperRef}
+          errorRef={errorContainerRef}
           dropdownStatusContent={dropdownStatusContent}
           optionsBottomContent={optionsBottomContent}
         />,
         dropdownRoot,
       )}
 
-      {error !== undefined && (
-        <div className="jui-text-left jui-px-2">
+      {error !== undefined && showErrorMessage && (
+        <div ref={errorContainerRef} className="jui-text-left jui-px-2">
           <Typography style="caption" className="jui-text-error-400">
             {error}
           </Typography>

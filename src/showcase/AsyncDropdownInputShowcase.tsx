@@ -16,7 +16,7 @@ type Country = {
 // Simulated API call with delay
 const fetchCountries = async (search: string): Promise<Country[]> => {
   // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  await new Promise(resolve => setTimeout(resolve, 1 * 1000))
 
   if (search === "triggerError") {
     throw new Error('Simulated error fetching countries')
@@ -35,9 +35,7 @@ const fetchCountries = async (search: string): Promise<Country[]> => {
     { id: 10, name: 'India' },
   ]
 
-  return allCountries.filter(country =>
-    country.name.toLowerCase().includes(search.toLowerCase())
-  )
+  return allCountries.filter(country => country.name.toLowerCase().includes(search.toLowerCase()))
 }
 
 export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyContent }: Props) {
@@ -56,7 +54,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           optionToId={c => c.id}
           optionToLabel={c => c.name}
           error={error}
-          fetchOptions={fetchCountries}
+          fetchFn={fetchCountries}
           debounceMs={300}
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
@@ -73,7 +71,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           optionToId={c => c.id}
           optionToLabel={c => c.name}
           error={error}
-          fetchOptions={fetchCountries}
+          fetchFn={fetchCountries}
           debounceMs={300}
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
         />
@@ -90,7 +88,7 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           optionToId={c => c.id}
           optionToLabel={c => c.name}
           error={error}
-          fetchOptions={fetchCountries}
+          fetchFn={fetchCountries}
           debounceMs={300}
           disabled
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
@@ -108,10 +106,9 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           optionToId={c => c.id}
           optionToLabel={c => c.name}
           error={error}
-          fetchOptions={async () => await fetchCountries("triggerError")}
+          fetchFn={async () => await fetchCountries("triggerError")}
           debounceMs={300}
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
-          optionsBottomContent={<div className="jui-bg-orange-500 jui-text-center jui-text-white jui-p-4">Custom content here</div>}
         />
       </div>
 
@@ -126,8 +123,24 @@ export function AsyncDropdownInputShowcase({ error, placeholder, customEmptyCont
           optionToId={c => c.id}
           optionToLabel={c => c.name}
           error={error}
-          fetchOptions={fetchCountries}
-          debounceMs={300}
+          fetchFn={fetchCountries}
+          emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
+          optionsBottomContent={<div className="jui-bg-orange-500 jui-text-center jui-text-white jui-p-4">Custom content here</div>}
+        />
+      </div>
+
+      <div>
+        <div className="jui-text-base jui-font-semibold jui-mb-1">
+          Content underneath Options - Failed fetching
+        </div>
+        <AsyncDropdownInput
+          placeholder={placeholder ?? "Type to search countries..."}
+          value={null}
+          onChange={() => {}}
+          optionToId={c => c.id}
+          optionToLabel={c => c.name}
+          error={error}
+          fetchFn={async () => await fetchCountries("triggerError")}
           emptyContent={customEmptyContent ? <EmptyContent /> : undefined}
           optionsBottomContent={<div className="jui-bg-orange-500 jui-text-center jui-text-white jui-p-4">Custom content here</div>}
         />
