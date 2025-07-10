@@ -131,7 +131,7 @@ export function DropdownUI<T>({
 
               onFocus()
             }}
-            onChange={e => onSearchInputChange(e.target.value)} // rename into onSearchInputChange
+            onChange={e => onSearchInputChange(e.target.value)}
           />
         ) : (
           <div
