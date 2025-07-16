@@ -1,6 +1,6 @@
 import { useRef, useMemo, useCallback, useEffect } from 'react'
 import debounce from 'lodash/debounce'
-import { AsyncDropdownAction } from '../dropdown.types'
+import { AsyncDropdownAction } from '../types'
 
 type UseSearchOnInputChangeParams<T> = {
   open: boolean

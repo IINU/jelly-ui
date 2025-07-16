@@ -1,4 +1,5 @@
-import { AsyncDropdownAction, AsyncDropdownState } from "./dropdown.types";
+import { AsyncDropdownAction, AsyncDropdownState } from "./types";
+
 
 export const createInitialState = <T>(): AsyncDropdownState<T> => ({
   open: false,

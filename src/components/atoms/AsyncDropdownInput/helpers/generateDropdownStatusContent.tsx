@@ -1,7 +1,7 @@
 import { ReactNode} from 'react'
-import { DropdownOptionItem } from '../DropdownOptions/DropdownOptionItem';
-import { Typography } from '../../../Typography';
-import { AsyncDropdownStatus } from '../dropdown.types';
+import { AsyncDropdownStatus } from '../types';
+import { DropdownOptionItem } from '../../internal/dropdown/DropdownOptions/DropdownOptionItem';
+import { Typography } from '../../Typography';
 
 export const generateDropdownStatusContent = (
   status: AsyncDropdownStatus,

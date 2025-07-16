@@ -1,9 +1,9 @@
 import { useEffect, useReducer } from 'react'
-import { AsyncDropdownProps } from "./internal/dropdown/dropdown.types";
-import { DropdownUI } from "./internal/dropdown/DropdownUI";
-import { generateDropdownStatusContent } from './internal/dropdown/helpers/generateDropdownStatusContent';
-import { asyncDropdownReducer, createInitialState } from './internal/dropdown/AsyncDropdown.state';
-import { useOnSearchInputChange } from './internal/dropdown/hooks/useOnSearchInputChange';
+import { DropdownUI } from "../internal/dropdown/DropdownUI";
+import { asyncDropdownReducer, createInitialState } from './AsyncDropdown.state';
+import { AsyncDropdownProps } from './types';
+import { useOnSearchInputChange } from './hooks/useOnSearchInputChange';
+import { generateDropdownStatusContent } from './helpers/generateDropdownStatusContent';
 
 export function AsyncDropdownInput<T>({
   error,
