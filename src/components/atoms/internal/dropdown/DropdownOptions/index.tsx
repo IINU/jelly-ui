@@ -1,18 +1,9 @@
-import {useState, useEffect, useRef, FC, HTMLProps, forwardRef, RefObject, ReactNode} from 'react'
-import {Typography} from '../../Typography'
+import {useState, useEffect, useRef } from 'react'
+import {Typography} from '../../../Typography'
+import { DropdownOptionsProps } from './types'
+import { getAbsolutePositioning } from './helpers/getAbsolutePositioning'
+import { DropdownOptionItem } from './DropdownOptionItem'
 
-type DropdownOptionsProps<T> = {
-  selectedOption: T | null
-  options: T[]
-  optionToId: (option: T) => number | string
-  optionToLabel: (option: T) => string
-  handleOptionClick: (option: T) => void
-  dropdownRef: RefObject<HTMLDivElement>
-  dropdownPosition: 'bottom' | 'top'
-  wrapperRef: RefObject<HTMLDivElement>
-  dropdownStatusContent?: ReactNode
-  optionsBottomContent?: ReactNode
-}
 
 export function DropdownOptions<T>({
   selectedOption,
@@ -23,6 +14,7 @@ export function DropdownOptions<T>({
   dropdownRef,
   dropdownPosition,
   wrapperRef,
+  errorRef,
   dropdownStatusContent,
   optionsBottomContent,
 }: DropdownOptionsProps<T>) {
@@ -74,24 +66,13 @@ export function DropdownOptions<T>({
       ref={dropdownRef}
       className="jui-fixed jui-max-h-44 jui-overflow-y-auto jui-bg-white jui-rounded-md jui-shadow-lg jui-text-left jui-z-50"
       style={{
-        top: dropdownPosition === 'top'
-          ? (wrapperRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY - (dropdownRef.current?.offsetHeight ?? 0)
-          : (wrapperRef.current?.getBoundingClientRect().bottom ?? 0) + window.scrollY,
-        left: (wrapperRef.current?.getBoundingClientRect().left ?? 0) + window.scrollX,
-        width: wrapperRef.current?.offsetWidth,
+        ...getAbsolutePositioning({ dropdownPosition, dropdownRef,dropdownStatusContent, wrapperRef, errorRef })
       }}
       tabIndex={-1}
     >
-      {dropdownStatusContent
-        ? <DropdownOptionItem>
-          {typeof dropdownStatusContent === 'string' ? (
-            <Typography style="body1" className="jui-text-primary-600">
-              {dropdownStatusContent}
-            </Typography>
-          ) : dropdownStatusContent}
-        </DropdownOptionItem>
-        : <>
-            {options.map((option, index) => (
+      {dropdownStatusContent ?? (
+        <>
+          {options.map((option, index) => (
             <DropdownOptionItem
               key={optionToId(option)}
               ref={(el) => (optionRefs.current[index] = el)}
@@ -105,24 +86,11 @@ export function DropdownOptions<T>({
               </Typography>
             </DropdownOptionItem>
           ))}
+          <div className={`jui-cursor-pointer focus:jui-outline-0 focus-visible:jui-outline-0 jui-bg-primary-100`}>
           {optionsBottomContent}
-        </>}
+          </div>
+        </>
+      )}
     </div>
   )
 }
-
-const DropdownOptionItem: FC<HTMLProps<HTMLDivElement>> = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
-  ({children, className, ...props}, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={`jui-pl-3 jui-pr-4 jui-py-2 jui-border-l-4 ${className ?? ''}`}
-        {...props}
-      >
-        {children}
-      </div>
-    )
-  }
-)
-
-DropdownOptionItem.displayName = 'DropdownOptionItem'
