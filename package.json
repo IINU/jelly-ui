@@ -8,7 +8,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "echo 'Hello Husky'",
+    "test": "echo 'Hello Husky - part 2'",
     "prepare": "husky",
     "build-storybook": "storybook build"
   },
