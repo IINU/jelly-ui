@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-staged": "lint-staged --config ./config/lint-staged/.lintstagedrc",
     "preview": "vite preview",
-    "precommit": "echo 'Hello'",
+    "precommit": "pnpm lint-staged",
     "test": "vitest --config ./config/vitest/vitest.config.ts run",
     "prepare": "husky",
     "build-storybook": "storybook build"
