@@ -5,12 +5,14 @@ frontend:
       commands:
         - nvm install
         - nvm use
+        - node -v
         - corepack enable
         - corepack prepare pnpm@10.15.0 --activate
+        - pnpm -v
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - pnpm build-storybook --debug
+        - pnpm build-storybook
     postBuild:
       commands:
         - pnpm store prune
