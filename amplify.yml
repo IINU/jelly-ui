@@ -12,7 +12,7 @@ frontend:
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - pnpm build-storybook
+        - DEBUG=vite:* pnpm build-storybook
     postBuild:
       commands:
         - pnpm store prune
