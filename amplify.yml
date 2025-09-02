@@ -10,7 +10,7 @@ frontend:
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - pnpm build-storybook
+        - pnpm build-storybook --debug
     postBuild:
       commands:
         - pnpm store prune
@@ -21,4 +21,3 @@ frontend:
   cache:
     paths:
       - ~/.pnpm-store
-      - node_modules
