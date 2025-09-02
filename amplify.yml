@@ -10,9 +10,7 @@ frontend:
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - VITE_REACT_APP_VERSION_UNIQUE_STRING=$AWS_JOB_ID
-        # Increase Node heap size to avoid OOM during Vite build
-        - NODE_OPTIONS=--max-old-space-size=8192 pnpm build-storybook
+        - pnpm build-storybook
     postBuild:
       commands:
         - pnpm store prune
