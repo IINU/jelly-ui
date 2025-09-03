@@ -10,7 +10,6 @@ frontend:
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=4096"
         - pnpm build-storybook
     postBuild:
       commands:
