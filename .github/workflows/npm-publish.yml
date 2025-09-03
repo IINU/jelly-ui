@@ -14,7 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      - run: nvm install
+        with:
+          node-version: '22'
       - run: corepack enable
       - run: corepack prepare pnpm@10.15.0 --activate
       - run: pnpm config set registry https://registry.npmjs.org/
