@@ -88,9 +88,7 @@ export function InsightsScatterChart<T>({
   const yScale = (value: number) => {
     const denom = niceYMax - niceYMin
     if (denom === 0) {
-      return (
-        height - bottomPadding - (height - topPadding - bottomPadding) / 2
-      )
+      return height - bottomPadding - (height - topPadding - bottomPadding) / 2
     }
     return (
       height -
@@ -240,7 +238,7 @@ export function InsightsScatterChart<T>({
             <text
               x={leftPadding}
               y={height - 7}
-              textAnchor="left"
+              textAnchor="start"
               fontSize={12}
               fontWeight={500}
               fontFamily="rubik"
@@ -253,7 +251,7 @@ export function InsightsScatterChart<T>({
             <text
               x={-height + bottomPadding}
               y={15}
-              textAnchor="left"
+              textAnchor="start"
               fontSize={12}
               fontWeight={500}
               fontFamily="rubik"
@@ -295,14 +293,7 @@ export function InsightsScatterChart<T>({
 
 // Define the StarIcon component
 const StarIcon = ({ x, y }: { x: number; y: number }) => (
-  <svg
-    x={x}
-    y={y}
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
+  <svg x={x} y={y} width="24" height="24" viewBox="0 0 24 24" fill="none">
     <g clipPath="url(#clip0)">
       <path
         d="M8.24301 7.34001L1.86301 8.26501L1.75001 8.28801C1.57895 8.33343 1.423 8.42342 1.2981 8.54882C1.1732 8.67421 1.08381 8.8305 1.03907 9.00174C0.994331 9.17298 0.995837 9.35302 1.04344 9.52349C1.09104 9.69395 1.18303 9.84873 1.31001 9.97201L5.93201 14.471L4.84201 20.826L4.82901 20.936C4.81854 21.1129 4.85528 21.2895 4.93546 21.4475C5.01564 21.6056 5.13639 21.7395 5.28535 21.8355C5.4343 21.9316 5.6061 21.9863 5.78316 21.9941C5.96022 22.0019 6.13617 21.9626 6.29301 21.88L11.999 18.88L17.692 21.88L17.792 21.926C17.9571 21.991 18.1365 22.011 18.3118 21.9838C18.4871 21.9566 18.652 21.8832 18.7896 21.7713C18.9272 21.6593 19.0326 21.5128 19.0948 21.3467C19.1571 21.1805 19.1741 21.0008 19.144 20.826L18.053 14.471L22.677 9.97101L22.755 9.88601C22.8664 9.74878 22.9395 9.58447 22.9667 9.40981C22.994 9.23515 22.9744 9.05639 22.9101 8.89174C22.8458 8.7271 22.7389 8.58245 22.6005 8.47253C22.4621 8.36261 22.297 8.29135 22.122 8.26601L15.742 7.34001L12.89 1.56001C12.8075 1.39255 12.6797 1.25153 12.5212 1.15292C12.3627 1.05431 12.1797 1.00204 11.993 1.00204C11.8063 1.00204 11.6233 1.05431 11.4648 1.15292C11.3063 1.25153 11.1785 1.39255 11.096 1.56001L8.24301 7.34001Z"
@@ -319,14 +310,7 @@ const StarIcon = ({ x, y }: { x: number; y: number }) => (
 
 // Define the PawPrintIcon component
 const PawPrintIcon = ({ x, y }: { x: number; y: number }) => (
-  <svg
-    x={x}
-    y={y}
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
+  <svg x={x} y={y} width="24" height="24" viewBox="0 0 24 24" fill="none">
     <g clipPath="url(#clip0)">
       <path
         d="M12 10C10.68 10 10.017 10.421 9.069 11.924L8.825 12.322L8.43 13.01C8.38275 13.0946 8.33575 13.1792 8.289 13.264C8.049 13.698 7.718 14.017 7.15 14.406L6.6 14.771C5.66 15.398 5.168 15.889 4.893 16.726C4.769 17.064 4.697 17.579 4.7 18.006C4.7 19.693 5.898 21 7.5 21L7.742 20.994C7.861 20.988 7.976 20.977 8.096 20.96L8.344 20.917L8.476 20.889L8.767 20.816L8.929 20.771L9.499 20.601L10.262 20.358L10.717 20.222C11.247 20.072 11.657 20 12 20C12.344 20 12.753 20.073 13.283 20.222L13.738 20.358L14.502 20.6L15.071 20.771L15.383 20.855C15.48 20.879 15.57 20.9 15.656 20.917L15.904 20.96C16.024 20.977 16.139 20.988 16.258 20.994L16.5 21C18.102 21 19.3 19.693 19.3 18C19.3 17.573 19.227 17.061 19.093 16.694C18.857 15.97 18.416 15.471 17.613 14.864L17.356 14.674L16.828 14.294C16.186 13.824 15.825 13.468 15.575 13.016L15.305 12.531L15.053 12.099C14.042 10.403 13.435 10 12 10Z"
@@ -358,11 +342,7 @@ const PawPrintIcon = ({ x, y }: { x: number; y: number }) => (
 )
 
 // Helper functions for generating nice axis labels
-function getTickValues(
-  min: number,
-  max: number,
-  maxTicks: number
-): number[] {
+function getTickValues(min: number, max: number, maxTicks: number): number[] {
   if (
     isNaN(min) ||
     isNaN(max) ||

@@ -1,0 +1,23 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install
+        - nvm use
+        - corepack enable
+        - corepack prepare pnpm@10.15.0 --activate
+        - pnpm install --frozen-lockfile --prefer-offline
+    build:
+      commands:
+        - pnpm build-storybook
+    postBuild:
+      commands:
+        - pnpm store prune
+  artifacts:
+    baseDirectory: storybook-static
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - ~/.pnpm-store
