@@ -11,7 +11,7 @@ frontend:
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=4096"
-        - pnpm build-storybook --quiet
+        - pnpm build-storybook
     postBuild:
       commands:
         - pnpm store prune
