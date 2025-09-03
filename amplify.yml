@@ -5,14 +5,13 @@ frontend:
       commands:
         - nvm install
         - nvm use
-        - node -v
         - corepack enable
         - corepack prepare pnpm@10.15.0 --activate
-        - pnpm -v
         - pnpm install --frozen-lockfile --prefer-offline
     build:
       commands:
-        - DEBUG=vite:* pnpm build-storybook
+        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - pnpm build-storybook --quiet
     postBuild:
       commands:
         - pnpm store prune

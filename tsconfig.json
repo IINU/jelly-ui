@@ -24,6 +24,6 @@
     "outDir": "./dist"
   },
   "include": ["src"],
-  "exclude": ["src/stories/**"],
+  "exclude": ["src/stories/**", "node_modules/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
