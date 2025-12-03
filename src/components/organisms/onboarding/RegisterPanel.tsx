@@ -1,3 +1,4 @@
+import ReCAPTCHA from 'react-google-recaptcha'
 import { Button } from '../../atoms/Button'
 import { JellyLogoPrimary } from '../../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../../atoms/Typography'
@@ -14,6 +15,7 @@ export type RegisterData = {
   email: string
   countryCode: string
   phoneNumber: string
+  captchaValue: string
 }
 
 type Errors = Partial<Record<keyof RegisterData, string>>
@@ -23,6 +25,7 @@ type Props = {
   tacClicked: MouseEventHandler
   privacyPolicyClicked: MouseEventHandler
   loginLinkClicked?: MouseEventHandler
+  captchaSiteKey?: string
   onChange?: (data: RegisterData) => void
   loading?: boolean
   errors?: Errors
@@ -35,46 +38,66 @@ export function RegisterPanel({
   privacyPolicyClicked,
   loading,
   onChange,
+  captchaSiteKey,
   errors: errorsProp,
   firstName: firstNameProp,
   lastName: lastNameProp,
   email: emailProp,
   countryCode: countryCodeProp,
   phoneNumber: phoneNumberProp,
+  captchaValue: captchaValueProp,
 }: Props) {
-
   const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
   const [firstName, setFirstName] = useState(firstNameProp || '')
   const [lastName, setLastName] = useState(firstNameProp || '')
   const [email, setEmail] = useState(emailProp || '')
   const [countryCode, setCountryCode] = useState(countryCodeProp || '')
   const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp || '')
+  const [captchaValue, setCaptchaValue] = useState(captchaValueProp || '')
 
-  const [countryCodeDropDown, setCountryCodeDropDown] = useState<CountryCode | null>(
-    countryCodeProp
-      ? CountryCodeModel.findByCode(countryCodeProp)
-      : CountryCodeModel.find(76),
-  )
+  const [countryCodeDropDown, setCountryCodeDropDown] =
+    useState<CountryCode | null>(
+      countryCodeProp
+        ? CountryCodeModel.findByCode(countryCodeProp)
+        : CountryCodeModel.find(76),
+    )
 
   useEnterSubmit({ ctaClicked })
   useEffect(() => setFirstName(firstNameProp || ''), [firstNameProp])
   useEffect(() => setLastName(lastNameProp || ''), [lastNameProp])
   useEffect(() => setEmail(emailProp || ''), [emailProp])
   useEffect(() => setPhoneNumber(phoneNumberProp || ''), [phoneNumberProp])
+  useEffect(() => setCaptchaValue(captchaValueProp || ''), [captchaValueProp])
   useEffect(() => setErrors(errorsProp || null), [errorsProp])
-  useEffect(() => onChange?.({
-    firstName,
-    lastName,
-    email,
-    countryCode,
-    phoneNumber,
-  }), [firstName, lastName, email, countryCode, phoneNumber, onChange])
+  useEffect(
+    () =>
+      onChange?.({
+        firstName,
+        lastName,
+        email,
+        countryCode,
+        phoneNumber,
+        captchaValue,
+      }),
+    [
+      firstName,
+      lastName,
+      email,
+      countryCode,
+      phoneNumber,
+      captchaValue,
+      onChange,
+    ],
+  )
 
   useEffect(() => {
     if (!countryCodeProp) return
     setCountryCodeDropDown(CountryCodeModel.findByCode(countryCodeProp))
   }, [countryCodeProp])
-  useEffect(() => setCountryCode(countryCodeDropDown?.code || ''), [countryCodeDropDown])
+  useEffect(
+    () => setCountryCode(countryCodeDropDown?.code || ''),
+    [countryCodeDropDown],
+  )
 
   function ctaClicked() {
     setErrors(null)
@@ -91,18 +114,24 @@ export function RegisterPanel({
       return
     }
 
-    register({ firstName, lastName, email, countryCode, phoneNumber })
+    register({
+      firstName,
+      lastName,
+      email,
+      countryCode,
+      phoneNumber,
+      captchaValue,
+    })
   }
 
   return (
     <div className="jui-space-y-8">
       <div className="jui-shadow jui-w-full jui-rounded-md">
         <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-justify-center">
-          <JellyLogoPrimary/>
+          <JellyLogoPrimary />
         </div>
 
-        <div
-          className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
+        <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
           <div className="jui-flex jui-flex-col jui-space-y-6 jui-w-full">
             <Typography style="h6" className="jui-text-primary-900">
               Create account
@@ -154,11 +183,24 @@ export function RegisterPanel({
             </div>
           </div>
 
+          {captchaSiteKey && (
+            <ReCAPTCHA
+              sitekey={captchaSiteKey}
+              onChange={(value) => setCaptchaValue(value || '')}
+            />
+          )}
+
           <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
             <Button
               style="primary"
               onClick={ctaClicked}
-              disabled={loading || !firstName || !lastName || !countryCode || !phoneNumber}
+              disabled={
+                loading ||
+                !firstName ||
+                !lastName ||
+                !countryCode ||
+                !phoneNumber
+              }
               label="Continue"
               className="jui-w-full"
             />
