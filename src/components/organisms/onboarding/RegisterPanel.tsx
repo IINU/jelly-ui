@@ -108,6 +108,8 @@ export function RegisterPanel({
     if (!email) calcError.email = 'This is required.'
     if (!countryCode) calcError.countryCode = 'This is required.'
     if (!phoneNumber) calcError.phoneNumber = 'This is required.'
+    if (captchaSiteKey && !captchaValue)
+      calcError.captchaValue = 'This is required.'
 
     if (Object.values(calcError).filter(Boolean).length) {
       setErrors(calcError)
@@ -184,10 +186,19 @@ export function RegisterPanel({
           </div>
 
           {captchaSiteKey && (
-            <ReCAPTCHA
-              sitekey={captchaSiteKey}
-              onChange={(value) => setCaptchaValue(value || '')}
-            />
+            <>
+              <ReCAPTCHA
+                sitekey={captchaSiteKey}
+                onChange={(value) => setCaptchaValue(value || '')}
+              />
+              {errors?.captchaValue?.length && (
+                <div className="jui-text-left jui-px-2">
+                  <Typography style="caption" className="jui-text-error-400">
+                    {errors?.captchaValue}
+                  </Typography>
+                </div>
+              )}
+            </>
           )}
 
           <div className="jui-flex jui-flex-col jui-space-y-4 jui-w-full">
@@ -199,7 +210,8 @@ export function RegisterPanel({
                 !firstName ||
                 !lastName ||
                 !countryCode ||
-                !phoneNumber
+                !phoneNumber ||
+                (Boolean(captchaSiteKey) && !captchaValue)
               }
               label="Continue"
               className="jui-w-full"
