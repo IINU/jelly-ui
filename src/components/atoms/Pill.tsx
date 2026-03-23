@@ -1,6 +1,12 @@
 import { MouseEventHandler } from 'react'
 
-export type PillVariant = 'primary' | 'secondary' | 'success' | 'outlined' | 'ghost' | 'warning'
+export type PillVariant =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'outlined'
+  | 'ghost'
+  | 'warning'
 
 type Props = {
   variant: PillVariant
@@ -10,7 +16,8 @@ type Props = {
 }
 
 export function Pill({ label, onClick, variant, className = '' }: Props) {
-  const baseClass = 'jui-h-[1.25rem] jui-px-[0.6875rem] jui-rounded-full jui-inline-flex jui-items-center jui-justify-center jui-border'
+  const baseClass =
+    'jui-h-[1.25rem] jui-px-[0.6875rem] jui-rounded-full jui-inline-flex jui-items-center jui-justify-center jui-border jui-whitespace-nowrap'
   const clickable = onClick ? 'jui-cursor-pointer' : ''
 
   const variantClasses: Record<PillVariant, string> = {
