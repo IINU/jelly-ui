@@ -83,9 +83,7 @@ export { AllProductsTrackedNotPaidState } from './components/organisms/not-paid-
 export { DigitalOrderingEmptyState } from './components/organisms/empty-states/DigitalOrderingEmptyState'
 export { DigitalOrderingNotPaidState } from './components/organisms/not-paid-states/DigitalOrderingNotPaidState'
 export { FastestCostingOnPlanetEmptyState } from './components/organisms/empty-states/FastestCostingOnPlanetEmptyState'
-export {
-  FastestCostingOnPlanetNotPaidState,
-} from './components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
+export { FastestCostingOnPlanetNotPaidState } from './components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
 export { InvoicesOnePlaceEmptyState } from './components/organisms/empty-states/InvoicesOnePlaceEmptyState'
 export { InvoicesOnePlaceNotPaidState } from './components/organisms/not-paid-states/InvoicesOnePlaceNotPaidState'
 export { KnowYourSpendingEmptyState } from './components/organisms/empty-states/KnowYourSpendingEmptyState'
@@ -93,6 +91,8 @@ export { KnowYourSpendingNotPaidState } from './components/organisms/not-paid-st
 export { LiveMenuMarginsEmptyState } from './components/organisms/empty-states/LiveMenuMarginsEmptyState'
 export { LiveMenuMarginsNotPaidState } from './components/organisms/not-paid-states/LiveMenuMarginsNotPaidState'
 export { UnlockYourMarginsNotPaidState } from './components/organisms/not-paid-states/UnlockYourMarginsNotPaidState'
+export { TransfersNotPaidState } from './components/organisms/not-paid-states/TransfersNotPaidState'
+export { TransfersEmptyState } from './components/organisms/empty-states/TransfersEmptyState'
 
 // Organisms / Modals
 export { AddNoteModal } from './components/organisms/modals/AddNoteModal'

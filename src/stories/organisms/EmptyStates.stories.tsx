@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { AccurateStockTakeEmptyState } from '../../components/organisms/empty-states/AccurateStockTakeEmptyState'
+import { TransfersEmptyState } from '../../components/organisms/empty-states/TransfersEmptyState'
 import { StateShowcase } from '../../showcase/StateShowcase'
 import { ActualGPFlashEmptyState } from '../../components/organisms/empty-states/ActualGPFlashEmptyState'
 import { AlertPriceChangeEmptyState } from '../../components/organisms/empty-states/AlertPriceChangeEmptyState'
 import { AllProductsTrackedEmptyState } from '../../components/organisms/empty-states/AllProductsTrackedEmptyState'
 import { DigitalOrderingEmptyState } from '../../components/organisms/empty-states/DigitalOrderingEmptyState'
-import {
-  FastestCostingOnPlanetEmptyState,
-} from '../../components/organisms/empty-states/FastestCostingOnPlanetEmptyState'
+import { FastestCostingOnPlanetEmptyState } from '../../components/organisms/empty-states/FastestCostingOnPlanetEmptyState'
 import { InvoicesOnePlaceEmptyState } from '../../components/organisms/empty-states/InvoicesOnePlaceEmptyState'
 import { KnowYourSpendingEmptyState } from '../../components/organisms/empty-states/KnowYourSpendingEmptyState'
 import { LiveMenuMarginsEmptyState } from '../../components/organisms/empty-states/LiveMenuMarginsEmptyState'
@@ -23,7 +22,7 @@ const meta = {
 } satisfies Meta<typeof StateShowcase>
 
 export default meta
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const AccurateStockTakeStory: Story = {
   name: 'Accurate Stock Take',
@@ -92,6 +91,14 @@ export const KnowYourSpendingStory: Story = {
   name: 'Know Your Spending',
   args: {
     state: KnowYourSpendingEmptyState,
+    onClick: fn(),
+    disabledText: '',
+  },
+}
+export const TransfersStory: Story = {
+  name: 'Transfers',
+  args: {
+    state: TransfersEmptyState,
     onClick: fn(),
     disabledText: '',
   },

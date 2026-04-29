@@ -7,6 +7,7 @@ export type PillVariant =
   | 'outlined'
   | 'ghost'
   | 'warning'
+  | 'info'
 
 type Props = {
   variant: PillVariant
@@ -27,6 +28,7 @@ export function Pill({ label, onClick, variant, className = '' }: Props) {
     outlined: 'jui-bg-transparent jui-border-primary-400 jui-text-primary-900',
     ghost: 'jui-bg-transparent jui-border-transparent jui-text-primary-900',
     warning: 'jui-bg-tertiary-200 jui-border-tertiary-200 jui-text-primary-900',
+    info: 'jui-bg-sky-100 jui-border-sky-100 jui-text-primary-900',
   }
 
   return (
