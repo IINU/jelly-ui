@@ -2,15 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { StateShowcase } from '../../showcase/StateShowcase'
 import { AccurateStockTakeNotPaidState } from '../../components/organisms/not-paid-states/AccurateStockTakeNotPaidState'
+import { TransfersNotPaidState } from '../../components/organisms/not-paid-states/TransfersNotPaidState'
 import { ActualGPFlashNotPaidState } from '../../components/organisms/not-paid-states/ActualGPFlashNotPaidState'
 import { AlertPriceChangeNotPaidState } from '../../components/organisms/not-paid-states/AlertPriceChangeNotPaidState'
-import {
-  AllProductsTrackedNotPaidState,
-} from '../../components/organisms/not-paid-states/AllProductsTrackedNotPaidState'
+import { AllProductsTrackedNotPaidState } from '../../components/organisms/not-paid-states/AllProductsTrackedNotPaidState'
 import { DigitalOrderingNotPaidState } from '../../components/organisms/not-paid-states/DigitalOrderingNotPaidState'
-import {
-  FastestCostingOnPlanetNotPaidState,
-} from '../../components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
+import { FastestCostingOnPlanetNotPaidState } from '../../components/organisms/not-paid-states/FastestCostingOnPlanetNotPaidState'
 import { InvoicesOnePlaceNotPaidState } from '../../components/organisms/not-paid-states/InvoicesOnePlaceNotPaidState'
 import { KnowYourSpendingNotPaidState } from '../../components/organisms/not-paid-states/KnowYourSpendingNotPaidState'
 import { LiveMenuMarginsNotPaidState } from '../../components/organisms/not-paid-states/LiveMenuMarginsNotPaidState'
@@ -26,7 +23,7 @@ const meta = {
 } satisfies Meta<typeof StateShowcase>
 
 export default meta
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const AccurateStockTakeStory: Story = {
   name: 'Accurate Stock Take',
@@ -115,5 +112,14 @@ export const UnlockYourMarginsStory: Story = {
     state: UnlockYourMarginsNotPaidState,
     layoutState: 'homescreen',
     onClick: fn(),
+  },
+}
+
+export const TransfersStory: Story = {
+  name: 'Transfers',
+  args: {
+    state: TransfersNotPaidState,
+    onClick: fn(),
+    disabledText: '',
   },
 }

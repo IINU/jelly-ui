@@ -8,46 +8,53 @@ const meta = {
 } satisfies Meta<typeof PillShowcase>
 
 export default meta
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const PillPrimary: Story = {
   args: {
     variant: 'primary',
-    label: 'Invoice'
+    label: 'Invoice',
   },
 }
 
 export const PillSecondary: Story = {
   args: {
     variant: 'secondary',
-    label: 'Invoice'
+    label: 'Invoice',
   },
 }
 
 export const PillSuccess: Story = {
   args: {
     variant: 'success',
-    label: 'Invoice'
+    label: 'Invoice',
   },
 }
 
 export const PillOutlined: Story = {
   args: {
     variant: 'outlined',
-    label: 'Invoice'
+    label: 'Invoice',
   },
 }
 
 export const PillGhost: Story = {
   args: {
     variant: 'ghost',
-    label: 'Invoice'
+    label: 'Invoice',
   },
 }
 
 export const PillWarning: Story = {
   args: {
     variant: 'warning',
-    label: 'Invoice'
+    label: 'Invoice',
+  },
+}
+
+export const PillInfo: Story = {
+  args: {
+    variant: 'info',
+    label: 'Invoice',
   },
 }
