@@ -58,3 +58,10 @@ export const PillInfo: Story = {
     label: 'Invoice',
   },
 }
+
+export const PillError: Story = {
+  args: {
+    variant: 'error',
+    label: 'Invoice',
+  },
+}
