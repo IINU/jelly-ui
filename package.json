@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "tsc && vite build",
+    "build:monorepo-orchestrated": "tsc && MONOREPO_ORCHESTRATED=true vite build",
+    "rebuild:monorepo-orchestrated": "tsc && MONOREPO_ORCHESTRATED=true vite build",
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-staged": "lint-staged --config ./config/lint-staged/.lintstagedrc",
