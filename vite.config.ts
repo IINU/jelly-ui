@@ -7,7 +7,7 @@ import path from 'path'
 // the format required for the overlay's module-federation / live-linking setup.
 // In standalone / production builds the env var is absent and `formats` is left
 // undefined so Vite falls back to its library defaults.
-const isMonorepoOrchestrated = process.env.MONOREPO_ORCHESTRATED === 'true'
+// const isMonorepoOrchestrated = process.env.MONOREPO_ORCHESTRATED === 'true'
 
 export default defineConfig({
   plugins: [react()],
@@ -16,7 +16,8 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'JellyUI',
       fileName: () => `index.js`,
-      ...(isMonorepoOrchestrated ? { formats: ['es'] } : {}),
+      // ...(isMonorepoOrchestrated ? { formats: ['es'] } : {}),
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
