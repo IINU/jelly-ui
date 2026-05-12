@@ -9,7 +9,6 @@ export type PillVariant =
   | 'warning'
   | 'info'
   | 'error'
-  | 'pinky'
 
 type Props = {
   variant: PillVariant
@@ -32,7 +31,6 @@ export function Pill({ label, onClick, variant, className = '' }: Props) {
     warning: 'jui-bg-tertiary-200 jui-border-tertiary-200 jui-text-primary-900',
     info: 'jui-bg-sky-100 jui-border-sky-100 jui-text-primary-900',
     error: 'jui-bg-error-200 jui-border-error-200 jui-text-primary-900',
-    pinky: 'jui-bg-pink-500 jui-border-pink-500 jui-text-white jui-p-10',
   }
 
   return (
