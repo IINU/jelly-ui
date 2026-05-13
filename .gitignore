@@ -31,3 +31,7 @@ storybook-static
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# monorepo
+.rush
+rush-logs
