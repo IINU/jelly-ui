@@ -33,7 +33,7 @@ export function CheckBox({
 
   const state = disabled
     ? 'jui-opacity-50 jui-cursor-not-allowed'
-    : 'jui-cursor-pointer hover:jui-opacity-80'
+    : 'jui-cursor-pointer'
 
   return (
     <button
