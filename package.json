@@ -1,6 +1,6 @@
 {
   "name": "@jelly-org/jelly-ui",
-  "version": "1.4.4",
+  "version": "1.4.5-jel-1649",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
