@@ -57,6 +57,7 @@ export { TodoTaskProgress } from './components/molecules/TodoTaskProgress'
 export { KitchenSetup } from './components/organisms/KitchenSetup'
 export { NavbarMobile } from './components/organisms/NavbarMobile'
 export { NavbarDesktop } from './components/organisms/NavbarDesktop'
+export { IssueSentPanel } from './components/organisms/raised-issues/IssueSentPanel'
 
 // Organisms / Onboarding
 export { AcceptInvitePanel } from './components/organisms/onboarding/AcceptInvitePanel'
