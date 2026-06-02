@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { NumberInput } from '../../atoms/NumberInput'
 import { ToggleButton } from '../../atoms/ToggleButton'
 import { IconCurrencyPound } from '@tabler/icons-react'
+import { InvoiceRuleInfoBox } from './InvoiceRuleInfoBox'
 
 export type InvoiceRuleData = {
   approveAllInvoices: boolean
@@ -30,19 +31,28 @@ export function InvoiceRuleModal({
 }: Props) {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<Errors | null>(errorsProp || null)
-  const [approveAllInvoices, setApproveAllInvoices] = useState(approveAllInvoicesProp)
-  const [approvalThreshold, setApprovalThreshold] = useState(approvalThresholdProp)
+  const [approveAllInvoices, setApproveAllInvoices] = useState(
+    approveAllInvoicesProp,
+  )
+  const [approvalThreshold, setApprovalThreshold] = useState(
+    approvalThresholdProp,
+  )
   const [threshold, setThreshold] = useState(
-    approvalThresholdProp === null ? '' : approvalThresholdProp.toString()
+    approvalThresholdProp === null ? '' : approvalThresholdProp.toString(),
   )
 
   useEffect(() => setErrors(errorsProp || null), [errorsProp])
 
-  useEffect(() => setApproveAllInvoices(approveAllInvoicesProp), [approveAllInvoicesProp])
+  useEffect(
+    () => setApproveAllInvoices(approveAllInvoicesProp),
+    [approveAllInvoicesProp],
+  )
 
   useEffect(() => {
     setApprovalThreshold(approvalThresholdProp)
-    setThreshold(approvalThresholdProp === null ? '' : approvalThresholdProp.toString())
+    setThreshold(
+      approvalThresholdProp === null ? '' : approvalThresholdProp.toString(),
+    )
   }, [approvalThresholdProp])
 
   async function ctaClicked() {
@@ -73,7 +83,11 @@ export function InvoiceRuleModal({
       onClose={() => {
         setApprovalThreshold(approvalThresholdProp)
         setApproveAllInvoices(approveAllInvoicesProp)
-        setThreshold(approvalThresholdProp === null ? '' : approvalThresholdProp.toString())
+        setThreshold(
+          approvalThresholdProp === null
+            ? ''
+            : approvalThresholdProp.toString(),
+        )
         onClose()
       }}
     >
@@ -85,9 +99,13 @@ export function InvoiceRuleModal({
             <div className="jui-space-y-2">
               <Typography style="caption" className="jui-text-primary-800">
                 Auto-approve{' '}
-                <span className="jui-font-semibold jui-text-primary-900">IF</span>
-                {' '}document total is{' '}
-                <span className="jui-font-semibold jui-text-primary-900">LESS THAN</span>
+                <span className="jui-font-semibold jui-text-primary-900">
+                  IF
+                </span>{' '}
+                document total is{' '}
+                <span className="jui-font-semibold jui-text-primary-900">
+                  LESS THAN
+                </span>
               </Typography>
 
               <NumberInput
@@ -110,6 +128,8 @@ export function InvoiceRuleModal({
                 onChange={setApproveAllInvoices}
               />
             </div>
+
+            <InvoiceRuleInfoBox />
           </div>
         </div>
 

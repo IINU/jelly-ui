@@ -13,6 +13,7 @@ export default {
       },
       borderRadius: {
         DEFAULT: '0.5rem',
+        notice: '0.3125rem',
         lg: '0.625rem',
       },
       boxShadow: {
