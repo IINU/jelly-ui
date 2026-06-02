@@ -21,14 +21,14 @@ export default meta
 type Story<T> = StoryObj<{ component: typeof ModalShowcase<T> }>
 
 type ModalStory<
-  T extends JSXElementConstructor<any> | keyof IntrinsicElements
+  T extends JSXElementConstructor<any> | keyof IntrinsicElements,
 > = Story<Omit<ComponentProps<T>, 'open' | 'onClose'>>
 
 export const TestModalStory: ModalStory<typeof TestModal> = {
   name: 'Test Modal',
   args: {
     component: TestModal,
-    props: { ctaClicked: () => (void 0) },
+    props: { ctaClicked: () => void 0 },
   },
 }
 
@@ -36,7 +36,7 @@ export const JellySupportModalStory: ModalStory<typeof JellySupportModal> = {
   name: 'Jelly Support Modal',
   args: {
     component: JellySupportModal,
-    props: { ctaClicked: () => (void 0) },
+    props: { ctaClicked: () => void 0 },
   },
 }
 
@@ -44,7 +44,12 @@ export const ConfettiModalStory: ModalStory<typeof ConfettiModal> = {
   name: 'Confetti Modal',
   args: {
     component: ConfettiModal,
-    props: {},
+    props: {
+      headingText: 'You rock!',
+      captionText:
+        'You’ve completed onboarding with flying colours. Here’s your Jelly trophy!',
+      buttonText: "Where's the party?",
+    },
   },
 }
 
