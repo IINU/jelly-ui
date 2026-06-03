@@ -15,7 +15,11 @@ export function KitchenSetupShowcase() {
   const [steps, setSteps] = useState<Step[]>([
     { id: '1', text: 'Add team members', completed: false },
     { id: '2', text: 'Upload 6 invoice photos', completed: false },
-    { id: '3', text: 'Automate invoice direct from 1 supplier', completed: false },
+    {
+      id: '3',
+      text: 'Automate invoice direct from 1 supplier',
+      completed: false,
+    },
     { id: '4', text: 'Check big price changes', completed: false },
     { id: '5', text: 'Get the flash report', completed: false },
     { id: '6', text: 'Cost your cookbook', completed: false },
@@ -38,7 +42,7 @@ export function KitchenSetupShowcase() {
     setSteps(newSteps)
 
     // Trigger confetti
-    if (steps.filter(s => s.completed).length === steps.length) {
+    if (steps.filter((s) => s.completed).length === steps.length) {
       setShowModal(true)
     }
   }
@@ -50,12 +54,15 @@ export function KitchenSetupShowcase() {
           <ConfettiModal
             open={showModal}
             onClose={() => setShowModal(false)}
+            headingText="You rock!"
+            captionText="You’ve completed onboarding with flying colours. Here’s your Jelly trophy!"
+            buttonText="Where's the party?"
           />
 
           <KitchenSetup<Step>
             steps={steps}
             onClick={completeStep}
-            getStepKey={step => step.id}
+            getStepKey={(step) => step.id}
           />
         </div>
       </div>
