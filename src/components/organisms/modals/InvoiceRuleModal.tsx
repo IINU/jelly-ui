@@ -18,6 +18,7 @@ type Props = {
   open: boolean
   onClose: () => void
   onSave: (data: InvoiceRuleData) => Promise<void>
+  showInfoBox?: boolean
   errors?: Errors
 } & InvoiceRuleData
 
@@ -25,6 +26,7 @@ export function InvoiceRuleModal({
   open,
   onClose,
   onSave,
+  showInfoBox = false,
   errors: errorsProp,
   approveAllInvoices: approveAllInvoicesProp,
   approvalThreshold: approvalThresholdProp,
@@ -129,7 +131,7 @@ export function InvoiceRuleModal({
               />
             </div>
 
-            <InvoiceRuleInfoBox />
+            {showInfoBox && <InvoiceRuleInfoBox />}
           </div>
         </div>
 
