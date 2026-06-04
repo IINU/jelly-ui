@@ -61,6 +61,22 @@ export const InvoiceRuleModalStory: ModalStory<typeof InvoiceRuleModal> = {
       onSave: () => Promise.resolve(),
       approveAllInvoices: false,
       approvalThreshold: null,
+      showInfoBox: true,
+    },
+  },
+}
+
+export const InvoiceRuleModalWithoutInfoBoxStory: ModalStory<
+  typeof InvoiceRuleModal
+> = {
+  name: 'Invoice Rule Modal Without Info Box',
+  args: {
+    component: InvoiceRuleModal,
+    props: {
+      onSave: () => Promise.resolve(),
+      approveAllInvoices: false,
+      approvalThreshold: null,
+      showInfoBox: false,
     },
   },
 }
