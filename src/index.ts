@@ -51,6 +51,8 @@ export { TodoKitchenClear } from './components/molecules/TodoKitchenClear'
 export { TodoNoTasks } from './components/molecules/TodoNoTasks'
 export { TodoSection } from './components/molecules/TodoSection'
 export { TodoTask } from './components/molecules/TodoTask'
+export { TrophyPanel } from './components/molecules/TrophyPanel'
+export { CoinInHandPanel } from './components/molecules/CoinInHandPanel'
 export { TodoTaskProgress } from './components/molecules/TodoTaskProgress'
 
 // Organisms
