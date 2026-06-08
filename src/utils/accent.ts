@@ -1,4 +1,4 @@
-export type Accent = 'error' | 'success' | 'tertiary' | 'secondary' | 'grey'
+export type Accent = 'error' | 'success' | 'tertiary' | 'secondary' | 'muted'
 
 export function accentToText(
   accent?: Accent,
@@ -9,7 +9,7 @@ export function accentToText(
     secondary: 'jui-text-secondary-400',
     success: 'jui-text-success-400',
     tertiary: 'jui-text-tertiary-400',
-    grey: 'jui-text-primary-600',
+    muted: 'jui-text-primary-600',
   }
 
   return accent ? colours[accent] : fallback
