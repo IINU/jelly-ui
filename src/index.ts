@@ -35,6 +35,7 @@ export { DashboardTrendingStack } from './components/molecules/DashboardTrending
 export { DetailsSection } from './components/molecules/DetailsSection'
 export { ErrorAlert } from './components/molecules/ErrorAlert'
 export { InfoAlert } from './components/molecules/InfoAlert'
+export { KitchenSelector } from './components/molecules/KitchenSelector'
 export { InsightsBarChart } from './components/molecules/InsightsBarChart'
 export { InsightsDateNavigator } from './components/molecules/InsightsDateNavigator'
 export { InsightsDayChart } from './components/molecules/InsightsDayChart'
