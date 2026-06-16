@@ -13,6 +13,8 @@ export function CoinInHandPanel({ title, subtitle }: Props) {
       alt="Coin in hand"
       title={title}
       subtitle={subtitle}
+      size="sm"
+      mixBlendDarken
     />
   )
 }
