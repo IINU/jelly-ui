@@ -53,6 +53,7 @@ export { TodoNoTasks } from './components/molecules/TodoNoTasks'
 export { TodoSection } from './components/molecules/TodoSection'
 export { TodoTask } from './components/molecules/TodoTask'
 export { TrophyPanel } from './components/molecules/TrophyPanel'
+export { CookingPanel } from './components/molecules/CookingPanel'
 export { CoinInHandPanel } from './components/molecules/CoinInHandPanel'
 export { TodoTaskProgress } from './components/molecules/TodoTaskProgress'
 
