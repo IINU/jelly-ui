@@ -1,10 +1,7 @@
-import { TrophyPanel } from './TrophyPanel'
+import { CookingPanel } from './CookingPanel'
 
 export function TodoKitchenClear() {
   return (
-    <TrophyPanel
-      title="Kitchen clear!"
-      subtitle="Use this space to create and manage tasks for you and other team members."
-    />
+    <CookingPanel subtitle="Use this space to create and manage tasks for you and other team members." />
   )
 }
