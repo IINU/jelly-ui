@@ -1,6 +1,6 @@
 import { Typography, TypographyStyle } from '../atoms/Typography'
 
-type ImagePanelSize = 'sm' | 'lg'
+export type ImagePanelSize = 'sm' | 'lg'
 
 type Props = {
   imageSrc: string
