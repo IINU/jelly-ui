@@ -1,4 +1,8 @@
-import { IconChevronRight, IconCircle, IconCircleCheckFilled } from '@tabler/icons-react'
+import {
+  IconChevronRight,
+  IconCircle,
+  IconCircleCheckFilled,
+} from '@tabler/icons-react'
 import { Typography } from '../atoms/Typography'
 
 type Props = {
@@ -15,9 +19,11 @@ export function ChecklistStep({ text, completed, onClick }: Props) {
     >
       <div className="jui-flex jui-space-x-2">
         <div className="jui-flex jui-items-center">
-          {completed
-            ? <IconCircleCheckFilled className="jui-text-success-400"/>
-            : <IconCircle className="jui-text-primary-200"/>}
+          {completed ? (
+            <IconCircleCheckFilled className="jui-text-success-400" />
+          ) : (
+            <IconCircle className="jui-text-primary-400" />
+          )}
         </div>
 
         <Typography
@@ -30,7 +36,7 @@ export function ChecklistStep({ text, completed, onClick }: Props) {
 
       {!completed && (
         <div className="jui-flex jui-items-center">
-          <IconChevronRight className="jui-text-primary-400"/>
+          <IconChevronRight className="jui-text-primary-400" />
         </div>
       )}
     </div>
