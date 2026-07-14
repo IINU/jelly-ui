@@ -22,7 +22,7 @@ export function ChecklistStep({ text, completed, onClick }: Props) {
           {completed ? (
             <IconCircleCheckFilled className="jui-text-success-400" />
           ) : (
-            <IconCircle className="jui-text-primary-400" />
+            <IconCircle className="jui-text-primary-200" />
           )}
         </div>
 

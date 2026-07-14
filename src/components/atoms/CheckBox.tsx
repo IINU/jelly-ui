@@ -46,13 +46,13 @@ export function CheckBox({
     >
       {checked ? (
         <span
-          className="jui-inline-flex jui-items-center jui-justify-center jui-rounded-full jui-border-2 jui-border-primary-200 jui-bg-white"
+          className="jui-inline-flex jui-items-center jui-justify-center jui-rounded-full jui-border-2 jui-border-primary-400 jui-bg-white"
           style={{ width: iconSizes[size], height: iconSizes[size] }}
         >
           <span className="jui-h-3/4 jui-w-3/4 jui-rounded-full jui-bg-secondary-400" />
         </span>
       ) : (
-        <IconCircle size={iconSizes[size]} className="jui-text-primary-200" />
+        <IconCircle size={iconSizes[size]} className="jui-text-primary-400" />
       )}
       <span
         className={`jui-font-lato jui-font-bold jui-tracking-[0px] jui-align-middle jui-text-primary-900 ${labelSizes[size]}`}
