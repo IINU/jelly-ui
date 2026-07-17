@@ -17,11 +17,13 @@ export function Note({ title, body, variant = 'default' }: Props) {
 
   return (
     <div className="jui-space-y-2">
-      <Typography style="caption" className="jui-text-primary-800">
+      <Typography style="caption" className="jui-text-primary-900">
         {title}
       </Typography>
 
-      <div className={`${variantClass[variant]} jui-border-2 jui-rounded-lg jui-px-3.5 jui-py-1.5`}>
+      <div
+        className={`${variantClass[variant]} jui-border-2 jui-rounded-lg jui-px-3.5 jui-py-1.5`}
+      >
         <Typography style="body1" className="jui-text-primary-900">
           {body}
         </Typography>
