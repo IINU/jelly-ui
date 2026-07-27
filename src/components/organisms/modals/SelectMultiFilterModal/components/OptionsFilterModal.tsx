@@ -1,8 +1,8 @@
 import { Button } from '../../../../atoms/Button'
-import { CheckBox } from '../../../../atoms/CheckBox'
 import { Modal } from '../../../../atoms/Modal'
 
 import { BackButton } from './BackButton'
+import { CheckBoxOption } from './CheckBoxOption'
 import { RadioOption } from './RadioOption'
 import { FilterDefinition } from '../types'
 
@@ -51,30 +51,25 @@ export function OptionsFilterModal({
           </span>
         </div>
 
-        <div className="jui-space-y-4">
-          {definition.options.map((option) => (
-            <div key={option.value}>
-              {definition.selectionMode === 'single' ? (
-                <RadioOption
-                  active={selectedValues.includes(option.value)}
-                  label={option.label}
-                  onClick={() => onToggleOption(option.value)}
-                />
-              ) : (
-                <CheckBox
-                  checked={selectedValues.includes(option.value)}
-                  label={option.label}
-                  onChange={() => onToggleOption(option.value)}
-                />
-              )}
-
-              {option.description && (
-                <div className="jui-pl-8 jui-font-rubik jui-font-normal jui-text-sm jui-leading-tight jui-text-primary-600">
-                  {option.description}
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="jui-space-y-6">
+          {definition.options.map((option) =>
+            definition.selectionMode === 'single' ? (
+              <RadioOption
+                key={option.value}
+                active={selectedValues.includes(option.value)}
+                label={option.label}
+                onClick={() => onToggleOption(option.value)}
+              />
+            ) : (
+              <CheckBoxOption
+                key={option.value}
+                checked={selectedValues.includes(option.value)}
+                label={option.label}
+                description={option.description}
+                onClick={() => onToggleOption(option.value)}
+              />
+            ),
+          )}
         </div>
 
         <div className="jui-space-y-2">
