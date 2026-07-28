@@ -1,12 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
+import {
+  IconBriefcase,
+  IconBuildingStore,
+  IconChefHat,
+  IconClipboardText,
+  IconCoins,
+  IconToolsKitchen,
+} from '@tabler/icons-react'
 import { OnboardingShowcase } from '../../showcase/OnboardingShowcase'
 import { AcceptInvitePanel } from '../../components/organisms/onboarding/AcceptInvitePanel'
 import { BusinessDetailsPanel } from '../../components/organisms/onboarding/BusinessDetailsPanel'
 import { ConfirmPhonePanel } from '../../components/organisms/onboarding/ConfirmPhonePanel'
 import { InvitePanel } from '../../components/organisms/onboarding/InvitePanel'
 import { JobResponsibilitiesPanel } from '../../components/organisms/onboarding/JobResponsibilitiesPanel'
-import { JobRolePanel } from '../../components/organisms/onboarding/JobRolePanel'
+import {
+  JobRoleOption,
+  JobRolePanel,
+} from '../../components/organisms/onboarding/JobRolePanel'
 import { LoginPanel } from '../../components/organisms/onboarding/LoginPanel'
 import { NewPasswordPanel } from '../../components/organisms/onboarding/NewPasswordPanel'
 import { ProfilePicturePanel } from '../../components/organisms/onboarding/ProfilePicturePanel'
@@ -24,7 +35,7 @@ const meta = {
 } satisfies Meta<typeof OnboardingShowcase>
 
 export default meta
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const AcceptInvitePanelStory: Story = {
   name: 'Accept Invite Panel',
@@ -79,16 +90,29 @@ export const JobResponsibilitiesPanelStory: Story = {
   name: 'Job Responsibilities Panel',
   args: {
     component: JobResponsibilitiesPanel,
-    responsibilities: responsibilities.map(r => ({ item: r, isChecked: false })),
+    responsibilities: responsibilities.map((r) => ({
+      item: r,
+      isChecked: false,
+    })),
     submit: fn(),
     getText: (r: Responsibility) => r.name,
   },
 }
 
+const jobRoles: JobRoleOption<string>[] = [
+  { code: 'HEAD_CHEF', name: 'Head Chef', icon: IconChefHat },
+  { code: 'CHEF', name: 'Chef', icon: IconToolsKitchen },
+  { code: 'MANAGER', name: 'Manager', icon: IconBriefcase },
+  { code: 'ACCOUNTING', name: 'Accounting', icon: IconCoins },
+  { code: 'FRONT_OF_HOUSE', name: 'Front of house', icon: IconClipboardText },
+  { code: 'OWNER', name: 'Owner', icon: IconBuildingStore },
+]
+
 export const JobRolePanelStory: Story = {
   name: 'Job Roles Panel',
   args: {
     component: JobRolePanel,
+    roles: jobRoles,
     jobRoles: fn(),
     onboarding: false,
   },
