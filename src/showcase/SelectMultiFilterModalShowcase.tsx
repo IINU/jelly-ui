@@ -127,7 +127,7 @@ export function SelectMultiFilterModalShowcase({ directMode = false }: Props) {
   }
 
   return (
-    <div className="jui-w-full jui-p-4">
+    <div className="jui-w-full jui-p-4 jui-bg-primary-50">
       <SelectMultiFilterModal
         triggers={triggers}
         rootDefinitions={definitions}
