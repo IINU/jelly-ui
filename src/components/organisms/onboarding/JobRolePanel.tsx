@@ -1,65 +1,65 @@
 import { Button } from '../../atoms/Button'
 import { JellyLogoPrimary } from '../../atoms/svgs/JellyLogoPrimary'
 import { Typography } from '../../atoms/Typography'
-import { useEffect, useState } from 'react'
+import { ComponentProps, useEffect, useState } from 'react'
 import { useEnterSubmit } from '../../../hooks/useEnterSubmit'
 import { CardButton } from '../../atoms/CardButton'
-import {
-  IconBriefcase,
-  IconBuildingStore,
-  IconChefHat,
-  IconClipboardText,
-  IconCoins,
-  IconToolsKitchen,
-} from '@tabler/icons-react'
 
-type Role = 'head-chef' | 'chef' | 'manager' | 'accounting' | 'foh' | 'owner'
+// The code identifies the role to the caller's API; the panel only groups
+// buttons by it, so it stays generic and the caller keeps its own enum.
+export type JobRoleOption<T extends string> = {
+  code: T
+  name: string
+  icon: ComponentProps<typeof CardButton>['icon']
+}
 
-export type JobRoleData = {
-  roles: Role[]
+export type JobRoleData<T extends string = string> = {
+  roles: T[]
 }
 
 type Errors = Partial<Record<keyof JobRoleData, string>>
 
-type Props = {
-  jobRoles: (data: JobRoleData) => void
+type Props<T extends string> = {
+  roles: JobRoleOption<T>[]
+  jobRoles: (data: JobRoleData<T>) => void
   onboarding?: boolean
   loading?: boolean
   errors?: Errors
 }
 
-export function JobRolePanel({
+export function JobRolePanel<T extends string>({
+  roles: options,
   jobRoles,
   loading,
   onboarding = true,
   errors: propErrors,
-}: Props) {
+}: Props<T>) {
   const [errors, setErrors] = useState<Errors | null>(propErrors || null)
-  const [roles, setRoles] = useState<Role[]>([])
+  const [roles, setRoles] = useState<T[]>([])
 
   useEnterSubmit({ ctaClicked })
   useEffect(() => setErrors(propErrors || null), [propErrors])
 
   function ctaClicked() {
     setErrors(null)
-    if (!roles) return setErrors({ roles: 'This is required.' })
+    if (!roles.length) return setErrors({ roles: 'This is required.' })
 
     jobRoles({ roles })
   }
 
-  function toggleRole(role: Role) {
-    if (!roles.includes(role)) {
-      return setRoles([...roles, role])
+  function toggleRole(code: T) {
+    if (!roles.includes(code)) {
+      return setRoles([...roles, code])
     }
 
-    const newRoles = [...roles.filter(r => r !== role)]
+    const newRoles = [...roles.filter((r) => r !== code)]
     setRoles(newRoles)
   }
 
   return (
     <div className="jui-shadow jui-w-full jui-rounded-md">
       <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
-        <JellyLogoPrimary/>
+        <JellyLogoPrimary />
       </div>
 
       <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
@@ -69,69 +69,29 @@ export function JobRolePanel({
               Tell us about yourself
             </Typography>
 
-            {onboarding
-              ? (
-                <Typography style="caption" className="jui-text-primary-600">
-                  Let us personalize your onboarding. Select all the roles that
-                  apply to you.
-                </Typography>
-              )
-              : (
-                <Typography style="caption" className="jui-text-primary-600">
-                  We'd like to know more about you. Select all the roles that
-                  apply to you.
-                </Typography>
-              )}
+            {onboarding ? (
+              <Typography style="caption" className="jui-text-primary-600">
+                Let us personalize your onboarding. Select all the roles that
+                apply to you.
+              </Typography>
+            ) : (
+              <Typography style="caption" className="jui-text-primary-600">
+                We'd like to know more about you. Select all the roles that
+                apply to you.
+              </Typography>
+            )}
           </div>
 
-          <div className="jui-space-y-2">
-            <div className="jui-flex jui-space-x-2">
+          <div className="jui-grid jui-grid-cols-2 jui-gap-2">
+            {options.map((option) => (
               <CardButton
-                label="Head Chef"
-                icon={IconChefHat}
-                active={roles.includes('head-chef')}
-                onClick={() => toggleRole('head-chef')}
+                key={option.code}
+                label={option.name}
+                icon={option.icon}
+                active={roles.includes(option.code)}
+                onClick={() => toggleRole(option.code)}
               />
-
-              <CardButton
-                label="Chef"
-                icon={IconToolsKitchen}
-                active={roles.includes('chef')}
-                onClick={() => toggleRole('chef')}
-              />
-            </div>
-
-            <div className="jui-flex jui-space-x-2">
-              <CardButton
-                label="Manager"
-                icon={IconBriefcase}
-                active={roles.includes('manager')}
-                onClick={() => toggleRole('manager')}
-              />
-
-              <CardButton
-                label="Accounting"
-                icon={IconCoins}
-                active={roles.includes('accounting')}
-                onClick={() => toggleRole('accounting')}
-              />
-            </div>
-
-            <div className="jui-flex jui-space-x-2">
-              <CardButton
-                label="Front of house"
-                icon={IconClipboardText}
-                active={roles.includes('foh')}
-                onClick={() => toggleRole('foh')}
-              />
-
-              <CardButton
-                label="Owner"
-                icon={IconBuildingStore}
-                active={roles.includes('owner')}
-                onClick={() => toggleRole('owner')}
-              />
-            </div>
+            ))}
           </div>
 
           {errors?.roles && (
