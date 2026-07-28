@@ -18,7 +18,7 @@ export function RadioOption({ active, label, onClick }: Props) {
         />
       </div>
 
-      <span className="jui-font-rubik jui-text-sm jui-text-primary-900">
+      <span className="jui-font-lato jui-font-bold jui-text-sm jui-leading-[18px] jui-tracking-[0px] jui-align-middle jui-text-primary-900">
         {label}
       </span>
     </div>
