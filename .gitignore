@@ -35,3 +35,6 @@ storybook-static
 # monorepo
 .rush
 rush-logs
+
+# LLMs
+.claude
