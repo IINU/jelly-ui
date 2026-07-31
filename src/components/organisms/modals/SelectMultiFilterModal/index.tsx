@@ -25,7 +25,7 @@ export function SelectMultiFilterModal<Category extends string = string>({
 
   return (
     <>
-      <div className="jui-w-full jui-flex jui-items-center jui-gap-2.5 jui-bg-white jui-py-1 jui-px-4">
+      <div className="jui-w-full jui-flex jui-items-center jui-gap-2.5 jui-py-1 jui-px-4">
         {triggers.map((trigger) => (
           <FilterTriggerButton
             key={trigger.key}
