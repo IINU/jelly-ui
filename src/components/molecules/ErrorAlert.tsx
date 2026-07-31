@@ -8,19 +8,27 @@ type Props = {
   icon?: ComponentType<{ className?: string }>
 }
 
-export function ErrorAlert({ text, onClick, icon: Icon = IconAlertTriangle }: Props) {
+/**
+ * @deprecated Use `Notification` with `variant="warning"` instead. This component
+ * predates the Figma Notification component and no longer matches its spec.
+ */
+export function ErrorAlert({
+  text,
+  onClick,
+  icon: Icon = IconAlertTriangle,
+}: Props) {
   return (
     <div
       className={`jui-p-3 jui-flex jui-space-x-3 jui-w-full jui-bg-error-300 jui-items-center ${onClick ? 'jui-cursor-pointer' : ''}`}
       onClick={onClick}
     >
-      <Icon className="jui-text-primary-900"/>
+      <Icon className="jui-text-primary-900" />
 
-      <Typography style="body1" className="jui-flex-1">{text}</Typography>
+      <Typography style="body1" className="jui-flex-1">
+        {text}
+      </Typography>
 
-      {!!onClick && (
-        <IconChevronRight className="jui-text-primary-900"/>
-      )}
+      {!!onClick && <IconChevronRight className="jui-text-primary-900" />}
     </div>
   )
 }

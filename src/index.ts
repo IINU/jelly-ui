@@ -47,6 +47,8 @@ export { InsightsScatterChart } from './components/molecules/InsightsScatterChar
 export { InsightsStockRangeSelect } from './components/molecules/InsightsStockRangeSelect'
 export { Note } from './components/molecules/Note'
 export { Notes } from './components/molecules/Notes'
+export { Notification } from './components/molecules/Notification'
+export type { NotificationVariant } from './components/molecules/Notification'
 export { PeriodSelector } from './components/molecules/PeriodSelector'
 export { TodoKitchenClear } from './components/molecules/TodoKitchenClear'
 export { TodoNoTasks } from './components/molecules/TodoNoTasks'
