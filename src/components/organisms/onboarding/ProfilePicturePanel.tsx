@@ -85,7 +85,7 @@ export function ProfilePicturePanel({
   return (
     <div className="jui-shadow jui-w-full jui-rounded-md">
       <div className="jui-rounded-t-md jui-bg-white jui-p-4 jui-flex jui-flex-col jui-items-center jui-justify-center">
-        <JellyLogoPrimary/>
+        <JellyLogoPrimary />
       </div>
 
       <div className="jui-flex jui-flex-col jui-items-center jui-space-y-8 jui-rounded-b-md jui-bg-primary-50 jui-px-4 jui-py-8 jui-text-center">
@@ -104,7 +104,6 @@ export function ProfilePicturePanel({
           <div className="jui-space-y-4">
             <div className="jui-flex jui-justify-center">
               <div className="jui-grid jui-grid-cols-2 jui-gap-y-4 jui-gap-x-2">
-
                 {uploaded ? (
                   <ProfilePicture
                     src={URL.createObjectURL(uploaded.file)}
@@ -114,7 +113,7 @@ export function ProfilePicturePanel({
                     }}
                   />
                 ) : (
-                  <UploadProfilePictureButton onClick={openFileSelect}/>
+                  <UploadProfilePictureButton onClick={openFileSelect} />
                 )}
 
                 {presetImages.map((src, i) => (
@@ -142,7 +141,7 @@ export function ProfilePicturePanel({
             style="primary"
             onClick={ctaClicked}
             disabled={loading || selected === null}
-            label="Ready For Service"
+            label="Continue"
             className="jui-w-full"
           />
         </div>
