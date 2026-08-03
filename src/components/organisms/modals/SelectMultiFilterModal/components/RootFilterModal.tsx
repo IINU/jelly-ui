@@ -33,9 +33,21 @@ export function RootFilterModal({
         <div>
           {definitions.map((definition) => {
             const selectedValues = draft[definition.key] ?? []
-            const selectedLabels = definition.options
-              .filter((option) => selectedValues.includes(option.value))
-              .map((option) => option.label)
+
+            // Selecting every option filters nothing, so it reads as "All" —
+            // the same as selecting none. Collapsing to empty labels lets the
+            // row render "All" rather than listing each option.
+            const allSelected =
+              definition.options.length > 0 &&
+              definition.options.every((option) =>
+                selectedValues.includes(option.value),
+              )
+
+            const selectedLabels = allSelected
+              ? []
+              : definition.options
+                  .filter((option) => selectedValues.includes(option.value))
+                  .map((option) => option.label)
 
             return (
               <RootFilterRow
